@@ -6,9 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
+import org.json.simple.JSONArray;
+
+//import org.jdatepicker.impl.JDatePanelImpl;
+//import org.jdatepicker.impl.JDatePickerImpl;
+//import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -33,6 +35,7 @@ import java.awt.event.ActionEvent;
 //import com.github.lgooddatepicker.components.DatePicker;
 //import com.github.lgooddatepicker.components.DateTimePicker;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
@@ -51,6 +54,11 @@ public class train_reverv_main extends JFrame {
 	private JPanel contentPane;
 	private String datePattern = "yyyy-MM-dd";
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+    private JTextField st_sub_text;
+    private JTextField en_sub_text;
+    private JTextField date_text;
+    private JTextField train_text;
+    private JSONArray array;
 	/**
 	 * Launch the application.
 	 */
@@ -116,16 +124,16 @@ public class train_reverv_main extends JFrame {
 		home_btn.setContentAreaFilled(false);
 		home_btn.setFocusPainted(false);
 		
-		try {
-			home_btn.setIcon(
-					new ImageIcon(ImageIO.read(
-							
-							new File("C:\\javafullstack\\javadefalut\\files\\images\\home.jpg"))
-							.getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING)));
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-		
+//		try {
+//			home_btn.setIcon(
+//					new ImageIcon(ImageIO.read(
+//							
+//							new File("C:\\javafullstack\\javadefalut\\files\\images\\home.jpg"))
+//							.getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING)));
+//		}catch(IOException e) {
+//			e.printStackTrace();
+//		}
+//		
 		JButton back_btn = new JButton("");
 		back_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -290,20 +298,77 @@ public class train_reverv_main extends JFrame {
 		gbc_lblNewLabel_1_5.gridy = 1;
 		panel.add(lblNewLabel_1_5, gbc_lblNewLabel_1_5);
 		
+		JButton search_btn = new JButton("조회");
+		search_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 String st_sub = st_sub_text.getText();
+				 String en_sub = en_sub_text.getText();
+				 String date = date_text.getText();
+				 String train_nm = train_text.getText();
+				 Train_API tapi = new Train_API();
+				 try {
+					array = tapi.train_api(st_sub, en_sub, date, train_nm);
+//					Search_Train_Panel();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		search_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		search_btn.setBounds(128, 828, 140, 49);
+		reserv_panel.add(search_btn);
+		
+		st_sub_text = new JTextField();
+		st_sub_text.setBounds(45, 653, 116, 21);
+		reserv_panel.add(st_sub_text);
+		st_sub_text.setColumns(10);
+		
+		en_sub_text = new JTextField();
+		en_sub_text.setColumns(10);
+		en_sub_text.setBounds(205, 653, 116, 21);
+		reserv_panel.add(en_sub_text);
+		
+		JLabel lblNewLabel_2 = new JLabel("출발역");
+		lblNewLabel_2.setBounds(65, 629, 57, 15);
+		reserv_panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("도착역");
+		lblNewLabel_2_1.setBounds(224, 629, 57, 15);
+		reserv_panel.add(lblNewLabel_2_1);
+		
+		date_text = new JTextField();
+		date_text.setColumns(10);
+		date_text.setBounds(45, 719, 116, 21);
+		reserv_panel.add(date_text);
+		
+		JLabel lblNewLabel_2_2 = new JLabel("출발시간");
+		lblNewLabel_2_2.setBounds(65, 695, 57, 15);
+		reserv_panel.add(lblNewLabel_2_2);
+		
+		JLabel lblNewLabel_2_2_1_1 = new JLabel("기차");
+		lblNewLabel_2_2_1_1.setBounds(225, 695, 57, 15);
+		reserv_panel.add(lblNewLabel_2_2_1_1);
+		
+		train_text = new JTextField();
+		train_text.setColumns(10);
+		train_text.setBounds(205, 719, 116, 21);
+		reserv_panel.add(train_text);
+		
 //		TimePicker timePicker = new TimePicker();
 //		timePicker.setBounds(281, 225, 97, 34);
 //		timePicker.setTimeToNow();
 //		reserv_panel.add(timePicker);
-		try {
-			back_btn.setIcon(
-					new ImageIcon(ImageIO.read(
-							new File("C:\\javafullstack\\javadefalut\\files\\images\\backkey.jpg"))
-							.getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING)));
-			
-			
-			
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			back_btn.setIcon(
+//					new ImageIcon(ImageIO.read(
+//							new File("C:\\javafullstack\\javadefalut\\files\\images\\backkey.jpg"))
+//							.getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING)));
+//			
+//			
+//			
+//		}catch(IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }

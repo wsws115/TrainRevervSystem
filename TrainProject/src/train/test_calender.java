@@ -6,11 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
+//import org.jdatepicker.impl.JDatePanelImpl;
+//import org.jdatepicker.impl.JDatePickerImpl;
+//import org.jdatepicker.impl.UtilDateModel;
 import javax.swing.JFormattedTextField;
-import com.github.lgooddatepicker.components.DatePicker;
+//import com.github.lgooddatepicker.components.DatePicker;
 
 
 public class test_calender extends JFrame {
@@ -45,8 +45,8 @@ public class test_calender extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		DatePicker datePicker = new DatePicker();
-		datePicker.setBounds(12, 10, 133, 21);
-		contentPane.add(datePicker);
+//		DatePicker datePicker = new DatePicker();
+//		datePicker.setBounds(12, 10, 133, 21);
+//		contentPane.add(datePicker);
 	}
 }

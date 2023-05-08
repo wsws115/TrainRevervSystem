@@ -15,6 +15,8 @@ import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
 
 public class Seat1 extends JPanel {
 
@@ -158,7 +160,23 @@ public class Seat1 extends JPanel {
       countTextField6.setHorizontalAlignment(SwingConstants.CENTER);
       countTextField6.setColumns(10);
       leftPanel.add(countTextField6);
-   
+      
+      JToggleButton test_toggle_btn = new JToggleButton("");
+      test_toggle_btn.setEnabled(false);
+      test_toggle_btn.setDisabledIcon(new ImageIcon("C:\\Java_WorkSpace\\enable_img.png"));
+      test_toggle_btn.setIcon(new ImageIcon("C:\\Java_WorkSpace\\standard.png"));
+      test_toggle_btn.setSelectedIcon(new ImageIcon("C:\\Java_WorkSpace\\select.png"));
+      test_toggle_btn.setBounds(12, 626, 221, 193);
+      leftPanel.add(test_toggle_btn);
+      test_toggle_btn.setDisabledIcon(null);
+      
+      JToggleButton test_toggle_btn_1 = new JToggleButton("");
+      test_toggle_btn_1.setEnabled(true);
+      test_toggle_btn_1.setDisabledIcon(new ImageIcon("C:\\Java_WorkSpace\\enable_img.png"));
+      test_toggle_btn_1.setIcon(new ImageIcon("C:\\Java_WorkSpace\\standard.png"));
+      test_toggle_btn_1.setSelectedIcon(new ImageIcon("C:\\Java_WorkSpace\\select.png"));
+      test_toggle_btn_1.setBounds(245, 626, 221, 193);
+      leftPanel.add(test_toggle_btn_1);
 
       
       
@@ -217,6 +235,11 @@ public class Seat1 extends JPanel {
       //좌석 선택 버튼
       //이미 예약된 좌석일 경우 enable로 바꿈
       JButton seatselectBtn1 = new JButton("A1");
+      seatselectBtn1.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      		
+      	}
+      });
       seatselectBtn1.setBounds(50, 50, 100, 100);
       seatPanel.add(seatselectBtn1);
       
