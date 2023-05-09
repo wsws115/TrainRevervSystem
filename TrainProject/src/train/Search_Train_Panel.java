@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Search_Train_Panel extends JPanel {
-	private JTable table;
+	public JTable table;
 	
 	/**
 	 * Create the panel.

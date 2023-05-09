@@ -5,8 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 //import org.jdatepicker.impl.JDatePanelImpl;
 //import org.jdatepicker.impl.JDatePickerImpl;
@@ -305,10 +307,24 @@ public class train_reverv_main extends JFrame {
 				 String en_sub = en_sub_text.getText();
 				 String date = date_text.getText();
 				 String train_nm = train_text.getText();
-				 Train_API tapi = new Train_API();
+				 System.out.println("?여기");
+				 Train_API tapi = new Train_API(st_sub, en_sub, date, train_nm);
 				 try {
-					array = tapi.train_api(st_sub, en_sub, date, train_nm);
-//					Search_Train_Panel();
+					array = tapi.train_api();
+//					Search_Train_Panel search_panel = new Search_Train_Panel();
+//					DefaultTableModel model = (DefaultTableModel) search_panel.table.getModel();
+					
+					for(int i =0; i< array.size(); ++i) {
+						JSONObject object = (JSONObject) array.get(i);
+						System.out.println("요금 ==> "+object.get("adultcharge"));
+					    System.out.println("출발역 ==> "+object.get("arrplacename"));
+					    System.out.println("출발시간 ==> "+object.get("arrplandtime"));
+					    System.out.println("도착역 ==> "+object.get("depplacename"));
+					    System.out.println("도착시간 ==> "+object.get("depplandtime"));
+					    System.out.println("열차이름 ==> "+object.get("traingradename"));
+					    System.out.println("열차번호 ==> "+object.get("trainno"));
+					}
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
