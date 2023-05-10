@@ -319,6 +319,7 @@ public class train_reverv_main extends JFrame {
 		JButton search_btn = new JButton("조회");
 		search_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				card.next(card_panel);
 			} 
 		});
 		search_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));

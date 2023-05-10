@@ -20,15 +20,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableRowSorter;
 
-import foodcourt.component.FoodBtn;
-import foodcourt.component.FoodLab;
-import foodcourt.component.MenuBtn;
+import train.train_food_component.FoodBtn;
+import train.train_food_component.FoodLab;
+import train.train_food_component.MenuBtn;
 
-public class FoodCourtPanel extends JPanel {
-	
-	private JTable table;
+public class FoodCourtMainPanel extends JPanel {
 	
 	String mainpont = "HY헤드라인M";
 	
@@ -42,11 +39,11 @@ public class FoodCourtPanel extends JPanel {
 	
 	// ★ [하] 유저 테이블
 	private JPanel user_panel;
+	private JTable user_table; // 사용자가 선택한 메뉴 표출 테이블
 	private JScrollPane user_sp; // 유저 테이블 스크롤
 	private String[] title = {"음식이름", "가격", "-", "수량", "+", "취소"};
-							// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5	
+	// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
 	private DefaultTableModel user_dtm = new DefaultTableModel(title, 0); // 테이블 값 관리
-	private JTable user_table; // 사용자가 선택한 메뉴 표출 테이블
 	private JLabel title_Lab, total_Lab, totalPrice_Lab; // 총 가격이 출력 될 라벨
 	private JButton select_Btn, cancel_Btn; // 선택 취소, 선택 완료 버튼
 	
@@ -55,18 +52,12 @@ public class FoodCourtPanel extends JPanel {
 		int sum = 0;
 		
 		for (int i = 0; i < user_dtm.getRowCount(); ++i) {
-			int qty = 0;
-			
-			if (user_dtm.getColumnCount() != 0) {
-				qty = (int) user_dtm.getValueAt(i, 3);
-			}
+			int qty = (int) user_dtm.getValueAt(i, 3);
 			
 			sum += (int) user_dtm.getValueAt(i, 1) * qty;
 		}
-		// 테이블에 따라 총 가격 셋팅
 		totalPrice_Lab.setText(String.valueOf(sum) + "원");
 	}
-	
 	
 	/**
 	 * Create the panel.
@@ -112,10 +103,6 @@ public class FoodCourtPanel extends JPanel {
 				user_table.getColumn("-").setPreferredWidth(10);
 				user_table.getColumn("취소").setPreferredWidth(10);
 				
-				// 테이블 이동, 크기 조절 불가
-				user_table.getTableHeader().setReorderingAllowed(false);
-				user_table.getTableHeader().setReorderingAllowed(false);
-				
 				// user_table plus, minus 버튼 추가
 				// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
 				user_table.getColumnModel().getColumn(2).setCellRenderer(new countBtn("-"));
@@ -149,13 +136,12 @@ public class FoodCourtPanel extends JPanel {
 		cancel_Btn.setBackground(new Color(0, 128, 192));
 		cancel_Btn.setBounds(1016, 734, 162, 146);
 		add(cancel_Btn);
-		// 액션 시, 버튼 삭제
+		
 		cancel_Btn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				user_dtm.setRowCount(0); // 전체 행 삭제
 				user_dtm.fireTableDataChanged(); // 데이터 저장				
-				user_table.repaint(); // 데이터 새로고침
 				
 				getTotalPrice(); // 가격 새로고침
 			}
@@ -171,7 +157,7 @@ public class FoodCourtPanel extends JPanel {
 		
 		// 선택 완료는 아직 구현 안함 (버튼만 존재)
 		
-		// ★ [중] - 하단 total Price 때문에 [하] 밑으로 넣음
+		// ★ [중] - 하단 total Pirce 때문에 [하] 밑으로 넣음
 		
 			// @ 메뉴 카드들을 넣을 부모 패널 (카드 레이아웃 설정됨)
 			main_Menupanel = new JPanel();
@@ -246,42 +232,42 @@ public class FoodCourtPanel extends JPanel {
 		// @ 패널 내부 메뉴 버튼들
 						// @ 1.  meal_panel 버튼, 메뉴명 라벨, 가격 라벨
 						FoodBtn eelBtn = new FoodBtn("장어덮밥", 11000, user_dtm, totalPrice_Lab);
-						eelBtn.getImage("C:\\java(KSJ)\\project 이미지\\0장어.jpg");
+						eelBtn.getImage("C:\\javafullstack\\project 이미지\\0장어.jpg");
 						eelBtn.setLocation(80, 60);
 						meal_panel.add(eelBtn);
 						
 						FoodBtn bibimBabBtn = new FoodBtn("비빔밥", 9000, user_dtm, totalPrice_Lab);
-						bibimBabBtn.getImage("C:\\java(KSJ)\\project 이미지\\1비빔밥.jpg");
+						bibimBabBtn.getImage("C:\\javafullstack\\project 이미지\\1비빔밥.jpg");
 						bibimBabBtn.setLocation(400, 60);
 						meal_panel.add(bibimBabBtn);
 						
 						FoodBtn bulgogiBtn = new FoodBtn("불고기덮밥", 9000, user_dtm, totalPrice_Lab);
-						bulgogiBtn.getImage("C:\\java(KSJ)\\project 이미지\\2불고기.jpg");
+						bulgogiBtn.getImage("C:\\javafullstack\\project 이미지\\2불고기.jpg");
 						bulgogiBtn.setLocation(700, 60);
 						meal_panel.add(bulgogiBtn);
 						
 						FoodBtn squidBtn = new FoodBtn("오징어덮밥", 9000, user_dtm, totalPrice_Lab);
-						squidBtn.getImage("C:\\java(KSJ)\\project 이미지\\3오징어.jpg");
+						squidBtn.getImage("C:\\javafullstack\\project 이미지\\3오징어.jpg");
 						squidBtn.setLocation(1000, 60);
 						meal_panel.add(squidBtn);
 						
 						FoodBtn hamBtn = new FoodBtn("함박스테이크", 10000, user_dtm, totalPrice_Lab);
-						hamBtn.getImage("C:\\java(KSJ)\\project 이미지\\4함박.jpg");
+						hamBtn.getImage("C:\\javafullstack\\project 이미지\\4함박.jpg");
 						hamBtn.setLocation(80, 300);
 						meal_panel.add(hamBtn);
 						
 						FoodBtn tunaBtn = new FoodBtn("참치마요컵밥", 7000, user_dtm, totalPrice_Lab);
-						tunaBtn.getImage("C:\\java(KSJ)\\project 이미지\\5참치.jpg");
+						tunaBtn.getImage("C:\\javafullstack\\project 이미지\\5참치.jpg");
 						tunaBtn.setLocation(400, 300);
 						meal_panel.add(tunaBtn);
 						
 						FoodBtn chickenBtn = new FoodBtn("치킨마요컵밥", 7000, user_dtm, totalPrice_Lab);
-						chickenBtn.getImage("C:\\java(KSJ)\\project 이미지\\6치킨.jpg");
+						chickenBtn.getImage("C:\\javafullstack\\project 이미지\\6치킨.jpg");
 						chickenBtn.setLocation(700, 300);
 						meal_panel.add(chickenBtn);	
 						
 						FoodBtn childBtn = new FoodBtn("꾸러기 도시락", 6000, user_dtm, totalPrice_Lab);
-						childBtn.getImage("C:\\java(KSJ)\\project 이미지\\7어린이.jpg");
+						childBtn.getImage("C:\\javafullstack\\project 이미지\\7어린이.jpg");
 						childBtn.setLocation(1000, 300);
 						meal_panel.add(childBtn);
 						
@@ -351,7 +337,7 @@ public class FoodCourtPanel extends JPanel {
 						
 						// @ 2. noodle_panel 버튼, 메뉴명 라벨, 가격 라벨
 						FoodBtn sinramen_Btn = new FoodBtn("신라면 컵", 2000, user_dtm, totalPrice_Lab);
-						sinramen_Btn.getImage("C:\\java(KSJ)\\project 이미지\\100신라면.jpg");
+						sinramen_Btn.getImage("C:\\javafullstack\\project 이미지\\100신라면.jpg");
 						sinramen_Btn.setLocation(80, 60);
 						noodle_panel.add(sinramen_Btn);
 						
@@ -364,7 +350,7 @@ public class FoodCourtPanel extends JPanel {
 						noodle_panel.add(sinramenPrice_Lab);
 						
 						FoodBtn jinramen_Btn = new FoodBtn("진라면 컵", 2000, user_dtm, totalPrice_Lab);
-						jinramen_Btn.getImage("C:\\java(KSJ)\\project 이미지\\101진라면.jpg");
+						jinramen_Btn.getImage("C:\\javafullstack\\project 이미지\\101진라면.jpg");
 						jinramen_Btn.setLocation(400, 60);
 						noodle_panel.add(jinramen_Btn);
 						
@@ -377,7 +363,7 @@ public class FoodCourtPanel extends JPanel {
 						noodle_panel.add(jinramenPrice_Lab);
 						
 						FoodBtn zzaramen_Btn = new FoodBtn("짜파게티 컵", 2000, user_dtm, totalPrice_Lab);
-						zzaramen_Btn.getImage("C:\\java(KSJ)\\project 이미지\\102짜파.jpg");
+						zzaramen_Btn.getImage("C:\\javafullstack\\project 이미지\\102짜파.jpg");
 						zzaramen_Btn.setLocation(700, 60);
 						noodle_panel.add(zzaramen_Btn);
 						
@@ -390,7 +376,7 @@ public class FoodCourtPanel extends JPanel {
 						noodle_panel.add(zzaramenPrice_Lab);
 						
 						FoodBtn stirnoodles_Btn = new FoodBtn("라면볶이 컵", 2000, user_dtm, totalPrice_Lab);
-						stirnoodles_Btn.getImage("C:\\java(KSJ)\\project 이미지\\103라볶.jpg");
+						stirnoodles_Btn.getImage("C:\\javafullstack\\project 이미지\\103라볶.jpg");
 						stirnoodles_Btn.setLocation(1000, 60);
 						noodle_panel.add(stirnoodles_Btn);
 						
@@ -404,7 +390,7 @@ public class FoodCourtPanel extends JPanel {
 						
 						// @ 3. snack_panel 버튼, 메뉴명 라벨, 가격 라벨
 						FoodBtn s_SnackBtn = new FoodBtn("새우깡", 1200, user_dtm, totalPrice_Lab);
-						s_SnackBtn.getImage("C:\\java(KSJ)\\project 이미지\\200새우깡.jpg");
+						s_SnackBtn.getImage("C:\\javafullstack\\project 이미지\\200새우깡.jpg");
 						s_SnackBtn.setLocation(80, 60);
 						snack_panel.add(s_SnackBtn);
 						
@@ -417,7 +403,7 @@ public class FoodCourtPanel extends JPanel {
 						snack_panel.add(s_SnackPriceLab);
 						
 						FoodBtn c_SnackBtn = new FoodBtn("초코송이", 1000, user_dtm, totalPrice_Lab);
-						c_SnackBtn.getImage("C:\\java(KSJ)\\project 이미지\\201초코송이.jpg");
+						c_SnackBtn.getImage("C:\\javafullstack\\project 이미지\\201초코송이.jpg");
 						c_SnackBtn.setLocation(400, 60);
 						snack_panel.add(c_SnackBtn);
 						
@@ -430,7 +416,7 @@ public class FoodCourtPanel extends JPanel {
 						snack_panel.add(c_SnackPriceLab);
 						
 						FoodBtn o_SnackBtn = new FoodBtn("양파링", 1400, user_dtm, totalPrice_Lab);
-						o_SnackBtn.getImage("C:\\java(KSJ)\\project 이미지\\203양파링.jpg");
+						o_SnackBtn.getImage("C:\\javafullstack\\project 이미지\\203양파링.jpg");
 						o_SnackBtn.setLocation(700, 60);
 						snack_panel.add(o_SnackBtn);
 						
@@ -443,7 +429,7 @@ public class FoodCourtPanel extends JPanel {
 						snack_panel.add(o_SnackPriceLab);
 						
 						FoodBtn honey_SnackBtn = new FoodBtn("허니버터칩", 2000, user_dtm, totalPrice_Lab);
-						honey_SnackBtn.getImage("C:\\java(KSJ)\\project 이미지\\204허니.jpg");
+						honey_SnackBtn.getImage("C:\\javafullstack\\project 이미지\\204허니.jpg");
 						honey_SnackBtn.setLocation(1000, 60);
 						snack_panel.add(honey_SnackBtn);
 						
@@ -456,7 +442,7 @@ public class FoodCourtPanel extends JPanel {
 						snack_panel.add(honey_SnackPriceLab);
 						
 						FoodBtn twisted_SnackBtn = new FoodBtn("꿀꽈배기", 2000, user_dtm, totalPrice_Lab);
-						twisted_SnackBtn.getImage("C:\\java(KSJ)\\project 이미지\\205꿀꽈배기.jpg");
+						twisted_SnackBtn.getImage("C:\\javafullstack\\project 이미지\\205꿀꽈배기.jpg");
 						twisted_SnackBtn.setLocation(80, 300);
 						snack_panel.add(twisted_SnackBtn);
 						
@@ -470,7 +456,7 @@ public class FoodCourtPanel extends JPanel {
 						
 						// @ 4. drink_panel 버튼, 메뉴명 라벨, 가격 라벨
 						FoodBtn b_DrinkBtn = new FoodBtn("봉봉", 800, user_dtm, totalPrice_Lab);
-						b_DrinkBtn.getImage("C:\\java(KSJ)\\project 이미지\\400봉봉.jpg");
+						b_DrinkBtn.getImage("C:\\javafullstack\\project 이미지\\400봉봉.jpg");
 						b_DrinkBtn.setLocation(80, 60);
 						drink_panel.add(b_DrinkBtn);
 						
@@ -483,7 +469,7 @@ public class FoodCourtPanel extends JPanel {
 						drink_panel.add(b_DrinkPriceLab);
 						
 						FoodBtn cola_DrinkBtn = new FoodBtn("코카콜라", 1000, user_dtm, totalPrice_Lab);
-						cola_DrinkBtn.getImage("C:\\java(KSJ)\\project 이미지\\401콜라.jpg");
+						cola_DrinkBtn.getImage("C:\\javafullstack\\project 이미지\\401콜라.jpg");
 						cola_DrinkBtn.setLocation(400, 60);
 						drink_panel.add(cola_DrinkBtn);						
 						
@@ -525,14 +511,9 @@ public class FoodCourtPanel extends JPanel {
 			add(drink_MenuBtn); // [상] - 끝 -		
 		
 		// ★ 패널 기본 셋팅
-		setBackground(UIManager.getColor("InternalFrame.inactiveBorderColor"));
-		setBounds(0, 0, 1500, 1010);
-		setLayout(null);
-		
-		// 테이블 ?
-        table.setRowHeight(30);
-        table.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-        choicePanel.add(table, BorderLayout.CENTER); 
+		setBackground(new Color(255, 255, 255));
+		setBounds(441, 80, 1483, 931);
+		setLayout(null); 
 	}
 	
 	/** JTable 내부에 plus, minus, 삭제 버튼 생성 클래스 */
@@ -576,18 +557,14 @@ public class FoodCourtPanel extends JPanel {
 	    			
 	    		} else if (text.equals("X")) {	    			
 	    			
-	    			// 하 ..... 
-	    				    			
-	    			// 행 선택하면 삭제
-	    			if (user_table.getSelectedRow() >= 0) {
-		    			user_dtm.removeRow(user_table.getSelectedRow());
-		    			user_dtm.fireTableDataChanged(); // 데이터 저장
-		    			user_table.repaint(); // 데이터 새로고침
+	    			// 선택한 행이 0 이상일 때 삭제
+	    			if (user_table.getSelectedRow() >= 0) {  	
+	    				user_dtm.removeRow(user_table.getSelectedRow());
 	    			}
 	    				    			
 	    			getTotalPrice(); // 현재 총 가격 리턴 
 	    		}		
-            });
+            });	     
 	    }
 	     
 	    @Override
