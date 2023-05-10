@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import train.table_button.TableCellReader;
+
 //import org.jdatepicker.impl.JDatePanelImpl;
 //import org.jdatepicker.impl.JDatePickerImpl;
 //import org.jdatepicker.impl.UtilDateModel;
@@ -19,7 +21,10 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
@@ -48,11 +53,15 @@ import java.awt.Insets;
 //import com.github.lgooddatepicker.components.CalendarPanel;
 import java.awt.Rectangle;
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 //import com.github.lgooddatepicker.components.TimePicker;
+import java.awt.event.MouseListener;
 
 
 public class train_reverv_main extends JFrame {
 
+	
 	private JPanel contentPane;
 	private String datePattern = "yyyy-MM-dd";
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
@@ -60,7 +69,9 @@ public class train_reverv_main extends JFrame {
     private JTextField en_sub_text;
     private JTextField date_text;
     private JTextField train_text;
-    private JSONArray array;
+    public static JButton st_sub_btn;
+    public static JButton en_sub_btn;
+    public static boolean sub_select = true;
 	/**
 	 * Launch the application.
 	 */
@@ -107,7 +118,7 @@ public class train_reverv_main extends JFrame {
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(seat_panel);
 		
-		JPanel food_panel = new FoodCourtPanel();
+		JPanel food_panel = new FoodCourtMainPanel();
 		food_panel.setBounds(441, 80, 1483, 931);
 		
 		card_panel.add(food_panel);
@@ -172,21 +183,26 @@ public class train_reverv_main extends JFrame {
 		lblNewLabel_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		lblNewLabel_1_1.setBounds(205, 31, 63, 29);
 		reserv_panel.add(lblNewLabel_1_1);
-		
-		JButton btnNewButton = new JButton("출발역");
-		btnNewButton.addActionListener(new ActionListener() {
+//		card.next(card_panel);
+		st_sub_btn = new JButton("서울");
+		st_sub_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				card.next(card_panel);
+				sub_select = true;
 			}
 		});
-		btnNewButton.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-		btnNewButton.setBounds(12, 82, 140, 49);
-		reserv_panel.add(btnNewButton);
+		st_sub_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		st_sub_btn.setBounds(12, 82, 140, 49);
+		reserv_panel.add(st_sub_btn);
 		
-		JButton btnNewButton_1 = new JButton("도착역");
-		btnNewButton_1.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-		btnNewButton_1.setBounds(205, 82, 140, 49);
-		reserv_panel.add(btnNewButton_1);
+		en_sub_btn = new JButton("부산");
+		en_sub_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sub_select = false;
+			}
+		});
+		en_sub_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		en_sub_btn.setBounds(205, 82, 140, 49);
+		reserv_panel.add(en_sub_btn);
 		
 		JLabel start_date_label = new JLabel("출발일");
 		start_date_label.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
@@ -303,33 +319,7 @@ public class train_reverv_main extends JFrame {
 		JButton search_btn = new JButton("조회");
 		search_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 String st_sub = st_sub_text.getText();
-				 String en_sub = en_sub_text.getText();
-				 String date = date_text.getText();
-				 String train_nm = train_text.getText();
-				 System.out.println("?여기");
-				 Train_API tapi = new Train_API(st_sub, en_sub, date, train_nm);
-				 try {
-					array = tapi.train_api();
-//					Search_Train_Panel search_panel = new Search_Train_Panel();
-//					DefaultTableModel model = (DefaultTableModel) search_panel.table.getModel();
-					
-					for(int i =0; i< array.size(); ++i) {
-						JSONObject object = (JSONObject) array.get(i);
-						System.out.println("요금 ==> "+object.get("adultcharge"));
-					    System.out.println("출발역 ==> "+object.get("arrplacename"));
-					    System.out.println("출발시간 ==> "+object.get("arrplandtime"));
-					    System.out.println("도착역 ==> "+object.get("depplacename"));
-					    System.out.println("도착시간 ==> "+object.get("depplandtime"));
-					    System.out.println("열차이름 ==> "+object.get("traingradename"));
-					    System.out.println("열차번호 ==> "+object.get("trainno"));
-					}
-					
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
+			} 
 		});
 		search_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		search_btn.setBounds(128, 828, 140, 49);

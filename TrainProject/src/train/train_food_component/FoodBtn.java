@@ -1,4 +1,4 @@
-package foodcourt.component;
+package train.train_food_component;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -65,14 +65,14 @@ public class FoodBtn extends JButton {
 			} 			
 		}
 		
-		// 같은 이름이 없으면 리스트에 추가
 		if (!value) {
+			// 같은 이름이 없으면 리스트에 추가
 			Vector<Object> list = new Vector<>();
 			list.add(getName());
 			list.add(getPrice());
 			list.add(" "); // - 버튼 자리임
 			list.add(getQty());
-			model.addRow(list); // 행 추가
+			model.addRow(list);
 		}
 		
 		// 총 가격 라벨에 총 계 가격 추가

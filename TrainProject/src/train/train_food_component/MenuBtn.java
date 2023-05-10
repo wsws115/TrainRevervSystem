@@ -1,4 +1,4 @@
-package foodcourt.component;
+package train.train_food_component;
 
 import java.awt.CardLayout;
 import java.awt.Color;
