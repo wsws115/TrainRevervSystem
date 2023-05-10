@@ -59,18 +59,26 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
+/**
+ * @author LJH
+ *
+ */
 public class train_reverv_main extends JFrame {
 
 	
 	private JPanel contentPane;
 	private String datePattern = "yyyy-MM-dd";
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-    private JTextField st_sub_text;
-    private JTextField en_sub_text;
-    private JTextField date_text;
-    private JTextField train_text;
+    
+    public JTextField date_text;
+    public JTextField train_text;
     public static JButton st_sub_btn;
     public static JButton en_sub_btn;
+    public String st_sub;
+    public String en_sub;
+    public String date_sub;
+    public String train_name;
+    
     public static boolean sub_select = true;
 	/**
 	 * Launch the application.
@@ -109,10 +117,6 @@ public class train_reverv_main extends JFrame {
 		JPanel subway_panel = new SubwayPanel();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(subway_panel);
-		
-		JPanel search_panel = new Search_Train_Panel();
-		card_panel.setBounds(441,80,1483,931);
-		card_panel.add(search_panel);
 		
 		JPanel seat_panel = new Seat1();
 		card_panel.setBounds(441,80,1483,931);
@@ -319,22 +323,40 @@ public class train_reverv_main extends JFrame {
 		JButton search_btn = new JButton("조회");
 		search_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				card.next(card_panel);
+				st_sub = st_sub_btn.getText();
+				en_sub = en_sub_btn.getText();
+				date_sub = date_text.getText();
+				train_name = train_text.getText();
+				JPanel search_panel = new Search_Train_Panel();
+				card_panel.setBounds(441,80,1483,931);
+				card_panel.add(search_panel, "기차API");
+				card.show(card_panel, "기차API");
 			} 
 		});
 		search_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-		search_btn.setBounds(128, 828, 140, 49);
+		search_btn.setBounds(60, 828, 140, 49);
 		reserv_panel.add(search_btn);
 		
-		st_sub_text = new JTextField();
-		st_sub_text.setBounds(45, 653, 116, 21);
-		reserv_panel.add(st_sub_text);
-		st_sub_text.setColumns(10);
 		
-		en_sub_text = new JTextField();
-		en_sub_text.setColumns(10);
-		en_sub_text.setBounds(205, 653, 116, 21);
-		reserv_panel.add(en_sub_text);
+		JButton next_btn = new JButton("다음");
+		next_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				card.next(card_panel);
+			} 
+		});
+		next_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		next_btn.setBounds(222, 828, 140, 49);
+		reserv_panel.add(next_btn);
+		
+//		st_sub_text = new JTextField();
+//		st_sub_text.setBounds(45, 653, 116, 21);
+//		reserv_panel.add(st_sub_text);
+//		st_sub_text.setColumns(10);
+//		
+//		en_sub_text = new JTextField();
+//		en_sub_text.setColumns(10);
+//		en_sub_text.setBounds(205, 653, 116, 21);
+//		reserv_panel.add(en_sub_text);
 		
 		JLabel lblNewLabel_2 = new JLabel("출발역");
 		lblNewLabel_2.setBounds(65, 629, 57, 15);
@@ -378,4 +400,5 @@ public class train_reverv_main extends JFrame {
 //			e.printStackTrace();
 //		}
 	}
+	
 }
