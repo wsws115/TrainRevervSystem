@@ -92,7 +92,6 @@ public class train_reverv_main extends JFrame {
 	 * Create the frame.
 	 */
 	public train_reverv_main() {
-		System.out.println("아직 수정하지 않은 브랜치입니다. 건들지 마세요~");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1940, 1050);
 		contentPane = new JPanel();
