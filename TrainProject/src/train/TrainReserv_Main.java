@@ -63,21 +63,17 @@ import java.awt.event.MouseListener;
  * @author LJH
  *
  */
-public class train_reverv_main extends JFrame {
+public class TrainReserv_Main extends JFrame {
 
 	
 	private JPanel contentPane;
 	private String datePattern = "yyyy-MM-dd";
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
     
-    public JTextField date_text;
-    public JTextField train_text;
+    public static JTextField date_text;
+    public static JTextField train_text;
     public static JButton st_sub_btn;
     public static JButton en_sub_btn;
-    public String st_sub;
-    public String en_sub;
-    public String date_sub;
-    public String train_name;
     
     public static boolean sub_select = true;
 	/**
@@ -87,7 +83,7 @@ public class train_reverv_main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					train_reverv_main frame = new train_reverv_main();
+					TrainReserv_Main frame = new TrainReserv_Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -99,7 +95,7 @@ public class train_reverv_main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public train_reverv_main() {
+	public TrainReserv_Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1940, 1050);
 		contentPane = new JPanel();
@@ -154,7 +150,7 @@ public class train_reverv_main extends JFrame {
 		JButton back_btn = new JButton("");
 		back_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train_main first_frame = new train_main();
+				Train_Main first_frame = new Train_Main();
 				first_frame.main(null);
 				setVisible(false);
 			}
@@ -323,10 +319,6 @@ public class train_reverv_main extends JFrame {
 		JButton search_btn = new JButton("조회");
 		search_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				st_sub = st_sub_btn.getText();
-				en_sub = en_sub_btn.getText();
-				date_sub = date_text.getText();
-				train_name = train_text.getText();
 				JPanel search_panel = new Search_Train_Panel();
 				card_panel.setBounds(441,80,1483,931);
 				card_panel.add(search_panel, "기차API");

@@ -1954,10 +1954,10 @@ public class SubwayPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		train_name = ((JButton)e.getSource()).getText();
-		if(train_reverv_main.sub_select) {
-			train_reverv_main.st_sub_btn.setText(train_name);
+		if(TrainReserv_Main.sub_select) {
+			TrainReserv_Main.st_sub_btn.setText(train_name);
 		}else {
-			train_reverv_main.en_sub_btn.setText(train_name);
+			TrainReserv_Main.en_sub_btn.setText(train_name);
 		}
 		
 	}

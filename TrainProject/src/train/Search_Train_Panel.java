@@ -31,6 +31,7 @@ public class Search_Train_Panel extends JPanel {
 	private JSONArray array;
 	public String header[]= {"구분","열차번호","출발","도착","우등","일반","유아","입석","가격","소요시간"};
 	private SubwayCode subc;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -63,10 +64,10 @@ public class Search_Train_Panel extends JPanel {
 		table.getColumnModel().getColumn(7).setCellEditor(new ReservBtn("입석예매",table));
 		
 		subc = new SubwayCode();
-		String st = subc.sub_map.get("서울");
-		String en = subc.sub_map.get("부산");
-		String da = "20230505";
-		String tanm = "00";
+		String st = subc.sub_map.get(TrainReserv_Main.st_sub_btn.getText());
+		String en = subc.sub_map.get(TrainReserv_Main.en_sub_btn.getText());
+		String da = TrainReserv_Main.date_text.getText();
+		String tanm = TrainReserv_Main.train_text.getText();
 		
 		System.out.println("?여기");
 		Train_API tapi = new Train_API(st, en, da, tanm);
