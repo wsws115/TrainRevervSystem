@@ -14,15 +14,21 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import javax.swing.AbstractButton;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-public class SubwayPanel extends JPanel {
+public class SubwayPanel extends JPanel implements MouseListener{
+	private String train_name;
+	
 	//버튼 디자인
 	   public class RoundedButton extends JButton {
 	         public RoundedButton() { super(); decorate(); } 
@@ -57,7 +63,7 @@ public class SubwayPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SubwayPanel() {
+	public SubwayPanel(){
 		setLayout(null);
 		CardLayout card = new CardLayout();
 		JPanel card_panel = new JPanel();
@@ -74,64 +80,76 @@ public class SubwayPanel extends JPanel {
 	      button.setFont(new Font("돋움", Font.BOLD, 25));
 	      button.setBounds(52, 74, 190, 102);
 	      button.setHorizontalAlignment(SwingConstants.CENTER);
+	      button.addMouseListener(this);
 	      panel_1.add(button);
 	      
 	      RoundedButton button_1 = new RoundedButton("용산");
 	      button_1.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_1.setBounds(248, 74, 190, 102);
 	      button_1.setHorizontalAlignment(SwingConstants.CENTER);
+	      button_1.addMouseListener(this);
 	      panel_1.add(button_1);
 	      
 	      RoundedButton button_2 = new RoundedButton("영등포");
 	      button_2.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_2.setBounds(444, 74, 190, 102);
 	      button_2.setHorizontalAlignment(SwingConstants.CENTER);
+	      button_2.addMouseListener(this);
 	      panel_1.add(button_2);
 	      
 	      RoundedButton button_3 = new RoundedButton("광명");
 	      button_3.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_3.setBounds(640, 74, 190, 102);
 	      button_3.setHorizontalAlignment(SwingConstants.CENTER);
+	      button_3.addMouseListener(this);
 	      panel_1.add(button_3);
 	      
 	      RoundedButton button_4 = new RoundedButton("수원");
 	      button_4.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_4.setBounds(836, 74, 190, 102);
 	      button_4.setHorizontalAlignment(SwingConstants.CENTER);
+	      button_4.addMouseListener(this);
 	      panel_1.add(button_4);
 	      
 	      RoundedButton button_5 = new RoundedButton("천안아산");
 	      button_5.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_5.setBounds(1032, 74, 190, 102);
 	      button_5.setHorizontalAlignment(SwingConstants.CENTER);
+	      button_5.addMouseListener(this);
 	      panel_1.add(button_5);
 	      
 	      RoundedButton button_6 = new RoundedButton("오송");
 	      button_6.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_6.setBounds(1228, 74, 190, 102);
 	      button_6.setHorizontalAlignment(SwingConstants.CENTER);
+	      button_6.addMouseListener(this);
 	      panel_1.add(button_6);
 	      
 	      RoundedButton button_7 = new RoundedButton("대전");
 	      button_7.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_7.setBounds(52, 182, 190, 102);
 	      button_7.setHorizontalAlignment(SwingConstants.CENTER);
+	      button_7.addMouseListener(this);
 	      panel_1.add(button_7);
 	      
 	      RoundedButton button_8 = new RoundedButton("서대전");
 	      button_8.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_8.setBounds(52, 290, 190, 102);
+	      button_8.addMouseListener(this);
 	      panel_1.add(button_8);
 	      
 	      RoundedButton button_9 = new RoundedButton("김천구미");
 	      button_9.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_9.setBounds(52, 398, 190, 102);
+	      button_9.addMouseListener(this);
 	      panel_1.add(button_9);
 	      
 	      RoundedButton button_10 = new RoundedButton("동대구");
 	      button_10.setFont(new Font("돋움", Font.BOLD, 25));
 	      button_10.setBounds(52, 506, 190, 102);
+	      button_10.addMouseListener(this);
 	      panel_1.add(button_10);
+	      
 	      
 	      RoundedButton button_11 = new RoundedButton("포항");
 	      button_11.setFont(new Font("돋움", Font.BOLD, 25));
@@ -263,7 +281,7 @@ public class SubwayPanel extends JPanel {
 		Button next_btn_1 = new Button("철도역");
 		next_btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				card.next(card_panel);
+				card.show(card_panel, "metro");
 			}
 		});
 		next_btn_1.setFont(new Font("맑은 고딕", Font.BOLD, 25));
@@ -370,6 +388,39 @@ public class SubwayPanel extends JPanel {
 		back_btn.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		back_btn.setBounds(1221, 819, 190, 102);
 		panel_1_1.add(back_btn);
+		
+		JPanel metro_panel = new metro_panel();
+		card_panel.add(metro_panel, "metro");
 
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		train_name = ((JButton)e.getSource()).getText();
+		if(train_reverv_main.sub_select) {
+			train_reverv_main.st_sub_btn.setText(train_name);
+		}else {
+			train_reverv_main.en_sub_btn.setText(train_name);
+		}
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

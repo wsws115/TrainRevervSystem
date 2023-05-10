@@ -5,6 +5,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import train.table_button.TableActionEvent;
 import train.table_button.TableCellEditor;
 import train.table_button.TableCellReader;
@@ -16,10 +19,12 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Search_Train_Panel extends JPanel {
 	public JTable table;
-	
+	public DefaultTableModel model;
+	private JSONArray array;
 	/**
 	 * Create the panel.
 	 */
@@ -37,15 +42,49 @@ public class Search_Train_Panel extends JPanel {
 		scrollPane.setBounds(0, 0, 1470, 920);
 		panel.add(scrollPane);
 		String header[]= {"구분","열차번호","출발","도착","우등","일반","유아","입석","가격","예약대기","소요시간"};
-	    String train[][] = {
-	          {"KTX","15","대전","서울","","","","","23700","","1:55"},
-	          {"KTX","13","대전","서울","","","","","23700","","1:58"} 
-	    };
-		table = new JTable(train, header);
+	    String train[][] = {};
+	    model = new DefaultTableModel(train, header);
+		table = new JTable(model);
 		table.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 		table.setRowHeight(35);
 		table.getTableHeader().setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-//		table.getColumnModel().getColumn(4).setCellRenderer(new TableCellReader());
+		table.getColumnModel().getColumn(4).setCellRenderer(new TableCellReader());
+		
+		String st_sub = "NAT010000";
+		String en_sub = "NAT011668";
+		String date = "20230509";
+		String train_nm = "02";
+		System.out.println("?여기");
+		Train_API tapi = new Train_API(st_sub, en_sub, date, train_nm);
+//		Search_Train_Panel search_panel = new Search_Train_Panel();
+//		DefaultTableModel model = (DefaultTableModel) search_panel.table.getModel();
+		try {
+			array = tapi.train_api();
+		    
+			for(int i =0; i< array.size(); ++i) {
+				JSONObject object = (JSONObject) array.get(i);
+				System.out.println("요금 ==> "+object.get("adultcharge"));
+			    System.out.println("출발역 ==> "+object.get("arrplacename"));
+			    System.out.println("출발시간 ==> "+object.get("arrplandtime"));
+			    System.out.println("도착역 ==> "+object.get("depplacename"));
+			    System.out.println("도착시간 ==> "+object.get("depplandtime"));
+			    System.out.println("열차이름 ==> "+object.get("traingradename"));
+			    System.out.println("열차번호 ==> "+object.get("trainno"));
+//			    Object[] str={object.get("traingradename"),object.get("trainno"),
+//			    		object.get("arrplacename"),object.get("depplacename"),
+//			    		"","","","",object.get("adultcharge"),"",object.get("depplandtime")}; 
+//			    System.out.println(str.toString());
+			    model.insertRow(i, new Object[]{object.get("traingradename"),object.get("trainno"),
+			    		object.get("arrplacename"),object.get("depplacename"),
+			    		"","","","",object.get("adultcharge"),"",object.get("depplandtime")});
+			}
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+       
 //		TableActionEvent event = new TableActionEvent() {
 //
 //			@Override
