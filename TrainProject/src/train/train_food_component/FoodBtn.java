@@ -13,16 +13,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
-public class FoodBtn extends JButton {
+import train.FoodCourtMainPanel;
+import train.dto.FoodDto;
 
+public class FoodBtn extends JButton {
+	
+	private String foodnum;
 	private String name;
 	private int price;
 	private int qty = 1;
 	
 	/** 버튼 생성시, 타입, 이름, 가격, 모델, 전체 가격 라벨명 입력*/
-	public FoodBtn(String name, int price, DefaultTableModel model, JLabel totalPrice) {
-		this.name = name;
-		this.price = price;
+	public FoodBtn(FoodDto food, DefaultTableModel model) {
+		this.foodnum = food.getFood_number();
+		this.name = food.getFood_name();
+		this.price = food.getFood_price();
 		
 		setSize(180, 150);
 		
@@ -34,7 +39,7 @@ public class FoodBtn extends JButton {
 	    addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				addTableColumn(model, totalPrice);	
+				addTableColumn(model);	
 			}
 		});
 	}
@@ -49,7 +54,7 @@ public class FoodBtn extends JButton {
 	}
 	
 	/** 버튼 클릭하면 JTable에 행을 추가하는 메소드 */ 
-	void addTableColumn(DefaultTableModel model, JLabel totalPrice) {
+	void addTableColumn(DefaultTableModel model) {
 		
 		boolean value = false;
 		int sum = 0;
@@ -75,13 +80,13 @@ public class FoodBtn extends JButton {
 			model.addRow(list);
 		}
 		
-		// 총 가격 라벨에 총 계 가격 추가
+//		 총 가격 라벨에 총 계 가격 추가
 		for (int i = 0; i < model.getRowCount(); ++i) {
 			int qty = (int) model.getValueAt(i, 3);
 			
 			sum += (int) model.getValueAt(i, 1) * qty;
 		}
-		totalPrice.setText(String.valueOf(sum) + "원");
+		FoodCourtMainPanel.totalPrice_Lab.setText(String.valueOf(sum) + "원");
 	}
 	
 	// Getter	
