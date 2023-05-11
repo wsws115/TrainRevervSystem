@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import train.calender.CalenderMain;
 import train.table_button.TableCellReader;
 
 //import org.jdatepicker.impl.JDatePanelImpl;
@@ -53,11 +54,12 @@ import java.awt.Insets;
 //import com.github.lgooddatepicker.components.CalendarPanel;
 import java.awt.Rectangle;
 import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 //import com.github.lgooddatepicker.components.TimePicker;
 import java.awt.event.MouseListener;
-
+import javax.swing.JComboBox;
 
 /**
  * @author LJH
@@ -71,9 +73,10 @@ public class TrainReserv_Main extends JFrame {
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
     
     public static JTextField date_text;
-    public static JTextField train_text;
     public static JButton st_sub_btn;
     public static JButton en_sub_btn;
+    public static String subSelectText;
+    
     
     public static boolean sub_select = true;
 	/**
@@ -185,22 +188,26 @@ public class TrainReserv_Main extends JFrame {
 		reserv_panel.add(lblNewLabel_1_1);
 //		card.next(card_panel);
 		st_sub_btn = new JButton("서울");
+		st_sub_btn.setForeground(Color.WHITE);
+		st_sub_btn.setBackground(new Color(0, 128, 129));
 		st_sub_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sub_select = true;
 			}
 		});
-		st_sub_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-		st_sub_btn.setBounds(12, 82, 140, 49);
+		st_sub_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		st_sub_btn.setBounds(45, 82, 140, 49);
 		reserv_panel.add(st_sub_btn);
 		
 		en_sub_btn = new JButton("부산");
+		en_sub_btn.setForeground(Color.WHITE);
+		en_sub_btn.setBackground(new Color(0, 128, 129));
 		en_sub_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sub_select = false;
 			}
 		});
-		en_sub_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		en_sub_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
 		en_sub_btn.setBounds(205, 82, 140, 49);
 		reserv_panel.add(en_sub_btn);
 		
@@ -214,109 +221,11 @@ public class TrainReserv_Main extends JFrame {
 		lblNewLabel_1_1_1_1.setBounds(12, 295, 114, 34);
 		reserv_panel.add(lblNewLabel_1_1_1_1);
 		
-//		DatePicker datePicker = new DatePicker();
-//		datePicker.setSize(new Dimension(500, 500));
-//		datePicker.setMinimumSize(new Dimension(133, 23));
-//		datePicker.getComponentToggleCalendarButton().setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-//		datePicker.getComponentDateTextField().setFont(new Font("맑은 고딕", Font.PLAIN, 30));
-//		datePicker.getComponentToggleCalendarButton().setText("달력");
-//		datePicker.setBounds(49, 225, 220, 34);
-//		datePicker.setDateToToday();
-		
-//		reserv_panel.add(datePicker);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(12, 339, 381, 241);
-		reserv_panel.add(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
-		
 		ButtonGroup group = new ButtonGroup();
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
-		rdbtnNewRadioButton.setSelected(true);
-		group.add(rdbtnNewRadioButton);
-		
-		GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnNewRadioButton.gridx = 0;
-		gbc_rdbtnNewRadioButton.gridy = 0;
-		panel.add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
-		
-		JLabel lblNewLabel_1 = new JLabel("전체");
-		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 0;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("");
-		GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnNewRadioButton_1.gridx = 3;
-		gbc_rdbtnNewRadioButton_1.gridy = 0;
-		panel.add(rdbtnNewRadioButton_1, gbc_rdbtnNewRadioButton_1);
-		group.add(rdbtnNewRadioButton_1);
-		JLabel lblNewLabel_1_2 = new JLabel("KTX");
-		lblNewLabel_1_2.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNewLabel_1_2 = new GridBagConstraints();
-		gbc_lblNewLabel_1_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_2.gridx = 4;
-		gbc_lblNewLabel_1_2.gridy = 0;
-		panel.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("");
-		GridBagConstraints gbc_rdbtnNewRadioButton_2 = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnNewRadioButton_2.gridx = 6;
-		gbc_rdbtnNewRadioButton_2.gridy = 0;
-		panel.add(rdbtnNewRadioButton_2, gbc_rdbtnNewRadioButton_2);
-		group.add(rdbtnNewRadioButton_2);
-		JLabel lblNewLabel_1_4 = new JLabel("ITX-청춘");
-		lblNewLabel_1_4.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNewLabel_1_4 = new GridBagConstraints();
-		gbc_lblNewLabel_1_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_4.gridx = 7;
-		gbc_lblNewLabel_1_4.gridy = 0;
-		panel.add(lblNewLabel_1_4, gbc_lblNewLabel_1_4);
-		
-		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("");
-		GridBagConstraints gbc_rdbtnNewRadioButton_4 = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton_4.insets = new Insets(0, 0, 0, 5);
-		gbc_rdbtnNewRadioButton_4.gridx = 3;
-		gbc_rdbtnNewRadioButton_4.gridy = 1;
-		panel.add(rdbtnNewRadioButton_4, gbc_rdbtnNewRadioButton_4);
-		group.add(rdbtnNewRadioButton_4);
-		JLabel lblNewLabel_1_3 = new JLabel("새마을");
-		lblNewLabel_1_3.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNewLabel_1_3 = new GridBagConstraints();
-		gbc_lblNewLabel_1_3.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_1_3.gridx = 4;
-		gbc_lblNewLabel_1_3.gridy = 1;
-		panel.add(lblNewLabel_1_3, gbc_lblNewLabel_1_3);
-		
-		JRadioButton rdbtnNewRadioButton_5 = new JRadioButton("");
-		GridBagConstraints gbc_rdbtnNewRadioButton_5 = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton_5.insets = new Insets(0, 0, 0, 5);
-		gbc_rdbtnNewRadioButton_5.gridx = 6;
-		gbc_rdbtnNewRadioButton_5.gridy = 1;
-		panel.add(rdbtnNewRadioButton_5, gbc_rdbtnNewRadioButton_5);
-		group.add(rdbtnNewRadioButton_5);
-		
-		JLabel lblNewLabel_1_5 = new JLabel("무궁화호");
-		lblNewLabel_1_5.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNewLabel_1_5 = new GridBagConstraints();
-		gbc_lblNewLabel_1_5.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_1_5.gridx = 7;
-		gbc_lblNewLabel_1_5.gridy = 1;
-		panel.add(lblNewLabel_1_5, gbc_lblNewLabel_1_5);
-		
 		JButton search_btn = new JButton("조회");
+		search_btn.setForeground(Color.WHITE);
+		search_btn.setBackground(new Color(0, 128, 129));
 		search_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JPanel search_panel = new Search_Train_Panel();
@@ -325,56 +234,135 @@ public class TrainReserv_Main extends JFrame {
 				card.show(card_panel, "기차API");
 			} 
 		});
-		search_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-		search_btn.setBounds(60, 828, 140, 49);
+		search_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		search_btn.setBounds(128, 667, 140, 49);
 		reserv_panel.add(search_btn);
 		
 		
 		JButton next_btn = new JButton("다음");
+		next_btn.setForeground(Color.WHITE);
+		next_btn.setBackground(new Color(0, 128, 129));
 		next_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				card.next(card_panel);
 			} 
 		});
-		next_btn.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-		next_btn.setBounds(222, 828, 140, 49);
+		next_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		next_btn.setBounds(202, 828, 140, 49);
 		reserv_panel.add(next_btn);
 		
-//		st_sub_text = new JTextField();
-//		st_sub_text.setBounds(45, 653, 116, 21);
-//		reserv_panel.add(st_sub_text);
-//		st_sub_text.setColumns(10);
-//		
-//		en_sub_text = new JTextField();
-//		en_sub_text.setColumns(10);
-//		en_sub_text.setBounds(205, 653, 116, 21);
-//		reserv_panel.add(en_sub_text);
-		
-		JLabel lblNewLabel_2 = new JLabel("출발역");
-		lblNewLabel_2.setBounds(65, 629, 57, 15);
-		reserv_panel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_2_1 = new JLabel("도착역");
-		lblNewLabel_2_1.setBounds(224, 629, 57, 15);
-		reserv_panel.add(lblNewLabel_2_1);
+		JButton previous_btn = new JButton("이전");
+		previous_btn.setForeground(Color.WHITE);
+		previous_btn.setBackground(new Color(0, 128, 129));
+		previous_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				card.previous(card_panel);
+			}
+		});
+		previous_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		previous_btn.setBounds(45, 828, 140, 49);
+		reserv_panel.add(previous_btn);
 		
 		date_text = new JTextField();
 		date_text.setColumns(10);
-		date_text.setBounds(45, 719, 116, 21);
+		date_text.setBounds(99, 223, 186, 41);
+		date_text.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				CalenderMain calender = new CalenderMain();
+				calender.setVisible(true);
+			}
+		
+		});
+		
 		reserv_panel.add(date_text);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("출발시간");
-		lblNewLabel_2_2.setBounds(65, 695, 57, 15);
-		reserv_panel.add(lblNewLabel_2_2);
+		JButton allSubBtn = new JButton("전체");
+		allSubBtn.setForeground(Color.WHITE);
+		allSubBtn.setBackground(new Color(0, 128, 129));
+		allSubBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subSelectText = allSubBtn.getText();
+			}
+		});
+		allSubBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		allSubBtn.setBounds(86, 339, 211, 49);
+		reserv_panel.add(allSubBtn);
 		
-		JLabel lblNewLabel_2_2_1_1 = new JLabel("기차");
-		lblNewLabel_2_2_1_1.setBounds(225, 695, 57, 15);
-		reserv_panel.add(lblNewLabel_2_2_1_1);
+		JButton subKtxBtn = new JButton("KTX");
+		subKtxBtn.setForeground(Color.WHITE);
+		subKtxBtn.setBackground(new Color(0, 128, 129));
+		subKtxBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subSelectText = subKtxBtn.getText();
+			}
+		});
+		subKtxBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		subKtxBtn.setBounds(45, 398, 140, 49);
+		reserv_panel.add(subKtxBtn);
 		
-		train_text = new JTextField();
-		train_text.setColumns(10);
-		train_text.setBounds(205, 719, 116, 21);
-		reserv_panel.add(train_text);
+		JButton subSrtBtn = new JButton("SRT");
+		subSrtBtn.setForeground(Color.WHITE);
+		subSrtBtn.setBackground(new Color(0, 128, 129));
+		subSrtBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subSelectText = subSrtBtn.getText();
+			}
+		});
+		subSrtBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		subSrtBtn.setBounds(205, 398, 140, 49);
+		reserv_panel.add(subSrtBtn);
+		
+		JButton subNewBtn = new JButton("새마을호");
+		subNewBtn.setForeground(Color.WHITE);
+		subNewBtn.setBackground(new Color(0, 128, 129));
+		subNewBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subSelectText = subNewBtn.getText();
+			}
+		});
+		subNewBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		subNewBtn.setBounds(45, 457, 140, 49);
+		reserv_panel.add(subNewBtn);
+		
+		JButton subFlowerBtn = new JButton("무궁화호");
+		subFlowerBtn.setForeground(Color.WHITE);
+		subFlowerBtn.setBackground(new Color(0, 128, 129));
+		subFlowerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subSelectText = subFlowerBtn.getText();
+			}
+		});
+		subFlowerBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		subFlowerBtn.setBounds(205, 457, 140, 49);
+		reserv_panel.add(subFlowerBtn);
+		
+		JButton subYungItxBtn = new JButton("ITX-청춘");
+		subYungItxBtn.setForeground(Color.WHITE);
+		subYungItxBtn.setBackground(new Color(0, 128, 129));
+		subYungItxBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subSelectText = subYungItxBtn.getText();
+			}
+		});
+	    subYungItxBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+	    subYungItxBtn.setBounds(45, 516, 140, 49);
+		reserv_panel.add(subYungItxBtn);
+		
+		JButton subNewItxBtn = new JButton("ITX-새마을");
+		subNewItxBtn.setForeground(Color.WHITE);
+		subNewItxBtn.setBackground(new Color(0, 128, 129));
+		subNewItxBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subSelectText = subNewItxBtn.getText();
+			}
+		});
+		subNewItxBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 21));
+		subNewItxBtn.setBounds(205, 516, 140, 49);
+		reserv_panel.add(subNewItxBtn);
+		
+		
 		
 //		TimePicker timePicker = new TimePicker();
 //		timePicker.setBounds(281, 225, 97, 34);
@@ -392,5 +380,4 @@ public class TrainReserv_Main extends JFrame {
 //			e.printStackTrace();
 //		}
 	}
-	
 }
