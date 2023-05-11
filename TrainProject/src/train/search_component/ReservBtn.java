@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import train.Search_Train_Panel;
+import train.Seat_Dialog;
 
 public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
 	JButton reservBtn;
@@ -30,6 +31,8 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 
 	    		if (text.equals("우등예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
+	    			Seat_Dialog sd = new Seat_Dialog();
+	    			sd.setVisible(true);
 	    			// 수량 + 1
 //	    			int addQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) + 1;	
 //	    			
@@ -49,20 +52,6 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 //	    				minusQty = 1;
 //	    			}		
 //	    			reserv_dtm.setValueAt(minusQty, rev_table.getSelectedRow(), 3);
-	    			
-	    			
-	    		} else if (text.equals("유아예매")) {
-	    			System.out.println(stp_table.getSelectedRow());
-	    			// 선택한 행이 0 이상일 때 삭제
-//	    			if (rev_table.getSelectedRow() >= 0) {  	
-//	    				reserv_dtm.removeRow(rev_table.getSelectedRow());
-//	    			}
-	    		}else if (text.equals("입석예매")) {
-	    			System.out.println(stp_table.getSelectedRow());
-	    			// 선택한 행이 0 이상일 때 삭제
-//	    			if (rev_table.getSelectedRow() >= 0) {  	
-//	    				reserv_dtm.removeRow(rev_table.getSelectedRow());
-//	    			}
 	    		}
 		});
 	}

@@ -76,9 +76,12 @@ public class TrainReserv_Main extends JFrame {
     public static JButton st_sub_btn;
     public static JButton en_sub_btn;
     public static String subSelectText;
-    
-    
+    public static String people;
+    public static String seatSelect;
+    private JLabel selectPeopleLabel;
+    public static JLabel seatSelectLabel;
     public static boolean sub_select = true;
+    private JTextField people_text;
 	/**
 	 * Launch the application.
 	 */
@@ -173,7 +176,7 @@ public class TrainReserv_Main extends JFrame {
 		reserv_panel.setAutoscrolls(true);
 		reserv_panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		reserv_panel.setBackground(new Color(31, 173, 203));
-		reserv_panel.setBounds(12, 80, 417, 921);
+		reserv_panel.setBounds(-294, -19, 417, 921);
 		main_panel.add(reserv_panel);
 		reserv_panel.setLayout(null);
 		
@@ -231,11 +234,13 @@ public class TrainReserv_Main extends JFrame {
 				JPanel search_panel = new Search_Train_Panel();
 				card_panel.setBounds(441,80,1483,931);
 				card_panel.add(search_panel, "기차API");
+				people = people_text.getText();
+				selectPeopleLabel.setText(people);
 				card.show(card_panel, "기차API");
 			} 
 		});
 		search_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		search_btn.setBounds(128, 667, 140, 49);
+		search_btn.setBounds(128, 753, 140, 49);
 		reserv_panel.add(search_btn);
 		
 		
@@ -361,6 +366,45 @@ public class TrainReserv_Main extends JFrame {
 		subNewItxBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 21));
 		subNewItxBtn.setBounds(205, 516, 140, 49);
 		reserv_panel.add(subNewItxBtn);
+		
+		JLabel typeLabel1 = new JLabel("어른(만 13세 이상)");
+		typeLabel1.setBounds(25, 611, 102, 15);
+		reserv_panel.add(typeLabel1);
+		
+		JButton minusBtn6 = new JButton("-");
+		minusBtn6.setBounds(235, 596, 45, 45);
+		reserv_panel.add(minusBtn6);
+		
+		people_text = new JTextField();
+		people_text.setText("2");
+		people_text.setHorizontalAlignment(SwingConstants.CENTER);
+		people_text.setColumns(10);
+		people_text.setBounds(287, 597, 45, 45);
+		reserv_panel.add(people_text);
+		
+		JButton plusBtn1 = new JButton("+");
+		plusBtn1.setBounds(339, 596, 45, 45);
+		reserv_panel.add(plusBtn1);
+		
+		JLabel lblNewLabel_1 = new JLabel("/전체 인원 :");
+		lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		lblNewLabel_1.setBounds(205, 651, 152, 54);
+		reserv_panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("좌석 선택 :");
+		lblNewLabel_1_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		lblNewLabel_1_2.setBounds(12, 651, 152, 54);
+		reserv_panel.add(lblNewLabel_1_2);
+		
+		seatSelectLabel = new JLabel("X");
+		seatSelectLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		seatSelectLabel.setBounds(136, 663, 57, 31);
+		reserv_panel.add(seatSelectLabel);
+		
+		selectPeopleLabel = new JLabel("X");
+		selectPeopleLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		selectPeopleLabel.setBounds(348, 663, 57, 31);
+		reserv_panel.add(selectPeopleLabel);
 		
 		
 		
