@@ -61,10 +61,10 @@ public class FoodBtn extends JButton {
 		
 		for(int i=0; i < model.getRowCount(); i++){
 			// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
-			if(getName().equals(model.getValueAt(i, 0))) {
+			if(getName().equals(model.getValueAt(i, OrderTable.NAMEROW))) {
 				// 음식이름을 조회하여, 같은 이름이 있으면 수량만 추가
-				int qty = (int) model.getValueAt(i, 3) + 1;
-				model.setValueAt(qty, i, 3);
+				int qty = (int) model.getValueAt(i, OrderTable.QTYROW) + 1;
+				model.setValueAt(qty, i, OrderTable.QTYROW);
 				value = true;
 				break;
 			} 			

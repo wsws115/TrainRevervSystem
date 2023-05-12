@@ -34,26 +34,25 @@ public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor
     	count_Btn.addMouseListener(this);
     	
     	count_Btn.addActionListener(e -> {
-    		// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
 
     		if (text.equals("+")) {
     			// 수량 + 1
-    			int addQty = (int) model.getValueAt(user_table.getSelectedRow(), 3) + 1;	
+    			int addQty = (int) model.getValueAt(user_table.getSelectedRow(), OrderTable.QTYROW) + 1;	
     			
     			if (addQty < 1) {
     				addQty = 1;
     			}
     			
-    			model.setValueAt(addQty, user_table.getSelectedRow(), 3);
+    			model.setValueAt(addQty, user_table.getSelectedRow(), OrderTable.QTYROW);
     			
     		} else if (text.equals("-")) {
     			// 수량 - 1
-    			int minusQty = (int) model.getValueAt(user_table.getSelectedRow(), 3) - 1;	
+    			int minusQty = (int) model.getValueAt(user_table.getSelectedRow(), OrderTable.QTYROW) - 1;	
     			
     			if (minusQty < 1) {
     				minusQty = 1;
     			}		
-    			model.setValueAt(minusQty, user_table.getSelectedRow(), 3);
+    			model.setValueAt(minusQty, user_table.getSelectedRow(), OrderTable.QTYROW);
     			
     		} else if (text.equals("X")) {	    			
     			
@@ -83,11 +82,12 @@ public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -97,13 +97,11 @@ public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}	
 }

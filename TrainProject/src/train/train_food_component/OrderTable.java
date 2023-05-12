@@ -11,6 +11,14 @@ public class OrderTable extends JTable {
 	
 	String mainpont = "HY헤드라인M";
 	
+	public static final int SEATROW = 0;
+	public static final int NAMEROW = 1;
+	public static final int PRICEROW = 2;
+	public static final int MINUSROW = 3;
+	public static final int QTYROW = 4;
+	public static final int PLUSROW = 5;
+	public static final int CANCELROW = 6;
+	
 	public OrderTable(DefaultTableModel order_dtm) {
 		
 		setModel(order_dtm);
@@ -39,14 +47,17 @@ public class OrderTable extends JTable {
 		
 		// user_table plus, minus 버튼 추가
 		// Model 행 번호 - 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
-		getColumnModel().getColumn(2).setCellRenderer(new OrderTableBtn("-", order_dtm, this));
-		getColumnModel().getColumn(2).setCellEditor(new OrderTableBtn("-", order_dtm, this));
+		getColumnModel().getColumn(SEATROW).setCellRenderer(new OrderTableCombo());
+		getColumnModel().getColumn(SEATROW).setCellEditor(new OrderTableCombo());
 		
-		getColumnModel().getColumn(4).setCellRenderer(new OrderTableBtn("+", order_dtm, this));
-		getColumnModel().getColumn(4).setCellEditor(new OrderTableBtn("+", order_dtm, this));
+		getColumnModel().getColumn(MINUSROW).setCellRenderer(new OrderTableBtn("-", order_dtm, this));
+		getColumnModel().getColumn(MINUSROW).setCellEditor(new OrderTableBtn("-", order_dtm, this));
 		
-		getColumnModel().getColumn(5).setCellRenderer(new OrderTableBtn("X", order_dtm, this));
-		getColumnModel().getColumn(5).setCellEditor(new OrderTableBtn("X", order_dtm, this));		
+		getColumnModel().getColumn(PLUSROW).setCellRenderer(new OrderTableBtn("+", order_dtm, this));
+		getColumnModel().getColumn(PLUSROW).setCellEditor(new OrderTableBtn("+", order_dtm, this));
+		
+		getColumnModel().getColumn(CANCELROW).setCellRenderer(new OrderTableBtn("X", order_dtm, this));
+		getColumnModel().getColumn(CANCELROW).setCellEditor(new OrderTableBtn("X", order_dtm, this));		
 	}
 	
 	/** 테이블의 모든 행 값을 구하는 메소드 */
