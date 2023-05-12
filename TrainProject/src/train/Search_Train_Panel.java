@@ -38,7 +38,7 @@ public class Search_Train_Panel extends JPanel {
 	public JTable table;
 	public DefaultTableModel model;
 	private JSONArray array;
-	public String header[]= {"구분","열차번호","출발","출발시간","도착","도착시간","가격","소요시간","우등","일반"};
+	public String header[]= {"구분","열차번호","출발시간","도착시간","가격","소요시간","우등","일반"};
 	private SubwayCode subc;
 	private SubwayCategory sub_cg;
 	/**
@@ -60,13 +60,13 @@ public class Search_Train_Panel extends JPanel {
 		panel.add(scrollPane);
 		model = new DefaultTableModel(header,0);
 		table = new JTable(model);
-		table.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-		table.setRowHeight(35);
-		table.getTableHeader().setFont(new Font("맑은 고딕", Font.PLAIN, 25));
-		table.getColumnModel().getColumn(8).setCellRenderer(new ReservBtn("우등예매", table));
-		table.getColumnModel().getColumn(8).setCellEditor(new ReservBtn("우등예매",table));
-		table.getColumnModel().getColumn(9).setCellRenderer(new ReservBtn("일반예매",table));
-		table.getColumnModel().getColumn(9).setCellEditor(new ReservBtn("일반예매",table));
+		table.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
+		table.setRowHeight(100);
+		table.getTableHeader().setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+		table.getColumnModel().getColumn(6).setCellRenderer(new ReservBtn("우등예매", table));
+		table.getColumnModel().getColumn(6).setCellEditor(new ReservBtn("우등예매",table));
+		table.getColumnModel().getColumn(7).setCellRenderer(new ReservBtn("일반예매",table));
+		table.getColumnModel().getColumn(7).setCellEditor(new ReservBtn("일반예매",table));
 		table.setAutoCreateRowSorter(true);
 		
 		subc = new SubwayCode();
@@ -132,7 +132,7 @@ public class Search_Train_Panel extends JPanel {
 				String eltime = el_hour + "시간" + el_min+"분";
 				
 			    model.insertRow(i, new Object[]{object.get("traingradename"),object.get("trainno"),
-			    		object.get("depplacename"),st_time,object.get("arrplacename"),en_time,
+			    		st_time,en_time,
 			    		object.get("adultcharge"),eltime,
 			    		"",""
 			    });

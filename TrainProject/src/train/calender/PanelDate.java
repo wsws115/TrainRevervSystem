@@ -6,16 +6,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.JButton;
 
-public class PanelDate extends javax.swing.JLayeredPane implements MouseListener, ActionListener{
+import train.TrainReserv_Main;
+
+public class PanelDate extends javax.swing.JLayeredPane implements ActionListener{
 
     private int month;
     private int year;
-
     public PanelDate(int month, int year) {
         initComponents();
         this.month = month;
@@ -79,7 +84,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell8.setFocusPainted(false);
         cell8.setFocusTraversalKeysEnabled(false);
         cell8.setSelected(true);
-        cell8.addMouseListener(this);
         cell8.addActionListener(this);
         
         cell9 = new train.calender.Cell();
@@ -88,7 +92,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell9.setFocusTraversalKeysEnabled(false);
         cell9.setSelected(true);
         cell9.addActionListener(this);
-        cell9.addMouseListener(this);
         
         
         cell10 = new train.calender.Cell();
@@ -97,7 +100,7 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell10.setFocusTraversalKeysEnabled(false);
         cell10.setSelected(true);
         cell10.addActionListener(this);
-        cell10.addMouseListener(this);
+        
         
         
         cell11 = new train.calender.Cell();
@@ -106,7 +109,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell11.setFocusTraversalKeysEnabled(false);
         cell11.setSelected(true);
         cell11.addActionListener(this);
-        cell11.addMouseListener(this);
         
        
         cell12 = new train.calender.Cell();
@@ -114,7 +116,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell12.setFocusPainted(false);
         cell12.setFocusTraversalKeysEnabled(false);
         cell12.setSelected(true);
-        cell12.addMouseListener(this);
         cell12.addActionListener(this);
         
         cell13 = new train.calender.Cell();
@@ -122,7 +123,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell13.setFocusPainted(false);
         cell13.setFocusTraversalKeysEnabled(false);
         cell13.setSelected(true);
-        cell13.addMouseListener(this);
         cell12.addActionListener(this);
         
         cell14 = new train.calender.Cell();
@@ -130,7 +130,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell14.setFocusPainted(false);
         cell14.setFocusTraversalKeysEnabled(false);
         cell14.setSelected(true);
-        cell14.addMouseListener(this);
         cell14.addActionListener(this);
         
         cell15 = new train.calender.Cell();
@@ -138,7 +137,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell15.setFocusPainted(false);
         cell15.setFocusTraversalKeysEnabled(false);
         cell15.setSelected(true);
-        cell15.addMouseListener(this);
         cell15.addActionListener(this);
         
         cell16 = new train.calender.Cell();
@@ -146,7 +144,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell16.setFocusPainted(false);
         cell16.setFocusTraversalKeysEnabled(false);
         cell16.setSelected(true);
-        cell16.addMouseListener(this);
         cell16.addActionListener(this);
         
         cell17 = new train.calender.Cell();
@@ -154,7 +151,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell17.setFocusPainted(false);
         cell17.setFocusTraversalKeysEnabled(false);
         cell17.setSelected(true);
-        cell17.addMouseListener(this);
         cell17.addActionListener(this);
         
         cell18 = new train.calender.Cell();
@@ -162,7 +158,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell18.setFocusPainted(false);
         cell18.setFocusTraversalKeysEnabled(false);
         cell18.setSelected(true);
-        cell18.addMouseListener(this);
         cell18.addActionListener(this);
         
         cell19 = new train.calender.Cell();
@@ -170,7 +165,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell19.setFocusPainted(false);
         cell19.setFocusTraversalKeysEnabled(false);
         cell19.setSelected(true);
-        cell19.addMouseListener(this);
         cell19.addActionListener(this);
         
         cell20 = new train.calender.Cell();
@@ -178,7 +172,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell20.setFocusPainted(false);
         cell20.setFocusTraversalKeysEnabled(false);
         cell20.setSelected(true);
-        cell20.addMouseListener(this);
         cell20.addActionListener(this);
         
         cell21 = new train.calender.Cell();
@@ -186,7 +179,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell21.setFocusPainted(false);
         cell21.setFocusTraversalKeysEnabled(false);
         cell21.setSelected(true);
-        cell21.addMouseListener(this);
         cell21.addActionListener(this);
         
         cell22 = new train.calender.Cell();
@@ -194,7 +186,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell22.setFocusPainted(false);
         cell22.setFocusTraversalKeysEnabled(false);
         cell22.setSelected(true);
-        cell22.addMouseListener(this);
         cell22.addActionListener(this);
         
         cell23 = new train.calender.Cell();
@@ -202,7 +193,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell23.setFocusPainted(false);
         cell23.setFocusTraversalKeysEnabled(false);
         cell23.setSelected(true);
-        cell23.addMouseListener(this);
         cell23.addActionListener(this);
         
         cell24 = new train.calender.Cell();
@@ -210,7 +200,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell24.setFocusPainted(false);
         cell24.setFocusTraversalKeysEnabled(false);
         cell24.setSelected(true);
-        cell24.addMouseListener(this);
         cell24.addActionListener(this);
         
         cell25 = new train.calender.Cell();
@@ -218,7 +207,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell25.setFocusPainted(false);
         cell25.setFocusTraversalKeysEnabled(false);
         cell25.setSelected(true);
-        cell25.addMouseListener(this);
         cell25.addActionListener(this);
         
         cell26 = new train.calender.Cell();
@@ -226,7 +214,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell26.setFocusPainted(false);
         cell26.setFocusTraversalKeysEnabled(false);
         cell26.setSelected(true);
-        cell26.addMouseListener(this);
         cell26.addActionListener(this);
         
         cell27 = new train.calender.Cell();
@@ -234,7 +221,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell27.setFocusPainted(false);
         cell27.setFocusTraversalKeysEnabled(false);
         cell27.setSelected(true);
-        cell27.addMouseListener(this);
         cell27.addActionListener(this);
         
         cell28 = new train.calender.Cell();
@@ -242,7 +228,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell28.setFocusPainted(false);
         cell28.setFocusTraversalKeysEnabled(false);
         cell28.setSelected(true);
-        cell28.addMouseListener(this);
         cell28.addActionListener(this);
         
         cell29 = new train.calender.Cell();
@@ -250,7 +235,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell29.setFocusPainted(false);
         cell29.setFocusTraversalKeysEnabled(false);
         cell29.setSelected(true);
-        cell29.addMouseListener(this);
         cell29.addActionListener(this);
         
         cell30 = new train.calender.Cell();
@@ -258,7 +242,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell30.setFocusPainted(false);
         cell30.setFocusTraversalKeysEnabled(false);
         cell30.setSelected(true);
-        cell30.addMouseListener(this);
         cell30.addActionListener(this);
         
         cell31 = new train.calender.Cell();
@@ -266,7 +249,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell31.setFocusPainted(false);
         cell31.setFocusTraversalKeysEnabled(false);
         cell31.setSelected(true);
-        cell31.addMouseListener(this);
         cell31.addActionListener(this);
         
         cell32 = new train.calender.Cell();
@@ -275,14 +257,12 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell32.setFocusTraversalKeysEnabled(false);
         cell32.setSelected(true);
         cell32.addActionListener(this);
-        cell32.addMouseListener(this);
         
         cell33 = new train.calender.Cell();
         cell33.setDefaultCapable(false);
         cell33.setFocusPainted(false);
         cell33.setFocusTraversalKeysEnabled(false);
         cell33.setSelected(true);
-        cell33.addMouseListener(this);
         cell33.addActionListener(this);
         
         cell34 = new train.calender.Cell();
@@ -290,7 +270,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell34.setFocusPainted(false);
         cell34.setFocusTraversalKeysEnabled(false);
         cell34.setSelected(true);
-        cell34.addMouseListener(this);
         cell34.addActionListener(this);
         
         cell35 = new train.calender.Cell();
@@ -298,7 +277,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell35.setFocusPainted(false);
         cell35.setFocusTraversalKeysEnabled(false);
         cell35.setSelected(true);
-        cell35.addMouseListener(this);
         cell35.addActionListener(this);
         
         cell36 = new train.calender.Cell();
@@ -306,7 +284,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell36.setFocusPainted(false);
         cell36.setFocusTraversalKeysEnabled(false);
         cell36.setSelected(true);
-        cell36.addMouseListener(this);
         cell36.addActionListener(this);
         
         cell37 = new train.calender.Cell();
@@ -314,7 +291,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell37.setFocusPainted(false);
         cell37.setFocusTraversalKeysEnabled(false);
         cell37.setSelected(true);
-        cell37.addMouseListener(this);
         cell37.addActionListener(this);
         
         cell38 = new train.calender.Cell();
@@ -322,7 +298,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell38.setFocusPainted(false);
         cell38.setFocusTraversalKeysEnabled(false);
         cell38.setSelected(true);
-        cell38.addMouseListener(this);
         cell38.addActionListener(this);
         
         cell39 = new train.calender.Cell();
@@ -330,7 +305,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell39.setFocusPainted(false);
         cell39.setFocusTraversalKeysEnabled(false);
         cell39.setSelected(true);
-        cell39.addMouseListener(this);
         cell39.addActionListener(this);
         
         cell40 = new train.calender.Cell();
@@ -338,7 +312,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell40.setFocusPainted(false);
         cell40.setFocusTraversalKeysEnabled(false);
         cell40.setSelected(true);
-        cell40.addMouseListener(this);
         cell40.addActionListener(this);
         
         cell41 = new train.calender.Cell();
@@ -346,7 +319,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell41.setFocusPainted(false);
         cell41.setFocusTraversalKeysEnabled(false);
         cell41.setSelected(true);
-        cell41.addMouseListener(this);
         cell41.addActionListener(this);
         
         cell42 = new train.calender.Cell();
@@ -354,7 +326,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell42.setFocusPainted(false);
         cell42.setFocusTraversalKeysEnabled(false);
         cell42.setSelected(true);
-        cell42.addMouseListener(this);
         cell42.addActionListener(this);
         
         cell43 = new train.calender.Cell();
@@ -362,7 +333,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell43.setFocusPainted(false);
         cell43.setFocusTraversalKeysEnabled(false);
         cell43.setSelected(true);
-        cell43.addMouseListener(this);
         cell43.addActionListener(this);
         
         cell44 = new train.calender.Cell();
@@ -370,7 +340,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell44.setFocusPainted(false);
         cell44.setFocusTraversalKeysEnabled(false);
         cell44.setSelected(true);
-        cell44.addMouseListener(this);
         cell44.addActionListener(this);
         
         cell45 = new train.calender.Cell();
@@ -378,7 +347,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell45.setFocusPainted(false);
         cell45.setFocusTraversalKeysEnabled(false);
         cell45.setSelected(true);
-        cell45.addMouseListener(this);
         cell45.addActionListener(this);
         
         cell46 = new train.calender.Cell();
@@ -386,7 +354,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell46.setFocusPainted(false);
         cell46.setFocusTraversalKeysEnabled(false);
         cell46.setSelected(true);
-        cell46.addMouseListener(this);
         cell46.addActionListener(this);
         
         cell47 = new train.calender.Cell();
@@ -394,7 +361,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell47.setFocusPainted(false);
         cell47.setFocusTraversalKeysEnabled(false);
         cell47.setSelected(true);
-        cell47.addMouseListener(this);
         cell47.addActionListener(this);
         
         cell48 = new train.calender.Cell();
@@ -402,7 +368,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell48.setFocusPainted(false);
         cell48.setFocusTraversalKeysEnabled(false);
         cell48.setSelected(true);
-        cell48.addMouseListener(this);
         cell48.addActionListener(this);
         
         cell49 = new train.calender.Cell();
@@ -410,7 +375,6 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
         cell49.setFocusPainted(false);
         cell49.setFocusTraversalKeysEnabled(false);
         cell49.setSelected(true);
-        cell49.addMouseListener(this);
         cell49.addActionListener(this);
         
         setLayout(new java.awt.GridLayout(7, 7));
@@ -625,40 +589,13 @@ public class PanelDate extends javax.swing.JLayeredPane implements MouseListener
     // End of variables declaration//GEN-END:variables
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		System.out.println(((Cell)e.getSource()).getText());
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		Date day = new Date();
-		SimpleDateFormat df = new SimpleDateFormat("EEEE, dd/MM-yyyy");
 		System.out.println(e.getSource());
-		CalendarCustom.lbDate.setText(((Cell)e.getSource()).getText());
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+		int day = Integer.parseInt(((Cell)e.getSource()).getText());
+		LocalDate ld = LocalDate.of(this.year,this.month,day);
+		System.out.println(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+		TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+		
 	}
 }

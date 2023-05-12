@@ -60,6 +60,8 @@ import java.awt.event.MouseEvent;
 //import com.github.lgooddatepicker.components.TimePicker;
 import java.awt.event.MouseListener;
 import javax.swing.JComboBox;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 /**
  * @author LJH
@@ -134,11 +136,8 @@ public class TrainReserv_Main extends JFrame {
 		main_panel.setBackground(new Color(54, 124, 179));
 		main_panel.setBounds(0, 0, 1924, 1011);
 		contentPane.add(main_panel);
-		main_panel.setLayout(null);
 		
 		JButton home_btn = new JButton("");
-		home_btn.setBounds(1832, 10, 80, 50);
-		main_panel.add(home_btn);
 		home_btn.setBorderPainted(false);
 		home_btn.setContentAreaFilled(false);
 		home_btn.setFocusPainted(false);
@@ -161,23 +160,17 @@ public class TrainReserv_Main extends JFrame {
 				setVisible(false);
 			}
 		});
-		back_btn.setBounds(12, 10, 66, 50);
-		main_panel.add(back_btn);
 		back_btn.setBorderPainted(false);
 		back_btn.setContentAreaFilled(false);
 		back_btn.setFocusPainted(false);
 		
 		
 		JLabel lblNewLabel = new JLabel("진행사항 아이콘");
-		lblNewLabel.setBounds(440, 10, 246, 50);
-		main_panel.add(lblNewLabel);
 		
 		JPanel reserv_panel = new JPanel();
 		reserv_panel.setAutoscrolls(true);
 		reserv_panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		reserv_panel.setBackground(new Color(31, 173, 203));
-		reserv_panel.setBounds(-294, -19, 417, 921);
-		main_panel.add(reserv_panel);
 		reserv_panel.setLayout(null);
 		
 		JLabel start_place_label = new JLabel("출발");
@@ -405,6 +398,32 @@ public class TrainReserv_Main extends JFrame {
 		selectPeopleLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
 		selectPeopleLabel.setBounds(348, 663, 57, 31);
 		reserv_panel.add(selectPeopleLabel);
+		GroupLayout gl_main_panel = new GroupLayout(main_panel);
+		gl_main_panel.setHorizontalGroup(
+			gl_main_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_main_panel.createSequentialGroup()
+					.addGap(12)
+					.addGroup(gl_main_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_main_panel.createSequentialGroup()
+							.addComponent(back_btn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+							.addGap(362)
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
+							.addGap(1146)
+							.addComponent(home_btn, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+						.addComponent(reserv_panel, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE)))
+		);
+		gl_main_panel.setVerticalGroup(
+			gl_main_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_main_panel.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_main_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(back_btn, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(home_btn, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(20)
+					.addComponent(reserv_panel, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE))
+		);
+		main_panel.setLayout(gl_main_panel);
 		
 		
 		

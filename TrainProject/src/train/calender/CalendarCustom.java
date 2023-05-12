@@ -1,17 +1,22 @@
 package train.calender;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import train.calender.PanelSlide;
 import javax.swing.GroupLayout.Alignment;
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
+import java.io.File;
+import java.io.IOException;
 
 public class CalendarCustom extends javax.swing.JPanel {
 
@@ -31,16 +36,16 @@ public class CalendarCustom extends javax.swing.JPanel {
     public CalendarCustom() {
         initComponents();
         thisMonth();
-        slide.show(new PanelDate(5, 2021), PanelSlide.AnimateType.TO_RIGHT);
+        Calendar now = Calendar.getInstance();
+        slide.show(new PanelDate(now.get(Calendar.MONTH)+1, now.get(Calendar.YEAR)), PanelSlide.AnimateType.TO_RIGHT);
         showMonthYear();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-                 
-                    Date date = new Date();
+                	Date date = new Date();
                     SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
-                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd/MM-yyyy");
+                    SimpleDateFormat df = new SimpleDateFormat("EEEE, yyyy-MM-dd");
                     String time = tf.format(date);
                     lbTime.setText(time.split(" ")[0]);
                     lbType.setText(time.split(" ")[1]);
@@ -138,30 +143,42 @@ public class CalendarCustom extends javax.swing.JPanel {
         );
         jPanel1.setLayout(jPanel1Layout);
 
-//        cmdBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-//        cmdBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-//        cmdBack.setContentAreaFilled(false);
-//        cmdBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        cmdBack.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                cmdBackActionPerformed(evt);
-//            }
-//        });
+        try {
+			cmdBack.setIcon(new javax.swing.ImageIcon(ImageIO.read(
+					new File("C:\\javafullstack\\git-repositories\\Train_project\\TrainRevervSystem\\TrainProject\\src\\train\\icon\\back.png")).getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING)));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // NOI18N
+        cmdBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cmdBack.setContentAreaFilled(false);
+        cmdBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmdBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBackActionPerformed(evt);
+            }
+        });
 
         lbMonthYear.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
         lbMonthYear.setForeground(new java.awt.Color(97, 49, 237));
         lbMonthYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMonthYear.setText("Month - Year");
 
-//        cmdNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/next.png"))); // NOI18N
-//        cmdNext.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-//        cmdNext.setContentAreaFilled(false);
-//        cmdNext.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        cmdNext.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                cmdNextActionPerformed(evt);
-//            }
-//        });
+        try {
+			cmdNext.setIcon(new javax.swing.ImageIcon(ImageIO.read(
+					new File("C:\\javafullstack\\git-repositories\\Train_project\\TrainRevervSystem\\TrainProject\\src\\train\\icon\\next.png")).getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING)));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // NOI18N
+        cmdNext.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cmdNext.setContentAreaFilled(false);
+        cmdNext.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmdNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdNextActionPerformed(evt);
+            }
+        });
 
         jLayeredPane1.setLayer(cmdBack, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(lbMonthYear, javax.swing.JLayeredPane.DEFAULT_LAYER);
