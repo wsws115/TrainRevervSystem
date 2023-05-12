@@ -92,19 +92,7 @@ public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		int sum = 0;
-		
-		for (int i = 0; i < model.getRowCount(); ++i) {
-			int qty = 0;
-			
-			if (model.getColumnCount() != 0) {
-				qty = (int) model.getValueAt(i, 3);
-			}
-			
-			sum += (int) model.getValueAt(i, 1) * qty;
-		}
-		
-		FoodCourtMainPanel.totalPrice_Lab.setText(String.valueOf(sum) + "원");	
+		FoodCourtMainPanel.getTotalPrice(model);	
 	}
 
 	@Override

@@ -75,21 +75,20 @@ public class FoodBtn extends JButton {
 			Vector<Object> list = new Vector<>();
 			list.add(getName());
 			list.add(getPrice());
-			list.add(" "); // - 버튼 자리임
+			list.add(foodnum()); // - 버튼 자리에 고유번호 숨기기
 			list.add(getQty());
 			model.addRow(list);
 		}
 		
 //		 총 가격 라벨에 총 계 가격 추가
-		for (int i = 0; i < model.getRowCount(); ++i) {
-			int qty = (int) model.getValueAt(i, 3);
-			
-			sum += (int) model.getValueAt(i, 1) * qty;
-		}
-		FoodCourtMainPanel.totalPrice_Lab.setText(String.valueOf(sum) + "원");
+		FoodCourtMainPanel.getTotalPrice(model);
 	}
 	
-	// Getter	
+	// Getter
+	public String foodnum() {
+		return foodnum;
+	}
+	
 	public String getName() {
 		return name;
 	}
