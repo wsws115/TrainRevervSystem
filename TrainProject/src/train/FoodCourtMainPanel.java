@@ -29,10 +29,7 @@ import train.train_food_component.OrderTableBtn;
 
 public class FoodCourtMainPanel extends JPanel {
 	// [하] 총 가격 라벨 (버튼 액션 시, 토탈 가격 바뀌어야 되서 static 설정)
-	public static JLabel totalPrice_Lab;
-	
-	String[] orderTableColumnName = {"좌석번호", "음식이름", "가격", "-", "수량", "+", "취소"};
-	// DefaultTableModel 행 값 - 좌석번호 0, 음식이름 1, 가격 2, - 3, 수량 4, + 5, 취소 6	
+	public static JLabel totalPrice_Lab;	
 	
 	/** [하] 테이블에 따라 총 가격을 구하는 메소드 */
 	public static void getTotalPrice(DefaultTableModel user_dtm) {
@@ -42,16 +39,18 @@ public class FoodCourtMainPanel extends JPanel {
 			int qty = 0;
 			
 			if (user_dtm.getColumnCount() != 0) {
-				qty = (int) user_dtm.getValueAt(i, 3);
+				qty = (int) user_dtm.getValueAt(i, OrderTable.QTYROW);
 			}
 			
-			sum += (int) user_dtm.getValueAt(i, 1) * qty;
+			sum += (int) user_dtm.getValueAt(i, OrderTable.PRICEROW) * qty;
 		}
 		totalPrice_Lab.setText(String.valueOf(sum) + "원");
 	}
 	
-	FoodDao foodDao = new FoodDao();
+	String[] orderTableColumnName = {"좌석번호", "음식이름", "가격", "-", "수량", "+", "취소"};
 	String mainpont = "HY헤드라인M";
+	
+	FoodDao foodDao = new FoodDao();
 	
 	/**
 	 * Create the panel.
@@ -145,8 +144,7 @@ public class FoodCourtMainPanel extends JPanel {
 						drink_sf.getVerticalScrollBar().setUnitIncrement(30);
 						drink_sf.setBounds(90, 180, 1306, 497);
 					
-		// @ 패널 내부 메뉴 버튼들
-						
+		// @ 패널 내부 메뉴 버튼들						
 						List<FoodDto> allFoodList = foodDao.getFoodAll();
 						FoodBtn[] foodBtns = new FoodBtn[allFoodList.size()];
 						FoodLab[] foodName_Lab = new FoodLab[allFoodList.size()];
@@ -188,7 +186,8 @@ public class FoodCourtMainPanel extends JPanel {
 						foodBtns[4].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_함박.jpg");
 						foodBtns[5].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_참치마요.jpg");
 						foodBtns[6].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_치킨마요.jpg");
-						foodBtns[7].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_신라면.jpg");
+						foodBtns[7].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_어린이세트.jpg");
+						foodBtns[8].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_신라면.jpg");
 						foodBtns[9].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_진라면.jpg");
 						foodBtns[10].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_짜파게티.jpg");
 						foodBtns[11].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_라면볶이.jpg");
@@ -242,10 +241,10 @@ public class FoodCourtMainPanel extends JPanel {
 			
 			// @ 전체 취소 버튼 누르면, JTable 내용 모두 삭제
 			JButton cancel_Btn = new JButton("<html>전체<br> 취소</html>");
-			cancel_Btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
+			cancel_Btn.setFont(new Font(mainpont, Font.PLAIN, 30));
 			cancel_Btn.setForeground(Color.white);
 			cancel_Btn.setBackground(new Color(0, 128, 192));
-			cancel_Btn.setBounds(1016, 734, 162, 70);
+			cancel_Btn.setBounds(1016, 734, 178, 146);
 			add(cancel_Btn);
 			// 액션 시, 버튼 삭제
 			cancel_Btn.addActionListener(new ActionListener() {			
@@ -259,26 +258,7 @@ public class FoodCourtMainPanel extends JPanel {
 				}
 			});
 			
-			// @ 선택 완료 누르면, 다음 단계로
-			JButton nonselect_Btn = new JButton("선택안함");
-			nonselect_Btn.setFont(new Font(mainpont, Font.PLAIN, 30));
-			nonselect_Btn.setForeground(Color.white);
-			nonselect_Btn.setBackground(new Color(0, 128, 192));
-			nonselect_Btn.setBounds(1218, 534, 162, 70);
-			add(nonselect_Btn);
-				// 액션 시, 좌석 번호 받고 / 테이블 DB값 DB에 올리기
-			nonselect_Btn.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					if (order_dtm.getRowCount() == 0) {
-						System.out.println("아무것도 선택 안됨");
-					}
-					
-				}
-			}); 
-			
+			// @ 다음 누르면, 다음 단계로			
 			JButton select_Btn = new JButton("다음");
 			select_Btn.setFont(new Font(mainpont, Font.PLAIN, 30));
 			select_Btn.setForeground(Color.white);
@@ -287,12 +267,13 @@ public class FoodCourtMainPanel extends JPanel {
 			add(select_Btn);
 				// 액션 시, 좌석 번호 받고 / 테이블 DB값 DB에 올리기
 			select_Btn.addActionListener(new ActionListener() {
-				
+				// ★ 수정해야됨 ~
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					if (order_dtm.getRowCount() != 0) {
-						System.out.println("테이블에 값이 있음");
+					if (order_dtm.getRowCount() == 0) {
+						System.out.println("아무것도 선택 안됨");
+					} else {
+						System.out.println(order_table.getColumnName(0));
 					}
 					
 				}

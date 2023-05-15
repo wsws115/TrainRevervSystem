@@ -73,6 +73,7 @@ public class FoodBtn extends JButton {
 		if (!value) {
 			// 같은 이름이 없으면 리스트에 추가
 			Vector<Object> list = new Vector<>();
+			list.add(" ");
 			list.add(getName());
 			list.add(getPrice());
 			list.add(foodnum()); // - 버튼 자리에 고유번호 숨기기
