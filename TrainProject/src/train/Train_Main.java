@@ -20,7 +20,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class train_main extends JFrame {
+public class Train_Main extends JFrame {
 
 	private JPanel contentPane;
 
@@ -31,7 +31,7 @@ public class train_main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					train_main frame = new train_main();
+					Train_Main frame = new Train_Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class train_main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public train_main() {
+	public Train_Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1940, 1050);
 		contentPane = new JPanel();
@@ -68,7 +68,7 @@ public class train_main extends JFrame {
 			@Override
 			
 			public void actionPerformed(ActionEvent e) {
-				train_reverv_main second_frame = new train_reverv_main();
+				TrainReserv_Main second_frame = new TrainReserv_Main();
 				second_frame.main(null);
 				setVisible(false);
 			}

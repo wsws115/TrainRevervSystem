@@ -114,7 +114,7 @@ public class prectice extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				train_main first_frame = new train_main();
+				Train_Main first_frame = new Train_Main();
 				first_frame.main(null);
 				setVisible(false);
 				
