@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import train.jungjun.login_join_page.Login_and_join;
+//import train.jungjun.login_join_page.Login_and_join;
 
 import javax.swing.JButton;
 import java.awt.CardLayout;
@@ -87,8 +87,8 @@ public class Train_Main extends JFrame {
 //				second_frame.main(null);
 //				Second_main main2 = new Second_main();
 //				main2.main(null);
-				Second_main main2 = new Second_main();
-				main2.main(null);
+//				Second_main main2 = new Second_main();
+//				main2.main(null);
 				setVisible(false);
 			}
 		});
@@ -106,9 +106,9 @@ public class Train_Main extends JFrame {
 		JButton admin_login_btn = new JButton(img3);
 		admin_login_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train.jungjun.admin_page.Admin_page admin_frame =
-						new train.jungjun.admin_page.Admin_page();
-				admin_frame.main(null);
+//				train.jungjun.admin_page.Admin_page admin_frame =
+//						new train.jungjun.admin_page.Admin_page();
+//				admin_frame.main(null);
 				setVisible(false);
 			}
 		});
