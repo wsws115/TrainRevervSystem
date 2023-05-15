@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -95,53 +96,49 @@ public class FoodCourtMainPanel extends JPanel {
 						// ＠ 1번 - 식사류 패널
 						JPanel meal_panel = new JPanel();
 						meal_panel.setBounds(100, 100, 1200, 2000);
-						meal_panel.setPreferredSize(new Dimension(1000, 700));
 						meal_panel.setBackground(new Color(255, 255, 255));
-						meal_panel.setLayout(new GridLayout(4, 2));
+						meal_panel.setLayout(new GridLayout(4, 6, 0, 20));
 						
 							// 1번 카드 스크롤
 						JScrollPane meal_sf = new JScrollPane(meal_panel);
 						meal_sf.setBorder(new LineBorder(new Color(0, 128, 192), 5, true));
-						meal_sf.setAutoscrolls(false);
+						meal_sf.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 						meal_sf.getVerticalScrollBar().setUnitIncrement(30);
 						meal_sf.setBounds(90, 180, 1306, 497);
 						
 						// ＠ 2번 - 면류 패널
 						JPanel noodle_panel = new JPanel();
 						noodle_panel.setBounds(100, 100, 1200, 2000);
-						noodle_panel.setPreferredSize(new Dimension(1000, 700));
 						noodle_panel.setBackground(new Color(255, 255, 255));
-						noodle_panel.setLayout(new GridLayout(4, 2));
+						noodle_panel.setLayout(new GridLayout(2, 6, 0, 20));
 							// 2번 카드 스크롤
 						JScrollPane noodle_sf = new JScrollPane(noodle_panel);
 						noodle_sf.setBorder(new LineBorder(new Color(0, 128, 192), 5, true));
-						noodle_panel.setAutoscrolls(false);
+						noodle_sf.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 						noodle_sf.getVerticalScrollBar().setUnitIncrement(30);
 						noodle_sf.setBounds(90, 180, 1306, 497);
 						
 						// ＠ 3번 - 간식류 패널
 						JPanel snack_panel = new JPanel();
 						snack_panel.setBounds(100, 100, 1200, 2000);
-						snack_panel.setPreferredSize(new Dimension(1000, 700));
 						snack_panel.setBackground(new Color(255, 255, 255));
+						snack_panel.setLayout(new GridLayout(2, 6, 0, 20));
 							// 3번 스크롤
 						JScrollPane snack_sf = new JScrollPane(snack_panel);
 						snack_sf.setBorder(new LineBorder(new Color(0, 128, 192), 5, true));
-						snack_panel.setAutoscrolls(false);
-						snack_panel.setLayout(new GridLayout(4, 2));
+						snack_sf.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 						snack_sf.getVerticalScrollBar().setUnitIncrement(30);
 						snack_sf.setBounds(90, 180, 1306, 497);
 						
 						// ＠ 4번 - 음료 패널
 						JPanel drink_panel = new JPanel();
 						drink_panel.setBounds(100, 100, 1200, 2000);
-						drink_panel.setPreferredSize(new Dimension(1000, 700));
 						drink_panel.setBackground(new Color(255, 255, 255));
+						drink_panel.setLayout(new GridLayout(2, 6, 0, 20));
 							// 4번 스크롤
 						JScrollPane drink_sf = new JScrollPane(drink_panel);
 						drink_sf.setBorder(new LineBorder(new Color(0, 128, 192), 5, true));
-						drink_panel.setAutoscrolls(false);
-						drink_panel.setLayout(new GridLayout(4, 2));
+						drink_sf.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 						drink_sf.getVerticalScrollBar().setUnitIncrement(30);
 						drink_sf.setBounds(90, 180, 1306, 497);
 					
