@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-//import train.jungjun.login_join_page.Login_and_join;
+import train.jungjun.login_join_page.Login_and_join;
 
 import javax.swing.JButton;
 import java.awt.CardLayout;
@@ -51,13 +51,13 @@ public class Train_Main extends JFrame {
 	public Train_Main() {
 		
 		ImageIcon img1 = new ImageIcon
-				("C:/java_PJJ/git-repository/trainProject/TrainRevervSystem/TrainProject/images/goTrain.png");
+				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/goTrain.png");
 		ImageIcon img2 = new ImageIcon
-				("C:/java_PJJ/git-repository/trainProject/TrainRevervSystem/TrainProject/images/goCheck.png");
+				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/goCheck.png");
 		ImageIcon img3 = new ImageIcon
-				("C:/java_PJJ/git-repository/trainProject/TrainRevervSystem/TrainProject/images/admin_login.jpg");
+				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/admin_login.jpg");
 		ImageIcon img4 = new ImageIcon
-				("C:/java_PJJ/git-repository/trainProject/TrainRevervSystem/TrainProject/images/E-RAIL.png");
+				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1940, 1050);
@@ -87,8 +87,8 @@ public class Train_Main extends JFrame {
 //				second_frame.main(null);
 //				Second_main main2 = new Second_main();
 //				main2.main(null);
-//				Second_main main2 = new Second_main();
-//				main2.main(null);
+				Second_main main2 = new Second_main();
+				main2.main(null);
 				setVisible(false);
 			}
 		});
@@ -106,9 +106,9 @@ public class Train_Main extends JFrame {
 		JButton admin_login_btn = new JButton(img3);
 		admin_login_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				train.jungjun.admin_page.Admin_page admin_frame =
-//						new train.jungjun.admin_page.Admin_page();
-//				admin_frame.main(null);
+				train.jungjun.admin_page.Admin_page admin_frame =
+						new train.jungjun.admin_page.Admin_page();
+				admin_frame.main(null);
 				setVisible(false);
 			}
 		});

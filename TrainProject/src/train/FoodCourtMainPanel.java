@@ -142,62 +142,62 @@ public class FoodCourtMainPanel extends JPanel {
 						drink_sf.getVerticalScrollBar().setUnitIncrement(30);
 						drink_sf.setBounds(90, 180, 1306, 497);
 					
-		// @ 패널 내부 메뉴 버튼들						
-						List<FoodDto> allFoodList = foodDao.getFoodAll();
-						FoodBtn[] foodBtns = new FoodBtn[allFoodList.size()];
-						FoodLab[] foodName_Lab = new FoodLab[allFoodList.size()];
-						FoodLab[] foodPrice_Lab = new FoodLab[allFoodList.size()];
-						
-						// 0 ~ 7 도시락, 8 ~ 11 컵라면, 12 ~ 16 과자, 17 ~ 18 음료 : 총 음식 갯수 19						
-						for (int i = 0; i < allFoodList.size(); ++i) {							
-							foodBtns[i] = new FoodBtn(allFoodList.get(i), order_dtm);
-							foodName_Lab[i] = new FoodLab(foodBtns[i].getName());
-							foodPrice_Lab[i] = new FoodLab(foodBtns[i].getPrice() + "원");							
-							
-							if (i <= 7) {								
-								meal_panel.add(foodBtns[i]);
-								meal_panel.add(foodName_Lab[i]);
-								meal_panel.add(foodPrice_Lab[i]);
-								
-							} else if (i <= 11) {
-								noodle_panel.add(foodBtns[i]);
-								noodle_panel.add(foodName_Lab[i]);
-								noodle_panel.add(foodPrice_Lab[i]);
-								
-							} else if (i <= 15) {
-								snack_panel.add(foodBtns[i]);
-								snack_panel.add(foodName_Lab[i]);
-								snack_panel.add(foodPrice_Lab[i]);
-								
-							} else {
-								drink_panel.add(foodBtns[i]);
-								drink_panel.add(foodName_Lab[i]);
-								drink_panel.add(foodPrice_Lab[i]);
-							}
-						}
+//		// @ 패널 내부 메뉴 버튼들						
+//						List<FoodDto> allFoodList = foodDao.getFoodAll();
+//						FoodBtn[] foodBtns = new FoodBtn[allFoodList.size()];
+//						FoodLab[] foodName_Lab = new FoodLab[allFoodList.size()];
+//						FoodLab[] foodPrice_Lab = new FoodLab[allFoodList.size()];
+//						
+//						// 0 ~ 7 도시락, 8 ~ 11 컵라면, 12 ~ 16 과자, 17 ~ 18 음료 : 총 음식 갯수 19						
+//						for (int i = 0; i < allFoodList.size(); ++i) {							
+//							foodBtns[i] = new FoodBtn(allFoodList.get(i), order_dtm);
+//							foodName_Lab[i] = new FoodLab(foodBtns[i].getName());
+//							foodPrice_Lab[i] = new FoodLab(foodBtns[i].getPrice() + "원");							
+//							
+//							if (i <= 7) {								
+//								meal_panel.add(foodBtns[i]);
+//								meal_panel.add(foodName_Lab[i]);
+//								meal_panel.add(foodPrice_Lab[i]);
+//								
+//							} else if (i <= 11) {
+//								noodle_panel.add(foodBtns[i]);
+//								noodle_panel.add(foodName_Lab[i]);
+//								noodle_panel.add(foodPrice_Lab[i]);
+//								
+//							} else if (i <= 15) {
+//								snack_panel.add(foodBtns[i]);
+//								snack_panel.add(foodName_Lab[i]);
+//								snack_panel.add(foodPrice_Lab[i]);
+//								
+//							} else {
+//								drink_panel.add(foodBtns[i]);
+//								drink_panel.add(foodName_Lab[i]);
+//								drink_panel.add(foodPrice_Lab[i]);
+//							}
+//						}
 						
 						// @ 버튼 이미지
-						foodBtns[0].getImage("C:\\java(KSJ)\\git-repositories\\\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_장어덮밥.jpg");
-						foodBtns[1].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_전주비빔밥.jpg");
-						foodBtns[2].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_불고기덮밥.jpg");
-						foodBtns[3].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_오징어덮밥.jpg");
-						foodBtns[4].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_함박.jpg");
-						foodBtns[5].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_참치마요.jpg");
-						foodBtns[6].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_치킨마요.jpg");
-						foodBtns[7].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_어린이세트.jpg");
-						foodBtns[8].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_신라면.jpg");
-						foodBtns[9].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_진라면.jpg");
-						foodBtns[10].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_짜파게티.jpg");
-						foodBtns[11].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_라면볶이.jpg");
-						foodBtns[12].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_새우깡.jpg");
-						foodBtns[13].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_초코송이.jpg");
-						foodBtns[14].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_양파링.jpg");
-						foodBtns[15].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_허니버터칩.jpg");
-						foodBtns[16].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_코카콜라.jpg");
-						foodBtns[17].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_사이다.jpg");
-						foodBtns[18].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_봉봉.jpg");
-						foodBtns[19].getImage("C:\\java(KSJ)\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_망고.jpg");
-						
+//						foodBtns[0].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_장어덮밥.jpg");
+//						foodBtns[1].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_전주비빔밥.jpg");
+//						foodBtns[2].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_불고기덮밥.jpg");
+//						foodBtns[3].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_오징어덮밥.jpg");
+//						foodBtns[4].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_함박.jpg");
+//						foodBtns[5].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_참치마요.jpg");
+//						foodBtns[6].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_치킨마요.jpg");
+//						foodBtns[7].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_어린이세트.jpg");
+//						foodBtns[8].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_신라면.jpg");
+//						foodBtns[9].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_진라면.jpg");
+//						foodBtns[10].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_짜파게티.jpg");
+//						foodBtns[11].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_라면볶이.jpg");
+//						foodBtns[12].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_새우깡.jpg");
+//						foodBtns[13].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_초코송이.jpg");
+//						foodBtns[14].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_양파링.jpg");
+//						foodBtns[15].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_허니버터칩.jpg");
+//						foodBtns[16].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_코카콜라.jpg");
+//						foodBtns[17].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_사이다.jpg");
+//						foodBtns[18].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_봉봉.jpg");
+//						foodBtns[19].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_망고.jpg");
+//						
 						// @ 메뉴 부모 패널들에 자식 스크롤 추가
 						main_Menupanel.add("pane1", meal_sf);
 						main_Menupanel.add("pane2", noodle_sf);
