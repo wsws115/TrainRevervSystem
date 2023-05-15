@@ -24,16 +24,19 @@ public class OrderTable extends JTable {
 		setModel(order_dtm);
 		
 		// 테이블 서식 설정
+		// "좌석번호", "음식이름", "가격", "-", "수량", "+", "취소"
 			setRowHeight(30);
 			setFont(new Font(mainpont, Font.PLAIN, 20));	
 			getTableHeader().setFont(new Font(mainpont, Font.BOLD, 25));
 			DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
 			// 중앙 정렬
 			celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+			getColumn("좌석번호").setCellRenderer(celAlignCenter);
 			getColumn("음식이름").setCellRenderer(celAlignCenter);
 			getColumn("가격").setCellRenderer(celAlignCenter);
 			getColumn("수량").setCellRenderer(celAlignCenter);
 			// 열 너비 설정
+			getColumn("좌석번호").setPreferredWidth(70);
 			getColumn("음식이름").setPreferredWidth(250);
 			getColumn("가격").setPreferredWidth(150);
 			getColumn("수량").setPreferredWidth(70);
@@ -45,11 +48,7 @@ public class OrderTable extends JTable {
 		getTableHeader().setReorderingAllowed(false);
 		getTableHeader().setReorderingAllowed(false);
 		
-		// user_table plus, minus 버튼 추가
-		// Model 행 번호 - 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
-		getColumnModel().getColumn(SEATROW).setCellRenderer(new OrderTableCombo());
-		getColumnModel().getColumn(SEATROW).setCellEditor(new OrderTableCombo());
-		
+		// user_table plus, minus 버튼 추가		
 		getColumnModel().getColumn(MINUSROW).setCellRenderer(new OrderTableBtn("-", order_dtm, this));
 		getColumnModel().getColumn(MINUSROW).setCellEditor(new OrderTableBtn("-", order_dtm, this));
 		

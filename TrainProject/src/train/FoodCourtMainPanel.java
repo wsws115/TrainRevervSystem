@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import train.dao.FoodDao;
 import train.dto.FoodDto;
@@ -270,10 +271,22 @@ public class FoodCourtMainPanel extends JPanel {
 				// ★ 수정해야됨 ~
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (order_dtm.getRowCount() == 0) {
-						System.out.println("아무것도 선택 안됨");
+					if (order_table.getRowCount() == 0) {
+						System.out.println("아무것도 선택 안되면 데이터 없이 다음으로 이동");
 					} else {
-						System.out.println(order_table.getColumnName(0));
+						System.out.println("테이블 값을 가져가야됨 ~");
+						// 0 좌석번호, 1 음식이름, 2 가격, 3 food_number_pk, 4 수량, 5 - 버튼 (null), 6 취소 버튼 (null)
+						TableModel model = order_table.getModel();
+						
+						for (int idx = 0; idx < model.getRowCount(); idx++) {
+							String rows = "";
+							for (int cdx = 0; cdx < model.getColumnCount(); cdx++) {
+								Object val = model.getValueAt(idx, cdx);
+								rows = rows + " " + val;
+							}
+							System.out.println(rows);
+						}
+
 					}
 					
 				}

@@ -8,9 +8,11 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import train.FoodCourtMainPanel;
@@ -55,6 +57,9 @@ public class FoodBtn extends JButton {
 	
 	/** 버튼 클릭하면 JTable에 행을 추가하는 메소드 */ 
 	void addTableColumn(DefaultTableModel model) {
+		String[] seats = {"1A", "1B", "1C"};
+		
+		int choice = JOptionPane.showOptionDialog(null, "차내식을 구매할 좌석을 선택해주세요", "구매 좌석 선택", 0, JOptionPane.INFORMATION_MESSAGE, null, seats, seats[0]);
 		
 		boolean value = false;
 		int sum = 0;
@@ -73,7 +78,7 @@ public class FoodBtn extends JButton {
 		if (!value) {
 			// 같은 이름이 없으면 리스트에 추가
 			Vector<Object> list = new Vector<>();
-			list.add(" ");
+			list.add(seats[choice]);
 			list.add(getName());
 			list.add(getPrice());
 			list.add(foodnum()); // - 버튼 자리에 고유번호 숨기기

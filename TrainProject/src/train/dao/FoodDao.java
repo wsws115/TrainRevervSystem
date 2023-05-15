@@ -44,8 +44,7 @@ public class FoodDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}
-		
+		}		
 	}
 	
 	/** userchoicefood DB로 값을 보내는 메소드 */
@@ -56,9 +55,7 @@ public class FoodDao {
 			) {
 				Connection conn = session.getConnection();
 			
-				String qurey = "INSERT INTO coffee VALUES(coffee_id_seq.nextval,?,?)";
-				
-				
+				String qurey = "INSERT INTO coffee VALUES(coffee_id_seq.nextval,?,?)";				
 			
 		} catch (Exception e) {
 			e.printStackTrace();
