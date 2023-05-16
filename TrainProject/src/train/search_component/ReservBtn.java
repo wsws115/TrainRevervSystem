@@ -3,6 +3,8 @@ package train.search_component;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
@@ -17,6 +19,12 @@ import train.seat_standard.StandardSeatSelect;
 public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
 	JButton reservBtn;
 	String mainpont = "HY헤드라인M";
+	public static String name;
+	public static String num;
+	public static String st_time;
+	public static String en_time;
+	public static String price;
+	public static String timetaken;
 	// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
 	
 	public ReservBtn(String text, JTable stp_table) {
@@ -32,7 +40,19 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    		if (text.equals("우등예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
 	    			SpecialSeatSelect sd = new SpecialSeatSelect();
-	    			
+	    			int row = stp_table.getSelectedRow();
+	    			name = (String) stp_table.getValueAt(row, 0);
+	    			System.out.println(name);
+	    			num = String.valueOf(stp_table.getValueAt(row, 1)) ;
+	    			System.out.println(num);
+	    			st_time = String.valueOf(stp_table.getValueAt(row, 2));
+	    			System.out.println(st_time);
+	    			en_time = String.valueOf(stp_table.getValueAt(row, 3));
+	    			System.out.println(en_time);
+	    			price = String.valueOf(stp_table.getValueAt(row, 4));
+	    			System.out.println(price);
+	    			timetaken = String.valueOf(stp_table.getValueAt(row, 5));
+	    			System.out.println(timetaken);
 	    			sd.setVisible(true);
 	    			// 수량 + 1
 //	    			int addQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) + 1;	
@@ -47,6 +67,13 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    		} else if (text.equals("일반예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
 	    			StandardSeatSelect sb = new StandardSeatSelect();
+	    			int row = stp_table.getSelectedRow();
+	    			name = (String) stp_table.getValueAt(row, 0);
+	    			num = (String) stp_table.getValueAt(row, 1);
+	    			st_time = (String) stp_table.getValueAt(row, 2);
+	    			en_time = (String) stp_table.getValueAt(row, 3);
+	    			price = (String) stp_table.getValueAt(row, 4);
+	    			timetaken = (String) stp_table.getValueAt(row, 5);
 	    			sb.setVisible(true);
 	    			// 수량 - 1
 //	    			int minusQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) - 1;	

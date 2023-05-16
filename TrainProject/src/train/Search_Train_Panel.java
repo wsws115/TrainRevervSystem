@@ -35,8 +35,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Search_Train_Panel extends JPanel {
-	public JTable table;
-	public DefaultTableModel model;
+	public static JTable table;
+	public static DefaultTableModel model;
 	private JSONArray array;
 	public String header[]= {"구분","열차번호","출발시간","도착시간","가격","소요시간","우등","일반"};
 	private SubwayCode subc;
@@ -117,8 +117,8 @@ public class Search_Train_Panel extends JPanel {
 				
 				LocalDateTime st_date = LocalDateTime.parse(String.valueOf(object.get("depplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 				LocalDateTime en_date = LocalDateTime.parse(String.valueOf(object.get("arrplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-				String st_time = st_date.getHour()+"시"+st_date.getMinute()+"분";
-				String en_time = en_date.getHour()+"시"+en_date.getMinute()+"분";
+				String st_time = st_date.getHour()+":"+st_date.getMinute();
+				String en_time = en_date.getHour()+":"+en_date.getMinute();
 				Duration diff = Duration.between(st_date.toLocalTime(), en_date.toLocalTime());
 				long el_hour;
 				long el_min;
@@ -129,7 +129,7 @@ public class Search_Train_Panel extends JPanel {
 					el_hour = diff.toHours();
 					el_min = Math.abs(diff.toMinutes()%60-60);
 				}
-				String eltime = el_hour + "시간" + el_min+"분";
+				String eltime = el_hour + "시간" + el_min+ "분";
 				
 			    model.insertRow(i, new Object[]{object.get("traingradename"),object.get("trainno"),
 			    		st_time,en_time,
