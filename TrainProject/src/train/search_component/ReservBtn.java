@@ -11,7 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import train.Search_Train_Panel;
-import train.Seat_Dialog;
+import train.seat_special.SpecialSeatSelect;
+import train.seat_standard.StandardSeatSelect;
 
 public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
 	JButton reservBtn;
@@ -31,7 +32,7 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 
 	    		if (text.equals("우등예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
-	    			Seat_Dialog sd = new Seat_Dialog();
+	    			SpecialSeatSelect sd = new SpecialSeatSelect();
 	    			sd.setVisible(true);
 	    			// 수량 + 1
 //	    			int addQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) + 1;	
@@ -45,6 +46,8 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			
 	    		} else if (text.equals("일반예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
+	    			StandardSeatSelect sb = new StandardSeatSelect();
+	    			sb.setVisible(true);
 	    			// 수량 - 1
 //	    			int minusQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) - 1;	
 //	    			

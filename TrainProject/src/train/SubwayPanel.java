@@ -254,6 +254,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
         });
 		JScrollPane panel_mainKTX = new JScrollPane((Component) null);
 		panel_mainKTX.setPreferredSize(new Dimension(1344, 437));
+		panel_mainKTX.getVerticalScrollBar().setUnitIncrement(30);
 		panel_card.add(panel_mainKTX, "panel_mainKTX");
 		
 		JPanel panel = new JPanel();
@@ -1019,6 +1020,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		
 		JScrollPane panel_sa = new JScrollPane((Component) null);
 		panel_sa.setPreferredSize(new Dimension(1340, 800));
+		panel_sa.getVerticalScrollBar().setUnitIncrement(30);
 		panel_card.add(panel_sa, "panel_sa");
 		
 		JPanel panel_1 = new JPanel();
@@ -1674,7 +1676,9 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		panel_ha.add(btnNewButton_2_2_13);
 		
 		JScrollPane panel_ah = new JScrollPane((Component) null);
+		panel_ah.getVerticalScrollBar().setUnitIncrement(30);
 		panel_ah.setPreferredSize(new Dimension(1344, 500));
+		
 		panel_card.add(panel_ah, "panel_ah");
 		
 		JPanel test = new JPanel();
