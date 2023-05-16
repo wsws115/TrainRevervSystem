@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,7 +54,7 @@ public class FoodCourtMainPanel extends JPanel {
 	String[] orderTableColumnName = {"좌석번호", "음식이름", "가격", "-", "수량", "+", "취소"};
 	String mainpont = "HY헤드라인M";
 	
-//	FoodDao foodDao = new FoodDao();
+	FoodDao foodDao = new FoodDao();
 	
 	/**
 	 * Create the panel.
@@ -97,7 +99,8 @@ public class FoodCourtMainPanel extends JPanel {
 						JPanel meal_panel = new JPanel();
 						meal_panel.setBounds(100, 100, 1200, 2000);
 						meal_panel.setBackground(new Color(255, 255, 255));
-						meal_panel.setLayout(new GridLayout(4, 6, 0, 20));
+//						meal_panel.setLayout(new GridLayout(4, 6, 0, 20));
+						meal_panel.setLayout(new GridLayout(0, 3));
 						
 							// 1번 카드 스크롤
 						JScrollPane meal_sf = new JScrollPane(meal_panel);
@@ -110,7 +113,7 @@ public class FoodCourtMainPanel extends JPanel {
 						JPanel noodle_panel = new JPanel();
 						noodle_panel.setBounds(100, 100, 1200, 2000);
 						noodle_panel.setBackground(new Color(255, 255, 255));
-						noodle_panel.setLayout(new GridLayout(2, 6, 0, 20));
+						noodle_panel.setLayout(new GridLayout(0, 3));
 							// 2번 카드 스크롤
 						JScrollPane noodle_sf = new JScrollPane(noodle_panel);
 						noodle_sf.setBorder(new LineBorder(new Color(0, 128, 192), 5, true));
@@ -122,7 +125,7 @@ public class FoodCourtMainPanel extends JPanel {
 						JPanel snack_panel = new JPanel();
 						snack_panel.setBounds(100, 100, 1200, 2000);
 						snack_panel.setBackground(new Color(255, 255, 255));
-						snack_panel.setLayout(new GridLayout(2, 6, 0, 20));
+						snack_panel.setLayout(new GridLayout(0, 3));
 							// 3번 스크롤
 						JScrollPane snack_sf = new JScrollPane(snack_panel);
 						snack_sf.setBorder(new LineBorder(new Color(0, 128, 192), 5, true));
@@ -134,7 +137,7 @@ public class FoodCourtMainPanel extends JPanel {
 						JPanel drink_panel = new JPanel();
 						drink_panel.setBounds(100, 100, 1200, 2000);
 						drink_panel.setBackground(new Color(255, 255, 255));
-						drink_panel.setLayout(new GridLayout(2, 6, 0, 20));
+						drink_panel.setLayout(new GridLayout(0, 3));
 							// 4번 스크롤
 						JScrollPane drink_sf = new JScrollPane(drink_panel);
 						drink_sf.setBorder(new LineBorder(new Color(0, 128, 192), 5, true));
@@ -142,62 +145,62 @@ public class FoodCourtMainPanel extends JPanel {
 						drink_sf.getVerticalScrollBar().setUnitIncrement(30);
 						drink_sf.setBounds(90, 180, 1306, 497);
 					
-//		// @ 패널 내부 메뉴 버튼들						
-//						List<FoodDto> allFoodList = foodDao.getFoodAll();
-//						FoodBtn[] foodBtns = new FoodBtn[allFoodList.size()];
-//						FoodLab[] foodName_Lab = new FoodLab[allFoodList.size()];
-//						FoodLab[] foodPrice_Lab = new FoodLab[allFoodList.size()];
-////						
-//						// 0 ~ 7 도시락, 8 ~ 11 컵라면, 12 ~ 16 과자, 17 ~ 18 음료 : 총 음식 갯수 19						
-//						for (int i = 0; i < allFoodList.size(); ++i) {							
-//							foodBtns[i] = new FoodBtn(allFoodList.get(i), order_dtm);
-//							foodName_Lab[i] = new FoodLab(foodBtns[i].getName());
-//							foodPrice_Lab[i] = new FoodLab(foodBtns[i].getPrice() + "원");							
-//							
-//							if (i <= 7) {								
-//								meal_panel.add(foodBtns[i]);
-//								meal_panel.add(foodName_Lab[i]);
-//								meal_panel.add(foodPrice_Lab[i]);
-//								
-//							} else if (i <= 11) {
-//								noodle_panel.add(foodBtns[i]);
-//								noodle_panel.add(foodName_Lab[i]);
-//								noodle_panel.add(foodPrice_Lab[i]);
-//								
-//							} else if (i <= 15) {
-//								snack_panel.add(foodBtns[i]);
-//								snack_panel.add(foodName_Lab[i]);
-//								snack_panel.add(foodPrice_Lab[i]);
-//								
-//							} else {
-//								drink_panel.add(foodBtns[i]);
-//								drink_panel.add(foodName_Lab[i]);
-//								drink_panel.add(foodPrice_Lab[i]);
-//							}
-//						}
-//						
-//						// @ 버튼 이미지
-//						foodBtns[0].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%9E%A5%EC%96%B4%EB%8D%AE%EB%B0%A5.jpg?raw=true");
-//						foodBtns[1].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A0%84%EC%A3%BC%EB%B9%84%EB%B9%94%EB%B0%A5.jpg?raw=true");
-//						foodBtns[2].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%B6%88%EA%B3%A0%EA%B8%B0%EB%8D%AE%EB%B0%A5.jpg?raw=true");
-//						foodBtns[3].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%98%A4%EC%A7%95%EC%96%B4%EB%8D%AE%EB%B0%A5.jpg?raw=true");
-//						foodBtns[4].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%ED%95%A8%EB%B0%95.jpg?raw=true");
-//						foodBtns[5].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B0%B8%EC%B9%98%EB%A7%88%EC%9A%94.jpg?raw=true");
-//						foodBtns[6].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B9%98%ED%82%A8%EB%A7%88%EC%9A%94.jpg?raw=true");
-//						foodBtns[7].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%84%B8%ED%8A%B8.jpg?raw=true");
-//						foodBtns[8].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%8B%A0%EB%9D%BC%EB%A9%B4.jpg?raw=true");
-//						foodBtns[9].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A7%84%EB%9D%BC%EB%A9%B4.jpg?raw=true");
-//						foodBtns[10].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A7%9C%ED%8C%8C%EA%B2%8C%ED%8B%B0.jpg?raw=true");
-//						foodBtns[11].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%9D%BC%EB%A9%B4%EB%B3%B6%EC%9D%B4.jpg?raw=true");
-//						foodBtns[12].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%83%88%EC%9A%B0%EA%B9%A1.jpg?raw=true");
-//						foodBtns[13].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B4%88%EC%BD%94%EC%86%A1%EC%9D%B4.jpg?raw=true");
-//						foodBtns[14].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%96%91%ED%8C%8C%EB%A7%81.jpg?raw=true");
-//						foodBtns[15].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%ED%97%88%EB%8B%88%EB%B2%84%ED%84%B0%EC%B9%A9.jpg?raw=true");
-//						foodBtns[16].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%BD%94%EC%B9%B4%EC%BD%9C%EB%9D%BC.jpg?raw=true");
-//						foodBtns[17].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%82%AC%EC%9D%B4%EB%8B%A4.jpg?raw=true");
-//						foodBtns[18].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%B4%89%EB%B4%89.jpg?raw=true");
-//						foodBtns[19].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%A7%9D%EA%B3%A0.jpg?raw=true");
-////						
+		// @ 패널 내부 메뉴 버튼들						
+						List<FoodDto> allFoodList = foodDao.getFoodAll();
+						FoodBtn[] foodBtns = new FoodBtn[allFoodList.size()];
+						FoodLab[] foodName_Lab = new FoodLab[allFoodList.size()];
+						FoodLab[] foodPrice_Lab = new FoodLab[allFoodList.size()];
+						
+						// 0 ~ 7 도시락, 8 ~ 11 컵라면, 12 ~ 16 과자, 17 ~ 18 음료 : 총 음식 갯수 19						
+						for (int i = 0; i < allFoodList.size(); ++i) {							
+							foodBtns[i] = new FoodBtn(allFoodList.get(i), order_dtm);
+							foodName_Lab[i] = new FoodLab(foodBtns[i].getName());
+							foodPrice_Lab[i] = new FoodLab(foodBtns[i].getPrice() + "원");							
+							
+							if (foodBtns[i].getfoodtype().equals("식사류")) {								
+								meal_panel.add(foodBtns[i]);
+								meal_panel.add(foodName_Lab[i]);
+								meal_panel.add(foodPrice_Lab[i]);
+								
+							} else if (foodBtns[i].getfoodtype().equals("면류")) {
+								noodle_panel.add(foodBtns[i]);
+								noodle_panel.add(foodName_Lab[i]);
+								noodle_panel.add(foodPrice_Lab[i]);
+								
+							} else if (foodBtns[i].getfoodtype().equals("간식류")) {
+								snack_panel.add(foodBtns[i]);
+								snack_panel.add(foodName_Lab[i]);
+								snack_panel.add(foodPrice_Lab[i]);
+								
+							} else if (foodBtns[i].getfoodtype().equals("음료")){
+								drink_panel.add(foodBtns[i]);
+								drink_panel.add(foodName_Lab[i]);
+								drink_panel.add(foodPrice_Lab[i]);
+							}
+						}
+						
+						// @ 버튼 이미지
+						foodBtns[0].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%9E%A5%EC%96%B4%EB%8D%AE%EB%B0%A5.jpg?raw=true");
+						foodBtns[1].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A0%84%EC%A3%BC%EB%B9%84%EB%B9%94%EB%B0%A5.jpg?raw=true");
+						foodBtns[2].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%B6%88%EA%B3%A0%EA%B8%B0%EB%8D%AE%EB%B0%A5.jpg?raw=true");
+						foodBtns[3].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%98%A4%EC%A7%95%EC%96%B4%EB%8D%AE%EB%B0%A5.jpg?raw=true");
+						foodBtns[4].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%ED%95%A8%EB%B0%95.jpg?raw=true");
+						foodBtns[5].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B0%B8%EC%B9%98%EB%A7%88%EC%9A%94.jpg?raw=true");
+						foodBtns[6].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B9%98%ED%82%A8%EB%A7%88%EC%9A%94.jpg?raw=true");
+						foodBtns[7].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%84%B8%ED%8A%B8.jpg?raw=true");
+						foodBtns[8].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%8B%A0%EB%9D%BC%EB%A9%B4.jpg?raw=true");
+						foodBtns[9].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A7%84%EB%9D%BC%EB%A9%B4.jpg?raw=true");
+						foodBtns[10].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A7%9C%ED%8C%8C%EA%B2%8C%ED%8B%B0.jpg?raw=true");
+						foodBtns[11].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%9D%BC%EB%A9%B4%EB%B3%B6%EC%9D%B4.jpg?raw=true");
+						foodBtns[12].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%83%88%EC%9A%B0%EA%B9%A1.jpg?raw=true");
+						foodBtns[13].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B4%88%EC%BD%94%EC%86%A1%EC%9D%B4.jpg?raw=true");
+						foodBtns[14].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%96%91%ED%8C%8C%EB%A7%81.jpg?raw=true");
+						foodBtns[15].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%ED%97%88%EB%8B%88%EB%B2%84%ED%84%B0%EC%B9%A9.jpg?raw=true");
+						foodBtns[16].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%BD%94%EC%B9%B4%EC%BD%9C%EB%9D%BC.jpg?raw=true");
+						foodBtns[17].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%82%AC%EC%9D%B4%EB%8B%A4.jpg?raw=true");
+						foodBtns[18].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%B4%89%EB%B4%89.jpg?raw=true");
+						foodBtns[19].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%A7%9D%EA%B3%A0.jpg?raw=true");
+						
 						// @ 메뉴 부모 패널들에 자식 스크롤 추가
 						main_Menupanel.add("pane1", meal_sf);
 						main_Menupanel.add("pane2", noodle_sf);
@@ -217,7 +220,7 @@ public class FoodCourtMainPanel extends JPanel {
 			noodle_MenuBtn.setLocation(440, 29);
 			add(noodle_MenuBtn);
 	
-			MenuBtn snack_MenuBtn = new MenuBtn("간식", cardLayout, main_Menupanel, "pane3");
+			MenuBtn snack_MenuBtn = new MenuBtn("간식류", cardLayout, main_Menupanel, "pane3");
 			snack_MenuBtn.setLocation(778, 29);
 			add(snack_MenuBtn);
 			

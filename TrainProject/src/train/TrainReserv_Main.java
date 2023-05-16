@@ -81,6 +81,7 @@ public class TrainReserv_Main extends JFrame {
     public static JButton selectsubBtn; 
     public static String seatSelect;
     public static JLabel selectPeopleLabel;
+    public static List<String> seatSelectString;
     public static JLabel seatSelectLabel;
     public static boolean sub_select = true;
 	/**

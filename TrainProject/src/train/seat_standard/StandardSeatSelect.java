@@ -111,6 +111,8 @@ public class StandardSeatSelect extends JDialog {
 	      selectCompleteButton.addActionListener(new ActionListener() {
 	      	public void actionPerformed(ActionEvent e) {
 	      		train.TrainReserv_Main.seatSelectLabel.setText("일반실"+list.toString());
+	      		train.TrainReserv_Main.seatSelectString = list;
+	      		setVisible(false);
 	      	}
 	      });
 	      selectCompleteButton.setForeground(Color.WHITE);

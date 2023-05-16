@@ -34,6 +34,7 @@ public class FoodDao {
 				while (rs.next()) {
 					list.add(new FoodDto(
 							rs.getString("food_number"),
+							rs.getString("food_type"),
 							rs.getString("food_name"),
 							rs.getInt("food_price")							
 							));

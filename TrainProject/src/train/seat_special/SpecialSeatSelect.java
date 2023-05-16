@@ -97,6 +97,8 @@ public class SpecialSeatSelect extends JDialog{
       selectCompleteButton.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent e) {
       		train.TrainReserv_Main.seatSelectLabel.setText("우등석"+list.toString());
+      		train.TrainReserv_Main.seatSelectString = list;
+      		setVisible(false);
       	}
       });
       selectCompleteButton.setForeground(Color.WHITE);
