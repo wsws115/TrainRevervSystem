@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -50,15 +51,6 @@ public class Train_Main extends JFrame {
 	 */
 	public Train_Main() {
 		
-		ImageIcon img1 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\goTrain.png");
-		ImageIcon img2 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\goCheck.png");
-		ImageIcon img3 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\admin_login.jpg");
-		ImageIcon img4 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\E-RAIL.png");
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1940, 1050);
 		contentPane = new JPanel();
@@ -73,7 +65,8 @@ public class Train_Main extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton train_reserv_btn = new JButton(img1);
+		JButton train_reserv_btn = new JButton();
+		
 		train_reserv_btn.setBorderPainted(false);
 		train_reserv_btn.setContentAreaFilled(false);
 		train_reserv_btn.setFocusPainted(false);
@@ -96,14 +89,14 @@ public class Train_Main extends JFrame {
 		train_reserv_btn.setBounds(400, 500, 509, 338);
 		panel.add(train_reserv_btn);
 		
-		JButton tiket_btn = new JButton(img2);
+		JButton tiket_btn = new JButton();
 		tiket_btn.setBounds(1000, 500, 509, 338);
 		tiket_btn.setBorderPainted(false);
 		tiket_btn.setContentAreaFilled(false);
 		tiket_btn.setFocusPainted(false);
 		panel.add(tiket_btn);
 		
-		JButton admin_login_btn = new JButton(img3);
+		JButton admin_login_btn = new JButton();
 		admin_login_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				train.jungjun.admin_page.Admin_page admin_frame =
@@ -119,13 +112,38 @@ public class Train_Main extends JFrame {
 		admin_login_btn.setFocusPainted(false);
 		
 		
-		JLabel logo_label = new JLabel(img4);
+		JLabel logo_label = new JLabel();
 		logo_label.setForeground(Color.BLACK);
 		logo_label.setHorizontalAlignment(SwingConstants.CENTER);
 		logo_label.setFont(new Font("굴림", Font.BOLD, 70));
 		logo_label.setBounds(675, 15, 574, 473);
 		panel.add(logo_label);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		try {
+			
+			ImageIcon img1 = new ImageIcon
+					(ImageIO.read(new URL
+							("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login/TrainProject/src/image/goTrain.png?raw=true"))
+							.getScaledInstance(300, 200, Image.SCALE_AREA_AVERAGING));
+			train_reserv_btn.setIcon(img1);
+			ImageIcon img2 = new ImageIcon
+					(ImageIO.read(new URL
+							("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login/TrainProject/src/image/goCheck.png?raw=true"))
+							.getScaledInstance(300, 200, Image.SCALE_AREA_AVERAGING));
+			tiket_btn.setIcon(img2);
+			ImageIcon img3 = new ImageIcon
+					(ImageIO.read(new URL
+							("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login/TrainProject/src/image/admin_login.jpg?raw=true"))
+							.getScaledInstance(150, 150, Image.SCALE_AREA_AVERAGING));
+			admin_login_btn.setIcon(img3);
+			ImageIcon img4 = new ImageIcon
+					(ImageIO.read(new URL
+							("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login/TrainProject/src/image/E-RAIL.png?raw=true"))
+							.getScaledInstance(500, 400, Image.SCALE_AREA_AVERAGING));
+			logo_label.setIcon(img4);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 }

@@ -52,7 +52,7 @@ public class FoodCourtMainPanel extends JPanel {
 	String[] orderTableColumnName = {"좌석번호", "음식이름", "가격", "-", "수량", "+", "취소"};
 	String mainpont = "HY헤드라인M";
 	
-	FoodDao foodDao = new FoodDao();
+//	FoodDao foodDao = new FoodDao();
 	
 	/**
 	 * Create the panel.
@@ -147,7 +147,7 @@ public class FoodCourtMainPanel extends JPanel {
 //						FoodBtn[] foodBtns = new FoodBtn[allFoodList.size()];
 //						FoodLab[] foodName_Lab = new FoodLab[allFoodList.size()];
 //						FoodLab[] foodPrice_Lab = new FoodLab[allFoodList.size()];
-//						
+////						
 //						// 0 ~ 7 도시락, 8 ~ 11 컵라면, 12 ~ 16 과자, 17 ~ 18 음료 : 총 음식 갯수 19						
 //						for (int i = 0; i < allFoodList.size(); ++i) {							
 //							foodBtns[i] = new FoodBtn(allFoodList.get(i), order_dtm);
@@ -175,29 +175,29 @@ public class FoodCourtMainPanel extends JPanel {
 //								drink_panel.add(foodPrice_Lab[i]);
 //							}
 //						}
-						
-						// @ 버튼 이미지
-//						foodBtns[0].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_장어덮밥.jpg");
-//						foodBtns[1].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_전주비빔밥.jpg");
-//						foodBtns[2].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_불고기덮밥.jpg");
-//						foodBtns[3].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_오징어덮밥.jpg");
-//						foodBtns[4].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_함박.jpg");
-//						foodBtns[5].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_참치마요.jpg");
-//						foodBtns[6].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_치킨마요.jpg");
-//						foodBtns[7].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_어린이세트.jpg");
-//						foodBtns[8].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_신라면.jpg");
-//						foodBtns[9].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_진라면.jpg");
-//						foodBtns[10].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_짜파게티.jpg");
-//						foodBtns[11].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_라면볶이.jpg");
-//						foodBtns[12].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_새우깡.jpg");
-//						foodBtns[13].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_초코송이.jpg");
-//						foodBtns[14].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_양파링.jpg");
-//						foodBtns[15].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_허니버터칩.jpg");
-//						foodBtns[16].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_코카콜라.jpg");
-//						foodBtns[17].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_사이다.jpg");
-//						foodBtns[18].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_봉봉.jpg");
-//						foodBtns[19].getImage("C:\\Java_WorkSpace\\JavaTest\\git-repositories\\TeamProject\\TrainRevervSystem\\TrainProject\\src\\train\\train_food_component\\image\\food_망고.jpg");
 //						
+//						// @ 버튼 이미지
+//						foodBtns[0].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%9E%A5%EC%96%B4%EB%8D%AE%EB%B0%A5.jpg?raw=true");
+//						foodBtns[1].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A0%84%EC%A3%BC%EB%B9%84%EB%B9%94%EB%B0%A5.jpg?raw=true");
+//						foodBtns[2].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%B6%88%EA%B3%A0%EA%B8%B0%EB%8D%AE%EB%B0%A5.jpg?raw=true");
+//						foodBtns[3].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%98%A4%EC%A7%95%EC%96%B4%EB%8D%AE%EB%B0%A5.jpg?raw=true");
+//						foodBtns[4].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%ED%95%A8%EB%B0%95.jpg?raw=true");
+//						foodBtns[5].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B0%B8%EC%B9%98%EB%A7%88%EC%9A%94.jpg?raw=true");
+//						foodBtns[6].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B9%98%ED%82%A8%EB%A7%88%EC%9A%94.jpg?raw=true");
+//						foodBtns[7].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%84%B8%ED%8A%B8.jpg?raw=true");
+//						foodBtns[8].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%8B%A0%EB%9D%BC%EB%A9%B4.jpg?raw=true");
+//						foodBtns[9].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A7%84%EB%9D%BC%EB%A9%B4.jpg?raw=true");
+//						foodBtns[10].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%A7%9C%ED%8C%8C%EA%B2%8C%ED%8B%B0.jpg?raw=true");
+//						foodBtns[11].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%9D%BC%EB%A9%B4%EB%B3%B6%EC%9D%B4.jpg?raw=true");
+//						foodBtns[12].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%83%88%EC%9A%B0%EA%B9%A1.jpg?raw=true");
+//						foodBtns[13].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%B4%88%EC%BD%94%EC%86%A1%EC%9D%B4.jpg?raw=true");
+//						foodBtns[14].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%96%91%ED%8C%8C%EB%A7%81.jpg?raw=true");
+//						foodBtns[15].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%ED%97%88%EB%8B%88%EB%B2%84%ED%84%B0%EC%B9%A9.jpg?raw=true");
+//						foodBtns[16].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%BD%94%EC%B9%B4%EC%BD%9C%EB%9D%BC.jpg?raw=true");
+//						foodBtns[17].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EC%82%AC%EC%9D%B4%EB%8B%A4.jpg?raw=true");
+//						foodBtns[18].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%B4%89%EB%B4%89.jpg?raw=true");
+//						foodBtns[19].getImage("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_food_login_sujin_image/TrainProject/src/image/food_%EB%A7%9D%EA%B3%A0.jpg?raw=true");
+////						
 						// @ 메뉴 부모 패널들에 자식 스크롤 추가
 						main_Menupanel.add("pane1", meal_sf);
 						main_Menupanel.add("pane2", noodle_sf);

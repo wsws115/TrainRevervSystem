@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -49,7 +50,7 @@ public class FoodBtn extends JButton {
 	/** 버튼에 넣을 이미지를 입력하는 메소드 */
 	public void getImage(String location) {
 		try {
-			this.setIcon(new ImageIcon(ImageIO.read(new File(location)).getScaledInstance(180, 150, Image.SCALE_AREA_AVERAGING)));
+			this.setIcon(new ImageIcon(ImageIO.read(new URL(location)).getScaledInstance(180, 150, Image.SCALE_AREA_AVERAGING)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

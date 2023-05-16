@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -23,7 +25,8 @@ import javax.swing.SwingConstants;
 public class StandardSeatSelect extends JDialog {
 
 	private JFrame frame;
-
+	public static boolean chkAll = true;
+	public static List<String> list;
 	 public static JLabel selectedSeatInfoLabel = new JLabel();
 	   public static void setLable(String str) {
 	      selectedSeatInfoLabel.setText(str);
@@ -92,9 +95,6 @@ public class StandardSeatSelect extends JDialog {
 	      seatSelectPanel.add("standard10",standard10);
 	      
 	      
-	      
-	      
-	      
 	      // [화면 하단에서 좌석선택확인 라벨과 선택완료 버튼을 포함하는 패널]
 	      JPanel lowPanel = new JPanel();
 	      lowPanel.setBackground(Color.WHITE);
@@ -108,6 +108,11 @@ public class StandardSeatSelect extends JDialog {
 	      lowPanel.add(selectedSeatInfoLabel);
 	      
 	      JButton selectCompleteButton = new JButton("다음");
+	      selectCompleteButton.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		train.TrainReserv_Main.seatSelectLabel.setText("일반실"+list.toString());
+	      	}
+	      });
 	      selectCompleteButton.setForeground(Color.WHITE);
 	      
 	      selectCompleteButton.setBackground(new Color(0, 128, 192));
@@ -116,11 +121,42 @@ public class StandardSeatSelect extends JDialog {
 	      selectCompleteButton.setFont(new Font(mainFont, Font.BOLD, 20));
 	      lowPanel.add(selectCompleteButton);
 	      
-	      
-	      
-	      
-	      
-	      
+	      JButton selectCompleteButton_1 = new JButton("초기화");
+	      selectCompleteButton_1.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		 seatSelectPanel.remove(standardwheel4);
+	      		 seatSelectPanel.remove(standard5);
+		   	     seatSelectPanel.remove(standard6);
+		   	     seatSelectPanel.remove(standard7);
+		   	     seatSelectPanel.remove(standard8);
+		   	     seatSelectPanel.remove(standard9);
+		   	     seatSelectPanel.remove(standard10);
+	      		
+	      		
+		      	 JPanel standardwheel4 = new StandardWheelSeatPanel();
+		   	     JPanel standard5 = new StandardSeatPanel();
+		   	     JPanel standard6 = new StandardSeatPanel();
+		   	     JPanel standard7 = new StandardSeatPanel();
+		   	     JPanel standard8 = new StandardSeatPanel();
+		   	     JPanel standard9 = new StandardSeatPanel();
+		   	     JPanel standard10 = new StandardSeatPanel();
+		   	      
+	
+		   	     seatSelectPanel.add("standard4",standardwheel4);
+		   	     seatSelectPanel.add("standard5",standard5);
+		   	     seatSelectPanel.add("standard6",standard6);
+		   	     seatSelectPanel.add("standard7",standard7);
+		   	     seatSelectPanel.add("standard8",standard8);
+		   	     seatSelectPanel.add("standard9",standard9);
+		   	     seatSelectPanel.add("standard10",standard10);
+	      	}
+	      });
+	      selectCompleteButton_1.setForeground(Color.WHITE);
+	      selectCompleteButton_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
+	      selectCompleteButton_1.setFocusPainted(false);
+	      selectCompleteButton_1.setBorderPainted(false);
+	      selectCompleteButton_1.setBackground(new Color(0, 128, 192));
+	      lowPanel.add(selectCompleteButton_1);
 	      
 	      
 	      

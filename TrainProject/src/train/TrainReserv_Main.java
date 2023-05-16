@@ -293,12 +293,12 @@ public class TrainReserv_Main extends JFrame {
 		
 		seatSelectLabel = new JLabel("X");
 		seatSelectLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		seatSelectLabel.setBounds(205, 553, 57, 31);
+		seatSelectLabel.setBounds(205, 553, 174, 31);
 		reserv_panel.add(seatSelectLabel);
 		
 		selectPeopleLabel = new JLabel("X");
 		selectPeopleLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		selectPeopleLabel.setBounds(205, 442, 57, 31);
+		selectPeopleLabel.setBounds(205, 442, 80, 31);
 		reserv_panel.add(selectPeopleLabel);
 		GroupLayout gl_main_panel = new GroupLayout(main_panel);
 		gl_main_panel.setHorizontalGroup(

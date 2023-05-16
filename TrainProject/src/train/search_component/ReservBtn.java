@@ -28,11 +28,11 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 		reservBtn.setBackground(new Color(0, 49, 74));
     	
 		reservBtn.addActionListener(e -> {
-    		// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
 
 	    		if (text.equals("우등예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
 	    			SpecialSeatSelect sd = new SpecialSeatSelect();
+	    			
 	    			sd.setVisible(true);
 	    			// 수량 + 1
 //	    			int addQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) + 1;	

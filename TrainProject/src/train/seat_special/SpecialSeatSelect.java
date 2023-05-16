@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -26,12 +28,14 @@ import javax.swing.SwingConstants;
 public class SpecialSeatSelect extends JDialog{
 
    private JFrame frame;
-   
+   private String fisrtH ="<html>";
+   private String middleH = "<br> /";
    public static JLabel selectedSeatInfoLabel = new JLabel();
    public static void setLable(String str) {
       selectedSeatInfoLabel.setText(str);
    }
-
+   public static List<String> list;
+   public static boolean chkAll = true;
    public static void main(String[] args) {
       EventQueue.invokeLater(new Runnable() {
          public void run() {
@@ -72,6 +76,7 @@ public class SpecialSeatSelect extends JDialog{
       //특실예매를 눌렀을 때 > [1~3호차]
       //1호차는 특실 + 휠체어석
       //2,3호차는 특실 + 일반좌석
+      
       JPanel specialwheel1 = new SpecialWheelSeatPanel(); 
       JPanel special2 = new SpecialSeatPanel(); 
       JPanel special3 = new SpecialSeatPanel(); 
@@ -89,6 +94,11 @@ public class SpecialSeatSelect extends JDialog{
       lowPanel.add(selectedSeatInfoLabel);
       
       JButton selectCompleteButton = new JButton("다음");
+      selectCompleteButton.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      		train.TrainReserv_Main.seatSelectLabel.setText("우등석"+list.toString());
+      	}
+      });
       selectCompleteButton.setForeground(Color.WHITE);
       
       selectCompleteButton.setBackground(new Color(0, 128, 192));
@@ -96,6 +106,30 @@ public class SpecialSeatSelect extends JDialog{
       selectCompleteButton.setFocusPainted(false);
       selectCompleteButton.setFont(new Font(mainFont, Font.BOLD, 20));
       lowPanel.add(selectCompleteButton);      
+      
+      JButton selectRemoveBtn = new JButton("초기화");
+      selectRemoveBtn.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      		chkAll = true;
+      		seatSelectPanel.remove(specialwheel1);
+            seatSelectPanel.remove(special2);
+            seatSelectPanel.remove(special3);
+            
+            JPanel specialwheel1 = new SpecialWheelSeatPanel(); 
+            JPanel special2 = new SpecialSeatPanel(); 
+            JPanel special3 = new SpecialSeatPanel(); 
+            
+            seatSelectPanel.add("special1", specialwheel1);
+            seatSelectPanel.add("special2", special2);
+            seatSelectPanel.add("special3", special3);
+      	}
+      });
+      selectRemoveBtn.setForeground(Color.WHITE);
+      selectRemoveBtn.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
+      selectRemoveBtn.setFocusPainted(false);
+      selectRemoveBtn.setBorderPainted(false);
+      selectRemoveBtn.setBackground(new Color(0, 128, 192));
+      lowPanel.add(selectRemoveBtn);
       
       //[화면 상단에서 호차선택콤보박스, 앞/뒤호차 이동 버튼, 현재 기차정보라벨을 포함하는 패널]
       JPanel topPanel = new JPanel();
