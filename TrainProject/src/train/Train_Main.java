@@ -51,13 +51,13 @@ public class Train_Main extends JFrame {
 	public Train_Main() {
 		
 		ImageIcon img1 = new ImageIcon
-				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/goTrain.png");
+				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\goTrain.png");
 		ImageIcon img2 = new ImageIcon
-				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/goCheck.png");
+				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\goCheck.png");
 		ImageIcon img3 = new ImageIcon
-				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/admin_login.jpg");
+				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\admin_login.jpg");
 		ImageIcon img4 = new ImageIcon
-				("C:/Java_WorkSpace/JavaTest/git-repository/trainProject/TrainRevervSystem/TrainProject/images/E-RAIL.png");
+				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\src\\image\\E-RAIL.png");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1940, 1050);

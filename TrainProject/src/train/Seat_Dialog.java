@@ -371,21 +371,7 @@ public class Seat_Dialog extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		 String people = TrainReserv_Main.people;
-		 select_seat++;
-		 String select_num = ""+select_seat;
-		 TrainReserv_Main.seatSelectLabel.setText(select_num);
-		 int people_num = Integer.parseInt(people);
-		 if (people_num == select_seat) {
-			 selectDone = false;
-			 System.out.println("끝");
-			 seatselectBtn1.setEnabled(selectDone);
-			 seatselectBtn2.setEnabled(selectDone);
-			 seatselectBtn3.setEnabled(selectDone);
-			 seatselectBtn5.setEnabled(selectDone);
-		 }else {
-			 System.out.println(select_seat);
-		 }
+		
 		
 	}
 

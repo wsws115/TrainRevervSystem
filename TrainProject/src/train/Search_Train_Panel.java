@@ -74,7 +74,7 @@ public class Search_Train_Panel extends JPanel {
 		String st = subc.sub_map.get(TrainReserv_Main.st_sub_btn.getText());
 		String en = subc.sub_map.get(TrainReserv_Main.en_sub_btn.getText());
 		String da = TrainReserv_Main.date_text.getText();
-		String tanm = TrainReserv_Main.subSelectText;
+		String tanm = TrainReserv_Main.selectsubBtn.getText();
 		System.out.println(tanm);
 		if(tanm.equals("전체")) {
 			for(String key : sub_cg.sub_category.keySet()) {

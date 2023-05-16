@@ -78,12 +78,11 @@ public class TrainReserv_Main extends JFrame {
     public static JButton st_sub_btn;
     public static JButton en_sub_btn;
     public static String subSelectText;
-    public static String people;
+    public static JButton selectsubBtn; 
     public static String seatSelect;
-    private JLabel selectPeopleLabel;
+    public static JLabel selectPeopleLabel;
     public static JLabel seatSelectLabel;
     public static boolean sub_select = true;
-    private JTextField people_text;
 	/**
 	 * Launch the application.
 	 */
@@ -122,7 +121,7 @@ public class TrainReserv_Main extends JFrame {
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(subway_panel);
 		
-		JPanel seat_panel = new Seat1();
+		JPanel seat_panel = new Subway_Select();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(seat_panel);
 		
@@ -227,8 +226,6 @@ public class TrainReserv_Main extends JFrame {
 				JPanel search_panel = new Search_Train_Panel();
 				card_panel.setBounds(441,80,1483,931);
 				card_panel.add(search_panel, "기차API");
-				people = people_text.getText();
-				selectPeopleLabel.setText(people);
 				card.show(card_panel, "기차API");
 			} 
 		});
@@ -276,127 +273,31 @@ public class TrainReserv_Main extends JFrame {
 		
 		reserv_panel.add(date_text);
 		
-		JButton allSubBtn = new JButton("전체");
-		allSubBtn.setForeground(Color.WHITE);
-		allSubBtn.setBackground(new Color(0, 128, 129));
-		allSubBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				subSelectText = allSubBtn.getText();
-			}
-		});
-		allSubBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		allSubBtn.setBounds(86, 339, 211, 49);
-		reserv_panel.add(allSubBtn);
+		selectsubBtn = new JButton("전체");
+		selectsubBtn.setForeground(Color.WHITE);
+		selectsubBtn.setBackground(new Color(0, 128, 129));
+		selectsubBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+		selectsubBtn.setBounds(86, 339, 211, 49);
+		reserv_panel.add(selectsubBtn);
 		
-		JButton subKtxBtn = new JButton("KTX");
-		subKtxBtn.setForeground(Color.WHITE);
-		subKtxBtn.setBackground(new Color(0, 128, 129));
-		subKtxBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				subSelectText = subKtxBtn.getText();
-			}
-		});
-		subKtxBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		subKtxBtn.setBounds(45, 398, 140, 49);
-		reserv_panel.add(subKtxBtn);
-		
-		JButton subSrtBtn = new JButton("SRT");
-		subSrtBtn.setForeground(Color.WHITE);
-		subSrtBtn.setBackground(new Color(0, 128, 129));
-		subSrtBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				subSelectText = subSrtBtn.getText();
-			}
-		});
-		subSrtBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		subSrtBtn.setBounds(205, 398, 140, 49);
-		reserv_panel.add(subSrtBtn);
-		
-		JButton subNewBtn = new JButton("새마을호");
-		subNewBtn.setForeground(Color.WHITE);
-		subNewBtn.setBackground(new Color(0, 128, 129));
-		subNewBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				subSelectText = subNewBtn.getText();
-			}
-		});
-		subNewBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		subNewBtn.setBounds(45, 457, 140, 49);
-		reserv_panel.add(subNewBtn);
-		
-		JButton subFlowerBtn = new JButton("무궁화호");
-		subFlowerBtn.setForeground(Color.WHITE);
-		subFlowerBtn.setBackground(new Color(0, 128, 129));
-		subFlowerBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				subSelectText = subFlowerBtn.getText();
-			}
-		});
-		subFlowerBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		subFlowerBtn.setBounds(205, 457, 140, 49);
-		reserv_panel.add(subFlowerBtn);
-		
-		JButton subYungItxBtn = new JButton("ITX-청춘");
-		subYungItxBtn.setForeground(Color.WHITE);
-		subYungItxBtn.setBackground(new Color(0, 128, 129));
-		subYungItxBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				subSelectText = subYungItxBtn.getText();
-			}
-		});
-	    subYungItxBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-	    subYungItxBtn.setBounds(45, 516, 140, 49);
-		reserv_panel.add(subYungItxBtn);
-		
-		JButton subNewItxBtn = new JButton("ITX-새마을");
-		subNewItxBtn.setForeground(Color.WHITE);
-		subNewItxBtn.setBackground(new Color(0, 128, 129));
-		subNewItxBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				subSelectText = subNewItxBtn.getText();
-			}
-		});
-		subNewItxBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 21));
-		subNewItxBtn.setBounds(205, 516, 140, 49);
-		reserv_panel.add(subNewItxBtn);
-		
-		JLabel typeLabel1 = new JLabel("어른(만 13세 이상)");
-		typeLabel1.setBounds(25, 611, 102, 15);
-		reserv_panel.add(typeLabel1);
-		
-		JButton minusBtn6 = new JButton("-");
-		minusBtn6.setBounds(235, 596, 45, 45);
-		reserv_panel.add(minusBtn6);
-		
-		people_text = new JTextField();
-		people_text.setText("2");
-		people_text.setHorizontalAlignment(SwingConstants.CENTER);
-		people_text.setColumns(10);
-		people_text.setBounds(287, 597, 45, 45);
-		reserv_panel.add(people_text);
-		
-		JButton plusBtn1 = new JButton("+");
-		plusBtn1.setBounds(339, 596, 45, 45);
-		reserv_panel.add(plusBtn1);
-		
-		JLabel lblNewLabel_1 = new JLabel("/전체 인원 :");
+		JLabel lblNewLabel_1 = new JLabel("전체 인원 :");
 		lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		lblNewLabel_1.setBounds(205, 651, 152, 54);
+		lblNewLabel_1.setBounds(12, 430, 152, 54);
 		reserv_panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("좌석 선택 :");
 		lblNewLabel_1_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		lblNewLabel_1_2.setBounds(12, 651, 152, 54);
+		lblNewLabel_1_2.setBounds(12, 541, 152, 54);
 		reserv_panel.add(lblNewLabel_1_2);
 		
 		seatSelectLabel = new JLabel("X");
 		seatSelectLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		seatSelectLabel.setBounds(136, 663, 57, 31);
+		seatSelectLabel.setBounds(205, 553, 57, 31);
 		reserv_panel.add(seatSelectLabel);
 		
 		selectPeopleLabel = new JLabel("X");
 		selectPeopleLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		selectPeopleLabel.setBounds(348, 663, 57, 31);
+		selectPeopleLabel.setBounds(205, 442, 57, 31);
 		reserv_panel.add(selectPeopleLabel);
 		GroupLayout gl_main_panel = new GroupLayout(main_panel);
 		gl_main_panel.setHorizontalGroup(
