@@ -259,6 +259,7 @@ public class TrainReserv_Main extends JFrame {
 		reserv_panel.add(previous_btn);
 		
 		date_text = new JTextField();
+		date_text.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		date_text.setColumns(10);
 		date_text.setBounds(99, 223, 186, 41);
 		date_text.addMouseListener(new MouseAdapter() {
