@@ -30,6 +30,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class SubwayPanel extends JPanel implements MouseListener{
 	private String train_name;
@@ -69,12 +71,11 @@ public class SubwayPanel extends JPanel implements MouseListener{
 	 * Create the panel.
 	 */
 	public SubwayPanel(){
-		
+		setBounds(0,0,1450, 1500);
 		
 		Panel panel_main = new Panel();
-		panel_main.setBounds(10, 10, 1435, 1501);
+		panel_main.setBounds(10, 0, 1485, 1530);
 		panel_main.setBackground(new Color(0, 124, 192));
-		add(panel_main);
 		panel_main.setLayout(null);
 		
 		Button button_ktx_main = new Button("KTX주요역");
@@ -153,7 +154,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		panel_main.add(button_ha);
 		
 		JPanel panel_card = new JPanel();
-		panel_card.setBounds(50, 250, 1350, 700);
+		panel_card.setBounds(50, 250, 1350, 655);
 		panel_main.add(panel_card); 
 		CardLayout cl = new CardLayout();
 		panel_card.setLayout(cl);
@@ -1978,6 +1979,20 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		lblNewLabel_2.setVerticalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_main.add(lblNewLabel_2);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panel_main, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addComponent(panel_main, GroupLayout.PREFERRED_SIZE, 1535, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		setLayout(groupLayout);
 		
 	}
 	@Override
