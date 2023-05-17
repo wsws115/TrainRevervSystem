@@ -1,4 +1,4 @@
-package train.table_button;
+package train.food.table_button;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

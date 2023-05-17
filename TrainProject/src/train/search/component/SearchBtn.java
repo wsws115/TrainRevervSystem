@@ -1,4 +1,4 @@
-package train.search_component;
+package train.search.component;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package train.search_component;
+package train.search.component;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -12,7 +12,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import train.Search_Train_Panel;
+
+import train.search.Search_Train_Panel;
 import train.seat_special.SpecialSeatSelect;
 import train.seat_standard.StandardSeatSelect;
 

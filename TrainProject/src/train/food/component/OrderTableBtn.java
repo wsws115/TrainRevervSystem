@@ -1,4 +1,4 @@
-package train.train_food_component;
+package train.food.component;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import train.FoodCourtMainPanel;
+import train.food.FoodCourtMainPanel;
 
 public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer, MouseListener {
     

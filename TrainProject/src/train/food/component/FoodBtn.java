@@ -1,4 +1,4 @@
-package train.train_food_component;
+package train.food.component;
 
 import java.awt.Font;
 import java.awt.Image;
@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 
-import train.FoodCourtMainPanel;
+import train.food.FoodCourtMainPanel;
 import train.dto.FoodDto;
 
 public class FoodBtn extends JButton {

@@ -13,6 +13,8 @@ import javax.swing.UIManager;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.plaf.FontUIResource;
 
+import train.search.Search_Train_Panel;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

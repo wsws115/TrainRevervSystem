@@ -1,4 +1,4 @@
-package train.table_button;
+package train.food.table_button;
 
 public interface TableActionEvent {
 	

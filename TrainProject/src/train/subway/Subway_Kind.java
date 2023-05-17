@@ -1,4 +1,4 @@
-package train;
+package train.subway;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
+import train.TrainReserv_Main;
 public class Subway_Kind extends JPanel {
 
 	/**

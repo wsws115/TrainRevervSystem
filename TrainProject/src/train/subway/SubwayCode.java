@@ -1,4 +1,4 @@
-package train;
+package train.subway;
 
 import java.util.HashMap;
 

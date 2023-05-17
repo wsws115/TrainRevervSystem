@@ -1,4 +1,4 @@
-package train.search_component;
+package train.dto;
 
 public class Search_TableDTO {
 	String train_name;

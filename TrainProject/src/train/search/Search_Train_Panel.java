@@ -1,4 +1,4 @@
-package train;
+package train.search;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
@@ -11,11 +11,11 @@ import javax.swing.table.TableCellEditor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import train.search_component.ReservBtn;
-import train.table_button.TableActionEvent;
+import train.search.component.ReservBtn;
+import train.food.table_button.TableActionEvent;
 //import train.table_button.TableCellEditor;
-import train.table_button.TableCellReader;
-import train.table_button.Table_button;
+import train.food.table_button.TableCellReader;
+import train.food.table_button.Table_button;
 
 import javax.swing.JScrollPane;
 
@@ -33,6 +33,9 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import train.subway.*;
+import train.TrainReserv_Main;
+import train.search.*;
 
 public class Search_Train_Panel extends JPanel {
 	public static JTable table;

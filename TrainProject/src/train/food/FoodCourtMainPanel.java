@@ -1,4 +1,4 @@
-package train;
+package train.food;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -25,11 +25,8 @@ import javax.swing.table.TableModel;
 
 import train.dao.FoodDao;
 import train.dto.FoodDto;
-import train.train_food_component.FoodBtn;
-import train.train_food_component.FoodLab;
-import train.train_food_component.MenuBtn;
-import train.train_food_component.OrderTable;
-import train.train_food_component.OrderTableBtn;
+import train.food.component.*;
+import train.Payment_UI;
 
 public class FoodCourtMainPanel extends JPanel {
 	// [하] 총 가격 라벨 (버튼 액션 시, 토탈 가격 바뀌어야 되서 static 설정)

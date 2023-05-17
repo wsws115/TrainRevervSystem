@@ -26,9 +26,10 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import train.Search_Train_Panel;
-import train.search_component.ReservBtn;
-import train.search_component.Search_TableDTO;
+
+import train.search.Search_Train_Panel;
+import train.search.component.ReservBtn;
+import train.dto.Search_TableDTO;
 
 public class Payment_UI extends JDialog {
 	

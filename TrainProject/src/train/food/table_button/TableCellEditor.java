@@ -1,4 +1,4 @@
-package train.table_button;
+package train.food.table_button;
 
 import java.awt.Component;
 
@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.event.CellEditorListener;
 
-import train.Search_Train_Panel;
+import train.search.Search_Train_Panel;
 
 public class TableCellEditor extends DefaultCellEditor {
 

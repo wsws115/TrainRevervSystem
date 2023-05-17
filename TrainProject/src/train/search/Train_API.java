@@ -1,4 +1,4 @@
-package train;
+package train.search;
 
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;

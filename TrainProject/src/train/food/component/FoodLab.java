@@ -1,4 +1,4 @@
-package train.train_food_component;
+package train.food.component;
 
 import java.awt.Font;
 
