@@ -17,10 +17,6 @@ import train.subway.SubwayPanel;
 import train.subway.Subway_Kind;
 import train.food.*;
 
-//import org.jdatepicker.impl.JDatePanelImpl;
-//import org.jdatepicker.impl.JDatePickerImpl;
-//import org.jdatepicker.impl.UtilDateModel;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -58,13 +54,11 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JRadioButton;
 import java.awt.Insets;
-//import com.github.lgooddatepicker.components.CalendarPanel;
 import java.awt.Rectangle;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import com.github.lgooddatepicker.components.TimePicker;
 import java.awt.event.MouseListener;
 import javax.swing.JComboBox;
 import javax.swing.GroupLayout;
@@ -240,16 +234,7 @@ public class TrainReserv_Main extends JFrame {
 		date_text.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		date_text.setColumns(10);
 		date_text.setBounds(99, 223, 186, 41);
-		date_text.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				CalenderMain calender = new CalenderMain();
-				calender.setVisible(true);
-			}
-		
-		});
-		
+		date_text.setEditable(false);
 		reserv_panel.add(date_text);
 		
 		selectsubBtn = new JButton("전체");
