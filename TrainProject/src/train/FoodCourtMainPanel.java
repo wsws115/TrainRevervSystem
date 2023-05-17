@@ -288,7 +288,8 @@ public class FoodCourtMainPanel extends JPanel {
 						}
 
 					}
-					
+					Payment_UI pay_panel = new Payment_UI();
+					pay_panel.setVisible(true);
 				}
 			});  // [하] - 끝 -
 		

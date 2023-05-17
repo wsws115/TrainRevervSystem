@@ -59,7 +59,7 @@ public class Payment_UI extends JDialog {
 	 * Create the dialog.
 	 */
 	public Payment_UI() {
-		setBounds(100, 100, 951, 1000);
+		setBounds(500, 20, 951, 1000);
 		getContentPane().setLayout(new CardLayout(0, 0));
 		payment_info_panel.setBackground(new Color(255, 255, 255));
 		payment_info_panel.setBorder(new EmptyBorder(5, 5, 5, 5));
