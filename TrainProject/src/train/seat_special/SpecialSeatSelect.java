@@ -98,6 +98,7 @@ public class SpecialSeatSelect extends JDialog{
       	public void actionPerformed(ActionEvent e) {
       		train.TrainReserv_Main.seatSelectLabel.setText("우등석"+list.toString());
       		train.TrainReserv_Main.seatSelectString = list;
+      		train.TrainReserv_Main.card.show(train.TrainReserv_Main.card_panel, "food");
       		setVisible(false);
       	}
       });

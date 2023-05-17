@@ -112,6 +112,7 @@ public class StandardSeatSelect extends JDialog {
 	      	public void actionPerformed(ActionEvent e) {
 	      		train.TrainReserv_Main.seatSelectLabel.setText("일반실"+list.toString());
 	      		train.TrainReserv_Main.seatSelectString = list;
+	      		train.TrainReserv_Main.card.show(train.TrainReserv_Main.card_panel, "food");
 	      		setVisible(false);
 	      	}
 	      });

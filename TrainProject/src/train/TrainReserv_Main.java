@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 
 import org.json.simple.JSONArray;
@@ -37,6 +38,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -46,6 +48,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -83,6 +87,8 @@ public class TrainReserv_Main extends JFrame {
     public static JLabel selectPeopleLabel;
     public static List<String> seatSelectString;
     public static JLabel seatSelectLabel;
+    public static CardLayout card;
+    public static JPanel card_panel;
     public static boolean sub_select = true;
 	/**
 	 * Launch the application.
@@ -112,24 +118,23 @@ public class TrainReserv_Main extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		CardLayout card = new CardLayout();
-		JPanel card_panel = new JPanel();
+		card = new CardLayout();
+		card_panel = new JPanel();
 		card_panel.setBounds(441, 80, 1483, 931);
 		contentPane.add(card_panel);
 		card_panel.setLayout(card);
 		
 		JPanel subway_panel = new SubwayPanel();
 		card_panel.setBounds(441,80,1483,931);
-		card_panel.add(subway_panel);
+		card_panel.add(subway_panel, "subway");
 		
 		JPanel seat_panel = new Subway_Select();
 		card_panel.setBounds(441,80,1483,931);
-		card_panel.add(seat_panel);
+		card_panel.add(seat_panel, "select");
 		
 		JPanel food_panel = new FoodCourtMainPanel();
 		food_panel.setBounds(441, 80, 1483, 931);
-		
-		card_panel.add(food_panel);
+		card_panel.add(food_panel, "food");
 		
 		
 		JPanel main_panel = new JPanel();
@@ -224,10 +229,18 @@ public class TrainReserv_Main extends JFrame {
 		search_btn.setBackground(new Color(0, 128, 129));
 		search_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JPanel search_panel = new Search_Train_Panel();
-				card_panel.setBounds(441,80,1483,931);
-				card_panel.add(search_panel, "기차API");
-				card.show(card_panel, "기차API");
+				UIManager.put("OptionPane.messageFont", new Font("HY헤드라인M", Font.BOLD, 40));
+			    UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("HY헤드라인M",Font.PLAIN, 30)));
+				if(selectPeopleLabel.getText().equals("X")) {
+					JOptionPane.showMessageDialog(null,"인원을 선택해주십시오.");
+				}else if(date_text.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"날짜를 선택해주십시오.");
+				}else {
+					JPanel search_panel = new Search_Train_Panel();
+					card_panel.setBounds(441,80,1483,931);
+					card_panel.add(search_panel, "기차API");
+					card.show(card_panel, "기차API");
+				}
 			} 
 		});
 		search_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
