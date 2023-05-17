@@ -27,6 +27,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import train.calender.CalenderMain;
+
 import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -1996,6 +1999,16 @@ public class SubwayPanel extends JPanel implements MouseListener{
 					.addComponent(panel_main, GroupLayout.PREFERRED_SIZE, 1535, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
+		
+		Button nextBtn = new Button("다음");
+		nextBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		nextBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		nextBtn.setBounds(1273, 10, 173, 100);
+		panel_main.add(nextBtn);
 		setLayout(groupLayout);
 		
 	}

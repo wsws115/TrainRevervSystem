@@ -66,6 +66,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JComboBox;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * @author LJH
@@ -128,7 +129,11 @@ public class TrainReserv_Main extends JFrame {
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(subway_panel, "subway");
 		
-		JPanel seat_panel = new Subway_Select();
+		JPanel subway_kind = new Subway_Kind();
+		card_panel.setBounds(441,80,1483,931);
+		card_panel.add(subway_kind, "subkind");
+		
+		JPanel seat_panel = new Peopel_select();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(seat_panel, "select");
 		
@@ -224,54 +229,6 @@ public class TrainReserv_Main extends JFrame {
 		
 		ButtonGroup group = new ButtonGroup();
 		
-		JButton search_btn = new JButton("조회");
-		search_btn.setForeground(Color.WHITE);
-		search_btn.setBackground(new Color(0, 128, 129));
-		search_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				UIManager.put("OptionPane.messageFont", new Font("HY헤드라인M", Font.BOLD, 40));
-			    UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("HY헤드라인M",Font.PLAIN, 30)));
-				if(selectPeopleLabel.getText().equals("X")) {
-					JOptionPane.showMessageDialog(null,"인원을 선택해주십시오.");
-				}else if(date_text.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"날짜를 선택해주십시오.");
-				}else {
-					JPanel search_panel = new Search_Train_Panel();
-					card_panel.setBounds(441,80,1483,931);
-					card_panel.add(search_panel, "기차API");
-					card.show(card_panel, "기차API");
-				}
-			} 
-		});
-		search_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		search_btn.setBounds(128, 753, 140, 49);
-		reserv_panel.add(search_btn);
-		
-		
-		JButton next_btn = new JButton("다음");
-		next_btn.setForeground(Color.WHITE);
-		next_btn.setBackground(new Color(0, 128, 129));
-		next_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				card.next(card_panel);
-			} 
-		});
-		next_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		next_btn.setBounds(202, 828, 140, 49);
-		reserv_panel.add(next_btn);
-		
-		JButton previous_btn = new JButton("이전");
-		previous_btn.setForeground(Color.WHITE);
-		previous_btn.setBackground(new Color(0, 128, 129));
-		previous_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				card.previous(card_panel);
-			}
-		});
-		previous_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		previous_btn.setBounds(45, 828, 140, 49);
-		reserv_panel.add(previous_btn);
-		
 		date_text = new JTextField();
 		date_text.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		date_text.setColumns(10);
@@ -314,6 +271,16 @@ public class TrainReserv_Main extends JFrame {
 		selectPeopleLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
 		selectPeopleLabel.setBounds(205, 442, 80, 31);
 		reserv_panel.add(selectPeopleLabel);
+		
+		JButton previous_btn = new JButton("이전");
+		previous_btn.setForeground(Color.WHITE);
+		previous_btn.setBackground(new Color(0, 128, 129));
+		previous_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				card.previous(card_panel);
+			}
+		});
+		previous_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
 		GroupLayout gl_main_panel = new GroupLayout(main_panel);
 		gl_main_panel.setHorizontalGroup(
 			gl_main_panel.createParallelGroup(Alignment.LEADING)
@@ -321,6 +288,9 @@ public class TrainReserv_Main extends JFrame {
 					.addGap(12)
 					.addGroup(gl_main_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_main_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(previous_btn, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(back_btn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
 							.addGap(362)
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
@@ -334,7 +304,9 @@ public class TrainReserv_Main extends JFrame {
 					.addGap(10)
 					.addGroup(gl_main_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(back_btn, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_main_panel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addComponent(previous_btn, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 						.addComponent(home_btn, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addGap(20)
 					.addComponent(reserv_panel, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE))
