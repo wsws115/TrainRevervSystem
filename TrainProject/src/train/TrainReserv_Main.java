@@ -12,6 +12,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import train.calender.CalenderMain;
+import train.calender.Calender_Panel;
 import train.table_button.TableCellReader;
 
 //import org.jdatepicker.impl.JDatePanelImpl;
@@ -128,6 +129,10 @@ public class TrainReserv_Main extends JFrame {
 		JPanel subway_panel = new SubwayPanel();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(subway_panel, "subway");
+		
+		JPanel calendar_panel = new Calender_Panel();
+		card_panel.setBounds(441,80,1483,931);
+		card_panel.add(calendar_panel, "calender");
 		
 		JPanel subway_kind = new Subway_Kind();
 		card_panel.setBounds(441,80,1483,931);

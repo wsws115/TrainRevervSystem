@@ -44,6 +44,10 @@ public class Cell extends JButton {
         isToDay = true;
         setForeground(Color.WHITE);
     }
+    public void setAsNotToDay() {
+    	isToDay = false;
+    	setForeground(Color.BLACK);
+    }
 
     @Override
     protected void paintComponent(Graphics grphcs) {
@@ -54,11 +58,19 @@ public class Cell extends JButton {
         if (isToDay) {
             Graphics2D g2 = (Graphics2D) grphcs;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setColor(new Color(97, 49, 237));
+            g2.setColor(new Color(0, 128, 192));
             int x = getWidth() / 2 - 17;
             int y = getHeight() / 2 - 17;
-            g2.fillRoundRect(x, y, 35, 35, 100, 100);
+            g2.fillRoundRect(x, y, 35, 35, 150, 150);
+        }else {
+        	Graphics2D g2 = (Graphics2D) grphcs;
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(new Color(255,255,255));
+            int x = getWidth() / 2 - 17;
+            int y = getHeight() / 2 - 17;
+            g2.fillRoundRect(x, y, 35, 35, 150, 150);
         }
+        
         super.paintComponent(grphcs);
     }
 

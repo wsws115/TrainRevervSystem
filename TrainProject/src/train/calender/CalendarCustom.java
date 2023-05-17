@@ -18,6 +18,7 @@ import java.awt.SystemColor;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.awt.Color;
 
 public class CalendarCustom extends javax.swing.JPanel {
 
@@ -88,7 +89,7 @@ public class CalendarCustom extends javax.swing.JPanel {
 
         jPanel1.setBackground(SystemColor.text);
 
-        jPanel2.setBackground(new java.awt.Color(32, 0, 127));
+        jPanel2.setBackground(new Color(0, 128, 192));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -113,7 +114,6 @@ public class CalendarCustom extends javax.swing.JPanel {
         lbDate.setFont(new Font("SansSerif", Font.PLAIN, 25)); // NOI18N
         lbDate.setForeground(SystemColor.desktop);
         lbDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbDate.setText("Sunday, 11/05/2023");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1Layout.setHorizontalGroup(
@@ -161,7 +161,7 @@ public class CalendarCustom extends javax.swing.JPanel {
         });
 
         lbMonthYear.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
-        lbMonthYear.setForeground(new java.awt.Color(97, 49, 237));
+        lbMonthYear.setForeground(new Color(0, 128, 192));
         lbMonthYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMonthYear.setText("Month - Year");
 
@@ -215,9 +215,9 @@ public class CalendarCustom extends javax.swing.JPanel {
         		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(slide, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
-        				.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
-        				.addComponent(jLayeredPane1, GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE))
+        				.addComponent(slide, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1350, Short.MAX_VALUE)
+        				.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 1350, Short.MAX_VALUE)
+        				.addComponent(jLayeredPane1, GroupLayout.DEFAULT_SIZE, 1350, Short.MAX_VALUE))
         			.addContainerGap())
         );
         layout.setVerticalGroup(
@@ -225,7 +225,7 @@ public class CalendarCustom extends javax.swing.JPanel {
         		.addGroup(layout.createSequentialGroup()
         			.addComponent(jLayeredPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addGap(19)
-        			.addComponent(slide, GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+        			.addComponent(slide, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
         );

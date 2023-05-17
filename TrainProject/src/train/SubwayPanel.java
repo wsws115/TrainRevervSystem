@@ -1982,7 +1982,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		
 		JLabel lblNewLabel_2 = new JLabel("역명 조회");
 		lblNewLabel_2.setFont(new Font("HY헤드라인M", Font.BOLD, 40));
-		lblNewLabel_2.setBounds(12, 10, 1411, 151);
+		lblNewLabel_2.setBounds(12, 10, 1255, 151);
 		lblNewLabel_2.setVerticalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_main.add(lblNewLabel_2);
@@ -2003,7 +2003,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		Button nextBtn = new Button("다음");
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
 			}
 		});
 		nextBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
