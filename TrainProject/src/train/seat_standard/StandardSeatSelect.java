@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 
+import train.TrainReserv_Main;
+
 public class StandardSeatSelect extends JDialog {
 
 	private JFrame frame;
@@ -158,21 +160,13 @@ public class StandardSeatSelect extends JDialog {
 	      		train.TrainReserv_Main.seatSelectString = list;
 	      		train.TrainReserv_Main.card.show(train.TrainReserv_Main.card_panel, "food");
 	      		String num = (String)trainInfoComboBox.getSelectedItem();
-	      		if(num.contains("4호차")) {
-	      			train.TrainReserv_Main.carNum = "4호차";
-	      		}else if(num.contains("5호차")) {
-	      			train.TrainReserv_Main.carNum = "5호차";
-	      		}else  if(num.contains("6호차")){
-	      			train.TrainReserv_Main.carNum = "6호차";
-	      		}else  if(num.contains("7호차")){
-	      			train.TrainReserv_Main.carNum = "7호차";
-	      		}else  if(num.contains("8호차")){
-	      			train.TrainReserv_Main.carNum = "8호차";
-	      		}else  if(num.contains("9호차")){
-	      			train.TrainReserv_Main.carNum = "9호차";
-	      		}else  if(num.contains("10호차")){
-	      			train.TrainReserv_Main.carNum = "10호차";
+	      		for(int i = 4; i <=10; ++i) {
+	      			if(trainInfoComboBox.getSelectedIndex() == i-4) {
+	      				TrainReserv_Main.carNum = i;
+	      			}
 	      		}
+	      		
+	      		
 	      		setVisible(false);
 	      	}
 	      });

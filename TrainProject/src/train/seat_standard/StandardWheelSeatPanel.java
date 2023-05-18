@@ -105,11 +105,11 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 	             if (((JToggleButton) e.getSource()).isSelected()) {
 	            	  if(people > list.size()) {
 		                list.add(buttonText);             
-		                SpecialSeatSelect.setLable(list.toString());
+		                StandardSeatSelect.setLable(list.toString());
 	            	  }
 	             } else {
 	                list.remove(list.indexOf(buttonText));
-	                SpecialSeatSelect.setLable(list.toString());
+	                StandardSeatSelect.setLable(list.toString());
 	            	  
 	             }
 	          }
@@ -122,11 +122,11 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 	             if (((JToggleButton) e.getSource()).isSelected()) {
 	            	  if(people > list.size()) {
 		                list.add(buttonText);             
-		                SpecialSeatSelect.setLable(list.toString());
+		                StandardSeatSelect.setLable(list.toString());
 	            	  }
 	             } else {
 		             list.remove(list.indexOf(buttonText));
-		             SpecialSeatSelect.setLable(list.toString());
+		             StandardSeatSelect.setLable(list.toString());
 		              
 	             }
 	          }
@@ -177,11 +177,11 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 	             if (((JToggleButton) e.getSource()).isSelected()) {
 	            	  if(people > list.size()) {
 		                list.add(buttonText);             
-		                SpecialSeatSelect.setLable(list.toString());
+		                StandardSeatSelect.setLable(list.toString());
 	            	  }
 	             } else {
 	                list.remove(list.indexOf(buttonText));
-	                SpecialSeatSelect.setLable(list.toString());
+	                StandardSeatSelect.setLable(list.toString());
 	            	  
 	             }
 	          }
@@ -194,7 +194,7 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 	             if (((JToggleButton) e.getSource()).isSelected()) {
 	            	  if(people > list.size()) {
 		                list.add(buttonText);             
-		                SpecialSeatSelect.setLable(list.toString());
+		                StandardSeatSelect.setLable(list.toString());
 	            	  }else {
 	            		  for (int i = 0; i < rightBtns.length; i++) {
 	            			  rightBtns[i].setEnabled(false);
@@ -202,7 +202,7 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 	            	  }
 	             } else {
 		             list.remove(list.indexOf(buttonText));
-		             SpecialSeatSelect.setLable(list.toString());
+		             StandardSeatSelect.setLable(list.toString());
 		              
 	             }
 	          }

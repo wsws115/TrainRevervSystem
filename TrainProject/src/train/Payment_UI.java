@@ -29,6 +29,7 @@ import javax.swing.border.LineBorder;
 
 import train.search.Search_Train_Panel;
 import train.search.component.ReservBtn;
+import train.dao.Train_Api_DAO;
 import train.dto.Search_TableDTO;
 
 public class Payment_UI extends JDialog {
@@ -42,8 +43,10 @@ public class Payment_UI extends JDialog {
 	private String st_time = ReservBtn.st_time;
 	private String en_time = ReservBtn.en_time;
 	private String timetaken = ReservBtn.timetaken;
-	private String carNum = TrainReserv_Main.carNum;
-	private String seatNum = TrainReserv_Main.seatSelectString.toString();
+	private int carNum = TrainReserv_Main.carNum;
+	private String train_price = ReservBtn.price;
+	private List<String> seatlist = TrainReserv_Main.seatSelectString;
+	private String seatNum = seatlist.toString();
 	
 	/**
 	 * Launch the application.
@@ -166,7 +169,7 @@ public class Payment_UI extends JDialog {
 		seat_Num_Label.setBounds(196, 0, 196, 125);
 		panel_1.add(seat_Num_Label);
 		
-		JLabel train_Boarding_Num = new JLabel(carNum);
+		JLabel train_Boarding_Num = new JLabel(carNum+"호차");
 		train_Boarding_Num.setFont(new Font("굴림", Font.BOLD, 20));
 		train_Boarding_Num.setVerticalAlignment(SwingConstants.CENTER);
 		train_Boarding_Num.setHorizontalAlignment(SwingConstants.CENTER);
@@ -433,6 +436,53 @@ public class Payment_UI extends JDialog {
                 // 패널 전환 코드 추가
                 CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
                 cardLayout.show(getContentPane(), "payment_successful_panel");
+                Train_Api_DAO dao = new Train_Api_DAO();
+                List<String> apilist = new ArrayList();
+                List<String> holist = new ArrayList();
+               
+                apilist.add(name);
+                apilist.add(date_text);
+                apilist.add(st_sub);
+                apilist.add(st_time);
+                apilist.add(en_sub);
+                apilist.add(en_time);
+                apilist.add(timetaken);
+                System.out.println(apilist.toString());
+                
+                int chk = dao.chk_train(apilist);
+                if (chk == 0) {
+                	dao.setAllSearch(apilist); // 없으면 insert
+                }
+             
+                chk = dao.chk_train(apilist); // 체크 및 열차 pk
+                
+                holist.add(""+carNum);
+                if(carNum < 4) {
+                	holist.add("specialSeat");
+                	holist.add("30");
+                }else {
+                	holist.add("standardSeat");
+                	holist.add("40");
+                }
+                
+                int chktrain = dao.chkTrain_Table(holist, chk);
+                if(chktrain == 0) {
+                	dao.setTrain_ho(holist, chk); // 체크 및 호차 pk
+                }
+                chktrain = dao.chkTrain_Table(holist, chk); // 체크 및 호차 pk
+                
+                for(String sn : seatlist) {
+                	List<String> seatlist = new ArrayList();
+                	seatlist.add(sn);
+                	if(sn.equals("1A") || sn.equals("1B")||sn.equals("1C")||sn.equals("1D") && carNum == 1 || carNum == 4) {
+                		seatlist.add("wheel");
+                	}else {
+                		seatlist.add("nomal");
+                	}
+                	seatlist.add(train_price);
+                	dao.setSeatDown(chktrain);
+                	dao.setSeat(seatlist, chktrain);
+                }
             }
         });
         timer.setRepeats(false); // 타이머 반복 실행 비활성화

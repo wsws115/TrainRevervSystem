@@ -138,11 +138,11 @@ public class SpecialSeatSelect extends JDialog{
       		train.TrainReserv_Main.card.show(train.TrainReserv_Main.card_panel, "food");
       		String num = (String)trainInfoComboBox.getSelectedItem();
       		if(num.contains("1호차")) {
-      			train.TrainReserv_Main.carNum = "1호차";
+      			train.TrainReserv_Main.carNum = 1;
       		}else if(num.contains("2호차")) {
-      			train.TrainReserv_Main.carNum = "2호차";
+      			train.TrainReserv_Main.carNum = 2;
       		}else if(num.contains("3호차")){
-      			train.TrainReserv_Main.carNum = "3호차";
+      			train.TrainReserv_Main.carNum = 3;
       		}
       		
       		setVisible(false);
