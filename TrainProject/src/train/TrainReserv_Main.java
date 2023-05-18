@@ -82,6 +82,7 @@ public class TrainReserv_Main extends JFrame {
     public static String subSelectText;
     public static JButton selectsubBtn; 
     public static String seatSelect;
+    public static String carNum;
     public static JLabel selectPeopleLabel;
     public static List<String> seatSelectString;
     public static JLabel seatSelectLabel;

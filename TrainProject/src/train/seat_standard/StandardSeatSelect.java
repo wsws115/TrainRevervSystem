@@ -107,12 +107,72 @@ public class StandardSeatSelect extends JDialog {
 	      selectedSeatInfoLabel.setFont(new Font(mainFont, Font.PLAIN, 20));
 	      lowPanel.add(selectedSeatInfoLabel);
 	      
+	      
+	      
+	      
+	      
+	      //[화면 상단에서 호차선택콤보박스, 앞/뒤호차 이동 버튼, 현재 기차정보라벨을 포함하는 패널]
+	      JPanel topPanel = new JPanel();
+	      topPanel.setBackground(Color.WHITE);
+	      totalMainPanel.add(topPanel, BorderLayout.NORTH);
+	      topPanel.setLayout(new GridLayout(0, 1, 0, 0));
+
+	      
+	      JSplitPane splitPane = new JSplitPane(); //상단패널을 상1- 콤보박스, 상2 - 라벨및버튼으로 나눔
+	      splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+	      topPanel.add(splitPane);
+	      
+	      JComboBox trainInfoComboBox = new JComboBox();
+	      trainInfoComboBox.addActionListener(new ActionListener() {
+	          @Override
+	          public void actionPerformed(ActionEvent e) {
+	              String getSelectedCar = (String)trainInfoComboBox.getSelectedItem();
+	              if(getSelectedCar.contains("4호차")) {
+	            	  card.show(seatSelectPanel,"standard4");
+	              }else if(getSelectedCar.contains("5호차")) {
+	            	  card.show(seatSelectPanel,"standard5");
+	              }else if(getSelectedCar.contains("6호차")) {
+	            	  card.show(seatSelectPanel,"standard6");
+	              }else if(getSelectedCar.contains("7호차")) {
+	            	  card.show(seatSelectPanel,"standard7");
+	              }else if(getSelectedCar.contains("8호차")) {
+	            	  card.show(seatSelectPanel,"standard8");
+	              }else if(getSelectedCar.contains("9호차")) {
+	            	  card.show(seatSelectPanel,"standard9");
+	              }else if(getSelectedCar.contains("10호차")) {
+	            	  card.show(seatSelectPanel,"standard10");
+	              }
+	          }
+	      });
+	      trainInfoComboBox.setPreferredSize(new Dimension(900, 50));
+	      trainInfoComboBox.setBackground(Color.WHITE);
+	      trainInfoComboBox.setFont(new Font(mainFont, Font.PLAIN, 20));
+	      trainInfoComboBox.setMaximumRowCount(20);
+	      trainInfoComboBox.setModel(getStandardCarInfo());
+	      splitPane.setLeftComponent(trainInfoComboBox);
+	      
 	      JButton selectCompleteButton = new JButton("다음");
 	      selectCompleteButton.addActionListener(new ActionListener() {
 	      	public void actionPerformed(ActionEvent e) {
 	      		train.TrainReserv_Main.seatSelectLabel.setText("일반실"+list.toString());
 	      		train.TrainReserv_Main.seatSelectString = list;
 	      		train.TrainReserv_Main.card.show(train.TrainReserv_Main.card_panel, "food");
+	      		String num = (String)trainInfoComboBox.getSelectedItem();
+	      		if(num.contains("4호차")) {
+	      			train.TrainReserv_Main.carNum = "4호차";
+	      		}else if(num.contains("5호차")) {
+	      			train.TrainReserv_Main.carNum = "5호차";
+	      		}else  if(num.contains("6호차")){
+	      			train.TrainReserv_Main.carNum = "6호차";
+	      		}else  if(num.contains("7호차")){
+	      			train.TrainReserv_Main.carNum = "7호차";
+	      		}else  if(num.contains("8호차")){
+	      			train.TrainReserv_Main.carNum = "8호차";
+	      		}else  if(num.contains("9호차")){
+	      			train.TrainReserv_Main.carNum = "9호차";
+	      		}else  if(num.contains("10호차")){
+	      			train.TrainReserv_Main.carNum = "10호차";
+	      		}
 	      		setVisible(false);
 	      	}
 	      });
@@ -160,49 +220,6 @@ public class StandardSeatSelect extends JDialog {
 	      selectCompleteButton_1.setBorderPainted(false);
 	      selectCompleteButton_1.setBackground(new Color(0, 128, 192));
 	      lowPanel.add(selectCompleteButton_1);
-	      
-	      
-	      
-	      //[화면 상단에서 호차선택콤보박스, 앞/뒤호차 이동 버튼, 현재 기차정보라벨을 포함하는 패널]
-	      JPanel topPanel = new JPanel();
-	      topPanel.setBackground(Color.WHITE);
-	      totalMainPanel.add(topPanel, BorderLayout.NORTH);
-	      topPanel.setLayout(new GridLayout(0, 1, 0, 0));
-
-	      
-	      JSplitPane splitPane = new JSplitPane(); //상단패널을 상1- 콤보박스, 상2 - 라벨및버튼으로 나눔
-	      splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-	      topPanel.add(splitPane);
-	      
-	      JComboBox trainInfoComboBox = new JComboBox();
-	      trainInfoComboBox.addActionListener(new ActionListener() {
-	          @Override
-	          public void actionPerformed(ActionEvent e) {
-	              String getSelectedCar = (String)trainInfoComboBox.getSelectedItem();
-	              if(getSelectedCar.contains("4호차")) {
-	            	  card.show(seatSelectPanel,"standard4");
-	              }else if(getSelectedCar.contains("5호차")) {
-	            	  card.show(seatSelectPanel,"standard5");
-	              }else if(getSelectedCar.contains("6호차")) {
-	            	  card.show(seatSelectPanel,"standard6");
-	              }else if(getSelectedCar.contains("7호차")) {
-	            	  card.show(seatSelectPanel,"standard7");
-	              }else if(getSelectedCar.contains("8호차")) {
-	            	  card.show(seatSelectPanel,"standard8");
-	              }else if(getSelectedCar.contains("9호차")) {
-	            	  card.show(seatSelectPanel,"standard9");
-	              }else if(getSelectedCar.contains("10호차")) {
-	            	  card.show(seatSelectPanel,"standard10");
-	              }
-	          }
-	      });
-	      trainInfoComboBox.setPreferredSize(new Dimension(900, 50));
-	      trainInfoComboBox.setBackground(Color.WHITE);
-	      trainInfoComboBox.setFont(new Font(mainFont, Font.PLAIN, 20));
-	      trainInfoComboBox.setMaximumRowCount(20);
-	      trainInfoComboBox.setModel(getStandardCarInfo()); 
-	      
-	      splitPane.setLeftComponent(trainInfoComboBox);
 	      
 	      JPanel top2panel = new JPanel();
 	      splitPane.setRightComponent(top2panel);

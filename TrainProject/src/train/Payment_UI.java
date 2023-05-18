@@ -42,6 +42,8 @@ public class Payment_UI extends JDialog {
 	private String st_time = ReservBtn.st_time;
 	private String en_time = ReservBtn.en_time;
 	private String timetaken = ReservBtn.timetaken;
+	private String carNum = TrainReserv_Main.carNum;
+	private String seatNum = TrainReserv_Main.seatSelectString.toString();
 	
 	/**
 	 * Launch the application.
@@ -164,7 +166,7 @@ public class Payment_UI extends JDialog {
 		seat_Num_Label.setBounds(196, 0, 196, 125);
 		panel_1.add(seat_Num_Label);
 		
-		JLabel train_Boarding_Num = new JLabel("New label");
+		JLabel train_Boarding_Num = new JLabel(carNum);
 		train_Boarding_Num.setFont(new Font("굴림", Font.BOLD, 20));
 		train_Boarding_Num.setVerticalAlignment(SwingConstants.CENTER);
 		train_Boarding_Num.setHorizontalAlignment(SwingConstants.CENTER);
@@ -172,7 +174,7 @@ public class Payment_UI extends JDialog {
 		train_Boarding_Num.setBounds(0, 125, 196, 125);
 		panel_1.add(train_Boarding_Num);
 		
-		JLabel seat_Num = new JLabel("New label");
+		JLabel seat_Num = new JLabel(seatNum);
 		seat_Num.setFont(new Font("굴림", Font.BOLD, 20));
 		seat_Num.setVerticalAlignment(SwingConstants.CENTER);
 		seat_Num.setHorizontalAlignment(SwingConstants.CENTER);
