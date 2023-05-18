@@ -167,6 +167,7 @@ public class Train_Api_DAO {
 		}		
 	}
 	
+	
 	public void setSeatUp(int train_ho_num){
 		String query = "UPDATE train_table SET train_seat_qty = train_seat_qty +1 WHERE train_code = ?";
 		

@@ -48,6 +48,10 @@ public class Cell extends JButton {
     	isToDay = false;
     	setForeground(Color.BLACK);
     }
+    public void setAsRemind() {
+    	isToDay = false;
+    	setForeground(Color.BLACK);
+    }
 
     @Override
     protected void paintComponent(Graphics grphcs) {

@@ -23,6 +23,7 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
 
     private int month;
     private int year;
+    private Component cel;
     public PanelDate(int month, int year) {
         initComponents();
         this.month = month;
@@ -57,11 +58,13 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
                 cell.currentMonth(calendar.get(Calendar.MONTH) == month - 1);
                 if (toDay.isToDay(new ToDay(calendar.get(Calendar.DATE), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR)))) {
                     cell.setAsToDay();
+                    cel = com;
                 }
                 calendar.add(Calendar.DATE, 1); //  up 1 day
             }
         }
     }
+    
 
     private ToDay getToDay() {
         Calendar calendar = Calendar.getInstance();
@@ -592,17 +595,23 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getSource());
-		for (Component com : getComponents()) {
-            Cell cell = (Cell) com;
-            cell.setAsNotToDay();
+		Calendar calendar = Calendar.getInstance();
+//		ToDay toDay = getToDay();
+		Cell cel2 = (Cell)e.getSource();
+		if(Integer.parseInt(cel2.getText()) >= calendar.get(Calendar.DATE)) {
+			
+			Cell cel1 = (Cell)cel;
+			cel1.setAsRemind();
+			
+			cel = (Cell)e.getSource();
+			cel2.setAsToDay();
+			int day = Integer.parseInt(((Cell)e.getSource()).getText());
+			LocalDate ld = LocalDate.of(this.year,this.month,day);
+			System.out.println(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+			TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
 		}
-		((Cell)e.getSource()).setAsToDay();
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
-		int day = Integer.parseInt(((Cell)e.getSource()).getText());
-		LocalDate ld = LocalDate.of(this.year,this.month,day);
-		System.out.println(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-		TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+		
+		
 //		Calendar calendar = Calendar.getInstance();
 //        calendar.set(Calendar.YEAR, year);
 //        calendar.set(Calendar.MONTH, month - 1);  //  month jan as 0 so start from 0
