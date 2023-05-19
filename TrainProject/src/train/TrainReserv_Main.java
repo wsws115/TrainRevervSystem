@@ -24,10 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -232,9 +229,9 @@ public class TrainReserv_Main extends JFrame {
 		lblNewLabel_1_1_1_1.setBounds(12, 295, 114, 34);
 		reserv_panel.add(lblNewLabel_1_1_1_1);
 		
-		Calendar calendar = Calendar.getInstance();
-		LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DATE));
-		date_text = new JTextField(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+		ButtonGroup group = new ButtonGroup();
+		
+		date_text = new JTextField();
 		date_text.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		date_text.setColumns(10);
 		date_text.setBounds(99, 223, 186, 41);

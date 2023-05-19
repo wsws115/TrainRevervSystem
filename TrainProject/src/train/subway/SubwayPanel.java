@@ -1,85 +1,115 @@
 package train.subway;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-
-import java.awt.CardLayout;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.JButton;
 import java.awt.Panel;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Button;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.AbstractButton;
-import javax.swing.Action;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.JTree;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
-import train.calender.CalenderMain;
-
-import javax.swing.JScrollPane;
+import java.awt.GridLayout;
+//import com.jgoodies.forms.layout.FormLayout;
+//import com.jgoodies.forms.layout.ColumnSpec;
+//import com.jgoodies.forms.layout.RowSpec;
+//import java.awt.event.MouseListener;
+//import net.miginfocom.swing.MigLayout;
+import java.awt.CardLayout;
+import java.awt.Scrollbar;
+import javax.swing.JScrollBar;
 import java.awt.Component;
-import java.awt.Dimension;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import train.TrainReserv_Main;
+import javax.swing.JProgressBar;
 
-public class SubwayPanel extends JPanel implements MouseListener{
-	private String train_name;
-	
-	//버튼 디자인
-	   public class RoundedButton extends JButton {
-	         public RoundedButton() { super(); decorate(); } 
-	         public RoundedButton(String text) { super(text); decorate(); } 
-	         public RoundedButton(Action action) { super(action); decorate(); } 
-	         public RoundedButton(Icon icon) { super(icon); decorate(); } 
-	         public RoundedButton(String text, Icon icon) { super(text, icon); decorate(); } 
-	         protected void decorate() { setBorderPainted(false); setOpaque(false); }
-	         @Override 
-	         protected void paintComponent(Graphics g) {
-	            Color c=new Color(255,247,242); //배경색 결정
-	            Color o=new Color(247,99,30); //글자색 결정
-	            int width = getWidth(); 
-	            int height = getHeight(); 
-	            Graphics2D graphics = (Graphics2D) g; 
-	            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-	            if (getModel().isArmed()) { graphics.setColor(c.darker()); } 
-	            else if (getModel().isRollover()) { graphics.setColor(c.brighter()); } 
-	            else { graphics.setColor(c); } 
-	            graphics.fillRoundRect(0, 0, width, height, 50, 50); 
-	            FontMetrics fontMetrics = graphics.getFontMetrics(); 
-	            Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
-	            int textX = (width - stringBounds.width) / 2; 
-	            int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
-	            graphics.setColor(o); 
-	            graphics.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); 
-	            graphics.drawString(getText(), textX, textY); 
-	            graphics.dispose(); 
-	            super.paintComponent(g);
-	            }
-	         }
+public class SubwayPanel extends JFrame implements MouseListener{
+	private JPanel contentPane;
+
 	/**
-	 * Create the panel.
+	 * Launch the application.
 	 */
-	public SubwayPanel(){
-		setBounds(0,0,1450, 1500);
+	
+	public class RoundedButton extends JButton {
+	      public RoundedButton() { super(); decorate(); } 
+	      public RoundedButton(String text) { super(text); decorate(); } 
+	      public RoundedButton(Action action) { super(action); decorate(); } 
+	      public RoundedButton(Icon icon) { super(icon); decorate(); } 
+	      public RoundedButton(String text, Icon icon) { super(text, icon); decorate(); } 
+	      protected void decorate() { setBorderPainted(false); setOpaque(false); }
+	      @Override 
+	      protected void paintComponent(Graphics g) {
+	         Color c=new Color(153,204,204); //배경색 결정
+	         Color o=new Color(0,0,1); //글자색 결정
+	         int width = getWidth(); 
+	         int height = getHeight(); 
+	         Graphics2D graphics = (Graphics2D) g; 
+	         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
+	         if (getModel().isArmed()) { graphics.setColor(c.darker()); } 
+	         else if (getModel().isRollover()) { graphics.setColor(c.brighter()); } 
+	         else { graphics.setColor(c); } 
+	         graphics.fillRoundRect(0, 0, width, height, 20, 20); 
+	         FontMetrics fontMetrics = graphics.getFontMetrics(); 
+	         Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
+	         int textX = (width - stringBounds.width) / 2; 
+	         int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
+	         graphics.setColor(o); 
+	         graphics.setFont(getFont()); 
+	         graphics.drawString(getText(), textX, textY); 
+	         graphics.dispose(); 
+	         super.paintComponent(g);
+	         }
+	      }
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					train_kiosk frame = new train_kiosk();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	/**
+	 * Create the frame.
+	 */
+	public SubwayPanel() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setBounds(100, 100, 2500, 1050);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		Panel panel_main = new Panel();
-		panel_main.setBounds(10, 0, 1485, 1530);
+		panel_main.setBounds(0, 0, 1445, 1511);
 		panel_main.setBackground(new Color(0, 124, 192));
+		contentPane.add(panel_main);
 		panel_main.setLayout(null);
 		
 		Button button_ktx_main = new Button("KTX주요역");
@@ -158,7 +188,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		panel_main.add(button_ha);
 		
 		JPanel panel_card = new JPanel();
-		panel_card.setBounds(50, 250, 1350, 655);
+		panel_card.setBounds(50, 250, 1350, 672);
 		panel_main.add(panel_card); 
 		CardLayout cl = new CardLayout();
 		panel_card.setLayout(cl);
@@ -258,7 +288,6 @@ public class SubwayPanel extends JPanel implements MouseListener{
         });
 		JScrollPane panel_mainKTX = new JScrollPane((Component) null);
 		panel_mainKTX.setPreferredSize(new Dimension(1344, 437));
-		panel_mainKTX.getVerticalScrollBar().setUnitIncrement(30);
 		panel_card.add(panel_mainKTX, "panel_mainKTX");
 		
 		JPanel panel = new JPanel();
@@ -272,24 +301,24 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		panel_mainKTX_1.setBounds(0, 0, 1331, 798);
 		panel.add(panel_mainKTX_1);
 		
-		JButton btn_seoul = new JButton("서울");
-		btn_seoul.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
-		btn_seoul.setBounds(12, 10, 206, 120);
-		btn_seoul.addMouseListener(this);
-		panel_mainKTX_1.add(btn_seoul);
+		JButton btn_Seoul = new JButton("서울");
+		btn_Seoul.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
+		btn_Seoul.setBounds(12, 10, 206, 120);
+		btn_Seoul.addMouseListener(this);
+		panel_mainKTX_1.add(btn_Seoul);
 		
 		
-		JButton btn_yongsan = new JButton("용산");
-		btn_yongsan.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
-		btn_yongsan.setBounds(230, 10, 206, 120);
-		btn_yongsan.addMouseListener(this);
-		panel_mainKTX_1.add(btn_yongsan);
+		JButton btn_Yongsan = new JButton("용산");
+		btn_Yongsan.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
+		btn_Yongsan.setBounds(230, 10, 206, 120);
+		btn_Yongsan.addMouseListener(this);
+		panel_mainKTX_1.add(btn_Yongsan);
 		
-		JButton btnNewButton_2_4_1 = new JButton("영등포");
-		btnNewButton_2_4_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
-		btnNewButton_2_4_1.setBounds(448, 10, 206, 120);
-		btnNewButton_2_4_1.addMouseListener(this);
-		panel_mainKTX_1.add(btnNewButton_2_4_1);
+		JButton btn_Yeongdeungpo = new JButton("영등포");
+		btn_Yeongdeungpo.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
+		btn_Yeongdeungpo.setBounds(448, 10, 206, 120);
+		btn_Yeongdeungpo.addMouseListener(this);
+		panel_mainKTX_1.add(btn_Yeongdeungpo);
 		
 		JButton btnNewButton_3_4_1 = new JButton("광명");
 		btnNewButton_3_4_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
@@ -462,8 +491,8 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		JButton btnNewButton_5_3_1_2_1 = new JButton("정동진");
 		btnNewButton_5_3_1_2_1.setBounds(230, 660, 206, 120);
 		btnNewButton_5_3_1_2_1.addMouseListener(this);
-		panel_mainKTX_1.add(btnNewButton_5_3_1_2_1);
 		btnNewButton_5_3_1_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
+		panel_mainKTX_1.add(btnNewButton_5_3_1_2_1);
 		
 		
 		JPanel panel_ga = new JPanel();
@@ -1024,7 +1053,6 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		
 		JScrollPane panel_sa = new JScrollPane((Component) null);
 		panel_sa.setPreferredSize(new Dimension(1340, 800));
-		panel_sa.getVerticalScrollBar().setUnitIncrement(30);
 		panel_card.add(panel_sa, "panel_sa");
 		
 		JPanel panel_1 = new JPanel();
@@ -1041,196 +1069,235 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		JButton btnNewButton_17_1 = new JButton("사릉");
 		btnNewButton_17_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_17_1.setBounds(12, 10, 206, 120);
+		btnNewButton_17_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_17_1);
 		
 		JButton btnNewButton_1_10_1 = new JButton("사북");
 		btnNewButton_1_10_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_10_1.setBounds(230, 10, 206, 120);
+		btnNewButton_1_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_1_10_1);
 		
 		JButton btnNewButton_2_10_1 = new JButton("사상");
 		btnNewButton_2_10_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_10_1.setBounds(448, 10, 206, 120);
+		btnNewButton_2_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_2_10_1);
 		
 		JButton btnNewButton_3_10_1 = new JButton("삼랑진");
 		btnNewButton_3_10_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_10_1.setBounds(666, 10, 206, 120);
+		btnNewButton_3_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_3_10_1);
 		
 		JButton btnNewButton_4_10_1 = new JButton("삼례");
 		btnNewButton_4_10_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_10_1.setBounds(884, 10, 206, 120);
+		btnNewButton_4_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_4_10_1);
 		
 		JButton btnNewButton_5_10_1 = new JButton("삼산");
 		btnNewButton_5_10_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_10_1.setBounds(1102, 10, 206, 120);
+		btnNewButton_5_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_5_10_1);
 		
 		JButton btnNewButton_6_10_1 = new JButton("삼탄");
 		btnNewButton_6_10_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_10_1.setBounds(12, 140, 206, 120);
+		btnNewButton_6_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_6_10_1);
 		
 		JButton btnNewButton_7_10_1 = new JButton("삽교");
 		btnNewButton_7_10_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_10_1.setBounds(230, 140, 206, 120);
+		btnNewButton_7_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_7_10_1);
 		
 		JButton btnNewButton_8_6_1 = new JButton("상동");
 		btnNewButton_8_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_8_6_1.setBounds(448, 140, 206, 120);
+		btnNewButton_8_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_8_6_1);
 		
 		JButton btnNewButton_1_1_6_1 = new JButton("상봉");
 		btnNewButton_1_1_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_1_6_1.setBounds(666, 140, 206, 120);
+		btnNewButton_1_10_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_1_1_6_1);
 		
 		JButton btnNewButton_2_1_6_1 = new JButton("상주");
 		btnNewButton_2_1_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_1_6_1.setBounds(884, 140, 206, 120);
+		btnNewButton_2_1_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_2_1_6_1);
 		
 		JButton btnNewButton_3_1_6_1 = new JButton("서경주");
 		btnNewButton_3_1_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_1_6_1.setBounds(1102, 140, 206, 120);
+		btnNewButton_3_1_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_3_1_6_1);
 		
 		JButton btnNewButton_4_1_6_1 = new JButton("서광주");
 		btnNewButton_4_1_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_1_6_1.setBounds(12, 270, 206, 120);
+		btnNewButton_4_1_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_4_1_6_1);
 		
 		JButton btnNewButton_5_1_6_1 = new JButton("서대구");
 		btnNewButton_5_1_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_1_6_1.setBounds(230, 270, 206, 120);
+		btnNewButton_5_1_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_5_1_6_1);
 		
 		JButton btnNewButton_6_1_6_1 = new JButton("서대전");
 		btnNewButton_6_1_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_1_6_1.setBounds(448, 270, 206, 120);
+		btnNewButton_6_1_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_6_1_6_1);
 		
 		JButton btnNewButton_7_1_6_1 = new JButton("서울");
 		btnNewButton_7_1_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_1_6_1.setBounds(666, 270, 206, 120);
+		btnNewButton_7_1_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_7_1_6_1);
 		
 		JButton btnNewButton_9_6_1 = new JButton("서원주");
 		btnNewButton_9_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_9_6_1.setBounds(884, 270, 206, 120);
+		btnNewButton_9_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_9_6_1);
 		
 		JButton btnNewButton_1_2_6_1 = new JButton("서정리");
 		btnNewButton_1_2_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_2_6_1.setBounds(1102, 270, 206, 120);
+		btnNewButton_1_2_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_1_2_6_1);
 		
 		JButton btnNewButton_2_2_6_1 = new JButton("서천");
 		btnNewButton_2_2_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_2_6_1.setBounds(12, 400, 206, 120);
+		btnNewButton_2_2_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_2_2_6_1);
 		
 		JButton btnNewButton_3_2_6_1 = new JButton("석불");
 		btnNewButton_3_2_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_2_6_1.setBounds(230, 400, 206, 120);
+		btnNewButton_3_2_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_3_2_6_1);
 		
 		JButton btnNewButton_4_2_6_1 = new JButton("석포");
 		btnNewButton_4_2_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_2_6_1.setBounds(448, 400, 206, 120);
+		btnNewButton_4_2_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_4_2_6_1);
 		
 		JButton btnNewButton_5_2_6_1 = new JButton("선평");
 		btnNewButton_5_2_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_2_6_1.setBounds(666, 400, 206, 120);
+		btnNewButton_5_2_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_5_2_6_1);
 		
 		JButton btnNewButton_6_2_6_1 = new JButton("성환");
 		btnNewButton_6_2_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_2_6_1.setBounds(884, 400, 206, 120);
+		btnNewButton_6_2_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_6_2_6_1);
 		
 		JButton btnNewButton_7_2_6_1 = new JButton("센텀");
 		btnNewButton_7_2_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_2_6_1.setBounds(1102, 400, 206, 120);
+		btnNewButton_7_2_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_7_2_6_1);
 		
 		JButton btnNewButton_10_6_1 = new JButton("수서");
 		btnNewButton_10_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_10_6_1.setBounds(12, 530, 206, 120);
+		btnNewButton_10_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_10_6_1);
 		
 		JButton btnNewButton_1_3_6_1 = new JButton("수원");
 		btnNewButton_1_3_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_3_6_1.setBounds(230, 530, 206, 120);
+		btnNewButton_1_3_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_1_3_6_1);
 		
 		JButton btnNewButton_2_3_6_1 = new JButton("순천");
 		btnNewButton_2_3_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_3_6_1.setBounds(448, 530, 206, 120);
+		btnNewButton_2_3_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_2_3_6_1);
 		
 		JButton btnNewButton_3_3_6_1 = new JButton("승부");
 		btnNewButton_3_3_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_3_6_1.setBounds(666, 530, 206, 120);
+		btnNewButton_3_3_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_3_3_6_1);
 		
 		JButton btnNewButton_4_3_6_1 = new JButton("신경주");
 		btnNewButton_4_3_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_3_6_1.setBounds(884, 530, 206, 120);
+		btnNewButton_4_3_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_4_3_6_1);
 		
 		JButton btnNewButton_5_3_6_1 = new JButton("신기");
 		btnNewButton_5_3_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_3_6_1.setBounds(1102, 530, 206, 120);
+		btnNewButton_5_3_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_5_3_6_1);
 		
 		JButton btnNewButton_6_3_6_1 = new JButton("신녕");
 		btnNewButton_6_3_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_3_6_1.setBounds(12, 657, 206, 120);
+		btnNewButton_6_3_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_6_3_6_1);
 		
 		JButton btnNewButton_7_3_6_1 = new JButton("신동");
 		btnNewButton_7_3_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_3_6_1.setBounds(230, 657, 206, 120);
+		btnNewButton_7_3_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_7_3_6_1);
 		
 		JButton btnNewButton_2_4_6_1 = new JButton("신탄진");
 		btnNewButton_2_4_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_4_6_1.setBounds(884, 660, 206, 120);
+		btnNewButton_2_4_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_2_4_6_1);
 		
 		JButton btnNewButton_3_4_6_1 = new JButton("신태인");
 		btnNewButton_3_4_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_4_6_1.setBounds(1102, 660, 206, 120);
+		btnNewButton_3_4_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_3_4_6_1);
 		
 		JButton btnNewButton_4_4_6_1 = new JButton("신해운대");
 		btnNewButton_4_4_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_4_6_1.setBounds(12, 787, 206, 120);
+		btnNewButton_4_4_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_4_4_6_1);
 		
 		JButton btnNewButton_5_4_6_1 = new JButton("심천");
 		btnNewButton_5_4_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_4_6_1.setBounds(230, 787, 206, 120);
+		btnNewButton_5_4_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_5_4_6_1);
 		
 		JButton btnNewButton_6_4_6_1 = new JButton("쌍룡");
 		btnNewButton_6_4_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_4_6_1.setBounds(448, 787, 206, 120);
+		btnNewButton_6_4_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_6_4_6_1);
 		
 		JButton btnNewButton_11_6_1 = new JButton("신례원");
 		btnNewButton_11_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_11_6_1.setBounds(448, 660, 206, 120);
+		btnNewButton_11_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_11_6_1);
 		
 		JButton btnNewButton_1_4_6_1 = new JButton("신림");
 		btnNewButton_1_4_6_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_4_6_1.setBounds(666, 660, 206, 120);
+		btnNewButton_1_4_6_1.addMouseListener(this);
 		panel_sa_1.add(btnNewButton_1_4_6_1);
 		
 		JPanel panel_za = new JPanel();
@@ -1394,7 +1461,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		JButton btnNewButton_2_13 = new JButton("천안");
 		btnNewButton_2_13.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_13.setBounds(448, 10, 206, 120);
-		btnNewButton_4_2.addMouseListener(this);
+		btnNewButton_2_13.addMouseListener(this);
 		panel_cha.add(btnNewButton_2_13);
 		
 		JButton btnNewButton_3_13 = new JButton("천안아산");
@@ -1680,9 +1747,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		panel_ha.add(btnNewButton_2_2_13);
 		
 		JScrollPane panel_ah = new JScrollPane((Component) null);
-		panel_ah.getVerticalScrollBar().setUnitIncrement(30);
 		panel_ah.setPreferredSize(new Dimension(1344, 500));
-		
 		panel_card.add(panel_ah, "panel_ah");
 		
 		JPanel test = new JPanel();
@@ -1699,328 +1764,356 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		JButton btnNewButton_18_1 = new JButton("아산");
 		btnNewButton_18_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_18_1.setBounds(12, 10, 206, 120);
+		btnNewButton_18_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_18_1);
 		
 		JButton btnNewButton_1_11_1 = new JButton("아우라지");
 		btnNewButton_1_11_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_11_1.setBounds(230, 10, 206, 120);
+		btnNewButton_1_11_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_1_11_1);
 		
 		JButton btnNewButton_2_11_1 = new JButton("아화");
 		btnNewButton_2_11_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_11_1.setBounds(448, 10, 206, 120);
+		btnNewButton_2_11_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_2_11_1);
 		
 		JButton btnNewButton_3_11_1 = new JButton("안강");
 		btnNewButton_3_11_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_11_1.setBounds(666, 10, 206, 120);
+		btnNewButton_3_11_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_3_11_1);
 		
 		JButton btnNewButton_4_11_1 = new JButton("안동");
 		btnNewButton_4_11_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_11_1.setBounds(884, 10, 206, 120);
+		btnNewButton_4_11_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_4_11_1);
 		
 		JButton btnNewButton_5_11_1 = new JButton("안양");
 		btnNewButton_5_11_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_11_1.setBounds(1102, 10, 206, 120);
+		btnNewButton_5_11_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_5_11_1);
 		
 		JButton btnNewButton_6_11_1 = new JButton("앙성온천");
 		btnNewButton_6_11_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_11_1.setBounds(12, 140, 206, 120);
+		btnNewButton_6_11_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_6_11_1);
 		
 		JButton btnNewButton_7_11_1 = new JButton("약목");
 		btnNewButton_7_11_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_11_1.setBounds(230, 140, 206, 120);
+		btnNewButton_7_11_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_7_11_1);
 		
 		JButton btnNewButton_8_7_1 = new JButton("양동");
 		btnNewButton_8_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_8_7_1.setBounds(448, 140, 206, 120);
+		btnNewButton_8_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_8_7_1);
 		
 		JButton btnNewButton_1_1_7_1 = new JButton("양원");
 		btnNewButton_1_1_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_1_7_1.setBounds(666, 140, 206, 120);
+		btnNewButton_1_1_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_1_1_7_1);
 		
 		JButton btnNewButton_2_1_7_1 = new JButton("양평");
 		btnNewButton_2_1_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_1_7_1.setBounds(884, 140, 206, 120);
+		btnNewButton_2_1_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_2_1_7_1);
 		
 		JButton btnNewButton_3_1_7_1 = new JButton("여수EXPO");
 		btnNewButton_3_1_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_1_7_1.setBounds(1102, 140, 206, 120);
+		btnNewButton_3_1_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_3_1_7_1);
 		
 		JButton btnNewButton_4_1_7_1 = new JButton("여천");
 		btnNewButton_4_1_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_1_7_1.setBounds(12, 270, 206, 120);
+		btnNewButton_4_1_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_4_1_7_1);
 		
 		JButton btnNewButton_5_1_7_1 = new JButton("연산");
 		btnNewButton_5_1_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_1_7_1.setBounds(230, 270, 206, 120);
+		btnNewButton_5_1_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_5_1_7_1);
 		
 		JButton btnNewButton_6_1_7_1 = new JButton("영덕");
 		btnNewButton_6_1_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_1_7_1.setBounds(448, 270, 206, 120);
+		btnNewButton_6_1_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_6_1_7_1);
 		
 		JButton btnNewButton_7_1_7_1 = new JButton("영동");
 		btnNewButton_7_1_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_1_7_1.setBounds(666, 270, 206, 120);
+		btnNewButton_7_1_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_7_1_7_1);
 		
 		JButton btnNewButton_9_7_1 = new JButton("영등포");
 		btnNewButton_9_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_9_7_1.setBounds(884, 270, 206, 120);
+		btnNewButton_9_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_9_7_1);
 		
 		JButton btnNewButton_1_2_7_1 = new JButton("영월");
 		btnNewButton_1_2_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_2_7_1.setBounds(1102, 270, 206, 120);
+		btnNewButton_1_2_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_1_2_7_1);
 		
 		JButton btnNewButton_2_2_7_1 = new JButton("영주");
 		btnNewButton_2_2_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_2_7_1.setBounds(12, 400, 206, 120);
+		btnNewButton_2_2_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_2_2_7_1);
 		
 		JButton btnNewButton_3_2_7_1 = new JButton("영천");
 		btnNewButton_3_2_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_2_7_1.setBounds(230, 400, 206, 120);
+		btnNewButton_3_2_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_3_2_7_1);
 		
 		JButton btnNewButton_4_2_7_1 = new JButton("예당");
 		btnNewButton_4_2_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_2_7_1.setBounds(448, 400, 206, 120);
+		btnNewButton_4_2_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_4_2_7_1);
 		
 		JButton btnNewButton_5_2_7_1 = new JButton("예미");
 		btnNewButton_5_2_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_2_7_1.setBounds(666, 400, 206, 120);
+		btnNewButton_5_2_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_5_2_7_1);
 		
 		JButton btnNewButton_6_2_7_1 = new JButton("예산");
 		btnNewButton_6_2_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_2_7_1.setBounds(884, 400, 206, 120);
+		btnNewButton_6_2_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_6_2_7_1);
 		
 		JButton btnNewButton_7_2_7_1 = new JButton("예천");
 		btnNewButton_7_2_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_2_7_1.setBounds(1102, 400, 206, 120);
+		btnNewButton_7_2_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_7_2_7_1);
 		
 		JButton btnNewButton_10_7_1 = new JButton("오근장");
 		btnNewButton_10_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_10_7_1.setBounds(12, 530, 206, 120);
+		btnNewButton_10_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_10_7_1);
 		
 		JButton btnNewButton_1_3_7_1 = new JButton("오산");
 		btnNewButton_1_3_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_3_7_1.setBounds(230, 530, 206, 120);
+		btnNewButton_1_3_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_1_3_7_1);
 		
 		JButton btnNewButton_2_3_7_1 = new JButton("오송");
 		btnNewButton_2_3_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_3_7_1.setBounds(448, 530, 206, 120);
+		btnNewButton_2_2_13.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_2_3_7_1);
 		
 		JButton btnNewButton_3_3_7_1 = new JButton("오수");
 		btnNewButton_3_3_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_3_7_1.setBounds(666, 530, 206, 120);
+		btnNewButton_3_3_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_3_3_7_1);
 		
 		JButton btnNewButton_4_3_7_1 = new JButton("옥산");
 		btnNewButton_4_3_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_3_7_1.setBounds(884, 530, 206, 120);
+		btnNewButton_4_3_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_4_3_7_1);
 		
 		JButton btnNewButton_5_3_7_1 = new JButton("옥수");
 		btnNewButton_5_3_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_3_7_1.setBounds(1102, 530, 206, 120);
+		btnNewButton_5_3_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_5_3_7_1);
 		
 		JButton btnNewButton_6_3_7_1 = new JButton("옥천");
 		btnNewButton_6_3_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_3_7_1.setBounds(12, 660, 206, 120);
+		btnNewButton_6_3_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_6_3_7_1);
 		
 		JButton btnNewButton_7_3_7_1 = new JButton("온양온천");
 		btnNewButton_7_3_7_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_3_7_1.setBounds(230, 660, 206, 120);
+		btnNewButton_7_3_7_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_7_3_7_1);
 		
 		JButton btnNewButton_11_7_3 = new JButton("완사");
 		btnNewButton_11_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_11_7_3.setBounds(448, 660, 206, 120);
+		btnNewButton_11_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_11_7_3);
 		
 		JButton btnNewButton_1_4_7_3 = new JButton("왕십리");
 		btnNewButton_1_4_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_4_7_3.setBounds(666, 660, 206, 120);
+		btnNewButton_1_4_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_1_4_7_3);
 		
 		JButton btnNewButton_2_4_7_3 = new JButton("왜관");
 		btnNewButton_2_4_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_4_7_3.setBounds(884, 660, 206, 120);
+		btnNewButton_2_4_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_2_4_7_3);
 		
 		JButton btnNewButton_3_4_7_3 = new JButton("용궁");
 		btnNewButton_3_4_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_4_7_3.setBounds(1102, 660, 206, 120);
+		btnNewButton_3_4_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_3_4_7_3);
 		
 		JButton btnNewButton_4_4_7_3 = new JButton("용문");
 		btnNewButton_4_4_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_4_7_3.setBounds(12, 790, 206, 120);
+		btnNewButton_4_4_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_4_4_7_3);
 		
 		JButton btnNewButton_5_4_7_3 = new JButton("용산");
 		btnNewButton_5_4_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_4_7_3.setBounds(230, 790, 206, 120);
+		btnNewButton_5_4_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_5_4_7_3);
 		
 		JButton btnNewButton_6_4_7_3 = new JButton("운천");
 		btnNewButton_6_4_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_4_7_3.setBounds(448, 790, 206, 120);
+		btnNewButton_6_4_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_6_4_7_3);
 		
 		JButton btnNewButton_7_4_7_3 = new JButton("울산(통도사)");
 		btnNewButton_7_4_7_3.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_4_7_3.setBounds(666, 790, 206, 120);
+		btnNewButton_7_4_7_3.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_7_4_7_3);
 		
 		JButton btnNewButton_11_7_1_1 = new JButton("웅천");
 		btnNewButton_11_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_11_7_1_1.setBounds(884, 790, 206, 120);
+		btnNewButton_11_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_11_7_1_1);
 		
 		JButton btnNewButton_1_4_7_1_1 = new JButton("원동");
 		btnNewButton_1_4_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_4_7_1_1.setBounds(1102, 790, 206, 120);
+		btnNewButton_1_4_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_1_4_7_1_1);
 		
 		JButton btnNewButton_2_4_7_1_1 = new JButton("원주");
 		btnNewButton_2_4_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_4_7_1_1.setBounds(12, 920, 206, 120);
+		btnNewButton_2_4_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_2_4_7_1_1);
 		
 		JButton btnNewButton_3_4_7_1_1 = new JButton("월포");
 		btnNewButton_3_4_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_4_7_1_1.setBounds(230, 920, 206, 120);
+		btnNewButton_3_4_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_3_4_7_1_1);
 		
 		JButton btnNewButton_4_4_7_1_1 = new JButton("음성");
 		btnNewButton_4_4_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_4_7_1_1.setBounds(448, 920, 206, 120);
+		btnNewButton_4_4_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_4_4_7_1_1);
 		
 		JButton btnNewButton_5_4_7_1_1 = new JButton("의성");
 		btnNewButton_5_4_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_4_7_1_1.setBounds(666, 920, 206, 120);
+		btnNewButton_5_4_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_5_4_7_1_1);
 		
 		JButton btnNewButton_6_4_7_1_1 = new JButton("이양");
 		btnNewButton_6_4_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_4_7_1_1.setBounds(884, 920, 206, 120);
+		btnNewButton_6_4_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_6_4_7_1_1);
 		
 		JButton btnNewButton_7_4_7_1_1 = new JButton("이원");
 		btnNewButton_7_4_7_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_4_7_1_1.setBounds(1102, 920, 206, 120);
+		btnNewButton_7_4_7_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_7_4_7_1_1);
 		
 		JButton btnNewButton_11_7_2_2 = new JButton("익산");
 		btnNewButton_11_7_2_2.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_11_7_2_2.setBounds(12, 1050, 206, 120);
+		btnNewButton_11_7_2_2.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_11_7_2_2);
 		
 		JButton btnNewButton_1_4_7_2_1 = new JButton("인천공항T1");
 		btnNewButton_1_4_7_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_1_4_7_2_1.setBounds(230, 1050, 206, 120);
+		btnNewButton_1_4_7_2_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_1_4_7_2_1);
 		
 		JButton btnNewButton_2_4_7_2_1 = new JButton("인천공항T2");
 		btnNewButton_2_4_7_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_2_4_7_2_1.setBounds(448, 1050, 206, 120);
+		btnNewButton_2_4_7_2_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_2_4_7_2_1);
 		
 		JButton btnNewButton_3_4_7_2_1 = new JButton("일로");
 		btnNewButton_3_4_7_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_3_4_7_2_1.setBounds(666, 1050, 206, 120);
+		btnNewButton_3_4_7_2_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_3_4_7_2_1);
 		
 		JButton btnNewButton_4_4_7_2_1 = new JButton("일신");
 		btnNewButton_4_4_7_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_4_4_7_2_1.setBounds(884, 1050, 206, 120);
+		btnNewButton_4_4_7_2_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_4_4_7_2_1);
 		
 		JButton btnNewButton_5_4_7_2_1 = new JButton("임기");
 		btnNewButton_5_4_7_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_5_4_7_2_1.setBounds(1102, 1050, 206, 120);
+		btnNewButton_5_4_7_2_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_5_4_7_2_1);
 		
 		JButton btnNewButton_6_4_7_2_1 = new JButton("임성리");
 		btnNewButton_6_4_7_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_6_4_7_2_1.setBounds(12, 1180, 206, 120);
+		btnNewButton_6_4_7_2_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_6_4_7_2_1);
 		
 		JButton btnNewButton_7_4_7_2_1 = new JButton("임실");
 		btnNewButton_7_4_7_2_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_7_4_7_2_1.setBounds(230, 1180, 206, 120);
+		btnNewButton_7_4_7_2_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_7_4_7_2_1);
 		
 		JButton btnNewButton_11_7_2_1_1 = new JButton("임진강");
 		btnNewButton_11_7_2_1_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		btnNewButton_11_7_2_1_1.setBounds(448, 1180, 206, 120);
+		btnNewButton_11_7_2_1_1.addMouseListener(this);
 		panel_ah_1.add(btnNewButton_11_7_2_1_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("역명 조회");
-		lblNewLabel_2.setFont(new Font("HY헤드라인M", Font.BOLD, 40));
-		lblNewLabel_2.setBounds(12, 10, 1255, 151);
+		lblNewLabel_2.setFont(new Font("HY헤드라인M", Font.BOLD, 60));
+		lblNewLabel_2.setBounds(12, 0, 1411, 161);
 		lblNewLabel_2.setVerticalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_main.add(lblNewLabel_2);
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(panel_main, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addComponent(panel_main, GroupLayout.PREFERRED_SIZE, 1535, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		
-		Button nextBtn = new Button("다음");
-		nextBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
-			}
-		});
-		nextBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		nextBtn.setBounds(1273, 10, 173, 100);
-		panel_main.add(nextBtn);
-		setLayout(groupLayout);
 		
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		train_name = ((JButton)e.getSource()).getText();
-		if(TrainReserv_Main.sub_select) {
-			TrainReserv_Main.st_sub_btn.setText(train_name);
-		}else {
-			TrainReserv_Main.en_sub_btn.setText(train_name);
-		}
+		// TODO Auto-generated method stub
 		
 	}
 	@Override

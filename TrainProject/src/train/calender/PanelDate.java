@@ -60,6 +60,10 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
                     cell.setAsToDay();
                     cel = com;
                 }
+                if(calendar.get(Calendar.MONTH)+1 > toDay.getMonth()) {
+                	cel = com;
+                }
+                
                 calendar.add(Calendar.DATE, 1); //  up 1 day
             }
         }
@@ -128,7 +132,7 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
         cell13.setFocusPainted(false);
         cell13.setFocusTraversalKeysEnabled(false);
         cell13.setSelected(true);
-        cell12.addActionListener(this);
+        cell13.addActionListener(this);
         
         cell14 = new train.calender.Cell();
         cell14.setDefaultCapable(false);
@@ -598,7 +602,9 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
 		Calendar calendar = Calendar.getInstance();
 //		ToDay toDay = getToDay();
 		Cell cel2 = (Cell)e.getSource();
-		if(Integer.parseInt(cel2.getText()) >= calendar.get(Calendar.DATE)) {
+		System.out.println(e.getSource());
+		if(Integer.parseInt(cel2.getText()) >= calendar.get(Calendar.DATE) || 
+				(Integer.parseInt(cel2.getText()) >= 1 && month-1 > calendar.get(Calendar.MONTH))) {
 			
 			Cell cel1 = (Cell)cel;
 			cel1.setAsRemind();

@@ -31,6 +31,7 @@ import train.Payment_UI;
 public class FoodCourtMainPanel extends JPanel {
 	// [하] 총 가격 라벨 (버튼 액션 시, 토탈 가격 바뀌어야 되서 static 설정)
 	public static JLabel totalPrice_Lab;	
+	public static String[] food_table;
 	
 	/** [하] 테이블에 따라 총 가격을 구하는 메소드 */
 	public static void getTotalPrice(DefaultTableModel user_dtm) {
@@ -274,13 +275,18 @@ public class FoodCourtMainPanel extends JPanel {
 						System.out.println("테이블 값을 가져가야됨 ~");
 						// 0 좌석번호, 1 음식이름, 2 가격, 3 food_number_pk, 4 수량, 5 - 버튼 (null), 6 취소 버튼 (null)
 						TableModel model = order_table.getModel();
-						
+						food_table = new String[model.getRowCount()];
 						for (int idx = 0; idx < model.getRowCount(); idx++) {
 							String rows = "";
+							String pays = "";
 							for (int cdx = 0; cdx < model.getColumnCount(); cdx++) {
 								Object val = model.getValueAt(idx, cdx);
 								rows = rows + " " + val;
+								if(cdx == 0 || cdx == 1 || cdx == 2 || cdx == 4) {
+									pays = pays + model.getValueAt(idx, cdx)+ " ";
+								}
 							}
+							food_table[idx] = pays;
 							System.out.println(rows);
 						}
 

@@ -8,10 +8,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -26,11 +28,16 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import train.search.Search_Train_Panel;
 import train.search.component.ReservBtn;
 import train.dao.Train_Api_DAO;
 import train.dto.Search_TableDTO;
+import train.food.FoodCourtMainPanel;
+import javax.swing.JList;
+import java.awt.Component;
 
 public class Payment_UI extends JDialog {
 	
@@ -44,10 +51,12 @@ public class Payment_UI extends JDialog {
 	private String en_time = ReservBtn.en_time;
 	private String timetaken = ReservBtn.timetaken;
 	private int carNum = TrainReserv_Main.carNum;
-	private String train_price = ReservBtn.price;
+	private int train_price = Integer.parseInt(ReservBtn.price);
 	private List<String> seatlist = TrainReserv_Main.seatSelectString;
 	private String seatNum = seatlist.toString();
-	
+	private String[] food_table = FoodCourtMainPanel.food_table;
+	private int food_total = Integer.parseInt(FoodCourtMainPanel.totalPrice_Lab.getText().split("원")[0]);
+	private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -228,30 +237,6 @@ public class Payment_UI extends JDialog {
 		train_Num_Label.setBounds(10, 224, 474, 36);
 		count_1.add(train_Num_Label);
 		
-		JLabel fnb_Item = new JLabel("품목");
-		fnb_Item.setBounds(10, 322, 474, 63);
-		count_1.add(fnb_Item);
-		
-		JLabel fnb_Qty = new JLabel("수량");
-		fnb_Qty.setBounds(496, 322, 100, 63);
-		count_1.add(fnb_Qty);
-		
-		JLabel fnb_price = new JLabel("가격");
-		fnb_price.setBounds(608, 322, 231, 63);
-		count_1.add(fnb_price);
-		
-		JLabel lblNewLabel_4_1 = new JLabel("New label");
-		lblNewLabel_4_1.setBounds(10, 395, 474, 63);
-		count_1.add(lblNewLabel_4_1);
-		
-		JLabel lblNewLabel_5_2 = new JLabel("New label");
-		lblNewLabel_5_2.setBounds(496, 395, 100, 63);
-		count_1.add(lblNewLabel_5_2);
-		
-		JLabel lblNewLabel_5_1_1 = new JLabel("New label");
-		lblNewLabel_5_1_1.setBounds(608, 395, 231, 63);
-		count_1.add(lblNewLabel_5_1_1);
-		
 		JLabel arrow_Label = new JLabel("→");
 		arrow_Label.setForeground(new Color(255, 0, 0));
 		arrow_Label.setFont(new Font("굴림", Font.BOLD, 35));
@@ -295,14 +280,43 @@ public class Payment_UI extends JDialog {
 		ticket_Unique_Num.setBounds(628, 294, 260, 18);
 		count_1.add(ticket_Unique_Num);
 		
+		JScrollPane user_sp = new JScrollPane((Component) null);
+		user_sp.setBounds(10, 322, 878, 185);
+		count_1.add(user_sp);
+		
+		
+		String[] orderTableColumnName = {"좌석번호", "음식이름", "가격", "수량"};
+		DefaultTableModel model = new DefaultTableModel(orderTableColumnName, 0);
+		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
+//		 중앙 정렬
+		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+		for(int i =0; i < food_table.length; i++) {
+			String[] food_model = food_table[i].split(" ");
+			model.insertRow(i, food_model);
+		}
+		
+		table = new JTable(model);
+		table.setRowHeight(50);
+		table.getColumn("좌석번호").setCellRenderer(celAlignCenter);
+		table.getColumn("음식이름").setCellRenderer(celAlignCenter);
+		table.getColumn("가격").setCellRenderer(celAlignCenter);
+		table.getColumn("수량").setCellRenderer(celAlignCenter);
+		table.getTableHeader().setFont(new Font("HY견고딕", Font.PLAIN, 30));
+		table.setAutoCreateRowSorter(true);
+		table.setFont(new Font("HY견고딕", Font.PLAIN, 25));
+		user_sp.setViewportView(table);
+		
+		
+				
 		JLabel krw_Label = new JLabel("원");
 		krw_Label.setHorizontalAlignment(JLabel.CENTER);
 		krw_Label.setVerticalAlignment(JLabel.CENTER);
 		krw_Label.setFont(new Font("HY헤드라인M", Font.BOLD, 40));
 		krw_Label.setBounds(858, 663, 65, 139);
 		payment_info_panel.add(krw_Label);
-		
-		JLabel price = new JLabel("PRICE");
+		DecimalFormat dc = new DecimalFormat("###,###,###,###");
+		int sum_price = train_price * seatlist.size() + food_total;
+		JLabel price = new JLabel(dc.format(sum_price));
 		price.setHorizontalAlignment(JLabel.RIGHT);
 //		price.setVerticalAlignment(JLabel.RIGHT);
 		price.setFont(new Font("HY헤드라인M", Font.BOLD, 40));
@@ -479,7 +493,7 @@ public class Payment_UI extends JDialog {
                 	}else {
                 		seatlist.add("nomal");
                 	}
-                	seatlist.add(train_price);
+                	seatlist.add(""+train_price);
                 	dao.setSeatDown(chktrain);
                 	dao.setSeat(seatlist, chktrain);
                 }
