@@ -18,7 +18,7 @@ import javax.swing.UIManager;
 // 사용
 
 public class Login_and_joinDAO {
-	
+	public static String user_code;
 	OjdbcConnectionPool cp = StaticResources.cp;
 	
 //	static {
@@ -44,7 +44,6 @@ public class Login_and_joinDAO {
 		UIManager.put("OptionPane.messageFont",
 				new Font("HY헤드라인M", Font.BOLD, 50));
 		String query ="SELECT * FROM user_info WHERE id =? AND password=?";
-		
 		try (
 				OjdbcSession session = cp.getSession();	
 			) {
@@ -57,6 +56,7 @@ public class Login_and_joinDAO {
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
+						user_code = rs.getString("usernum_pk");
 						JOptionPane.showMessageDialog(null,"로그인에 성공했습니다");
 						Choice c = new Choice();
 						c.setVisible(true);

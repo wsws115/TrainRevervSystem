@@ -453,6 +453,7 @@ public class Payment_UI extends JDialog {
                 Train_Api_DAO dao = new Train_Api_DAO();
                 List<String> apilist = new ArrayList();
                 List<String> holist = new ArrayList();
+                List<String> ticketlist= new ArrayList();
                
                 apilist.add(name);
                 apilist.add(date_text);
@@ -496,6 +497,7 @@ public class Payment_UI extends JDialog {
                 	seatlist.add(""+train_price);
                 	dao.setSeatDown(chktrain);
                 	dao.setSeat(seatlist, chktrain);
+//                	dao.settikect(ticketlist, chktrain);
                 }
             }
         });

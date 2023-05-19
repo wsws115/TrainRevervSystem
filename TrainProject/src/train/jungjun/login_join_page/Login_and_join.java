@@ -70,15 +70,15 @@ public class Login_and_join extends JFrame {
 	public static String phone_number3 = "";
 	
 	ImageIcon img3 = new ImageIcon
-			("C:/java_PJJ/Java_project_Jungjun/Application/images/E-RAIL.png");
+			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 	ImageIcon img7 = new ImageIcon
-			("C:/java_PJJ/Java_project_Jungjun/Application/images/back.PNG");
+			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\back_homebtn.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/back.png");
 	ImageIcon img1 = new ImageIcon
-			("C:/java_PJJ/Java_project_Jungjun/Application/images/radio_button_off.PNG");
+			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\radio_button_off.png");
 	ImageIcon img2 = new ImageIcon
-			("C:/java_PJJ/Java_project_Jungjun/Application/images/radio_button_on.PNG");
+			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\radio_button_on.png");
 	
 	
 	Image img = img3.getImage();

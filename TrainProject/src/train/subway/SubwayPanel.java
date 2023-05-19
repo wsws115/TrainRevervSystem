@@ -1,115 +1,85 @@
 package train.subway;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.Action;
-import javax.swing.Icon;
-import javax.swing.JButton;
+
+
+import java.awt.CardLayout;
 import java.awt.Panel;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Button;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import javax.swing.AbstractButton;
+import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import javax.swing.JTree;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-import java.awt.GridLayout;
-//import com.jgoodies.forms.layout.FormLayout;
-//import com.jgoodies.forms.layout.ColumnSpec;
-//import com.jgoodies.forms.layout.RowSpec;
-//import java.awt.event.MouseListener;
-//import net.miginfocom.swing.MigLayout;
-import java.awt.CardLayout;
-import java.awt.Scrollbar;
-import javax.swing.JScrollBar;
+import train.calender.CalenderMain;
+
+import javax.swing.JScrollPane;
 import java.awt.Component;
-import javax.swing.JProgressBar;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import train.TrainReserv_Main;
 
-public class SubwayPanel extends JFrame implements MouseListener{
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
+public class SubwayPanel extends JPanel implements MouseListener{
+	private String train_name;
 	
-	public class RoundedButton extends JButton {
-	      public RoundedButton() { super(); decorate(); } 
-	      public RoundedButton(String text) { super(text); decorate(); } 
-	      public RoundedButton(Action action) { super(action); decorate(); } 
-	      public RoundedButton(Icon icon) { super(icon); decorate(); } 
-	      public RoundedButton(String text, Icon icon) { super(text, icon); decorate(); } 
-	      protected void decorate() { setBorderPainted(false); setOpaque(false); }
-	      @Override 
-	      protected void paintComponent(Graphics g) {
-	         Color c=new Color(153,204,204); //배경색 결정
-	         Color o=new Color(0,0,1); //글자색 결정
-	         int width = getWidth(); 
-	         int height = getHeight(); 
-	         Graphics2D graphics = (Graphics2D) g; 
-	         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-	         if (getModel().isArmed()) { graphics.setColor(c.darker()); } 
-	         else if (getModel().isRollover()) { graphics.setColor(c.brighter()); } 
-	         else { graphics.setColor(c); } 
-	         graphics.fillRoundRect(0, 0, width, height, 20, 20); 
-	         FontMetrics fontMetrics = graphics.getFontMetrics(); 
-	         Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
-	         int textX = (width - stringBounds.width) / 2; 
-	         int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
-	         graphics.setColor(o); 
-	         graphics.setFont(getFont()); 
-	         graphics.drawString(getText(), textX, textY); 
-	         graphics.dispose(); 
-	         super.paintComponent(g);
+	//버튼 디자인
+	   public class RoundedButton extends JButton {
+	         public RoundedButton() { super(); decorate(); } 
+	         public RoundedButton(String text) { super(text); decorate(); } 
+	         public RoundedButton(Action action) { super(action); decorate(); } 
+	         public RoundedButton(Icon icon) { super(icon); decorate(); } 
+	         public RoundedButton(String text, Icon icon) { super(text, icon); decorate(); } 
+	         protected void decorate() { setBorderPainted(false); setOpaque(false); }
+	         @Override 
+	         protected void paintComponent(Graphics g) {
+	            Color c=new Color(255,247,242); //배경색 결정
+	            Color o=new Color(247,99,30); //글자색 결정
+	            int width = getWidth(); 
+	            int height = getHeight(); 
+	            Graphics2D graphics = (Graphics2D) g; 
+	            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
+	            if (getModel().isArmed()) { graphics.setColor(c.darker()); } 
+	            else if (getModel().isRollover()) { graphics.setColor(c.brighter()); } 
+	            else { graphics.setColor(c); } 
+	            graphics.fillRoundRect(0, 0, width, height, 50, 50); 
+	            FontMetrics fontMetrics = graphics.getFontMetrics(); 
+	            Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
+	            int textX = (width - stringBounds.width) / 2; 
+	            int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
+	            graphics.setColor(o); 
+	            graphics.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); 
+	            graphics.drawString(getText(), textX, textY); 
+	            graphics.dispose(); 
+	            super.paintComponent(g);
+	            }
 	         }
-	      }
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					train_kiosk frame = new train_kiosk();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
-	public SubwayPanel() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setBounds(100, 100, 2500, 1050);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	public SubwayPanel(){
+		setBounds(0,0,1450, 1500);
 		
 		Panel panel_main = new Panel();
-		panel_main.setBounds(0, 0, 1445, 1511);
+		panel_main.setBounds(10, 0, 1485, 1530);
 		panel_main.setBackground(new Color(0, 124, 192));
-		contentPane.add(panel_main);
 		panel_main.setLayout(null);
 		
 		Button button_ktx_main = new Button("KTX주요역");
@@ -2104,16 +2074,45 @@ public class SubwayPanel extends JFrame implements MouseListener{
 		panel_ah_1.add(btnNewButton_11_7_2_1_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("역명 조회");
-		lblNewLabel_2.setFont(new Font("HY헤드라인M", Font.BOLD, 60));
-		lblNewLabel_2.setBounds(12, 0, 1411, 161);
+		lblNewLabel_2.setFont(new Font("HY헤드라인M", Font.BOLD, 40));
+		lblNewLabel_2.setBounds(12, 10, 1255, 151);
 		lblNewLabel_2.setVerticalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_main.add(lblNewLabel_2);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panel_main, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addComponent(panel_main, GroupLayout.PREFERRED_SIZE, 1535, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		
+		Button nextBtn = new Button("다음");
+		nextBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
+			}
+		});
+		nextBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		nextBtn.setBounds(1273, 10, 173, 100);
+		panel_main.add(nextBtn);
+		setLayout(groupLayout);
 		
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		train_name = ((JButton)e.getSource()).getText();
+		if(TrainReserv_Main.sub_select) {
+			TrainReserv_Main.st_sub_btn.setText(train_name);
+		}else {
+			TrainReserv_Main.en_sub_btn.setText(train_name);
+		}
 		
 	}
 	@Override

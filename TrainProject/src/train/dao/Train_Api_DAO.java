@@ -196,4 +196,24 @@ public class Train_Api_DAO {
 			e.printStackTrace();
 		}		
 	}
+	
+	public void settikect(List<String> ticketlist, int train_seat) {
+		String query = "INSERT INTO train_ticket VALUES(?,?,?,?,?,?)";
+		
+		try (
+				Connection conn = OjdbcConnection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(query);
+				
+			) {
+				String user_code =  train.jungjun.login_join_page.Login_and_joinDAO.user_code;
+				pstmt.setString(1, train_seat+ticketlist.get(0) + user_code);
+				pstmt.setString(2, user_code);
+				pstmt.setString(3, train_seat+"");
+				pstmt.setString(4, ticketlist.get(1));
+				pstmt.setString(6, ticketlist.get(2));
+				pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
