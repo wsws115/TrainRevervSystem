@@ -22,10 +22,10 @@ public class Admin_page extends JFrame{
 	private JTextField id_textField;
 	private JPasswordField pw_passwordField;
 	ImageIcon img1 = new ImageIcon
-			("C:/java_PJJ/Java_project_Jungjun/Application/images/E-RAIL.png");
+			("resource/E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 	ImageIcon img2 = new ImageIcon
-	("C:/java_PJJ/Java_project_Jungjun/Application/images/back.png");
+	("resource/backkey.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/back.png");
 	
 	private JPanel login;

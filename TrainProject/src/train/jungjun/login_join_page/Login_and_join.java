@@ -27,6 +27,10 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import train.jungjun.GoMain;
+
+import javax.swing.Icon;
+
 public class Login_and_join extends JFrame {
 	
 	private JPanel contentPane;
@@ -70,23 +74,23 @@ public class Login_and_join extends JFrame {
 	public static String phone_number3 = "";
 	
 	ImageIcon img3 = new ImageIcon
-			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\E-RAIL.png");
+			("resource/E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 	ImageIcon img7 = new ImageIcon
-			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\back_homebtn.png");
+			("resource/back_homebtn.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/back.png");
 	ImageIcon img1 = new ImageIcon
-			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\radio_button_off.png");
+			("resource/radio_button_off.PNG");
 	ImageIcon img2 = new ImageIcon
-			("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\radio_button_on.png");
-	
+			("resource/radio_button_on.PNG");
+	ImageIcon img4 = new ImageIcon
+			("resource/home.png");
 	
 	Image img = img3.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
     ImageIcon updateIcon = new ImageIcon(updateImg);
     private JTextField name_textField_2;
     private JTextField phone_textField_2;
-    //private JLabel id_label_3;
 	
 	/**
 	 * Launch the application.
@@ -176,13 +180,12 @@ public class Login_and_join extends JFrame {
 		login.add(back_main_btn);
 		back_main_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train.Train_Main main_frame =
-						new train.Train_Main();
-				main_frame.main(null);
-				setVisible(false);
+				train.Second_main second_main =
+						new train.Second_main();
+				second_main.main(null);
+				dispose();
 			}
 		});
-		//back_main_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
 		back_main_btn.setBorderPainted(false);
 		back_main_btn.setContentAreaFilled(false);
 		back_main_btn.setFocusPainted(false);
@@ -194,18 +197,6 @@ public class Login_and_join extends JFrame {
 		join_btn.setBounds(1400, 857, 350, 100);
 		login.add(join_btn);
 		join_btn.setForeground(new Color(0, 128, 192));
-		
-		
-//		JButton join_btn = new JButton("회원가입");
-//		join_btn.setForeground(new Color(0, 128, 192));
-//		join_btn.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				layeredPane.removeAll();
-//				layeredPane.add(join);
-//				layeredPane.repaint();
-//				layeredPane.revalidate();
-//			}
-//		});
 		
 		join_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
 		
@@ -226,6 +217,19 @@ public class Login_and_join extends JFrame {
 		find_pw_btn.setBorderPainted(false);
 		find_pw_btn.setBounds(750, 857, 600, 100);
 		login.add(find_pw_btn);
+		
+		JButton gomain_btn1 = new JButton(img4);
+		gomain_btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GoMain Gomain = new GoMain();
+				Gomain.setVisible(true);
+			}
+		});
+		gomain_btn1.setFocusPainted(false);
+		gomain_btn1.setContentAreaFilled(false);
+		gomain_btn1.setBorderPainted(false);
+		gomain_btn1.setBounds(1800, 10, 109, 109);
+		login.add(gomain_btn1);
 		
 		JPanel join = new JPanel();
 		layeredPane.add(join, "name_29419379635300");
@@ -343,22 +347,22 @@ public class Login_and_join extends JFrame {
 		join.add(chk_overlap_btn);
 		
 		JLabel pw_alrim = new JLabel();
-		pw_alrim.setFont(new Font("굴림", Font.PLAIN, 20));
+		pw_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		pw_alrim.setBounds(1250, 235, 500, 60);
 		join.add(pw_alrim);
 		
 		JLabel email_alrim = new JLabel();
-		email_alrim.setFont(new Font("굴림", Font.PLAIN, 20));
+		email_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		email_alrim.setBounds(1250, 570, 400, 60);
 		join.add(email_alrim);
 		
 		JLabel number_alrim = new JLabel();
-		number_alrim.setFont(new Font("굴림", Font.PLAIN, 20));
+		number_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		number_alrim.setBounds(1250, 485, 400, 60);
 		join.add(number_alrim);
 		
 		JLabel birthday_alrim = new JLabel();
-		birthday_alrim.setFont(new Font("굴림", Font.PLAIN, 20));
+		birthday_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		birthday_alrim.setBounds(1250, 400, 400, 60);
 		join.add(birthday_alrim);
 		
@@ -424,14 +428,27 @@ public class Login_and_join extends JFrame {
 		join.add(national_merit_radio_btn);
 		
 		JLabel id_alrim = new JLabel();
-		id_alrim.setFont(new Font("굴림", Font.PLAIN, 20));
+		id_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		id_alrim.setBounds(1450, 160, 400, 60);
 		join.add(id_alrim);
 		
 		JLabel name_alrim = new JLabel();
-		name_alrim.setFont(new Font("굴림", Font.PLAIN, 20));
+		name_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		name_alrim.setBounds(1250, 320, 400, 60);
 		join.add(name_alrim);
+		
+		JButton gomain_btn2 = new JButton(img4);
+		gomain_btn2.setFocusPainted(false);
+		gomain_btn2.setContentAreaFilled(false);
+		gomain_btn2.setBorderPainted(false);
+		gomain_btn2.setBounds(1800, 10, 109, 109);
+		gomain_btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GoMain Gomain = new GoMain();
+				Gomain.setVisible(true);
+			}
+		});
+		join.add(gomain_btn2);
 		
 		JPanel password_find = new JPanel();
 		layeredPane.add(password_find);
@@ -495,6 +512,19 @@ public class Login_and_join extends JFrame {
 		E_RAIL_3.setBounds(675, 30, 400, 330);
 		password_find.add(E_RAIL_3);
 		
+		JButton gomain_btn3 = new JButton(img4);
+		gomain_btn3.setFocusPainted(false);
+		gomain_btn3.setContentAreaFilled(false);
+		gomain_btn3.setBorderPainted(false);
+		gomain_btn3.setBounds(1800, 10, 109, 109);
+		gomain_btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GoMain Gomain = new GoMain();
+				Gomain.setVisible(true);
+			}
+		});
+		password_find.add(gomain_btn3);
+		
 		JPanel id_find = new JPanel();
 		layeredPane.add(id_find, "name_46900319103700");
 		id_find.setLayout(null);
@@ -544,6 +574,19 @@ public class Login_and_join extends JFrame {
 		JLabel E_RAIL_2 = new JLabel(updateIcon);
 		E_RAIL_2.setBounds(675, 30, 400, 330);
 		id_find.add(E_RAIL_2);
+		
+		JButton gomain_btn4 = new JButton(img4);
+		gomain_btn4.setFocusPainted(false);
+		gomain_btn4.setContentAreaFilled(false);
+		gomain_btn4.setBorderPainted(false);
+		gomain_btn4.setBounds(1800, 10, 109, 109);
+		gomain_btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GoMain Gomain = new GoMain();
+				Gomain.setVisible(true);
+			}
+		});
+		id_find.add(gomain_btn4);
 		
 		find_pw_select_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -653,6 +696,7 @@ public class Login_and_join extends JFrame {
 					pw_chk_B = true;
 				}else {
 					pw_alrim.setText("6자리이상 영어 대문자,소문자,숫자,특수문자를 포함하세요");
+					pw_chk_B = false;
 				}
 			}
 		});
@@ -668,6 +712,7 @@ public class Login_and_join extends JFrame {
 					email_chk_B = true;
 				}else {
 					email_alrim.setText("이메일을 정확히 입력하세요");
+					email_chk_B = false;
 				}
 			}
 		});
@@ -683,6 +728,7 @@ public class Login_and_join extends JFrame {
 					num_chk_B = true;
 				}else {
 					number_alrim.setText("-를 포함하여 입력하세요");
+					num_chk_B = false;
 				}
 			}
 		});
@@ -698,6 +744,7 @@ public class Login_and_join extends JFrame {
 					birthday_chk_B = true;
 				}else {
 					birthday_alrim.setText("-를 포함하여 올바른 값을 입력하세요");
+					birthday_chk_B = false;
 				}
 			}
 		});
@@ -713,11 +760,13 @@ public class Login_and_join extends JFrame {
 				ID_chk id = new ID_chk();
 				if(result1 || result2 || result3) {
 					id_alrim.setText("admin을 포함하지 마세요");
+					id_chk_B = false;
 				}else if(id.id_chk(id2)){
 					id_alrim.setText("올바른 아이디입니다");
 					id_chk_B = true;
 				}else {
 					id_alrim.setText("4~20자리 영문자,숫자를 입력하세요");
+					id_chk_B = false;
 				}
 			}
 		});
@@ -733,6 +782,7 @@ public class Login_and_join extends JFrame {
 					name_chk_B = true;
 				}else {
 					name_alrim.setText("2자리 이상 한글을 입력하세요");
+					name_chk_B = false;
 				}
 			}
 		});

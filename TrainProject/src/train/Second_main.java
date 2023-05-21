@@ -36,15 +36,15 @@ public class Second_main extends JFrame {
 	 */
 	public Second_main() {
 		ImageIcon img1 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\E-RAIL.png");
+				("resource\\E-RAIL.png");
 		ImageIcon img2 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\home.png");
+				("resource\\home.png");
 		ImageIcon img3 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\goLogin.png");
+				("resource\\goLogin.png");
 		ImageIcon img4 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\goNoLogin.png");
+				("resource\\goNoLogin.png");
 		ImageIcon img5 = new ImageIcon
-				("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\back_homebtn.png");
+				("resource\\back_homebtn.png");
 		
 		
 		setBounds(100, 100, 1920, 1080);

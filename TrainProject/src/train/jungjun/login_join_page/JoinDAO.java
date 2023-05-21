@@ -12,10 +12,10 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import train.db.OjdbcConnection;
+
 // 사용
 public class JoinDAO {
-	
-	OjdbcConnectionPool cp = StaticResources.cp;
 	
 	public boolean join_chk() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
@@ -26,13 +26,9 @@ public class JoinDAO {
 				+ "(id,password,name,phone_number,birthday,email,preferential_treatment,usernum_pk)"
 				+ " VALUES(?,?,?,?,?,?,?,'USER'||trim(TO_CHAR(USERNUM_PK.nextval,'000000')))";
 		try (
-				OjdbcSession session = cp.getSession();	
+				Connection conn = OjdbcConnection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(query);
 			) {
-			Connection conn = session.getConnection();
-			
-		
-			try( PreparedStatement pstmt = conn.prepareStatement(query);
-				){
 					if(Login_and_join.pw_chk_B && Login_and_join.email_chk_B &&
 								Login_and_join.num_chk_B && Login_and_join.birthday_chk_B && Login_and_join.id_chk_B
 								&& Login_and_join.preferential_treatment_chk_B) {
@@ -51,31 +47,18 @@ public class JoinDAO {
 								return true;
 							}else {
 								JOptionPane.showMessageDialog
-								(null,"회원가입 실패입니다");
+								(null,"회원가입 실패");
 								return false;
 							}
 						}
 					}
 					JOptionPane.showMessageDialog(null,"정확한 값을 입력하세요");
 					return false;
-					
-					
-			} catch (SQLException e) {
+			}catch(Exception e) {
 				JOptionPane.showMessageDialog
 				(null,"회원가입 실패(중복된 아이디가 있을 수 있습니다)_1");
 				e.printStackTrace();
 				return false;
-			}catch(Exception e) {
-				JOptionPane.showMessageDialog
-				(null,"회원가입 실패(중복된 아이디가 있을 수 있습니다)_2");
-				e.printStackTrace();
-				return false;
 			}
-		}catch(Exception e) {
-			JOptionPane.showMessageDialog
-			(null,"회원가입 실패(중복된 아이디가 있을 수 있습니다)_3");
-			e.printStackTrace();
-			return false;
-		}
 	}
 }

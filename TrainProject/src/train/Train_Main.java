@@ -123,22 +123,22 @@ public class Train_Main extends JFrame {
 			
 			ImageIcon img1 = new ImageIcon
 					(ImageIO.read(new File
-							("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\goTrain.png"))
+							("resource\\goTrain.png"))
 							.getScaledInstance(300, 200, Image.SCALE_AREA_AVERAGING));
 			train_reserv_btn.setIcon(img1);
 			ImageIcon img2 = new ImageIcon
 					(ImageIO.read(new File
-							("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\goCheck.png"))
+							("resource\\goCheck.png"))
 							.getScaledInstance(300, 200, Image.SCALE_AREA_AVERAGING));
 			tiket_btn.setIcon(img2);
 			ImageIcon img3 = new ImageIcon
 					(ImageIO.read(new File
-							("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\admin_login.jpg"))
+							("resource\\admin_login.jpg"))
 							.getScaledInstance(150, 150, Image.SCALE_AREA_AVERAGING));
 			admin_login_btn.setIcon(img3);
 			ImageIcon img4 = new ImageIcon
 					(ImageIO.read(new File
-							("C:\\javafullstack\\git-repositories\\TrainRevervSystem\\TrainProject\\resource\\E-RAIL.png"))
+							("resource\\E-RAIL.png"))
 							.getScaledInstance(500, 400, Image.SCALE_AREA_AVERAGING));
 			logo_label.setIcon(img4);
 			}catch(Exception e) {

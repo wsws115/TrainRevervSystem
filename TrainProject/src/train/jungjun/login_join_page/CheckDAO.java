@@ -11,29 +11,16 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
+import train.db.OjdbcConnection;
 // 사용
 public class CheckDAO {
-	OjdbcConnectionPool cp = StaticResources.cp;
 	String chk = Login_and_join.id2;
+	boolean result4 = chk.matches("^\\W*\\w*\\W*$");
 	boolean result1 = chk.matches("^\\w*admin+\\w*$");
 	boolean result2 = chk.matches("^\\w*Admin+\\w*$");
 	boolean result3 = chk.matches("^\\w*ADMIN+\\w*$");
-//	static {
-//		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//		}catch(ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	private Connection conn = getConnection();
-//	public static Connection getConnection() {
-//		try {
-//			return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "hr","1234");
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
+	boolean result5 = chk.matches("^\\w*\\W*\\w*$");
 	
 	public void id_check() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
@@ -41,11 +28,9 @@ public class CheckDAO {
 				new Font("HY헤드라인M", Font.BOLD, 50));
 		String query = "SELECT * FROM user_info WHERE id = ?";
 		try (
-				OjdbcSession session = cp.getSession();	
+				Connection conn = OjdbcConnection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(query);
 			){
-			Connection conn = session.getConnection();
-			try( PreparedStatement pstmt = conn.prepareStatement(query);
-				){
 			pstmt.setString(1,Login_and_join.id2);
 			
 				try(ResultSet rs = pstmt.executeQuery();){
@@ -57,15 +42,16 @@ public class CheckDAO {
 						JOptionPane.showMessageDialog(null,"아이디를 입력하세요");
 					}else if(!(rs.next()) && (result1 || result2 || result3)){
 						JOptionPane.showMessageDialog(null,"admin은 사용할 수 없는 아이디입니다");
+					}else if(!(rs.next()) && (result4 || result5)) {
+						JOptionPane.showMessageDialog(null,"영문과 숫자만 입력하세요");
+					}else if(!(rs.next())){
+						JOptionPane.showMessageDialog(null,"중복 없는 아이디입니다");
 					}else {
-						JOptionPane.showMessageDialog(null,"사용가능한 아이디입니다");
+						JOptionPane.showMessageDialog(null,"도대체 무슨짓을 한거죠?");
 					}
 				}catch(Exception e) {
 					e.printStackTrace();
-				}
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}	
+				}	
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
