@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import train.jungjun.Change_main;
 import train.jungjun.login_join_page.Login_and_join;
 
 import javax.swing.JButton;
@@ -90,6 +91,13 @@ public class Train_Main extends JFrame {
 		panel.add(train_reserv_btn);
 		
 		JButton tiket_btn = new JButton();
+		tiket_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Change_main cmain = new Change_main();
+				cmain.main(null);
+				setVisible(true);
+			}
+		});
 		tiket_btn.setBounds(1000, 500, 509, 338);
 		tiket_btn.setBorderPainted(false);
 		tiket_btn.setContentAreaFilled(false);

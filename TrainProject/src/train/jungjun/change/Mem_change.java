@@ -27,11 +27,11 @@ public class Mem_change extends JFrame {
 	public static String pw = "";
 	
 	ImageIcon img1 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
+			("resource/E-RAIL.png");
 	ImageIcon img2 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.PNG");
+			("resource/back_homebtn.PNG");
 	ImageIcon img3 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
+			("resource/home.png");
 	Image img = img1.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
     ImageIcon updateIcon = new ImageIcon(updateImg);

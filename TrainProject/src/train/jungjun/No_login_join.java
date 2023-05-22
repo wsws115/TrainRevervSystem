@@ -59,11 +59,11 @@ public class No_login_join extends JFrame {
 				new Font("HY헤드라인M", Font.BOLD, 50));
 		
 		ImageIcon img1 = new ImageIcon
-				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
+				("resource/E-RAIL.png");
 		ImageIcon img2 = new ImageIcon
-				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.png");
+				("resource/back_homebtn.png");
 		ImageIcon img3 = new ImageIcon
-				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
+				("resource/home.png");
 		
 		Image img = img1.getImage();
 	 	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
