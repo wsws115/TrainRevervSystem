@@ -11,32 +11,35 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 
+import train.dto.FoodDTO;
 import train.food.FoodCourtMainPanel;
-import train.dto.FoodDto;
 
 public class FoodBtn extends JButton {
 	
 	private String foodnum;
 	private String foodtype;
 	private String name;
+	private String image_location;
 	private int price;
 	private int qty = 1;
 	
-	/** 버튼 생성시, 타입, 이름, 가격, 모델, 전체 가격 라벨명 입력*/
-	public FoodBtn(FoodDto food, DefaultTableModel model) {
+	/** 버튼 생성시, 타입, 이름, 가격, 모델, 전체 가격 라벨명 입력 */
+	public FoodBtn(FoodDTO food, JTable order_table) {
 		this.foodnum = food.getFood_number();
 		this.foodtype = food.getfood_type();
 		this.name = food.getFood_name();
 		this.price = food.getFood_price();
+		this.image_location = food.getImage_location();
+		
+		setImage(image_location);		
 		
 		setSize(180, 150);
 		
@@ -48,24 +51,33 @@ public class FoodBtn extends JButton {
 	    addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				addTableColumn(model);	
+				addTableColumn(order_table);	
 			}
 		});
 	}
 	
-	/** 버튼에 넣을 이미지를 입력하는 메소드 */
-	public void getImage(String location) {
-		try {
-			this.setIcon(new ImageIcon(ImageIO.read(new URL(location)).getScaledInstance(180, 150, Image.SCALE_AREA_AVERAGING)));
+	/** 버튼에 넣을 이미지를 입력하는 메소드 */	
+	void setImage(String image_location) {
+		File imageFile = new File("resource/" + image_location);
+		
+		try {			
+			if (imageFile.exists()) {				
+				this.setIcon(new ImageIcon(ImageIO.read(imageFile).getScaledInstance(180, 150, Image.SCALE_AREA_AVERAGING)));
+			} else {
+				this.setIcon(new ImageIcon(ImageIO.read(new File("resource/F0000.jpg")).getScaledInstance(180, 150, Image.SCALE_AREA_AVERAGING)));
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	/** 버튼 클릭하면 JTable에 행을 추가하는 메소드 */ 
-	void addTableColumn(DefaultTableModel model) {
+	void addTableColumn(JTable order_table) {
 		List<String> seatlist = train.TrainReserv_Main.seatSelectString;
 		String[] seats = new String[seatlist.size()];
+		DefaultTableModel model = (DefaultTableModel)order_table.getModel();
+		
 		for(int i =0; i< seatlist.size(); ++i) {
 			seats[i] = seatlist.get(i);
 		}
@@ -77,7 +89,7 @@ public class FoodBtn extends JButton {
 		boolean value = false;
 		int sum = 0;
 		
-		for(int i=0; i < model.getRowCount(); i++){
+		for(int i=0; i < order_table.getRowCount(); i++){
 			// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
 			if(getName().equals(model.getValueAt(i, OrderTable.NAMEROW)) && seats[choice].equals(model.getValueAt(i, 0))) {
 				// 음식이름을 조회하여, 같은 이름이 있으면 수량만 추가
@@ -97,10 +109,9 @@ public class FoodBtn extends JButton {
 			list.add(getfoodnum()); // - 버튼 자리에 고유번호 숨기기
 			list.add(getQty());
 			model.addRow(list);
-		}
-		
+		}		
 //		 총 가격 라벨에 총 계 가격 추가
-		FoodCourtMainPanel.getTotalPrice(model);
+		FoodCourtMainPanel.getTotalPrice(order_table);
 	}
 	
 	// Getter

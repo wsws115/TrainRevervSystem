@@ -12,7 +12,7 @@ import java.util.List;
 import javax.naming.spi.DirStateFactory.Result;
 
 import train.db.OjdbcConnection;
-import train.dto.FoodDto;
+import train.dto.FoodDTO;
 import train.dto.Search_TableDTO;
 
 public class Train_Api_DAO {

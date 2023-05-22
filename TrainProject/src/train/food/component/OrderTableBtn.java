@@ -18,11 +18,11 @@ import train.food.FoodCourtMainPanel;
 public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer, MouseListener {
     
 	JButton count_Btn;
+	JTable user_table;
 	String mainpont = "HY헤드라인M";
-	DefaultTableModel model;
 	
-    public OrderTableBtn(String text, DefaultTableModel model, JTable user_table) {
-    	this.model = model;
+    public OrderTableBtn(String text, JTable user_table) {
+    	this.user_table = user_table;
     	
     	count_Btn = new JButton();
     	count_Btn.setText(text);
@@ -34,32 +34,32 @@ public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor
     	count_Btn.addMouseListener(this);
     	
     	count_Btn.addActionListener(e -> {
-
+    		
     		if (text.equals("+")) {
     			// 수량 + 1
-    			int addQty = (int) model.getValueAt(user_table.getSelectedRow(), OrderTable.QTYROW) + 1;	
+    			int addQty = (int) user_table.getValueAt(user_table.getSelectedRow(), OrderTable.QTYROW) + 1;	
     			
     			if (addQty < 1) {
     				addQty = 1;
     			}
     			
-    			model.setValueAt(addQty, user_table.getSelectedRow(), OrderTable.QTYROW);
+    			user_table.setValueAt(addQty, user_table.getSelectedRow(), OrderTable.QTYROW);
     			
     		} else if (text.equals("-")) {
     			// 수량 - 1
-    			int minusQty = (int) model.getValueAt(user_table.getSelectedRow(), OrderTable.QTYROW) - 1;	
+    			int minusQty = (int) user_table.getValueAt(user_table.getSelectedRow(), OrderTable.QTYROW) - 1;	
     			
     			if (minusQty < 1) {
     				minusQty = 1;
     			}		
-    			model.setValueAt(minusQty, user_table.getSelectedRow(), OrderTable.QTYROW);
+    			user_table.setValueAt(minusQty, user_table.getSelectedRow(), OrderTable.QTYROW);
     			
     		} else if (text.equals("X")) {	    			
     			
     			// 테이블 행 삭제 전에, 테이블 변경을 중지하고 삭제 진행	
     			if (user_table.isEditing()) {
     				user_table.getCellEditor().stopCellEditing();
-    				model.removeRow(user_table.getSelectedRow());
+    				((DefaultTableModel)user_table.getModel()).removeRow(user_table.getSelectedRow());
     			}
     		}		
         });
@@ -92,7 +92,7 @@ public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		FoodCourtMainPanel.getTotalPrice(model);	
+		FoodCourtMainPanel.getTotalPrice(user_table);
 	}
 
 	@Override

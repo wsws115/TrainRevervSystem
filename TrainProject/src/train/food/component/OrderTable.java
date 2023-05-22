@@ -1,15 +1,17 @@
 package train.food.component;
 
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import train.dto.FoodDTO;
+
 public class OrderTable extends JTable {
-	
-	String mainpont = "HY헤드라인M";
 	
 	public static final int SEATROW = 0;
 	public static final int NAMEROW = 1;
@@ -19,12 +21,16 @@ public class OrderTable extends JTable {
 	public static final int PLUSROW = 5;
 	public static final int CANCELROW = 6;
 	
-	public OrderTable(DefaultTableModel order_dtm) {
+	String[] orderTableColumnName = {"좌석번호", "음식이름", "가격", "-", "수량", "+", "취소"};
+	DefaultTableModel order_dtm = new DefaultTableModel(orderTableColumnName, 0);
+	
+	String mainpont = "HY헤드라인M";	
+	
+	public OrderTable() {
 		
 		setModel(order_dtm);
 		
-		// 테이블 서식 설정
-		// "좌석번호", "음식이름", "가격", "-", "수량", "+", "취소"
+			// 테이블 서식 설정
 			setRowHeight(30);
 			setFont(new Font(mainpont, Font.PLAIN, 20));	
 			getTableHeader().setFont(new Font(mainpont, Font.BOLD, 25));
@@ -49,21 +55,30 @@ public class OrderTable extends JTable {
 		getTableHeader().setReorderingAllowed(false);
 		
 		// user_table plus, minus 버튼 추가		
-		getColumnModel().getColumn(MINUSROW).setCellRenderer(new OrderTableBtn("-", order_dtm, this));
-		getColumnModel().getColumn(MINUSROW).setCellEditor(new OrderTableBtn("-", order_dtm, this));
+		getColumnModel().getColumn(MINUSROW).setCellRenderer(new OrderTableBtn("-", this));
+		getColumnModel().getColumn(MINUSROW).setCellEditor(new OrderTableBtn("-", this));
 		
-		getColumnModel().getColumn(PLUSROW).setCellRenderer(new OrderTableBtn("+", order_dtm, this));
-		getColumnModel().getColumn(PLUSROW).setCellEditor(new OrderTableBtn("+", order_dtm, this));
+		getColumnModel().getColumn(PLUSROW).setCellRenderer(new OrderTableBtn("+", this));
+		getColumnModel().getColumn(PLUSROW).setCellEditor(new OrderTableBtn("+", this));
 		
-		getColumnModel().getColumn(CANCELROW).setCellRenderer(new OrderTableBtn("X", order_dtm, this));
-		getColumnModel().getColumn(CANCELROW).setCellEditor(new OrderTableBtn("X", order_dtm, this));		
+		getColumnModel().getColumn(CANCELROW).setCellRenderer(new OrderTableBtn("X", this));
+		getColumnModel().getColumn(CANCELROW).setCellEditor(new OrderTableBtn("X", this));		
 	}
 	
-	/** 테이블의 모든 행 값을 구하는 메소드 */
-	public void getTableAllValue() {
+	public void userChoiceFoods() {
+		List<FoodDTO> list = new ArrayList<>();
 		
-		
-		
+		if (this.getColumnCount() == 0) {
+			System.out.println("아무런 값이 없음");			
+		} else {			
+			for (int idx = 0; idx < order_dtm.getRowCount(); idx++) {
+				String rows = "";
+				for (int cdx = 0; cdx < order_dtm.getColumnCount(); cdx++) {
+					Object val = order_dtm.getValueAt(idx, cdx);
+					rows = rows + " " + val;
+				}		
+			}
+		}		
 	}
 	
 }

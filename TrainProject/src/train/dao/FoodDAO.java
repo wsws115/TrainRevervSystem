@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import train.db.OjdbcConnection;
-import train.dto.FoodDto;
+import train.dto.FoodDTO;
 
-public class FoodDao {
+public class FoodDAO {
 	
 	/** 음식 DB에서 값을 가져오는 메소드 */
-	public List<FoodDto> getFoodAll() {
+	public List<FoodDTO> getFoodAll() {
 		
-		List<FoodDto> list = new ArrayList<>();
+		List<FoodDTO> list = new ArrayList<>();
 		
 		String query = "SELECT * FROM trainfood";
 		try (
@@ -23,7 +23,7 @@ public class FoodDao {
 				ResultSet rs = pstmt.executeQuery();
 			) {
 				while (rs.next()) {
-					list.add(new FoodDto(
+					list.add(new FoodDTO(
 							rs.getString("food_number"),
 							rs.getString("food_type"),
 							rs.getString("food_name"),
