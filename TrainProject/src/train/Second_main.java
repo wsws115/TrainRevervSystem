@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import train.jungjun.No_login_join;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -95,6 +98,16 @@ public class Second_main extends JFrame {
 		no_membership_btn.setFocusPainted(false);
 		no_membership_btn.setBounds(1000, 500, 510, 337);
 		getContentPane().add(no_membership_btn);
+		no_membership_btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				No_login_join join = new No_login_join();
+				join.main(null);
+				dispose();
+				
+			}
+		});
 		
 		JButton back_btn = new JButton(img5);
 		back_btn.setBorderPainted(false);

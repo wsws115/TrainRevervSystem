@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import train.Second_main;
+import train.TrainReserv_Main;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -111,6 +112,8 @@ public class No_login_join extends JFrame {
 				No_login_joinDAO DAO = new No_login_joinDAO();
 				if(DAO.no_loginDAO()) {
 					JOptionPane.showMessageDialog(null,"비회원 가입에 성공했습니다");
+					TrainReserv_Main.main(null);
+					setVisible(false);
 				}else {
 					JOptionPane.showMessageDialog(null,"비회원 가입에 실패했습니다");
 				}
