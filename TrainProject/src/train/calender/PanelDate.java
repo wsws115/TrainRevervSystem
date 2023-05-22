@@ -62,9 +62,9 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
                     cell.setAsToDay();
                     cel = com;
                 }
-//                if(calendar.get(Calendar.MONTH)+1 > toDay.getMonth()) {
-//                	cel = com;
-//                }
+                if(calendar.get(Calendar.MONTH) > toDay.getMonth()) {
+                	cel = com;
+                }
                 
                 calendar.add(Calendar.DATE, 1); //  up 1 day
             }

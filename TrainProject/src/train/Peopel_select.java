@@ -272,11 +272,14 @@ public class Peopel_select extends JPanel {
 		previousBtn.setBounds(12, 10, 200, 112);
 		leftPanel.add(previousBtn);
 		setLayout(groupLayout);
-		System.out.println(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("default"));
-		if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("default")) {
-			minusBtn4.setEnabled(false);
-			plusBtn4.setEnabled(false);
-			textField4.setEnabled(false);
+		try {
+			if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("default")) {
+				minusBtn4.setEnabled(false);
+				plusBtn4.setEnabled(false);
+				textField4.setEnabled(false);
+			}
+		}catch(NullPointerException e) {
+			e.printStackTrace();
 		}
 		if(!login_who) {
 			minusBtn2.setEnabled(login_who);
@@ -289,9 +292,5 @@ public class Peopel_select extends JPanel {
 			textField3.setEnabled(login_who);
 			textField4.setEnabled(login_who);
 		}
-		
-		
-		
-
 	}
 }
