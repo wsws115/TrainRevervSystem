@@ -17,6 +17,7 @@ import java.awt.Graphics2D;
 import javax.swing.AbstractButton;
 import javax.swing.Action;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -76,83 +77,112 @@ public class SubwayPanel extends JPanel implements MouseListener{
 	 */
 	public SubwayPanel(){
 		setBounds(0,0,1450, 1500);
-		
+		ImageIcon img_main = new ImageIcon
+				("resource\\subway_main.jpg");
+		ImageIcon img_ga = new ImageIcon
+				("resource\\ㄱ.jpg");
+		ImageIcon img_na = new ImageIcon
+				("resource\\ㄴ.jpg");
+		ImageIcon img_da = new ImageIcon
+				("resource\\ㄷ.jpg");
+		ImageIcon img_la = new ImageIcon
+				("resource\\ㄹ.jpg");
+		ImageIcon img_ma = new ImageIcon
+				("resource\\ㅁ.jpg");
+		ImageIcon img_ba = new ImageIcon
+				("resource\\ㅂ.jpg");
+		ImageIcon img_sa = new ImageIcon
+				("resource\\ㅅ.jpg");
+		ImageIcon img_ah = new ImageIcon
+				("resource\\ㅇ.jpg");
+		ImageIcon img_ja = new ImageIcon
+				("resource\\ㅈ.jpg");
+		ImageIcon img_cha = new ImageIcon
+				("resource\\ㅊ.jpg");
+		ImageIcon img_ka = new ImageIcon
+				("resource\\ㅋ.jpg");
+		ImageIcon img_ta = new ImageIcon
+				("resource\\ㅌ.jpg");
+		ImageIcon img_pa = new ImageIcon
+				("resource\\ㅍ.jpg");
+		ImageIcon img_ha = new ImageIcon
+				("resource\\ㅎ.jpg");
 		Panel panel_main = new Panel();
 		panel_main.setBounds(10, 0, 1485, 1530);
 		panel_main.setBackground(new Color(0, 124, 192));
 		panel_main.setLayout(null);
 		
-		Button button_ktx_main = new Button("KTX주요역");
-		button_ktx_main.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		JButton button_ktx_main = new JButton(img_main);
+//		button_ktx_main.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ktx_main.setBounds(50, 94, 173, 67);
 		panel_main.add(button_ktx_main);
 		
-		Button button_ga = new Button("가");
+		JButton button_ga = new JButton(img_ga);
 		button_ga.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ga.setBounds(50, 179, 76, 48);
 		panel_main.add(button_ga);
 		
-		Button button_na = new Button("나");
+		JButton button_na = new JButton(img_na);
 		button_na.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_na.setBounds(147, 179, 76, 48);
 		panel_main.add(button_na);
 		
-		Button button_da = new Button("다");
+		JButton button_da = new JButton(img_da);
 		button_da.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_da.setBounds(244, 179, 76, 48);
 		panel_main.add(button_da);
 		
-		Button button_la = new Button("라");
+		JButton button_la = new JButton(img_la);
 		button_la.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_la.setBounds(341, 179, 76, 48);
 		panel_main.add(button_la);
 		
-		Button button_ma = new Button("마");
+		JButton button_ma = new JButton(img_ma);
 		button_ma.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ma.setBounds(436, 179, 76, 48);
 		panel_main.add(button_ma);
 		
-		Button button_ba = new Button("바");
+		JButton button_ba = new JButton(img_ba);
 		button_ba.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ba.setBounds(533, 179, 76, 48);
 		panel_main.add(button_ba);
 		
-		Button button_sa = new Button("사");
+		JButton button_sa = new JButton(img_sa);
 		button_sa.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_sa.setBounds(634, 179, 76, 48);
 		panel_main.add(button_sa);
 		
-		Button button_ah = new Button("아");
+		JButton button_ah = new JButton(img_ah);
 		button_ah.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ah.setBounds(736, 179, 76, 48);
 		panel_main.add(button_ah);
 		
-		Button button_za = new Button("자");
+		JButton button_za = new JButton(img_ja);
 		button_za.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_za.setBounds(833, 179, 76, 48);
 		panel_main.add(button_za);
 		
-		Button button_cha = new Button("차");
+		JButton button_cha = new JButton(img_cha);
 		button_cha.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_cha.setBounds(930, 179, 76, 48);
 		panel_main.add(button_cha);
 		
-		Button button_ka = new Button("카");
+		JButton button_ka = new JButton(img_ka);
 		button_ka.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ka.setBounds(1027, 179, 76, 48);
 		panel_main.add(button_ka);
 		
-		Button button_ta = new Button("타");
+		JButton button_ta = new JButton(img_ta);
 		button_ta.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ta.setBounds(1124, 179, 76, 48);
 		panel_main.add(button_ta);
 		
-		Button button_pa = new Button("파");
+		JButton button_pa = new JButton(img_pa);
 		button_pa.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_pa.setBounds(1221, 179, 76, 48);
 		panel_main.add(button_pa);
 		
-		Button button_ha = new Button("하");
+		JButton button_ha = new JButton(img_ha);
 		button_ha.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ha.setBounds(1318, 179, 76, 48);
 		panel_main.add(button_ha);
