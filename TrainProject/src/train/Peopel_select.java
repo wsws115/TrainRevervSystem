@@ -24,6 +24,7 @@ public class Peopel_select extends JPanel {
 	private JTextField textField2;
 	private JTextField textField3;
 	private JTextField textField4;
+	private boolean login_who = train.TrainReserv_Main.login_who;
 	
 	private int pluspeople(String str) {
 		int num = Integer.parseInt(str)+1;
@@ -271,6 +272,26 @@ public class Peopel_select extends JPanel {
 		previousBtn.setBounds(12, 10, 200, 112);
 		leftPanel.add(previousBtn);
 		setLayout(groupLayout);
+		System.out.println(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("default"));
+		if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("default")) {
+			minusBtn4.setEnabled(false);
+			plusBtn4.setEnabled(false);
+			textField4.setEnabled(false);
+		}
+		if(!login_who) {
+			minusBtn2.setEnabled(login_who);
+			minusBtn3.setEnabled(login_who);
+			minusBtn4.setEnabled(login_who);
+			plusBtn2.setEnabled(login_who);
+			plusBtn3.setEnabled(login_who);
+			plusBtn4.setEnabled(login_who);
+			textField2.setEnabled(login_who);
+			textField3.setEnabled(login_who);
+			textField4.setEnabled(login_who);
+		}
+		
+		
+		
 
 	}
 }

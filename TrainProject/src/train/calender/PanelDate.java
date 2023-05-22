@@ -17,10 +17,12 @@ import java.util.Locale;
 import javax.swing.JButton;
 
 import train.TrainReserv_Main;
+import train.admin.component.Admin_check;
+
 import java.awt.Font;
 
 public class PanelDate extends javax.swing.JLayeredPane implements ActionListener{
-
+	public static boolean mainChk = true;
     private int month;
     private int year;
     private Component cel;
@@ -60,9 +62,9 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
                     cell.setAsToDay();
                     cel = com;
                 }
-                if(calendar.get(Calendar.MONTH)+1 > toDay.getMonth()) {
-                	cel = com;
-                }
+//                if(calendar.get(Calendar.MONTH)+1 > toDay.getMonth()) {
+//                	cel = com;
+//                }
                 
                 calendar.add(Calendar.DATE, 1); //  up 1 day
             }
@@ -601,6 +603,7 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
 	public void actionPerformed(ActionEvent e) {
 		Calendar calendar = Calendar.getInstance();
 //		ToDay toDay = getToDay();
+		
 		Cell cel2 = (Cell)e.getSource();
 		System.out.println(e.getSource());
 		if(Integer.parseInt(cel2.getText()) >= calendar.get(Calendar.DATE) || 
@@ -614,7 +617,12 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
 			int day = Integer.parseInt(((Cell)e.getSource()).getText());
 			LocalDate ld = LocalDate.of(this.year,this.month,day);
 			System.out.println(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-			TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+			if(mainChk) {
+				TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+			}else {
+				Admin_check.dateBtn.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+			}
+			
 		}
 		
 		

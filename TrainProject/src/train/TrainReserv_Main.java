@@ -24,7 +24,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -232,8 +235,11 @@ public class TrainReserv_Main extends JFrame {
 		reserv_panel.add(lblNewLabel_1_1_1_1);
 		
 		ButtonGroup group = new ButtonGroup();
-		
-		date_text = new JTextField();
+		Calendar calendar = Calendar.getInstance();
+		LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+		String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+		train.calender.PanelDate.mainChk= true;
+		date_text = new JTextField(date);
 		date_text.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		date_text.setColumns(10);
 		date_text.setBounds(99, 223, 186, 41);
@@ -249,7 +255,7 @@ public class TrainReserv_Main extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("전체 인원 :");
 		lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		lblNewLabel_1.setBounds(253, 430, 152, 54);
+		lblNewLabel_1.setBounds(12, 430, 152, 54);
 		reserv_panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("좌석 선택 :");
