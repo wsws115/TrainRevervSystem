@@ -103,11 +103,10 @@ public class Peopel_select extends JPanel {
 		leftPanel.add(textField1);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(leftPanel, GroupLayout.PREFERRED_SIZE, 1296, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(30, Short.MAX_VALUE))
+					.addComponent(leftPanel, GroupLayout.DEFAULT_SIZE, 1419, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -259,7 +258,7 @@ public class Peopel_select extends JPanel {
 			}
 		});
 		returnBtn_1.setFont(new Font("HY견고딕", Font.BOLD, 35));
-		returnBtn_1.setBounds(1072, 10, 200, 112);
+		returnBtn_1.setBounds(1207, 10, 200, 112);
 		leftPanel.add(returnBtn_1);
 		
 		JButton previousBtn = new JButton("이전");

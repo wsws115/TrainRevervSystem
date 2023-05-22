@@ -247,7 +247,7 @@ public class TrainReserv_Main extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("전체 인원 :");
 		lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		lblNewLabel_1.setBounds(12, 430, 152, 54);
+		lblNewLabel_1.setBounds(253, 430, 152, 54);
 		reserv_panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("좌석 선택 :");
