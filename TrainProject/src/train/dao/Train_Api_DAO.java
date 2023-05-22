@@ -196,20 +196,23 @@ public class Train_Api_DAO {
 		}		
 	}
 	
-	public void settikect(List<String> ticketlist, int train_seat) {
-		String query1 = "SELECT seat_code FROM seat_table WHERE seat_code = ?";
-		String query = "INSERT INTO train_ticket VALUES(?,?,?,?,?,?)";
+	public void settikect(List<String> ticketlist, List<String> seatlist, int train_ho) {
+		
+		String query2 = "INSERT INTO train_ticket VALUES(?,?,?,?,?,?)";
 		
 		try (
 				Connection conn = OjdbcConnection.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(query);
+				PreparedStatement pstmt = conn.prepareStatement(query2);
 				
 			) {
 				String user_code =  train.jungjun.login_join_page.Login_and_joinDAO.user_code;
-				pstmt.setString(1, train_seat+ticketlist.get(0) + user_code);
+				String preferential = train.jungjun.login_join_page.Login_and_joinDAO.preferential;
+				int price = Integer.parseInt(ticketlist.get(0)) + Integer.parseInt(ticketlist.get(1));
+				pstmt.setString(1, train_ho+seatlist.get(0) + user_code);
 				pstmt.setString(2, user_code);
-				pstmt.setString(3, train_seat+"");
-				pstmt.setString(4, ticketlist.get(1));
+				pstmt.setString(3, train_ho+seatlist.get(0));
+				pstmt.setString(4, preferential);
+				pstmt.setInt(5, price);
 				pstmt.setString(6, ticketlist.get(2));
 				pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -217,20 +220,21 @@ public class Train_Api_DAO {
 		}
 	}
 	
-	public void set_unmem_tikect(List<String> ticket_unmem_list, int train_seat) {
-		String query = "INSERT INTO train_unmember_ticket VALUES(?,?,?,?,?,?)";
+	public void set_unmem_tikect(List<String> ticket_unmem_list, List<String> seatlist, int train_ho) {
+		String query = "INSERT INTO train_unmember_ticket VALUES(?,?,?,?,?)";
 		
 		try (
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 				
 			) {
-				String user_code =  train.jungjun.login_join_page.Login_and_joinDAO.user_code;
-				pstmt.setString(1, train_seat+ticket_unmem_list.get(0) + user_code);
+				String user_code =  train.jungjun.No_login_joinDAO.pk;
+				int price = Integer.parseInt(ticket_unmem_list.get(0)) + Integer.parseInt(ticket_unmem_list.get(1));
+				pstmt.setString(1, train_ho+seatlist.get(0) + user_code);
 				pstmt.setString(2, user_code);
-				pstmt.setString(3, train_seat+"");
-				pstmt.setString(4, ticket_unmem_list.get(1));
-				pstmt.setString(6, ticket_unmem_list.get(2));
+				pstmt.setString(3, train_ho+seatlist.get(0));
+				pstmt.setInt(4, price);
+				pstmt.setString(5, ticket_unmem_list.get(2));
 				pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -44,6 +44,62 @@ public class FoodDAO {
 		}		
 	}
 	
+	public void setLoginFood(List<String> foodlist, List<String> seatlist, int train_ho) {
+		
+		String query2 = "SELECT food_number FROM trainfood WHERE food_name = '"+foodlist.get(0)+"'";
+		String query3 = "INSERT INTO ticket_mem_food VALUES(?,?,?,?)";
+		
+		try (
+				Connection conn = OjdbcConnection.getConnection();
+				PreparedStatement pstmt2 = conn.prepareStatement(query2);
+				PreparedStatement pstmt3 = conn.prepareStatement(query3);
+				ResultSet rs2 = pstmt2.executeQuery();
+			) {
+				String user_code = train.jungjun.login_join_page.Login_and_joinDAO.user_code;
+				
+				
+				if(rs2.next()) {
+					pstmt3.setString(1, train_ho+seatlist.get(0)+user_code);
+					pstmt3.setString(2, rs2.getString("food_number"));
+					pstmt3.setInt(3, Integer.parseInt(foodlist.get(1)));
+					pstmt3.setInt(4, Integer.parseInt(foodlist.get(2)));
+					pstmt3.executeUpdate();
+				}
+				
+				
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	public void setUnLoginFood(List<String> foodlist, List<String> seatlist, int train_ho) {
+		String query2 = "SELECT food_number FROM trainfood WHERE food_name = ?";
+		String query3 = "INSERT INTO ticket_unmem_food VALUES(?,?,?,?)";
+		try (
+				Connection conn = OjdbcConnection.getConnection();
+				PreparedStatement pstmt2 = conn.prepareStatement(query2);
+				PreparedStatement pstmt3 = conn.prepareStatement(query3);
+			) {
+				String user_code = train.jungjun.No_login_joinDAO.pk;
+				
+				pstmt2.setString(1, foodlist.get(0));
+				pstmt2.executeUpdate();
+				try(ResultSet rs2 = pstmt2.executeQuery()){
+					if(rs2.next()) {
+						pstmt3.setString(1, train_ho+seatlist.get(0)+user_code);
+						pstmt3.setString(2, rs2.getString("food_number"));
+						pstmt3.setInt(3, Integer.parseInt(foodlist.get(1)));
+						pstmt3.setInt(4, Integer.parseInt(foodlist.get(2)));
+						pstmt3.executeUpdate();
+						
+					}
+				}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
 	/** userchoicefood DB로 값을 보내는 메소드 */
 	public void addFood(String type, String name, int price, String location) {
 		

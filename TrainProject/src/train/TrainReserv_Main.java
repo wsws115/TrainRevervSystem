@@ -89,8 +89,10 @@ public class TrainReserv_Main extends JFrame {
     public static CardLayout card;
     public static JPanel card_panel;
     public static boolean sub_select = true;
+    public static boolean login_who = true;
 	/**
 	 * Launch the application.
+	 * 
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

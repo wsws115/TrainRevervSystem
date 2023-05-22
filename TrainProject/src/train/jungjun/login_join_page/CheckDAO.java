@@ -42,7 +42,7 @@ public class CheckDAO {
 						JOptionPane.showMessageDialog(null,"아이디를 입력하세요");
 					}else if(!(rs.next()) && (result1 || result2 || result3)){
 						JOptionPane.showMessageDialog(null,"admin은 사용할 수 없는 아이디입니다");
-					}else if(!(rs.next()) && (result4 || result5)) {
+					}else if(!(rs.next()) && (!(result4 || result5))) {
 						JOptionPane.showMessageDialog(null,"영문과 숫자만 입력하세요");
 					}else if(!(rs.next())){
 						JOptionPane.showMessageDialog(null,"중복 없는 아이디입니다");

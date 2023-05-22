@@ -57,6 +57,7 @@ public class Payment_UI extends JDialog {
 	private String[] food_table = FoodCourtMainPanel.food_table;
 	private int food_total = Integer.parseInt(FoodCourtMainPanel.totalPrice_Lab.getText().split("원")[0]);
 	private JTable table;
+	private boolean user_who = train.TrainReserv_Main.login_who;
 	/**
 	 * Launch the application.
 	 */
@@ -451,10 +452,11 @@ public class Payment_UI extends JDialog {
                 CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
                 cardLayout.show(getContentPane(), "payment_successful_panel");
                 Train_Api_DAO dao = new Train_Api_DAO();
+                train.dao.FoodDAO foodDao = new train.dao.FoodDAO();
                 List<String> apilist = new ArrayList();
                 List<String> holist = new ArrayList();
                 List<String> ticketlist= new ArrayList();
-               
+                List<String> foodlist = new ArrayList();
                 apilist.add(name);
                 apilist.add(date_text);
                 apilist.add(st_sub);
@@ -463,14 +465,14 @@ public class Payment_UI extends JDialog {
                 apilist.add(en_time);
                 apilist.add(timetaken);
                 System.out.println(apilist.toString());
-                
+                // 열차 입력
                 int chk = dao.chk_train(apilist);
                 if (chk == 0) {
                 	dao.setAllSearch(apilist); // 없으면 insert
                 }
              
                 chk = dao.chk_train(apilist); // 체크 및 열차 pk
-                
+                // 호차 입력
                 holist.add(""+carNum);
                 if(carNum < 4) {
                 	holist.add("specialSeat");
@@ -485,7 +487,7 @@ public class Payment_UI extends JDialog {
                 	dao.setTrain_ho(holist, chk); // 체크 및 호차 pk
                 }
                 chktrain = dao.chkTrain_Table(holist, chk); // 체크 및 호차 pk
-                
+                // 좌석 입력
                 for(String sn : seatlist) {
                 	List<String> seatlist = new ArrayList();
                 	seatlist.add(sn);
@@ -497,7 +499,32 @@ public class Payment_UI extends JDialog {
                 	seatlist.add(""+train_price);
                 	dao.setSeatDown(chktrain);
                 	dao.setSeat(seatlist, chktrain);
-//                	dao.settikect(ticketlist, chktrain);
+                	// 티켓 입력
+                	ticketlist.add(""+train_price);
+                	int food_price = 0;
+                	for(int i =0; i<food_table.length; ++i) {
+                		if(food_table[i].contains(sn)) {
+                			food_price += Integer.parseInt(food_table[i].split(" ")[2]);
+                			foodlist.add(food_table[i].split(" ")[1]);
+                			System.out.println(food_table[i].split(" ")[1]);
+                			foodlist.add(food_table[i].split(" ")[2]);
+                			System.out.println(food_table[i].split(" ")[2]);
+                			foodlist.add(food_table[i].split(" ")[3]);
+                			System.out.println(food_table[i].split(" ")[3]);
+                		}
+                	}
+                	ticketlist.add(""+food_price);
+                	ticketlist.add(date_text);
+                	// 회원 비회원 티켓 입력
+                	if(user_who) {
+                		dao.settikect(ticketlist, seatlist, chktrain);
+                		foodDao.setLoginFood(foodlist, seatlist, chktrain);
+                	}else {
+                		dao.set_unmem_tikect(ticketlist, seatlist, chktrain);
+                		foodDao.setUnLoginFood(foodlist, seatlist, chktrain);
+                	}
+                	
+                	
                 }
             }
         });

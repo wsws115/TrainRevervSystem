@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import train.db.OjdbcConnection;
 
 public class No_login_joinDAO {
-	private String pk;
+	public static String pk;
 	public boolean no_loginDAO() {
 		String query = 
 				"INSERT INTO non_mem_info (phone_number,password,no_mem_pk) VALUES (?,?,?)";

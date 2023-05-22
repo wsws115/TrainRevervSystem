@@ -169,6 +169,7 @@ public class Login_and_join extends JFrame {
 				if(login_result) {
 					TrainReserv_Main.main(null);
 					setVisible(true);
+					dispose();
 				}
 			}	
 		});

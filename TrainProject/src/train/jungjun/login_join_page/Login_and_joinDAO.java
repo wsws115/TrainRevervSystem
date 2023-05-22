@@ -22,6 +22,7 @@ import train.db.OjdbcConnection;
 public class Login_and_joinDAO {
 	
 	public static String user_code;
+	public static String preferential;
 	public boolean login_chk() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
 		UIManager.put("OptionPane.messageFont",
@@ -40,7 +41,8 @@ public class Login_and_joinDAO {
 						JOptionPane.showMessageDialog(null,"로그인에 성공했습니다");
 						Choice c = new Choice();
 						c.setVisible(true);
-						user_code = rs.getString("id");
+						user_code = rs.getString("usernum_pk");
+						preferential = rs.getString("preferential_treatment");
 						return true;
 					}else {
 						JOptionPane.showMessageDialog(null,"로그인에 실패했습니다1");

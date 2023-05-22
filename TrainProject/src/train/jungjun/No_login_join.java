@@ -113,6 +113,7 @@ public class No_login_join extends JFrame {
 				if(DAO.no_loginDAO()) {
 					JOptionPane.showMessageDialog(null,"비회원 가입에 성공했습니다");
 					TrainReserv_Main.main(null);
+					TrainReserv_Main.login_who = false;
 					setVisible(false);
 				}else {
 					JOptionPane.showMessageDialog(null,"비회원 가입에 실패했습니다");
