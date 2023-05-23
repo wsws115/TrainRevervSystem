@@ -1,11 +1,10 @@
 package train;
 
-
-import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -15,7 +14,9 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -58,6 +59,7 @@ public class Payment_UI extends JDialog {
 	private int food_total = Integer.parseInt(FoodCourtMainPanel.totalPrice_Lab.getText().split("원")[0]);
 	private JTable table;
 	private boolean user_who = train.TrainReserv_Main.login_who;
+	static TrainReserv_Main reserv_main;
 	/**
 	 * Launch the application.
 	 */
@@ -97,7 +99,7 @@ public class Payment_UI extends JDialog {
 		riding_Date.setBounds(122, 0, 192, 48);
 		boarding_date_label.add(riding_Date);
 		
-		Button card_Payment_Btn = new Button("카드결제");
+		JButton card_Payment_Btn = new JButton("카드결제");
 		card_Payment_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
@@ -331,10 +333,10 @@ public class Payment_UI extends JDialog {
 		check_payment_information_Label.setHorizontalAlignment(SwingConstants.CENTER);
 		payment_info_panel.add(check_payment_information_Label);
 		
-		Button Payment_Cancel_Btn = new Button("취소/돌아가기");
+		JButton Payment_Cancel_Btn = new JButton("취소/돌아가기");
 		Payment_Cancel_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		Payment_Cancel_Btn.setForeground(Color.WHITE);
@@ -349,11 +351,11 @@ public class Payment_UI extends JDialog {
 		cardpay_panel.setBackground(Color.WHITE);
 		getContentPane().add(cardpay_panel, "cardpay_panel");
 		
-		JLabel insertCard_Icon = new JLabel(new ImageIcon("C:\\JavaFullstack_KYJ\\java_workspace\\image\\card.PNG"));
+		JLabel insertCard_Icon = new JLabel(new ImageIcon("resource\\cardpay.PNG"));
 		insertCard_Icon.setBounds(252, 259, 420, 300);
 		cardpay_panel.add(insertCard_Icon);
 		
-		Button cancel_Btn = new Button("취소");
+		JButton cancel_Btn = new JButton("취소");
 		cancel_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
@@ -403,7 +405,16 @@ public class Payment_UI extends JDialog {
 		payment_successful_panel.setBackground(Color.WHITE);
 		getContentPane().add(payment_successful_panel, "payment_successful_panel");
 		
-		Button Previous_Btn = new Button("처음으로");
+		JButton Previous_Btn = new JButton("처음으로");
+		Previous_Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TrainReserv_Main.frame.dispose();
+				setVisible(false);
+				Train_Main main_return = new Train_Main();
+				main_return.main(null);
+				
+			}
+		});
 		Previous_Btn.setForeground(Color.WHITE);
 		Previous_Btn.setFont(new Font("HY헤드라인M", Font.BOLD, 40));
 		Previous_Btn.setBackground(new Color(64, 0, 64));
@@ -441,7 +452,7 @@ public class Payment_UI extends JDialog {
 		lblNewLabel_2_1_1.setBounds(908, 23, 15, 913);
 		payment_successful_panel.add(lblNewLabel_2_1_1);
 		
-		JLabel card_icon_1 = new JLabel(new ImageIcon("C:\\JavaFullstack_KYJ\\java_workspace\\image\\card_pay_success_2.png"));
+		JLabel card_icon_1 = new JLabel(new ImageIcon("resource\\paysuccess.png"));
 		card_icon_1.setBounds(252, 224, 420, 335);
 		payment_successful_panel.add(card_icon_1);
 		

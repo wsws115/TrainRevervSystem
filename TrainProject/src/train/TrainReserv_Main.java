@@ -23,6 +23,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -74,7 +75,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  */
 public class TrainReserv_Main extends JFrame {
 
-	
 	private JPanel contentPane;
 	private String datePattern = "yyyy-MM-dd";
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
@@ -93,7 +93,8 @@ public class TrainReserv_Main extends JFrame {
     public static JPanel card_panel;
     public static boolean sub_select = true;
     public static boolean login_who = true;
-	/**
+    public static TrainReserv_Main frame;
+    /**
 	 * Launch the application.
 	 * 
 	 */
@@ -101,15 +102,17 @@ public class TrainReserv_Main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TrainReserv_Main frame = new TrainReserv_Main();
+					frame = new TrainReserv_Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+			
 		});
+		
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -332,4 +335,5 @@ public class TrainReserv_Main extends JFrame {
 //			e.printStackTrace();
 //		}
 	}
+
 }

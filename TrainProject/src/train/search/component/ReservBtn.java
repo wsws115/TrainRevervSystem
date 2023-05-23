@@ -70,11 +70,11 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			StandardSeatSelect sb = new StandardSeatSelect();
 	    			int row = stp_table.getSelectedRow();
 	    			name = (String) stp_table.getValueAt(row, 0);
-	    			num = (String) stp_table.getValueAt(row, 1);
-	    			st_time = (String) stp_table.getValueAt(row, 2);
-	    			en_time = (String) stp_table.getValueAt(row, 3);
-	    			price = (String) stp_table.getValueAt(row, 4);
-	    			timetaken = (String) stp_table.getValueAt(row, 5);
+	    			num = String.valueOf(stp_table.getValueAt(row, 1));
+	    			st_time = String.valueOf(stp_table.getValueAt(row, 2));
+	    			en_time = String.valueOf(stp_table.getValueAt(row, 3));
+	    			price = String.valueOf(stp_table.getValueAt(row, 4));
+	    			timetaken = String.valueOf(stp_table.getValueAt(row, 5));
 	    			sb.setVisible(true);
 	    			// 수량 - 1
 //	    			int minusQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) - 1;	

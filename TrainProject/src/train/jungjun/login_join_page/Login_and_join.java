@@ -152,6 +152,7 @@ public class Login_and_join extends JFrame {
 		pw_passwordField = new JPasswordField();
 		pw_passwordField.setFont(new Font("굴림", Font.PLAIN, 50));
 		pw_passwordField.setBounds(885, 567, 400, 100);
+		
 		login.add(pw_passwordField);
 		
 		JButton check_btn = new JButton("로그인");

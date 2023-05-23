@@ -2123,13 +2123,13 @@ public class SubwayPanel extends JPanel implements MouseListener{
 					.addContainerGap())
 		);
 		
-		Button nextBtn = new Button("다음");
+		JButton nextBtn = new JButton("다음");
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
 			}
 		});
-		nextBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		nextBtn.setFont(new Font("HY견고딕", Font.BOLD, 35));
 		nextBtn.setBounds(1273, 10, 173, 100);
 		panel_main.add(nextBtn);
 		setLayout(groupLayout);

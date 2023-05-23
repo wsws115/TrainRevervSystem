@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import train.Payment_UI;
+import train.Train_Main;
 import train.dao.FoodDAO;
 import train.dto.FoodDTO;
 import train.food.component.FoodBtn;
@@ -30,6 +31,7 @@ public class FoodCourtMainPanel extends JPanel {
 	// [하] 총 가격 라벨 (버튼 액션 시, 토탈 가격 바뀌어야 되서 static 설정)
 	public static JLabel totalPrice_Lab;	
 	public static String[] food_table;
+	public static boolean closing = true;
 	/** [하] 테이블에 따라 총 가격을 구하여 totalPrice 라벨에 업로드 하는 메서드 */
 	public static void getTotalPrice(JTable order_table) {
 		int sum = 0;
