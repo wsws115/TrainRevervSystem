@@ -113,7 +113,7 @@ public class No_login_join extends JFrame {
 				No_login_joinDAO DAO = new No_login_joinDAO();
 				No_login_join_Num_chk nchk  = new No_login_join_Num_chk();
 				No_login_join_pw_chk pchk = new No_login_join_pw_chk();
-				if(DAO.no_loginDAO() && nchk.num_chk() && pchk.pw_chk()) {
+				if(DAO.no_loginDAO()) {
 					alrim = "비회원 가입에 성공했습니다";
 					No_login_alrim alrim = new No_login_alrim();
 					alrim.main(null);

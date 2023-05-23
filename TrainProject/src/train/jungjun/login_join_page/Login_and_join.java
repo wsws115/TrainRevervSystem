@@ -188,6 +188,11 @@ public class Login_and_join extends JFrame {
 				Login_and_joinDAO dao = new Login_and_joinDAO();
 				boolean login_result = dao.login_chk();
 				System.out.println("로그인 성공 여부 " + login_result);
+				if(login_result) {
+					TrainReserv_Main.main(null);
+					setVisible(true);
+					dispose();
+				} 
 			}	
 		});
 		check_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
