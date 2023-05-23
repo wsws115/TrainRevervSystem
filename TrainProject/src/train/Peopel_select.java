@@ -20,10 +20,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Peopel_select extends JPanel {
-	private JTextField textField1;
-	private JTextField textField2;
-	private JTextField textField3;
-	private JTextField textField4;
+	public static JTextField textField1;
+	public static JTextField textField2;
+	public static JTextField textField3;
+	public static JTextField textField4;
 	private boolean login_who = train.TrainReserv_Main.login_who;
 	
 	private int pluspeople(String str) {
@@ -35,9 +35,27 @@ public class Peopel_select extends JPanel {
 		}
 	}
 	
+	private int pluspre(String str) {
+		int num = Integer.parseInt(str)+1;
+		if(num < 2 && num > 0) {
+			return num;
+		}else {
+			return 1;
+		}
+	}
+	
 	private int minuspeople(String str) {
 		int num = Integer.parseInt(str)-1;
 		if(num < 9 && num > 0) {
+			return num;
+		}else {
+			return 0;
+		}
+	}
+	
+	private int minuspre(String str) {
+		int num = Integer.parseInt(str)-1;
+		if(num < 2 && num > 0) {
 			return num;
 		}else {
 			return 0;
@@ -208,7 +226,7 @@ public class Peopel_select extends JPanel {
 		minusBtn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String str = textField4.getText();
-				textField4.setText(""+minuspeople(str));
+				textField4.setText(""+minuspre(str));
 			}
 		});
 		minusBtn4.setBounds(823, 508, 100, 80);
@@ -227,7 +245,7 @@ public class Peopel_select extends JPanel {
 		plusBtn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String str = textField4.getText();
-				textField4.setText(""+pluspeople(str));
+				textField4.setText(""+pluspre(str));
 			}
 		});
 		plusBtn4.setBounds(1027, 508, 100, 80);
@@ -277,6 +295,13 @@ public class Peopel_select extends JPanel {
 				minusBtn4.setEnabled(false);
 				plusBtn4.setEnabled(false);
 				textField4.setEnabled(false);
+				
+			}else if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("disabled") ||
+					train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("national_merit")) {
+				minusBtn4.setEnabled(true);
+				plusBtn4.setEnabled(true);
+				textField4.setEnabled(true);
+				
 			}
 		}catch(NullPointerException e) {
 			e.printStackTrace();

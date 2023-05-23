@@ -72,7 +72,32 @@ public class Payment_UI extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
+	// 인원 선택 별 가격 할인율 적용
+	public int price_calc(int train_price, int food_price) { 
+		int total_price = 0;
+		int[] person = new int[4];
+		person[0] = Integer.parseInt(Peopel_select.textField1.getText());
+		person[1] = Integer.parseInt(Peopel_select.textField2.getText());
+		person[2] = Integer.parseInt(Peopel_select.textField3.getText());
+		person[3] = Integer.parseInt(Peopel_select.textField4.getText());
+		for(int i =0; i < 4 ; ++i) {
+			if(i == 0) {
+				total_price += person[i]*train_price;
+				
+			}else if(i == 1) {
+				total_price += person[i]*(train_price*0.7);
+				
+			}else if(i == 2) {
+				total_price += person[i]*(train_price*0.7);
+				
+			}else if(i == 3) {
+				total_price += person[i]*(train_price*0.5);
+				
+			}
+		}
+		
+		return total_price + food_price;
+	}
 	/**
 	 * Create the dialog.
 	 */
@@ -309,8 +334,6 @@ public class Payment_UI extends JDialog {
 		table.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		user_sp.setViewportView(table);
 		
-		
-				
 		JLabel krw_Label = new JLabel("원");
 		krw_Label.setHorizontalAlignment(JLabel.CENTER);
 		krw_Label.setVerticalAlignment(JLabel.CENTER);
@@ -318,7 +341,7 @@ public class Payment_UI extends JDialog {
 		krw_Label.setBounds(858, 663, 65, 139);
 		payment_info_panel.add(krw_Label);
 		DecimalFormat dc = new DecimalFormat("###,###,###,###");
-		int sum_price = train_price * seatlist.size() + food_total;
+		int sum_price = price_calc(train_price, food_total);
 		JLabel price = new JLabel(dc.format(sum_price));
 		price.setHorizontalAlignment(JLabel.RIGHT);
 //		price.setVerticalAlignment(JLabel.RIGHT);
@@ -467,7 +490,7 @@ public class Payment_UI extends JDialog {
                 List<String> apilist = new ArrayList();
                 List<String> holist = new ArrayList();
                 List<String> ticketlist= new ArrayList();
-                List<String> foodlist = new ArrayList();
+                
                 apilist.add(name);
                 apilist.add(date_text);
                 apilist.add(st_sub);
@@ -501,6 +524,7 @@ public class Payment_UI extends JDialog {
                 // 좌석 입력
                 for(String sn : seatlist) {
                 	List<String> seatlist = new ArrayList();
+                	List<String> foodlist = new ArrayList();
                 	seatlist.add(sn);
                 	if(sn.equals("1A") || sn.equals("1B")||sn.equals("1C")||sn.equals("1D") && carNum == 1 || carNum == 4) {
                 		seatlist.add("wheel");
@@ -513,6 +537,7 @@ public class Payment_UI extends JDialog {
                 	// 티켓 입력
                 	ticketlist.add(""+train_price);
                 	int food_price = 0;
+                	
                 	for(int i =0; i<food_table.length; ++i) {
                 		if(food_table[i].contains(sn)) {
                 			food_price += Integer.parseInt(food_table[i].split(" ")[2]);
@@ -522,19 +547,24 @@ public class Payment_UI extends JDialog {
                 			System.out.println(food_table[i].split(" ")[2]);
                 			foodlist.add(food_table[i].split(" ")[3]);
                 			System.out.println(food_table[i].split(" ")[3]);
+                			ticketlist.add(""+food_price);
+                        	
+                		}else {
+                			ticketlist.add("0");
                 		}
                 	}
-                	ticketlist.add(""+food_price);
                 	ticketlist.add(date_text);
-                	// 회원 비회원 티켓 입력
                 	if(user_who) {
                 		dao.settikect(ticketlist, seatlist, chktrain);
-                		foodDao.setLoginFood(foodlist, seatlist, chktrain);
+                		if (!foodlist.isEmpty()) {
+                			foodDao.setLoginFood(foodlist, seatlist, chktrain);
+                		}
                 	}else {
                 		dao.set_unmem_tikect(ticketlist, seatlist, chktrain);
-                		foodDao.setUnLoginFood(foodlist, seatlist, chktrain);
+                		if (!foodlist.isEmpty()) {
+                			foodDao.setUnLoginFood(foodlist, seatlist, chktrain);
+                		}
                 	}
-                	
                 	
                 }
             }

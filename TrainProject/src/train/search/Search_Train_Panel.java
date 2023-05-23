@@ -41,7 +41,7 @@ public class Search_Train_Panel extends JPanel {
 	public static JTable table;
 	public static DefaultTableModel model;
 	private JSONArray array;
-	public String header[]= {"구분","열차번호","출발시간","도착시간","가격","소요시간","우등","일반"};
+	public String header[]= {"구분","열차번호","출발시간","도착시간","소요시간","우등가격","우등","일반가격","일반"};
 	private SubwayCode subc;
 	private SubwayCategory sub_cg;
 	/**
@@ -68,8 +68,8 @@ public class Search_Train_Panel extends JPanel {
 		table.getTableHeader().setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 		table.getColumnModel().getColumn(6).setCellRenderer(new ReservBtn("우등예매", table));
 		table.getColumnModel().getColumn(6).setCellEditor(new ReservBtn("우등예매",table));
-		table.getColumnModel().getColumn(7).setCellRenderer(new ReservBtn("일반예매",table));
-		table.getColumnModel().getColumn(7).setCellEditor(new ReservBtn("일반예매",table));
+		table.getColumnModel().getColumn(8).setCellRenderer(new ReservBtn("일반예매",table));
+		table.getColumnModel().getColumn(8).setCellEditor(new ReservBtn("일반예매",table));
 		table.setAutoCreateRowSorter(true);
 		
 		subc = new SubwayCode();
@@ -133,11 +133,11 @@ public class Search_Train_Panel extends JPanel {
 					el_min = Math.abs(diff.toMinutes()%60-60);
 				}
 				String eltime = el_hour + "시간" + el_min+ "분";
-				
+				int quality_up = (int) (Integer.parseInt(String.valueOf(object.get("adultcharge")))*1.2) ;
 			    model.insertRow(i, new Object[]{object.get("traingradename"),object.get("trainno"),
 			    		st_time,en_time,
-			    		object.get("adultcharge"),eltime,
-			    		"",""
+			    		eltime,""+quality_up,"",
+			    		object.get("adultcharge"),""
 			    });
 			}
 			

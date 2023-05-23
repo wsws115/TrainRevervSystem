@@ -50,9 +50,9 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			System.out.println(st_time);
 	    			en_time = String.valueOf(stp_table.getValueAt(row, 3));
 	    			System.out.println(en_time);
-	    			price = String.valueOf(stp_table.getValueAt(row, 4));
+	    			price = String.valueOf(stp_table.getValueAt(row, 5));
 	    			System.out.println(price);
-	    			timetaken = String.valueOf(stp_table.getValueAt(row, 5));
+	    			timetaken = String.valueOf(stp_table.getValueAt(row, 4));
 	    			System.out.println(timetaken);
 	    			sd.setVisible(true);
 	    			// 수량 + 1
@@ -73,8 +73,8 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			num = String.valueOf(stp_table.getValueAt(row, 1));
 	    			st_time = String.valueOf(stp_table.getValueAt(row, 2));
 	    			en_time = String.valueOf(stp_table.getValueAt(row, 3));
-	    			price = String.valueOf(stp_table.getValueAt(row, 4));
-	    			timetaken = String.valueOf(stp_table.getValueAt(row, 5));
+	    			price = String.valueOf(stp_table.getValueAt(row, 7));
+	    			timetaken = String.valueOf(stp_table.getValueAt(row, 4));
 	    			sb.setVisible(true);
 	    			// 수량 - 1
 //	    			int minusQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) - 1;	
