@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import train.Second_main;
 import train.Train_Main;
 import train.jungjun.login_join_page.Login_and_join;
 
@@ -19,7 +20,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GoMain extends JDialog {
-
+	
+	public static boolean close = false;
+	
 	private final JPanel contentPanel = new JPanel();
 //	public static boolean Goclose = false;
 	/**
@@ -40,7 +43,7 @@ public class GoMain extends JDialog {
 	 */
 	public GoMain() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(800, 300, 600, 600);
+		setBounds(650, 250, 600, 600);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 584, 350);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,6 +72,7 @@ public class GoMain extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Train_Main gomain = new Train_Main();
 						gomain.main(null);
+						close = true;
 						dispose();
 					}
 				});

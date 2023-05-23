@@ -9,6 +9,8 @@ import train.db.OjdbcConnection;
 public class No_login_joinDAO {
 	public static String pk;
 	public boolean no_loginDAO() {
+		No_login_join_Num_chk nchk = new No_login_join_Num_chk();
+		No_login_join_pw_chk pchk = new No_login_join_pw_chk();
 		String query = 
 				"INSERT INTO non_mem_info (phone_number,password,no_mem_pk) VALUES (?,?,?)";
 		String query2 = "select ZBF_GET_SEQ_NO_MEM('now') from DUAL";
@@ -16,8 +18,9 @@ public class No_login_joinDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 				PreparedStatement pstmt2 = conn.prepareStatement(query2);
-			) {					
-				pstmt.setString(1, No_login_join.phone_num);
+			) {	
+				if(nchk.num_chk() && pchk.pw_chk()) {
+					pstmt.setString(1, No_login_join.phone_num);
 				pstmt.setString(2, No_login_join.pw);
 				
 				try(ResultSet rs = pstmt2.executeQuery();){
@@ -28,7 +31,9 @@ public class No_login_joinDAO {
 				}
 				pstmt.setString(3, pk);
 				pstmt.executeUpdate();
-				return true;		
+				return true;
+				}
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

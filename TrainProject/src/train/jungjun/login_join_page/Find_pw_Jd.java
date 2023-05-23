@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Find_pw_Jd extends JDialog {
 
@@ -24,7 +25,8 @@ public class Find_pw_Jd extends JDialog {
 	private JTextField pw_chk_textField_2;
 	public static String pw1 = "";
 	public static String pw2 = "";
-
+	
+	public static String alrim = "";
 	/**
 	 * Launch the application.
 	 */
@@ -84,15 +86,21 @@ public class Find_pw_Jd extends JDialog {
 			buttonPane.setLayout(null);
 			{
 				JButton okButton = new JButton("변경");
+				okButton.setForeground(Color.WHITE);
+				okButton.setBackground(new Color(0, 128, 192));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						pw1 = pw_chk_textField_1.getText();
 						pw2 = pw_chk_textField_2.getText();
 						ChangePW change = new ChangePW();
 						if(change.change_pw() && pw1.equals(pw2)) {
-							JOptionPane.showMessageDialog(null,"변경되었습니다");
+							alrim = "변경되었습니다";
+							Find_pw_jd_alrim alrim = new Find_pw_jd_alrim();
+							alrim.main(null);
 						}else {
-							JOptionPane.showMessageDialog(null,"정확히 입력하세요");
+							alrim = "정확히 입력하세요";
+							Find_pw_jd_alrim alrim = new Find_pw_jd_alrim();
+							alrim.main(null);
 						}
 					}
 				});
@@ -104,6 +112,8 @@ public class Find_pw_Jd extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("확인");
+				cancelButton.setBackground(new Color(0, 128, 192));
+				cancelButton.setForeground(Color.WHITE);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

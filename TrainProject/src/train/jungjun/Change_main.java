@@ -41,15 +41,15 @@ public class Change_main extends JFrame {
 	public Change_main() {
 		
 		ImageIcon img1 = new ImageIcon
-				("resource/goMemCheck.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/goMemCheck.png");
 		ImageIcon img2 = new ImageIcon
-				("resource/goNoMemCheck.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/goNoMemCheck.png");
 		ImageIcon img3 = new ImageIcon
-				("resource/E-RAIL.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 		ImageIcon img4 = new ImageIcon
-				("resource/home.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 		ImageIcon img5 = new ImageIcon
-				("resource/back_homebtn.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.png");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);

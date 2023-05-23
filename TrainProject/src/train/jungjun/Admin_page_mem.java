@@ -18,9 +18,9 @@ public class Admin_page_mem extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	
-	String str [][] = new String[0][8];
+	String str [][] = new String[0][7];
 	static DefaultTableModel model;
-	String str2 [] = {"회원 번호", "아이디", "비밀번호", "이름", "전화번호", "생년월일", "이메일", "우대 사항", "탈퇴"};
+	String str2 [] = {"회원 번호", "아이디", "이름", "전화번호", "생년월일", "이메일", "우대 사항", "탈퇴"};
 	
 	/**
 	 * Launch the application.

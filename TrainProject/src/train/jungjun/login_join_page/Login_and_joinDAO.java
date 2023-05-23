@@ -20,7 +20,7 @@ import train.db.OjdbcConnection;
 // 사용
 
 public class Login_and_joinDAO {
-	
+	public static String alrim = "";
 	public static String user_code;
 	public static String preferential;
 	public boolean login_chk() {
@@ -38,23 +38,29 @@ public class Login_and_joinDAO {
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
-						JOptionPane.showMessageDialog(null,"로그인에 성공했습니다");
-						Choice c = new Choice();
-						c.setVisible(true);
+						alrim = "로그인에 성공하셨습니다";
 						user_code = rs.getString("usernum_pk");
 						preferential = rs.getString("preferential_treatment");
+						Login_alrim alrim = new Login_alrim();
+						alrim.main(null);
 						return true;
 					}else {
-						JOptionPane.showMessageDialog(null,"로그인에 실패했습니다1");
+						alrim = "로그인에 실패했습니다_1";
+						Login_alrim alrim = new Login_alrim();
+						alrim.main(null);
 						return false;
 					}
 				}catch(Exception e) {
-					JOptionPane.showMessageDialog(null,"로그인에 실패했습니다2");
+					alrim = "로그인에 실패했습니다_2";
+					Login_alrim alrim = new Login_alrim();
+					alrim.main(null);
 					e.printStackTrace();
 					return false;
 				}
 		}catch(Exception e) {
-			JOptionPane.showMessageDialog(null,"로그인에 실패했습니다3");
+			alrim = "로그인에 실패했습니다_3";
+			Login_alrim alrim = new Login_alrim();
+			alrim.main(null);
 			e.printStackTrace();
 			return false;
 		}

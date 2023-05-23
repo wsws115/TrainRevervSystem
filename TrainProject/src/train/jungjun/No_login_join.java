@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import train.Second_main;
-import train.TrainReserv_Main;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,6 +33,8 @@ public class No_login_join extends JFrame {
 	public static String phone_num = "";
 	public static String pw = "";
 	
+	public static String alrim = "";
+	public static String alrim2 = "";
 	
 	/**
 	 * Launch the application.
@@ -60,11 +61,11 @@ public class No_login_join extends JFrame {
 				new Font("HY헤드라인M", Font.BOLD, 50));
 		
 		ImageIcon img1 = new ImageIcon
-				("resource/E-RAIL.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 		ImageIcon img2 = new ImageIcon
-				("resource/back_homebtn.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.png");
 		ImageIcon img3 = new ImageIcon
-				("resource/home.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 		
 		Image img = img1.getImage();
 	 	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
@@ -110,13 +111,29 @@ public class No_login_join extends JFrame {
 				phone_num = num_textField.getText();
 				pw = pw_passwordField.getText();
 				No_login_joinDAO DAO = new No_login_joinDAO();
-				if(DAO.no_loginDAO()) {
-					JOptionPane.showMessageDialog(null,"비회원 가입에 성공했습니다");
-					TrainReserv_Main.main(null);
-					TrainReserv_Main.login_who = false;
-					setVisible(false);
+				No_login_join_Num_chk nchk  = new No_login_join_Num_chk();
+				No_login_join_pw_chk pchk = new No_login_join_pw_chk();
+				if(DAO.no_loginDAO() && nchk.num_chk() && pchk.pw_chk()) {
+					alrim = "비회원 가입에 성공했습니다";
+					No_login_alrim alrim = new No_login_alrim();
+					alrim.main(null);
+					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
+				}else if(!nchk.num_chk()) {
+					alrim = "전화번호를 정확히 입력하세요";
+					No_login_alrim alrim = new No_login_alrim();
+					alrim.main(null);
+					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
+				}else if(!pchk.pw_chk()) {
+					alrim = "비밀번호를 정확히 입력하세요";
+					No_login_alrim alrim = new No_login_alrim();
+					alrim.main(null);
+					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
 				}else {
-					JOptionPane.showMessageDialog(null,"비회원 가입에 실패했습니다");
+					alrim = "비회원 가입에 실패했습니다";
+					alrim2 = "(같은 전화번호를 입력하지 마세요)";
+					No_login_faild_alrim alrim = new No_login_faild_alrim();
+					alrim.main(null);
+					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
 				}
 			}
 		});

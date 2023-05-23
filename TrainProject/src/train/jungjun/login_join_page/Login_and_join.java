@@ -74,18 +74,20 @@ public class Login_and_join extends JFrame {
 	public static String name3 = "";
 	public static String phone_number3 = "";
 	
+	public static String discount = "";
+	
 	ImageIcon img3 = new ImageIcon
-			("resource/E-RAIL.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 	ImageIcon img7 = new ImageIcon
-			("resource/back_homebtn.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.PNG");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/back.png");
 	ImageIcon img1 = new ImageIcon
-			("resource/radio_button_off.PNG");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/radio_button_off.PNG");
 	ImageIcon img2 = new ImageIcon
-			("resource/radio_button_on.PNG");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/radio_button_on.PNG");
 	ImageIcon img4 = new ImageIcon
-			("resource/home.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 	
 	Image img = img3.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
@@ -102,13 +104,14 @@ public class Login_and_join extends JFrame {
 				try {
 					Login_and_join frame = new Login_and_join();
 					frame.setVisible(true);
+					if(GoMain.close) {
+						frame.dispose();
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
-		
-		
+		});	
 	}
 
 	/**
@@ -152,7 +155,25 @@ public class Login_and_join extends JFrame {
 		pw_passwordField = new JPasswordField();
 		pw_passwordField.setFont(new Font("굴림", Font.PLAIN, 50));
 		pw_passwordField.setBounds(885, 567, 400, 100);
-		
+		pw_passwordField.addKeyListener(new KeyAdapter() {
+	        @Override
+	        public void keyPressed(KeyEvent e) {
+	        	id = id_textField.getText();
+				pw = pw_passwordField.getText();
+				
+	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
+	            	Login_and_joinDAO dao = new Login_and_joinDAO();
+					boolean login_result = dao.login_chk();
+					System.out.println("로그인 성공 여부 " + login_result);
+					if(login_result) {
+						TrainReserv_Main.main(null);
+						setVisible(true);
+						dispose();
+					} 
+	            }
+	        }
+
+	    });
 		login.add(pw_passwordField);
 		
 		JButton check_btn = new JButton("로그인");
@@ -167,11 +188,6 @@ public class Login_and_join extends JFrame {
 				Login_and_joinDAO dao = new Login_and_joinDAO();
 				boolean login_result = dao.login_chk();
 				System.out.println("로그인 성공 여부 " + login_result);
-				if(login_result) {
-					TrainReserv_Main.main(null);
-					setVisible(true);
-					dispose();
-				}
 			}	
 		});
 		check_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
@@ -354,7 +370,8 @@ public class Login_and_join extends JFrame {
 		join.add(chk_overlap_btn);
 		
 		JLabel pw_alrim = new JLabel();
-		pw_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
+		pw_alrim.setText("6자리이상 영어 대문자,소문자,숫자,특수문자를 포함하세요");
+		pw_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 		pw_alrim.setBounds(1250, 235, 500, 60);
 		join.add(pw_alrim);
 		
@@ -364,11 +381,13 @@ public class Login_and_join extends JFrame {
 		join.add(email_alrim);
 		
 		JLabel number_alrim = new JLabel();
+		number_alrim.setText("010-0000-0000");
 		number_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		number_alrim.setBounds(1250, 485, 400, 60);
 		join.add(number_alrim);
 		
 		JLabel birthday_alrim = new JLabel();
+		birthday_alrim.setText("YYYY-MM-DD");
 		birthday_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		birthday_alrim.setBounds(1250, 400, 400, 60);
 		join.add(birthday_alrim);
@@ -440,6 +459,7 @@ public class Login_and_join extends JFrame {
 		join.add(id_alrim);
 		
 		JLabel name_alrim = new JLabel();
+		name_alrim.setText("2자리 이상 한글을 입력하세요");
 		name_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		name_alrim.setBounds(1250, 320, 400, 60);
 		join.add(name_alrim);
@@ -628,15 +648,16 @@ public class Login_and_join extends JFrame {
 				 if (default_radio_btn.isSelected()) {
 					 preferential_treatment = "default";
 					 preferential_treatment_chk_B = true;
-					 JOptionPane.showMessageDialog(null,"기본이 선택되었습니다");
+					 Select_default_alrim sd = new Select_default_alrim();
+					 sd.main(null);
 				 }else if(disabled_radio_btn.isSelected()) {
-					 preferential_treatment = "disabled";
-					 preferential_treatment_chk_B = true;
-					 JOptionPane.showMessageDialog(null,"장애인이 선택되었습니다");
+					 discount = "장애인";
+					 CheckDiscount dc = new CheckDiscount();
+					 dc.main(null);
 				 }else if(national_merit_radio_btn.isSelected()) {
-					 preferential_treatment = "national_merit";
-					 preferential_treatment_chk_B = true;
-					 JOptionPane.showMessageDialog(null,"국가 유공자가 선택되었습니다");
+					 discount = "국가유공자";
+					 CheckDiscount dc = new CheckDiscount();
+					 dc.main(null);
 				 }
 			}
 		});
@@ -714,7 +735,7 @@ public class Login_and_join extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				email = email_textField.getText();
 				Email_chk email_1 = new Email_chk();
-				if(email_1.email_chk(email)) {
+				if(email_1.email_chk()) {
 					email_alrim.setText("이메일을 정확히 입력하셨습니다");
 					email_chk_B = true;
 				}else {
@@ -730,7 +751,7 @@ public class Login_and_join extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				phone_number = phone_textField.getText();
 				Number_chk number_1 = new Number_chk();
-				if(number_1.number_chk(phone_number)) {
+				if(number_1.number_chk()) {
 					number_alrim.setText("올바른 전화번호입니다");
 					num_chk_B = true;
 				}else {
@@ -746,7 +767,7 @@ public class Login_and_join extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				birthday = birthday_textField.getText();
 				Birthday_chk chk_birthday = new Birthday_chk();
-				if(chk_birthday.birthday_chk(birthday)) {
+				if(chk_birthday.birthday_chk()) {
 					birthday_alrim.setText("올바른 생년월일입니다");
 					birthday_chk_B = true;
 				}else {
@@ -768,7 +789,7 @@ public class Login_and_join extends JFrame {
 				if(result1 || result2 || result3) {
 					id_alrim.setText("admin을 포함하지 마세요");
 					id_chk_B = false;
-				}else if(id.id_chk(id2)){
+				}else if(id.id_chk()){
 					id_alrim.setText("올바른 아이디입니다");
 					id_chk_B = true;
 				}else {
@@ -784,7 +805,7 @@ public class Login_and_join extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				name1 = name_textField.getText();
 				Name_chk name = new Name_chk();
-				if(name.name_chk(name1)) {
+				if(name.name_chk()) {
 					name_alrim.setText("올바른 이름입니다");
 					name_chk_B = true;
 				}else {

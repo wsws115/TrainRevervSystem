@@ -16,6 +16,7 @@ import train.db.OjdbcConnection;
 
 // 사용
 public class JoinDAO {
+	public static String alrim = "";
 	
 	public boolean join_chk() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
@@ -41,22 +42,26 @@ public class JoinDAO {
 						pstmt.setString(7, Login_and_join.preferential_treatment);
 						try(ResultSet rs = pstmt.executeQuery();){
 							if(rs.next()) {
-								JOptionPane.showMessageDialog(null,"회원가입 성공");
-								Choice c = new Choice();
-								c.setVisible(true);
+								alrim = "회원가입 성공";
+								Join_alrim alrim = new Join_alrim();
+								alrim.main(null);
 								return true;
 							}else {
-								JOptionPane.showMessageDialog
-								(null,"회원가입 실패");
+								alrim = "회원가입 실패";
+								Join_alrim alrim = new Join_alrim();
+								alrim.main(null);
 								return false;
 							}
 						}
 					}
-					JOptionPane.showMessageDialog(null,"정확한 값을 입력하세요");
+					alrim = "정확한 값을 입력하세요";
+					Join_alrim alrim = new Join_alrim();
+					alrim.main(null);
 					return false;
 			}catch(Exception e) {
-				JOptionPane.showMessageDialog
-				(null,"회원가입 실패(중복된 아이디가 있을 수 있습니다)_1");
+				alrim = "회원가입 실패 (중복된 아이디이가 있을수 있습니다)_1";
+				Join_alrim alrim = new Join_alrim();
+				alrim.main(null);
 				e.printStackTrace();
 				return false;
 			}

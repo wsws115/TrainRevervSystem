@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import train.db.OjdbcConnection;
 
 public class Mem_chageDAO {
+	public static String alrim = "";
 	
 	public boolean DAO() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
@@ -29,17 +30,21 @@ public class Mem_chageDAO {
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
-						JOptionPane.showMessageDialog(null,"로그인에 성공했습니다");
-						Choice c = new Choice();
-						c.setVisible(true);
+						alrim = "로그인에 성공했습니다";
+						Mem_changeDAO_alrim mca = new Mem_changeDAO_alrim();
+						mca.main(null);
 						return true;
 					}else {
-						JOptionPane.showMessageDialog(null,"로그인에 실패했습니다1");
+						alrim = "로그인에 실패했습니다_1";
+						Mem_changeDAO_alrim mca = new Mem_changeDAO_alrim();
+						mca.main(null);
 						return false;
 					}
 				}
 		}catch(Exception e) {
-			JOptionPane.showMessageDialog(null,"로그인에 실패했습니다2");
+			alrim = "로그인에 실패했습니다_2";
+			Mem_changeDAO_alrim mca = new Mem_changeDAO_alrim();
+			mca.main(null);
 			e.printStackTrace();
 			return false;
 		}

@@ -28,11 +28,11 @@ public class No_mem_change extends JFrame {
 	public static String pw = "";
 	
 	ImageIcon img1 = new ImageIcon
-			("resource/E-RAIL.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 	ImageIcon img2 = new ImageIcon
-			("resource/back_homebtn.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.png");
 	ImageIcon img3 = new ImageIcon
-			("resource/home.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 	
 	Image img = img1.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
@@ -105,10 +105,11 @@ public class No_mem_change extends JFrame {
 		no_mem_look_up.setBounds(425, 350, 350, 100);
 		contentPane.add(no_mem_look_up);
 		
-		JLabel phone_number = new JLabel("전화번호");
-		phone_number.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-		phone_number.setBounds(600, 500, 175, 100);
-		contentPane.add(phone_number);
+		JLabel pn_label = new JLabel("전화번호");
+		pn_label.setHorizontalAlignment(SwingConstants.TRAILING);
+		pn_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
+		pn_label.setBounds(487, 500, 363, 100);
+		contentPane.add(pn_label);
 		
 		pn_textField = new JTextField();
 		pn_textField.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
@@ -131,8 +132,8 @@ public class No_mem_change extends JFrame {
 		lblNewLabel.setBounds(1300, 650, 350, 100);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("확인");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton select_btn = new JButton("확인");
+		select_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pn = pn_textField.getText();
 				pw = pw_passwordField.getText();
@@ -141,11 +142,11 @@ public class No_mem_change extends JFrame {
 				System.out.println("로그인 여부" + result);
 			}
 		});
-		btnNewButton.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(new Color(0, 128, 192));
-		btnNewButton.setBounds(500, 850, 900, 100);
-		contentPane.add(btnNewButton);
+		select_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
+		select_btn.setForeground(Color.WHITE);
+		select_btn.setBackground(new Color(0, 128, 192));
+		select_btn.setBounds(500, 850, 900, 100);
+		contentPane.add(select_btn);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 

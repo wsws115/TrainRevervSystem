@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Find_id_jd extends JDialog {
 
@@ -53,6 +54,8 @@ public class Find_id_jd extends JDialog {
 			buttonPane.setLayout(null);
 			{	
 				JButton okButton = new JButton("비밀번호 찾기");
+				okButton.setBackground(new Color(0, 128, 192));
+				okButton.setForeground(Color.WHITE);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Login_and_join login_frame = new Login_and_join();
@@ -69,6 +72,8 @@ public class Find_id_jd extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("확인");
+				cancelButton.setForeground(Color.WHITE);
+				cancelButton.setBackground(new Color(0, 128, 192));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

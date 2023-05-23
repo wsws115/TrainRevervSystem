@@ -18,14 +18,14 @@ public class MemDAO {
 					while(rs.next()) {
 						String mn = rs.getString(1);
 						String id = rs.getString(2);
-						String pw = rs.getString(3);
+						//String pw = rs.getString(3);
 						String name = rs.getString(4);
 						String pn = rs.getString(5);
 						String bd = rs.getString(6);
 						String email = rs.getString(7);
 						String pt = rs.getString(8);
 						
-						String data[] = {mn,id,pw,name,pn,bd,email,pt};
+						String data[] = {mn,id,name,pn,bd,email,pt};
 						Admin_page_mem.model.addRow(data);
 					}
 				}	

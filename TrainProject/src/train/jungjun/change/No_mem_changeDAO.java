@@ -13,6 +13,7 @@ import train.db.OjdbcConnection;
 import train.jungjun.No_login_join;
 
 public class No_mem_changeDAO {
+	public static String alrim = "";
 	public boolean NCDAO() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
 		UIManager.put("OptionPane.messageFont",
@@ -28,15 +29,21 @@ public class No_mem_changeDAO {
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
-						JOptionPane.showMessageDialog(null,"로그인에 성공했습니다");
+						alrim = "로그인에 성공했습니다";
+						No_mem_changeDAO_alrim alrim = new No_mem_changeDAO_alrim();
+						alrim.main(null);
 						return true;
 					}else {
-						JOptionPane.showMessageDialog(null,"로그인에 실패했습니다_1");
+						alrim = "로그인에 실패했습니다_1";
+						No_mem_changeDAO_alrim alrim = new No_mem_changeDAO_alrim();
+						alrim.main(null);
 						return false;
 					}
 				}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,"로그인에 실패했습니다_2");
+			alrim = "로그인에 실패했습니다_2";
+			No_mem_changeDAO_alrim alrim = new No_mem_changeDAO_alrim();
+			alrim.main(null);
 			e.printStackTrace();
 			return false;
 		}
