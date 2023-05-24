@@ -26,6 +26,7 @@ import train.dto.FoodDTO;
 import train.food.component.FoodBtn;
 import train.food.component.FoodLab;
 import train.food.component.OrderTable;
+import train.ticket.Rev_detail;
 
 public class FoodCourtMainPanel extends JPanel {
 	// [하] 총 가격 라벨 (버튼 액션 시, 토탈 가격 바뀌어야 되서 static 설정)
@@ -328,6 +329,7 @@ public class FoodCourtMainPanel extends JPanel {
 					}
 					Payment_UI pay_panel = new Payment_UI();
 					pay_panel.setVisible(true);
+					
 				}
 			});  // [하] - 끝 -
 		

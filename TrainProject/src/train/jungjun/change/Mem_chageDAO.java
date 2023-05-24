@@ -14,7 +14,7 @@ import train.db.OjdbcConnection;
 
 public class Mem_chageDAO {
 	public static String alrim = "";
-	
+	public static String user_code;
 	public boolean DAO() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
 		UIManager.put("OptionPane.messageFont",
@@ -31,6 +31,7 @@ public class Mem_chageDAO {
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
 						alrim = "로그인에 성공했습니다";
+						user_code = rs.getString("usernum_pk");
 						Mem_changeDAO_alrim mca = new Mem_changeDAO_alrim();
 						mca.main(null);
 						return true;

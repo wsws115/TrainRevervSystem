@@ -54,6 +54,8 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			System.out.println(price);
 	    			timetaken = String.valueOf(stp_table.getValueAt(row, 4));
 	    			System.out.println(timetaken);
+	    			train.dao.Check_Rev_DAO train_check = new train.dao.Check_Rev_DAO();
+	    			train_check.chk_seat();
 	    			sd.setVisible(true);
 	    			// 수량 + 1
 //	    			int addQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) + 1;	
@@ -75,6 +77,8 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			en_time = String.valueOf(stp_table.getValueAt(row, 3));
 	    			price = String.valueOf(stp_table.getValueAt(row, 7));
 	    			timetaken = String.valueOf(stp_table.getValueAt(row, 4));
+	    			train.dao.Check_Rev_DAO train_check = new train.dao.Check_Rev_DAO();
+	    			train_check.chk_seat();
 	    			sb.setVisible(true);
 	    			// 수량 - 1
 //	    			int minusQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) - 1;	

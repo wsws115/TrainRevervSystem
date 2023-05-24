@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import train.jungjun.Change_main;
 import train.jungjun.GoMain;
+import train.ticket.Rev_detail;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -126,6 +127,9 @@ public class Mem_change extends JFrame {
 				Mem_chageDAO CDAO = new Mem_chageDAO();
 				boolean login_result = CDAO.DAO();
 				System.out.println("로그인 성공 여부" + login_result);
+				Rev_detail rev = new Rev_detail();
+				rev.chk_search = false;
+				rev.setVisible(true);
 			}
 		});
 		login_btn.setBackground(new Color(0, 128, 192));

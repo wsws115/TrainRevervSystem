@@ -34,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
 
 import train.search.Search_Train_Panel;
 import train.search.component.ReservBtn;
+import train.ticket.Rev_detail;
 import train.dao.Train_Api_DAO;
 import train.dto.Search_TableDTO;
 import train.food.FoodCourtMainPanel;
@@ -433,9 +434,12 @@ public class Payment_UI extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.frame.dispose();
 				setVisible(false);
+				
+				Rev_detail rev = new Rev_detail();
+				rev.chk_search = true;
+				rev.setVisible(true);
 				Train_Main main_return = new Train_Main();
 				main_return.main(null);
-				
 			}
 		});
 		Previous_Btn.setForeground(Color.WHITE);
@@ -498,6 +502,7 @@ public class Payment_UI extends JDialog {
                 apilist.add(en_sub);
                 apilist.add(en_time);
                 apilist.add(timetaken);
+                apilist.add(num);
                 System.out.println(apilist.toString());
                 // 열차 입력
                 int chk = dao.chk_train(apilist);
@@ -542,11 +547,11 @@ public class Payment_UI extends JDialog {
                 		if(food_table[i].contains(sn)) {
                 			food_price += Integer.parseInt(food_table[i].split(" ")[2]);
                 			foodlist.add(food_table[i].split(" ")[1]);
-                			System.out.println(food_table[i].split(" ")[1]);
-                			foodlist.add(food_table[i].split(" ")[2]);
-                			System.out.println(food_table[i].split(" ")[2]);
+                			System.out.println(food_table[i].split(" ")[1]); //이름
                 			foodlist.add(food_table[i].split(" ")[3]);
-                			System.out.println(food_table[i].split(" ")[3]);
+                			System.out.println(food_table[i].split(" ")[3]); // 수량
+                			foodlist.add(food_table[i].split(" ")[2]);
+                			System.out.println(food_table[i].split(" ")[2]); // 가격
                 			ticketlist.add(""+food_price);
                         	
                 		}else {

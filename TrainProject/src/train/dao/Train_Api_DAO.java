@@ -108,7 +108,7 @@ public class Train_Api_DAO {
 //	}
 	public void setAllSearch(List<String> apilist){
 		
-		String query1 = "INSERT INTO train_api VALUES(train_id_seq.nextval,?,?,?,?,?,?,?)";
+		String query1 = "INSERT INTO train_api VALUES(train_id_seq.nextval,?,?,?,?,?,?,?,?)";
 		
 		try (
 				Connection conn = OjdbcConnection.getConnection();
@@ -123,6 +123,7 @@ public class Train_Api_DAO {
 				pstmt.setString(5, apilist.get(4));
 				pstmt.setString(6, apilist.get(5));
 				pstmt.setString(7, apilist.get(6));
+				pstmt.setString(8, apilist.get(7));
 				pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -208,6 +209,12 @@ public class Train_Api_DAO {
 				String user_code =  train.jungjun.login_join_page.Login_and_joinDAO.user_code;
 				String preferential = train.jungjun.login_join_page.Login_and_joinDAO.preferential;
 				int price = Integer.parseInt(ticketlist.get(0)) + Integer.parseInt(ticketlist.get(1));
+				System.out.println(train_ho+seatlist.get(0) + user_code+","
+				+user_code+","
+				+train_ho+seatlist.get(0)+","
+				+preferential+","
+				+price+","
+				+ticketlist.get(2));
 				pstmt.setString(1, train_ho+seatlist.get(0) + user_code);
 				pstmt.setString(2, user_code);
 				pstmt.setString(3, train_ho+seatlist.get(0));
@@ -215,6 +222,7 @@ public class Train_Api_DAO {
 				pstmt.setInt(5, price);
 				pstmt.setString(6, ticketlist.get(2));
 				pstmt.executeUpdate();
+				System.out.println(pstmt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -211,9 +211,11 @@ public class SpecialWheelSeatPanel extends JPanel implements MouseListener {
          }
          seatPanel.setLayout(new GridLayout(10, 2, 10, 10));
          return seatPanel;
-         
+        
       }
-      
+    public JToggleButton[] getbtnButtons() {
+    	return leftBtns;
+    }
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(list.size() == people) {

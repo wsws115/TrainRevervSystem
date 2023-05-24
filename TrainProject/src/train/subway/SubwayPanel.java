@@ -30,6 +30,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import train.calender.CalenderMain;
+import train.ticket.Rev_detail;
 
 import javax.swing.JScrollPane;
 import java.awt.Component;

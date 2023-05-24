@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
@@ -99,6 +100,10 @@ public class SpecialSeatSelect extends JDialog {
 		// 2,3호차는 특실 + 일반좌석
 
 		specialwheel1 = new SpecialWheelSeatPanel();
+		JToggleButton[] testbtn = ((SpecialWheelSeatPanel) specialwheel1).getbtnButtons();
+		for(int i = 0; i< testbtn.length; ++i) {
+			System.out.println(testbtn[i].getText());
+		}
 		special2 = new SpecialSeatPanel();
 		special3 = new SpecialSeatPanel();
 
