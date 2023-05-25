@@ -7,10 +7,11 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
@@ -19,31 +20,33 @@ import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 
+import train.dao.SeatDAO;
+
 
 public class SpecialWheelSeatPanel extends JPanel implements MouseListener {
-   String[] specialwheelleft = { "1A", "1B", "2A", "2B", "3A", "3B", "4A",
+   public static String[] specialwheelleft = { "1A", "1B", "2A", "2B", "3A", "3B", "4A",
          "4B", "5A", "5B", "6A", "6B", "7A", "7B", "8A", "8B", "9A", "9B", "10A",
          "10B"};
-   String[] specialwheelright = { "1C", "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C",
+   private String[] specialwheelright = { "1C", "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C",
          "10C" };
    
-   JPanel leftSeat;
-   JPanel rightSeat;
+   public static JPanel leftSeat;
+   public static JPanel rightSeat;
    
    String mainFont = "HY헤드라인M";
    String html = "<html>";
    String br = "<br>휠체어석<html>";
    
    JToggleButton[] seatBtns;
-   JToggleButton[] leftBtns;
-   JToggleButton[] rightBtns;
+   static JToggleButton[] leftBtns;
+   static JToggleButton[] rightBtns;
    
    public static JPanel leftSeatPanel;
    public static JPanel rightSeatPanel;
    public static JPanel wholeSeatPanel;
 	
-   public static ButtonGroup btnGroup1 = new ButtonGroup(); // 좌측패널의 버튼 그룹
-	public static ButtonGroup btnGroup2 = new ButtonGroup(); // 우측패널의 버튼 그룹
+//   public static ButtonGroup btnGroup1 = new ButtonGroup(); // 좌측패널의 버튼 그룹
+//	public static ButtonGroup btnGroup2 = new ButtonGroup(); // 우측패널의 버튼 그룹
    
    int people = Integer.parseInt(train.TrainReserv_Main.selectPeopleLabel.getText()); 
    List<String> list = new ArrayList<>();
@@ -68,17 +71,25 @@ public class SpecialWheelSeatPanel extends JPanel implements MouseListener {
       // 좌측좌석패널(A,B)
       leftSeatPanel = new JPanel();
       leftSeatPanel.setBackground(Color.white);
-      leftSeat = getHalfSeatPanel(true,btnGroup1);
+      leftSeat = getHalfSeatPanel(true);
 	  leftSeatPanel.add(leftSeat, BorderLayout.WEST);
-	    		
       
       // 우측좌석패널(C,D)
       rightSeatPanel = new JPanel();
       rightSeatPanel.setBackground(Color.white);
-      rightSeat = getHalfSeatPanel(false,btnGroup2);
+      rightSeat = getHalfSeatPanel(false);
 	  rightSeatPanel.add(rightSeat, BorderLayout.EAST);
       
 	  wholeSeatPanel = getseatPanel(seatSelectMainPanel,leftSeatPanel,rightSeatPanel);
+
+
+   }
+   
+   public JToggleButton[] getLeftSeatButtons() {
+	  return leftBtns;
+   }
+   public JToggleButton[] getRightSeatButtons() {
+	   return rightBtns;
    }
    
    /** 메인패널(좌석선택패널이 부착될 패널)과 좌우측 패널을 전달받아
@@ -94,7 +105,7 @@ public class SpecialWheelSeatPanel extends JPanel implements MouseListener {
       
       
       /** 좌석의 개수를 전달하면 해당 개수의 버튼이 부착된 패널을 반환해주는 메서드 (좌/ 우 패널 */
-      JPanel getHalfSeatPanel(boolean chk, ButtonGroup buttonGroup) {
+      JPanel getHalfSeatPanel(boolean chk) {
     	  
     	 String[] positions;
          JPanel seatPanel = new JPanel();
@@ -106,6 +117,7 @@ public class SpecialWheelSeatPanel extends JPanel implements MouseListener {
         	   String buttonText = ((JToggleButton) e.getSource()).getText();
                String[] seatarr = buttonText.split("<|>");
                buttonText = seatarr[2];
+               System.out.println(Arrays.toString(seatarr));
               
                if (((JToggleButton) e.getSource()).isSelected()) {
                   if(people > list.size()) {
@@ -164,7 +176,8 @@ public class SpecialWheelSeatPanel extends JPanel implements MouseListener {
                  leftBtns[i].setBackground(new Color(0, 128, 192));
                  leftBtns[i].setFont(new Font("HY헤드라인M", Font.BOLD, 20));
                  
-                 buttonGroup.add(leftBtns[i]);
+                 
+//                 buttonGroup.add(leftBtns[i]);
                  seatPanel.add(leftBtns[i]);
               }
          }else {// chk == false일 때 오른쪽 좌석 만들기
@@ -205,17 +218,16 @@ public class SpecialWheelSeatPanel extends JPanel implements MouseListener {
                  rightBtns[i].addMouseListener(this);
                  rightBtns[i].setBackground(new Color(0, 128, 192));
                  rightBtns[i].setFont(new Font("HY헤드라인M", Font.BOLD, 20));
-                 buttonGroup.add(leftBtns[i]);
+//                 buttonGroup.add(leftBtns[i]);
                  seatPanel.add(rightBtns[i]);
               }
          }
+
          seatPanel.setLayout(new GridLayout(10, 2, 10, 10));
          return seatPanel;
-        
+         
       }
-    public JToggleButton[] getbtnButtons() {
-    	return leftBtns;
-    }
+      
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(list.size() == people) {

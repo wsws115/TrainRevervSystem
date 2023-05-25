@@ -41,8 +41,8 @@ public class StandardSeatPanel extends JPanel implements MouseListener{
 	JPanel leftSeat;
 	JPanel rightSeat;
 	
-	public static ButtonGroup btnGroup1 = new ButtonGroup(); // 좌측패널의 버튼 그룹
-	public static ButtonGroup btnGroup2 = new ButtonGroup(); // 우측패널의 버튼 그룹
+//	public static ButtonGroup btnGroup1 = new ButtonGroup(); // 좌측패널의 버튼 그룹
+//	public static ButtonGroup btnGroup2 = new ButtonGroup(); // 우측패널의 버튼 그룹
 	
 	int people = Integer.parseInt(train.TrainReserv_Main.selectPeopleLabel.getText());
 	List<String> list = new ArrayList<>();
@@ -65,21 +65,27 @@ public class StandardSeatPanel extends JPanel implements MouseListener{
     // 좌측좌석패널(A,B)
 	    leftSeatPanel = new JPanel();
 	    leftSeatPanel.setBackground(Color.white);
-	    leftSeat = getHalfSeatPanel(true, btnGroup1);
+	    leftSeat = getHalfSeatPanel(true);
 	    leftSeatPanel.add(leftSeat, BorderLayout.WEST);
 	       
 	    // 우측좌석패널(C,D)
 	    rightSeatPanel = new JPanel();
 	    rightSeatPanel.setBackground(Color.white);
-	    rightSeat = getHalfSeatPanel(false,btnGroup2);
+	    rightSeat = getHalfSeatPanel(false);
 	    rightSeatPanel.add(rightSeat,BorderLayout.EAST);
        
        
        wholeSeatPanel = getseatPanel(seatSelectMainPanel,leftSeatPanel,rightSeatPanel);
-       
 
 	}
 
+	public JToggleButton[] getLeftSeatButtons() {
+		return leftBtns;
+	}
+
+	public JToggleButton[] getRightSeatButtons() {
+		return rightBtns;
+	}
 		
 		/**
 		 * 메인패널(좌석선택패널이 부착될 패널)과 좌우측 패널을 전달받아 
@@ -95,7 +101,7 @@ public class StandardSeatPanel extends JPanel implements MouseListener{
 		
 	   
 		/** 좌석의 개수를 전달하면 해당 개수의 버튼이 부착된 패널을 반환해주는 메서드 (좌/ 우 패널 */
-		JPanel getHalfSeatPanel(boolean chk, ButtonGroup buttonGroup) {
+		JPanel getHalfSeatPanel(boolean chk) {
 			JPanel seatPanel = new JPanel();
 			String[] positions;
 			
@@ -105,14 +111,14 @@ public class StandardSeatPanel extends JPanel implements MouseListener{
 	        	   String buttonText = ((JToggleButton) e.getSource()).getText();
 	              
 	               if (((JToggleButton) e.getSource()).isSelected()) {
-	            	   // 좌석선택 토글버튼이 선택되었을 떄
+	            	   // 좌석선택 토글버튼이 선택되었을 때
 	                  if(people > list.size()) {
-	                	  // 선택 인원보다 크면
+	                	// 리스트의 사이즈가 선택 인원보다 크면
 	                	  list.add(buttonText);             
 	                      StandardSeatSelect.setLabel(list.toString());
 	                  }	  
 	                  
-	               } else { // 인원이 리스트의 길이보다 작거나 같으면
+	               } else { // 좌석선택 토글버튼이 선택 해제되었을 때
 		                  list.remove(list.indexOf(buttonText));
 		                  StandardSeatSelect.setLabel(list.toString());
 	                  }
@@ -156,7 +162,7 @@ public class StandardSeatPanel extends JPanel implements MouseListener{
 					leftBtns[i].setBackground(new Color(0, 128, 192));
 					leftBtns[i].setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 					leftBtns[i].addActionListener(action1);
-					buttonGroup.add(leftBtns[i]);
+//					buttonGroup.add(leftBtns[i]);
 					seatPanel.add(leftBtns[i]);
 					
 				}
@@ -179,7 +185,7 @@ public class StandardSeatPanel extends JPanel implements MouseListener{
 					rightBtns[i].setBackground(new Color(0, 128, 192));
 					rightBtns[i].setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 					rightBtns[i].addActionListener(action2);
-					buttonGroup.add(rightBtns[i]);
+//					buttonGroup.add(rightBtns[i]);
 					seatPanel.add(rightBtns[i]);
 				}
 			}

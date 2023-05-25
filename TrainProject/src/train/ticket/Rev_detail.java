@@ -62,8 +62,10 @@ public class Rev_detail extends JDialog {
 	public static JTable table;
 	public static boolean chk_search;
 	public static boolean chk_login;
+	public static boolean chk_admin = false;
 	String date_text;
 	String user_code;
+	
 	Check_Rev_DAO checkDAO = new Check_Rev_DAO();
 	
 	public static void main(String[] args) {
@@ -81,6 +83,9 @@ public class Rev_detail extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	public void rev_chk_admin (String user_name) {
+		this.user_code = user_name;
+	}
 	public Rev_detail() {
 		
 		setBounds(500, 0, 951, 1050);
@@ -192,10 +197,7 @@ public class Rev_detail extends JDialog {
 		);
 		ticket_Scroll_panel.getVerticalScrollBar().setUnitIncrement(16);
 		
-			
-		
-		
-		
+
 //		JPanel fnb_Panel = new JPanel();
 //		fnb_Panel.setPreferredSize(new Dimension(869, 288));
 //		fnb_scrollPane.setViewportView(fnb_Panel);
@@ -210,35 +212,45 @@ public class Rev_detail extends JDialog {
 //		fnb_Panel.setLayout(null);
 //		fnb_Panel.add(orderTable);
 		// 여기까지
-		
+		System.out.println("로그인 체크 : "+ chk_search + chk_login);
 		JPanel ticketRev_Panel = new JPanel();
 		int panelHeight;
 		if(chk_login) {
 			if (chk_search) {
 				date_text = TrainReserv_Main.date_text.getText();
+				System.out.println(date_text);
 				user_code = Login_and_joinDAO.user_code;
+				checkDAO.chk_train(ticketModel,user_code, date_text);
 			}else {
 				Calendar calendar = Calendar.getInstance();
 				LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
 				String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
 				date_text = date;
+				
 				user_code = Mem_chageDAO.user_code;
+				
+				
+				System.out.println(user_code);
 				System.out.println(date_text);
+				checkDAO.chk_train(ticketModel,user_code, date_text);
 			}
-			checkDAO.chk_train(ticketModel, user_code, date_text);
+			
 		}else {
 			if (chk_search) {
 				date_text = TrainReserv_Main.date_text.getText();
 				user_code = No_login_joinDAO.pk;
+				checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
 			}else {
 				Calendar calendar = Calendar.getInstance();
 				LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
 				String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
 				date_text = date;
 				user_code = No_mem_changeDAO.pk;
+				System.out.println(user_code);
 				System.out.println(date_text);
+				checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
 			}
-			checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
+			
 		}
 		
 		
@@ -246,6 +258,7 @@ public class Rev_detail extends JDialog {
 			List train_list = new ArrayList(); 
 			for(int j =0; j< columnNames.length; ++j) {
 				train_list.add(ticketModel.getValueAt(i, j));
+				System.out.println(ticketModel.getValueAt(i, j));
 			}
 			JPanel copy_Panel = new Ticket_Info(train_list);
 			copy_Panel.setPreferredSize(new Dimension(869, 288));

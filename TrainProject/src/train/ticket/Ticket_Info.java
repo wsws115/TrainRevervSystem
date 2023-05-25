@@ -32,7 +32,7 @@ public class Ticket_Info extends JPanel {
 	String[] columnNames = {"티켓번호","좌석번호", "음식이름", "수량","가격"};
 	DefaultTableModel ticket_food_model = new DefaultTableModel(columnNames, 0);
 	Check_Rev_DAO checkDAO = new Check_Rev_DAO();
-	static List<String> tnum_li = new ArrayList<>();
+	public static List<String> tnum_li = new ArrayList<>();
 	public Ticket_Info(List<String> train_list) {
 		setBackground(new Color(255, 255, 255));
 		

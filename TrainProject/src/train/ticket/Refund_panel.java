@@ -100,7 +100,7 @@ public class Refund_panel extends JDialog {
 			panel.setLayout(new BorderLayout()); // 레이아웃 매니저를 BorderLayout으로 설정합니다.
 
 			// 이미지 파일 경로를 설정합니다.
-			String imagePath = "C:\\JavaFullstack_KYJ\\java_workspace\\image\\Refund_Precautions.png";
+			String imagePath = "resource/return_ticket.png";
 
 			// JLabel을 생성하고, 이미지 아이콘을 설정합니다.
 			JLabel imageLabel = new JLabel();

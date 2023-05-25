@@ -41,8 +41,8 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 	public static JPanel rightSeatPanel;
 	public static JPanel wholeSeatPanel;
 	
-	public static ButtonGroup btnGroup1 = new ButtonGroup(); // 좌측패널의 버튼 그룹
-	public static ButtonGroup btnGroup2 = new ButtonGroup(); // 우측패널의 버튼 그룹
+//	public static ButtonGroup btnGroup1 = new ButtonGroup(); // 좌측패널의 버튼 그룹
+//	public static ButtonGroup btnGroup2 = new ButtonGroup(); // 우측패널의 버튼 그룹
 	
 	int people = Integer.parseInt(train.TrainReserv_Main.selectPeopleLabel.getText()); 
 	List<String> list = new ArrayList<>();
@@ -67,18 +67,25 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 		// 좌측좌석패널(A,B)
 	    leftSeatPanel = new JPanel();
 	    leftSeatPanel.setBackground(Color.white);
-	    leftSeat = getHalfSeatPanel(true, btnGroup1);
+	    leftSeat = getHalfSeatPanel(true);
 	    leftSeatPanel.add(leftSeat, BorderLayout.WEST);
 	       
 	    // 우측좌석패널(C,D)
 	    rightSeatPanel = new JPanel();
 	    rightSeatPanel.setBackground(Color.white);
-	    rightSeat = getHalfSeatPanel(false,btnGroup2);
+	    rightSeat = getHalfSeatPanel(false);
 	    rightSeatPanel.add(rightSeat,BorderLayout.EAST);
 	    
 	    wholeSeatPanel = getseatPanel(seatSelectMainPanel,leftSeatPanel,rightSeatPanel);
 	}
 	
+	public JToggleButton[] getLeftSeatButtons() {
+		return leftBtns;
+	}
+
+	public JToggleButton[] getRightSeatButtons() {
+		return rightBtns;
+	}
 	
 	/** 메인패널(좌석선택패널이 부착될 패널)과 좌우측 패널을 전달받아
      * 모든 패널이 부착된 메인패널을 리턴하는 메서드*/
@@ -92,7 +99,7 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
     }
     
 	/** 좌석의 개수를 전달하면 해당 개수의 버튼이 부착된 패널을 반환해주는 메서드 (좌/ 우 패널 )*/
-    JPanel getHalfSeatPanel(boolean chk, ButtonGroup buttonGroup) {
+    JPanel getHalfSeatPanel(boolean chk) {
        
        JPanel seatPanel = new JPanel();
        String[] positions;
@@ -161,7 +168,7 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
                 leftBtns[i].addMouseListener(this);
                 leftBtns[i].setBackground(new Color(0, 128, 192));
                 leftBtns[i].setFont(new Font("HY헤드라인M", Font.BOLD, 20));
-                buttonGroup.add(leftBtns[i]);
+//                buttonGroup.add(leftBtns[i]);
                 seatPanel.add(leftBtns[i]);
                 
                 if(!StandardSeatSelect.chkAll) {
@@ -197,7 +204,7 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
                 rightBtns[i].addMouseListener(this);
                 rightBtns[i].setBackground(new Color(0, 128, 192));
                 rightBtns[i].setFont(new Font("HY헤드라인M", Font.BOLD, 20));
-                buttonGroup.add(rightBtns[i]);
+//                buttonGroup.add(rightBtns[i]);
                 seatPanel.add(rightBtns[i]);
              }
         }

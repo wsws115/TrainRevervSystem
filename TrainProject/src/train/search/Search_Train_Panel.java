@@ -120,6 +120,7 @@ public class Search_Train_Panel extends JPanel {
 				
 				LocalDateTime st_date = LocalDateTime.parse(String.valueOf(object.get("depplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 				LocalDateTime en_date = LocalDateTime.parse(String.valueOf(object.get("arrplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+				LocalDateTime select_time = LocalDateTime.parse(da, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 				String st_time = st_date.getHour()+":"+st_date.getMinute();
 				String en_time = en_date.getHour()+":"+en_date.getMinute();
 				Duration diff = Duration.between(st_date.toLocalTime(), en_date.toLocalTime());

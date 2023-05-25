@@ -4,29 +4,38 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JToggleButton;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import train.search.Search_Train_Panel;
+import train.dao.SeatDAO;
 import train.seat_special.SpecialSeatSelect;
+import train.seat_special.SpecialWheelSeatPanel;
 import train.seat_standard.StandardSeatSelect;
 
 public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
 	JButton reservBtn;
 	String mainpont = "HY헤드라인M";
-	public static String name;
+	
+	private String fisrtH = "<html>";
+	private String middleH = "<br> /";
+	
+	
+	public static String name; // 기차타입
 	public static String num;
-	public static String st_time;
-	public static String en_time;
+	public static String st_time; // 출발시간
+	public static String en_time; // 도착시간 
 	public static String price;
 	public static String timetaken;
 	// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
+	
+	
+	ArrayList<String> booked;
+	String ho_num;
 	
 	public ReservBtn(String text, JTable stp_table) {
 		reservBtn = new JButton();
@@ -43,20 +52,66 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			SpecialSeatSelect sd = new SpecialSeatSelect();
 	    			int row = stp_table.getSelectedRow();
 	    			name = (String) stp_table.getValueAt(row, 0);
-	    			System.out.println(name);
 	    			num = String.valueOf(stp_table.getValueAt(row, 1)) ;
-	    			System.out.println(num);
 	    			st_time = String.valueOf(stp_table.getValueAt(row, 2));
-	    			System.out.println(st_time);
 	    			en_time = String.valueOf(stp_table.getValueAt(row, 3));
+	    			price = String.valueOf(stp_table.getValueAt(row, 4));
+	    			timetaken = String.valueOf(stp_table.getValueAt(row, 5));
 	    			System.out.println(en_time);
 	    			price = String.valueOf(stp_table.getValueAt(row, 5));
 	    			System.out.println(price);
 	    			timetaken = String.valueOf(stp_table.getValueAt(row, 4));
 	    			System.out.println(timetaken);
-	    			train.dao.Check_Rev_DAO train_check = new train.dao.Check_Rev_DAO();
-	    			train_check.chk_seat();
 	    			sd.setVisible(true);
+
+
+	    			SeatDAO seat = new SeatDAO();
+	    			seat.getBookedSpecialSeats();
+	    				
+//	    			//우등예매 버튼을 눌렀을 때 (콤보박스를 선택하지 않아도)1호차가 기본으로 표출된다
+				ho_num = (String) SpecialSeatSelect.trainInfoComboBox.getSelectedItem();
+
+				if (ho_num.contains("1호차")) {
+					booked = SeatDAO.bookedSeatList1;
+					System.out.println("1호차 예약된 좌석 : " + booked.toString());
+
+					for (JToggleButton button : SpecialSeatSelect.leftBtns1) {
+						for (String seatname : booked) {
+
+							if (button.getText().contains(fisrtH)) {
+								String[] seatarr = button.getText().split("<|>");
+
+								if (seatarr[2].equals(seatname.trim())) {
+									button.setEnabled(false);
+									System.out.println(seatarr[2]);
+								}
+							} else {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+					}
+					for (JToggleButton button : SpecialSeatSelect.rightBtns1) {
+						for (String seatname : booked) {
+
+							if (button.getText().contains(fisrtH)) {
+								String[] seatarr = button.getText().split("<|>");
+
+								if (seatarr[2].equals(seatname.trim())) {
+									button.setEnabled(false);
+									System.out.println(seatarr[2]);
+								}
+
+							} else {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+					}
+				}
+	    				
 	    			// 수량 + 1
 //	    			int addQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) + 1;	
 //	    			
@@ -77,9 +132,60 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			en_time = String.valueOf(stp_table.getValueAt(row, 3));
 	    			price = String.valueOf(stp_table.getValueAt(row, 7));
 	    			timetaken = String.valueOf(stp_table.getValueAt(row, 4));
-	    			train.dao.Check_Rev_DAO train_check = new train.dao.Check_Rev_DAO();
-	    			train_check.chk_seat();
 	    			sb.setVisible(true);
+	    			
+	    			
+	    			SeatDAO seat = new SeatDAO();
+	    			seat.getBookedSpecialSeats();
+	    			//4~10호차의 예약된 좌석 목록만 받아오면 됨
+	    			ho_num = (String) StandardSeatSelect.trainInfoComboBox.getSelectedItem();
+
+					if (ho_num.contains("4호차")) {
+						booked = SeatDAO.bookedSeatList4;
+						System.out.println("4호차 예약된 좌석 : " + booked.toString());
+
+						for (JToggleButton button : StandardSeatSelect.leftBtns4) {
+							for (String seatname : booked) {
+
+								if (button.getText().contains(fisrtH)) {
+									String[] seatarr = button.getText().split("<|>");
+
+									if (seatarr[2].equals(seatname.trim())) {
+										button.setEnabled(false);
+										System.out.println(seatarr[2]);
+									}
+								} else {
+									if (button.getText().equals(seatname.trim())) {
+										button.setEnabled(false);
+									}
+								}
+							}
+						}
+						for (JToggleButton button : StandardSeatSelect.rightBtns4) {
+							for (String seatname : booked) {
+
+								if (button.getText().contains(fisrtH)) {
+									String[] seatarr = button.getText().split("<|>");
+
+									if (seatarr[2].equals(seatname.trim())) {
+										button.setEnabled(false);
+										System.out.println(seatarr[2]);
+									}
+
+								} else {
+									if (button.getText().equals(seatname.trim())) {
+										button.setEnabled(false);
+									}
+								}
+							}
+						}
+					}
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			
 	    			// 수량 - 1
 //	    			int minusQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) - 1;	
 //	    			

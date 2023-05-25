@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import train.db.OjdbcConnection;
+import train.ticket.Rev_detail;
 
 public class Mem_chageDAO {
 	public static String alrim = "";
@@ -34,6 +35,10 @@ public class Mem_chageDAO {
 						Mem_changeDAO_alrim mca = new Mem_changeDAO_alrim();
 						user_code = rs.getString("usernum_pk");
 						mca.main(null);
+						Rev_detail rev_search = new Rev_detail();
+						rev_search.chk_login = true;
+						rev_search.chk_search = false;
+						rev_search.main(null);
 						return true;
 					}else {
 						alrim = "로그인에 실패했습니다_1";

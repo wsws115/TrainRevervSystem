@@ -435,12 +435,13 @@ public class Payment_UI extends JDialog {
 				TrainReserv_Main.frame.dispose();
 				setVisible(false);
 				
-				Rev_detail rev = new Rev_detail();
-				if(user_who) {
-					rev.chk_login = true;
-				}
-				rev.chk_search = true;
-				rev.setVisible(true);
+//				Rev_detail rev = new Rev_detail();
+//				
+//				if(user_who) {
+//					rev.chk_login = true;
+//				}
+//				rev.chk_search = true;
+//				rev.main(null);
 				Train_Main main_return = new Train_Main();
 				main_return.main(null);
 			}
@@ -499,13 +500,13 @@ public class Payment_UI extends JDialog {
                 List<String> ticketlist= new ArrayList();
                 
                 apilist.add(name);
+                apilist.add(num);
                 apilist.add(date_text);
                 apilist.add(st_sub);
                 apilist.add(st_time);
                 apilist.add(en_sub);
                 apilist.add(en_time);
                 apilist.add(timetaken);
-                apilist.add(num);
                 System.out.println(apilist.toString());
                 // 열차 입력
                 int chk = dao.chk_train(apilist);

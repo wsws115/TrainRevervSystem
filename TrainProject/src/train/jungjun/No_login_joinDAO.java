@@ -21,7 +21,7 @@ public class No_login_joinDAO {
 			) {	
 				if(nchk.num_chk() && pchk.pw_chk()) {
 					pstmt.setString(1, No_login_join.phone_num);
-				pstmt.setString(2, No_login_join.pw);
+					pstmt.setString(2, No_login_join.pw);
 				
 				try(ResultSet rs = pstmt2.executeQuery();){
 					if(rs.next()) {

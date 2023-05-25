@@ -23,9 +23,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
+
+import train.dao.SeatDAO;
+import train.seat_special.SpecialSeatPanel;
+import train.seat_special.SpecialWheelSeatPanel;
 
 public class StandardSeatSelect extends JDialog {
 
@@ -44,18 +49,46 @@ public class StandardSeatSelect extends JDialog {
 	private String mainFont = "HY헤드라인M"; 
 	
 	
-	JPanel standardwheel4;
-    JPanel standard5;
-    JPanel standard6;
-    JPanel standard7;
-    JPanel standard8;
-    JPanel standard9;
-    JPanel standard10;
+	public static JPanel standardwheel4;
+	public static JPanel standard5;
+	public static JPanel standard6;
+	public static JPanel standard7;
+	public static JPanel standard8;
+	public static JPanel standard9;
+	public static JPanel standard10;
     
+	public static JComboBox trainInfoComboBox;
+	
+	
+	public static JToggleButton[] leftBtns4;
+	public static JToggleButton[] rightBtns4;
+	
+	public static JToggleButton[] leftBtns5;
+	public static JToggleButton[] rightBtns5;
+	
+	public static JToggleButton[] leftBtns6;
+	public static JToggleButton[] rightBtns6;
+	
+	public static JToggleButton[] leftBtns7;
+	public static JToggleButton[] rightBtns7;
+	
+	public static JToggleButton[] leftBtns8;
+	public static JToggleButton[] rightBtns8;
+	
+	public static JToggleButton[] leftBtns9;
+	public static JToggleButton[] rightBtns9;
+	
+	public static JToggleButton[] leftBtns10;
+	public static JToggleButton[] rightBtns10;
+	
     JButton selectResetButton;
     
     JPanel seatSelectPanel;
     
+    ArrayList<String> booked;
+    
+    
+    public static String getSelectedCar;
     private ActionListener resetActionListener;
 	
 	public static void main(String[] args) {
@@ -97,12 +130,32 @@ public class StandardSeatSelect extends JDialog {
 	      //4호차는 일반실 + 휠체어석
 	      //5 ~ 10호차는 일반실 + 일반좌석
 		  standardwheel4 = new StandardWheelSeatPanel();
+		  leftBtns4 = ((StandardWheelSeatPanel) standardwheel4).getLeftSeatButtons();
+		  rightBtns4 = ((StandardWheelSeatPanel) standardwheel4).getRightSeatButtons();
+		  
 		  standard5 = new StandardSeatPanel();
+		  leftBtns5 = ((StandardSeatPanel) standard5).getLeftSeatButtons();
+		  rightBtns5 = ((StandardSeatPanel) standard5).getRightSeatButtons();
+		  
 		  standard6 = new StandardSeatPanel();
+		  leftBtns6 = ((StandardSeatPanel) standard6).getLeftSeatButtons();
+		  rightBtns6 = ((StandardSeatPanel) standard6).getRightSeatButtons();
+		  
 		  standard7 = new StandardSeatPanel();
+		  leftBtns7 = ((StandardSeatPanel) standard7).getLeftSeatButtons();
+		  rightBtns7 = ((StandardSeatPanel) standard7).getRightSeatButtons();
+		  
 		  standard8 = new StandardSeatPanel();
+		  leftBtns8 = ((StandardSeatPanel) standard8).getLeftSeatButtons();
+		  rightBtns8 = ((StandardSeatPanel) standard8).getRightSeatButtons();
+		  
 		  standard9 = new StandardSeatPanel();
+		  leftBtns9 = ((StandardSeatPanel) standard9).getLeftSeatButtons();
+		  rightBtns9 = ((StandardSeatPanel) standard9).getRightSeatButtons();
+		  
 		  standard10 = new StandardSeatPanel();
+		  leftBtns10 = ((StandardSeatPanel) standard10).getLeftSeatButtons();
+		  rightBtns10 = ((StandardSeatPanel) standard10).getRightSeatButtons();
 	      
 	      seatSelectPanel.add("standard4",standardwheel4);
 	      seatSelectPanel.add("standard5",standard5);
@@ -139,24 +192,162 @@ public class StandardSeatSelect extends JDialog {
 	      splitPane.setRightComponent(top2panel);
 	      top2panel.setLayout(new BorderLayout(0, 0));
 	      //상1
-	      JComboBox trainInfoComboBox = new JComboBox();
+	      trainInfoComboBox = new JComboBox();
 	      trainInfoComboBox.addActionListener(new ActionListener() {
 	          @Override
 	          public void actionPerformed(ActionEvent e) {
-	              String getSelectedCar = (String)trainInfoComboBox.getSelectedItem();
+	              getSelectedCar = (String)trainInfoComboBox.getSelectedItem();
 	              if(getSelectedCar.contains("4호차")) {
+	            	  booked = SeatDAO.bookedSeatList4;
+	            	  for (JToggleButton button : leftBtns4) {
+							for (String seatname : booked) {
+								if (button.getText().contains(fisrtH)) {
+									String[] seatarr = button.getText().split("<|>");
+
+									if (seatarr[2].equals(seatname.trim())) {
+										button.setEnabled(false);
+										System.out.println(seatarr[2]);
+									}
+
+								} else {
+									if (button.getText().equals(seatname.trim())) {
+										button.setEnabled(false);
+									}
+								}
+							}
+						}
+						for (JToggleButton button : rightBtns4) {
+							for (String seatname : booked) {
+
+								if (button.getText().contains(fisrtH)) {
+									String[] seatarr = button.getText().split("<|>");
+
+									if (seatarr[2].equals(seatname.trim())) {
+										button.setEnabled(false);
+										System.out.println(seatarr[2]);
+									}
+
+								} else {
+									if (button.getText().equals(seatname.trim())) {
+										button.setEnabled(false);
+									}
+								}
+							}
+						}
 	            	  card.show(seatSelectPanel,"standard4");
+	            	  
 	              }else if(getSelectedCar.contains("5호차")) {
+	            	  booked = SeatDAO.bookedSeatList5;
+						for (JToggleButton button : leftBtns5) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+						for (JToggleButton button : rightBtns5) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+	            	  
 	            	  card.show(seatSelectPanel,"standard5");
+	            	  
 	              }else if(getSelectedCar.contains("6호차")) {
+	            	  booked = SeatDAO.bookedSeatList6;
+						for (JToggleButton button : leftBtns6) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+						for (JToggleButton button : rightBtns6) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+	            	  
 	            	  card.show(seatSelectPanel,"standard6");
+	            	  
 	              }else if(getSelectedCar.contains("7호차")) {
+	            	  booked = SeatDAO.bookedSeatList7;
+						for (JToggleButton button : leftBtns7) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+						for (JToggleButton button : rightBtns7) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+	            	  
 	            	  card.show(seatSelectPanel,"standard7");
+	            	  
 	              }else if(getSelectedCar.contains("8호차")) {
+	            	  booked = SeatDAO.bookedSeatList8;
+						for (JToggleButton button : leftBtns8) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+						for (JToggleButton button : rightBtns8) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+	            	  
 	            	  card.show(seatSelectPanel,"standard8");
+	            	  
 	              }else if(getSelectedCar.contains("9호차")) {
+	            	  booked = SeatDAO.bookedSeatList9;
+						for (JToggleButton button : leftBtns9) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+						for (JToggleButton button : rightBtns9) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+	            	  
 	            	  card.show(seatSelectPanel,"standard9");
+	            	  
 	              }else if(getSelectedCar.contains("10호차")) {
+	            	  booked = SeatDAO.bookedSeatList10;
+						for (JToggleButton button : leftBtns10) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+						for (JToggleButton button : rightBtns10) {
+							for (String seatname : booked) {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+	            	  
 	            	  card.show(seatSelectPanel,"standard10");
 	              }
 	          }
@@ -323,21 +514,41 @@ public class StandardSeatSelect extends JDialog {
 		    list = new ArrayList<>();
 		    train.TrainReserv_Main.seatSelectString = list;
 		    chkAll = true;
-		    StandardSeatPanel.btnGroup1.clearSelection();
-		    StandardSeatPanel.btnGroup2.clearSelection();
-		    StandardWheelSeatPanel.btnGroup1.clearSelection();
-		    StandardWheelSeatPanel.btnGroup2.clearSelection();
+//		    StandardSeatPanel.btnGroup1.clearSelection();
+//		    StandardSeatPanel.btnGroup2.clearSelection();
+//		    StandardWheelSeatPanel.btnGroup1.clearSelection();
+//		    StandardWheelSeatPanel.btnGroup2.clearSelection();
 		    selectedSeatInfoLabel.setText("");
 		    
 		    panel.removeAll();
 
 		    standardwheel4 = new StandardWheelSeatPanel();
+		    leftBtns4 = ((StandardWheelSeatPanel) standardwheel4).getLeftSeatButtons();
+			rightBtns4 = ((StandardWheelSeatPanel) standardwheel4).getRightSeatButtons();
+			  
 		    standard5 = new StandardSeatPanel();
+		    leftBtns5 = ((StandardSeatPanel) standard5).getLeftSeatButtons();
+			rightBtns5 = ((StandardSeatPanel) standard5).getRightSeatButtons();
+			  
 		    standard6 = new StandardSeatPanel();
+		    leftBtns6 = ((StandardSeatPanel) standard6).getLeftSeatButtons();
+			rightBtns6 = ((StandardSeatPanel) standard6).getRightSeatButtons();
+			
 		    standard7 = new StandardSeatPanel();
+		    leftBtns7 = ((StandardSeatPanel) standard7).getLeftSeatButtons();
+			rightBtns7 = ((StandardSeatPanel) standard7).getRightSeatButtons();
+			
 		    standard8 = new StandardSeatPanel();
+		    leftBtns8 = ((StandardSeatPanel) standard8).getLeftSeatButtons();
+			rightBtns8 = ((StandardSeatPanel) standard8).getRightSeatButtons();
+			
 		    standard9 = new StandardSeatPanel();
+		    leftBtns9 = ((StandardSeatPanel) standard9).getLeftSeatButtons();
+			rightBtns9 = ((StandardSeatPanel) standard9).getRightSeatButtons();
+			
 		    standard10 = new StandardSeatPanel();
+		    leftBtns10 = ((StandardSeatPanel) standard10).getLeftSeatButtons();
+			rightBtns10 = ((StandardSeatPanel) standard10).getRightSeatButtons();
 
 		    panel.add("standard4", standardwheel4);
 		    panel.add("standard5", standard5);
@@ -353,18 +564,144 @@ public class StandardSeatSelect extends JDialog {
 		    String num = (String)combo.getSelectedItem();
 		    String getSelectedCar = (String)combo.getSelectedItem();
             if(getSelectedCar.contains("4호차")) {
+            	booked = SeatDAO.bookedSeatList4;
+          	  for (JToggleButton button : leftBtns4) {
+						for (String seatname : booked) {
+							if (button.getText().contains(fisrtH)) {
+								String[] seatarr = button.getText().split("<|>");
+
+								if (seatarr[2].equals(seatname.trim())) {
+									button.setEnabled(false);
+									System.out.println(seatarr[2]);
+								}
+
+							} else {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+					}
+					for (JToggleButton button : rightBtns4) {
+						for (String seatname : booked) {
+
+							if (button.getText().contains(fisrtH)) {
+								String[] seatarr = button.getText().split("<|>");
+
+								if (seatarr[2].equals(seatname.trim())) {
+									button.setEnabled(false);
+									System.out.println(seatarr[2]);
+								}
+
+							} else {
+								if (button.getText().equals(seatname.trim())) {
+									button.setEnabled(false);
+								}
+							}
+						}
+					}
           	  ((CardLayout) panel.getLayout()).show(seatSelectPanel,"standard4");
             }else if(getSelectedCar.contains("5호차")) {
+            	 booked = SeatDAO.bookedSeatList5;
+					for (JToggleButton button : leftBtns5) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
+					for (JToggleButton button : rightBtns5) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"standard5");
             }else if(getSelectedCar.contains("6호차")) {
+            	 booked = SeatDAO.bookedSeatList6;
+					for (JToggleButton button : leftBtns6) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
+					for (JToggleButton button : rightBtns6) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"standard6");
             }else if(getSelectedCar.contains("7호차")) {
+            	 booked = SeatDAO.bookedSeatList5;
+					for (JToggleButton button : leftBtns7) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
+					for (JToggleButton button : rightBtns7) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"standard7");
             }else if(getSelectedCar.contains("8호차")) {
+            	 booked = SeatDAO.bookedSeatList5;
+					for (JToggleButton button : leftBtns8) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
+					for (JToggleButton button : rightBtns8) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"standard8");
             }else if(getSelectedCar.contains("9호차")) {
+            	 booked = SeatDAO.bookedSeatList5;
+					for (JToggleButton button : leftBtns9) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
+					for (JToggleButton button : rightBtns9) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"standard9");
             }else if(getSelectedCar.contains("10호차")) {
+            	 booked = SeatDAO.bookedSeatList5;
+					for (JToggleButton button : leftBtns10) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
+					for (JToggleButton button : rightBtns10) {
+						for (String seatname : booked) {
+							if (button.getText().equals(seatname.trim())) {
+								button.setEnabled(false);
+							}
+						}
+					}
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"standard10");
             }
 		    

@@ -8,6 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import train.dao.TicketDAO;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -54,6 +57,7 @@ public class Refund_Success_Panel extends JDialog {
 			btnNewButton.setForeground(new Color(255, 255, 255));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					dispose();
 				}
 			});
 			btnNewButton.setBounds(12, 350, 677, 224);

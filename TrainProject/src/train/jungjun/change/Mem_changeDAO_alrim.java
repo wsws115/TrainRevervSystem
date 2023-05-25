@@ -49,10 +49,6 @@ public class Mem_changeDAO_alrim extends JDialog {
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Rev_detail rev_search = new Rev_detail();
-				rev_search.chk_login = true;
-				rev_search.chk_search = false;
-				rev_search.main(null);
 				dispose();
 			}
 		});
