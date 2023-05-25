@@ -180,7 +180,11 @@ public class Ticket_Info extends JPanel {
 					System.out.println(train_list.get(0));
                 	tnum_li.add(train_list.get(0));
 					Check_Rev_DAO chkDAO = new Check_Rev_DAO();
-					chkDAO.chk_food(tnum_li, ticket_food_model);
+					if (Rev_detail.chk_login) {
+						chkDAO.chk_food(tnum_li, ticket_food_model);
+					}else {
+						chkDAO.no_mem_chk_food(tnum_li, ticket_food_model);
+					}
 					JTable table = new JTable(ticket_food_model);
 					table.setRowHeight(80);
 					table.setAutoCreateRowSorter(true);

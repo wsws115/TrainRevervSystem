@@ -46,7 +46,7 @@ public class Find_pw_Jd extends JDialog {
 	public Find_pw_Jd() {
 		setBounds(800, 300, 600, 600);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 584, 500);
+		contentPanel.setBounds(0, 10, 584, 465);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
@@ -93,12 +93,13 @@ public class Find_pw_Jd extends JDialog {
 						pw1 = pw_chk_textField_1.getText();
 						pw2 = pw_chk_textField_2.getText();
 						ChangePW change = new ChangePW();
-						if(change.change_pw() && pw1.equals(pw2)) {
-							alrim = "변경되었습니다";
+						PW_chk chk = new PW_chk();
+						if(change.change_pw() && pw1.equals(pw2) && chk.pw_chk(pw1)) {
+							alrim = "비밀번호가 변경되었습니다";
 							Find_pw_jd_alrim alrim = new Find_pw_jd_alrim();
 							alrim.main(null);
 						}else {
-							alrim = "정확히 입력하세요";
+							alrim = "6자리이상 영어 대문자,소문자,숫자,특수문자를 포함하세요";
 							Find_pw_jd_alrim alrim = new Find_pw_jd_alrim();
 							alrim.main(null);
 						}

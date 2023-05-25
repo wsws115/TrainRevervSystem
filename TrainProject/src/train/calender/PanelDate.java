@@ -17,12 +17,11 @@ import java.util.Locale;
 import javax.swing.JButton;
 
 import train.TrainReserv_Main;
-import train.admin.component.Admin_check;
 
 import java.awt.Font;
 
 public class PanelDate extends javax.swing.JLayeredPane implements ActionListener{
-	public static boolean mainChk = true;
+	
     private int month;
     private int year;
     private Component cel;
@@ -617,11 +616,9 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
 			int day = Integer.parseInt(((Cell)e.getSource()).getText());
 			LocalDate ld = LocalDate.of(this.year,this.month,day);
 			System.out.println(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-			if(mainChk) {
-				TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
-			}else {
-				Admin_check.dateBtn.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
-			}
+			
+			TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+			
 			
 		}
 		

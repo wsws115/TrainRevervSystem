@@ -39,10 +39,11 @@ public class Login_and_joinDAO {
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
 						alrim = "로그인에 성공하셨습니다";
-						user_code = rs.getString("usernum_pk");
-						preferential = rs.getString("preferential_treatment");
 						Login_alrim alrim = new Login_alrim();
+						user_code = rs.getString("usernum_pk");
+						preferential = rs.getString("PREFERENTIAL_TREATMENT");
 						alrim.main(null);
+						
 						return true;
 					}else {
 						alrim = "로그인에 실패했습니다_1";

@@ -2,6 +2,7 @@ package train.admin.component;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,9 @@ import java.nio.file.Paths;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -23,14 +26,16 @@ import train.dao.MemberDAO;
 import train.dao.TicketDAO;
 
 /** JTable내부에 반환버튼생성 클래스 */
-public class AdminBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
+public class DeleteFoodBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
+	
 	JButton cancelBtn;
 
 	TicketDAO ticketdao = new TicketDAO();
 	FoodDAO fooddao = new FoodDAO();
 	MemberDAO memberdao = new MemberDAO();
 
-	public AdminBtn(String text, JTable orderTable) {
+	public DeleteFoodBtn(String text, JTable orderTable) {
+		
 		cancelBtn = new JButton();
 		cancelBtn.setText(text);
 		cancelBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
@@ -40,22 +45,25 @@ public class AdminBtn extends AbstractCellEditor implements TableCellEditor, Tab
 		cancelBtn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = orderTable.getSelectedRow();
-				// 차내식 삭제 시, 액션
-				if (text.equals("반환")) {
-					
-					String ticketNum = (String) orderTable.getValueAt(orderTable.getSelectedRow(), 1);
-					ticketdao.refundTicket(ticketNum);
-					
-				} else if (text.equals("삭제")) {
-					
+				
+				int ans = JOptionPane.showConfirmDialog(null, "정말 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				
+				if (ans == 0) {
+					int row = orderTable.getSelectedRow();					
+						
 					String foodNum = orderTable.getValueAt(row, 0).toString();	
 					String imageFileName = orderTable.getValueAt(row, 4).toString();
-
+	
 					String destinationFolder = "resource/";
 					Path filePath = Paths.get(destinationFolder + imageFileName);
-
+	
 					fooddao.delectFood(foodNum);
+					
+					if (orderTable.isEditing()) {
+						orderTable.getCellEditor().stopCellEditing();
+						((DefaultTableModel)orderTable.getModel()).removeRow(row);
+					}
+					
 					try {
 						Files.delete(filePath);
 					} catch (NoSuchFileException err1) {
@@ -63,15 +71,7 @@ public class AdminBtn extends AbstractCellEditor implements TableCellEditor, Tab
 					} catch (IOException err2) {
 						err2.printStackTrace();
 					}
-				// 유저 삭제 시, 액션
-				} else if (text.equals("탈퇴")) {		
-					
-					String userNum = (String) orderTable.getValueAt(orderTable.getSelectedRow(), 0);
-					memberdao.withdraw(userNum);
 				}
-
-				((DefaultTableModel)orderTable.getModel()).removeRow(row);
-
 			}
 		});
 	}

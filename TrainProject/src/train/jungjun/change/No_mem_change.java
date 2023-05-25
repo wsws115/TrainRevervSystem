@@ -40,6 +40,15 @@ public class No_mem_change extends JFrame {
     private JTextField pn_textField;
     private JPasswordField pw_passwordField;
     
+    static No_mem_change frame = new No_mem_change();
+    
+    public void runApplication() {
+        // 애플리케이션 실행에 필요한 로직 작성
+    	if(GoMain.close) {
+			frame.dispose();
+		}
+    }
+    
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +56,7 @@ public class No_mem_change extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					No_mem_change frame = new No_mem_change();
+					//No_mem_change frame = new No_mem_change();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -147,6 +156,8 @@ public class No_mem_change extends JFrame {
 		select_btn.setBackground(new Color(0, 128, 192));
 		select_btn.setBounds(500, 850, 900, 100);
 		contentPane.add(select_btn);
+		
+		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 

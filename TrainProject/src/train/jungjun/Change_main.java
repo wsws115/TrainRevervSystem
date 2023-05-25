@@ -18,7 +18,16 @@ import train.jungjun.change.No_mem_change;
 public class Change_main extends JFrame {
 
 	private JPanel contentPane;
-
+	
+	static Change_main frame = new Change_main();
+	
+	public void runApplication() {
+        // 애플리케이션 실행에 필요한 로직 작성
+    	if(GoMain.close) {
+			frame.dispose();
+		}
+    }
+	
 	/**
 	 * Launch the application.
 	 */
@@ -26,7 +35,7 @@ public class Change_main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Change_main frame = new Change_main();
+					//Change_main frame = new Change_main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

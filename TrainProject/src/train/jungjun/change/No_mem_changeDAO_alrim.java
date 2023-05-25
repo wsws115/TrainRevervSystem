@@ -7,6 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import train.ticket.Rev_detail;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -48,6 +51,10 @@ public class No_mem_changeDAO_alrim extends JDialog {
 		btnNewButton.setBackground(new Color(0, 128, 192));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Rev_detail rev_search = new Rev_detail();
+				rev_search.chk_login = false;
+				rev_search.chk_search = false;
+				rev_search.main(null);
 				dispose();
 			}
 		});

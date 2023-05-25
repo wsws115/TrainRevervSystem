@@ -241,7 +241,7 @@ public class TrainReserv_Main extends JFrame {
 		Calendar calendar = Calendar.getInstance();
 		LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
 		String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-		train.calender.PanelDate.mainChk= true;
+		
 		date_text = new JTextField(date);
 		date_text.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		date_text.setColumns(10);

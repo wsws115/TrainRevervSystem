@@ -15,17 +15,18 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-public class Admin_page extends JFrame{
+public class Admin_page extends JFrame {
 
-	private JFrame frame;
+	private JPanel contentPane;
 	private JTextField id_textField;
 	private JPasswordField pw_passwordField;
 	ImageIcon img1 = new ImageIcon
-			("resource/E-RAIL.png");
+			("C:/java_PJJ/Java_project_Jungjun/Application/images/E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 	ImageIcon img2 = new ImageIcon
-	("resource/backkey.png");
+	("C:/java_PJJ/Java_project_Jungjun/Application/images/back.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/back.png");
 	
 	private JPanel login;
@@ -35,7 +36,6 @@ public class Admin_page extends JFrame{
 	Image img = img1.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
     ImageIcon updateIcon = new ImageIcon(updateImg);
-	
 	/**
 	 * Launch the application.
 	 */
@@ -43,8 +43,8 @@ public class Admin_page extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Admin_page window = new Admin_page();
-					window.frame.setVisible(true);
+					Admin_page frame = new Admin_page();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,26 +53,19 @@ public class Admin_page extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public Admin_page() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1920, 1080);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame = new JFrame();
+		setBounds(100, 100, 1920, 1080);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.getContentPane().setLayout(null);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		getContentPane().setLayout(null);
 		
 		login = new JPanel();
 		login.setBounds(0, 0, 1920, 1080);
-		frame.getContentPane().add(login);
+		getContentPane().add(login);
 		login.setLayout(null);
 		
 		JLabel id_label = new JLabel("아이디");
@@ -124,7 +117,7 @@ public class Admin_page extends JFrame{
 				train.Train_Main main_frame =
 						new train.Train_Main();
 				main_frame.main(null);
-				setVisible(false);
+				dispose();
 			}
 		});
 		back_main_btn2.setBounds(10, 10, 136, 136);
@@ -138,9 +131,6 @@ public class Admin_page extends JFrame{
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(750, 375, 400, 100);
 		login.add(lblNewLabel);
-		
-		
-		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
+
 }

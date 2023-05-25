@@ -1,4 +1,4 @@
-package train.jungjun.change;
+package train.jungjun.admin_page;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -7,10 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import train.TrainReserv_Main;
-import train.ticket.Rev_detail;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -18,14 +14,14 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Mem_changeDAO_alrim extends JDialog {
+public class Admin_pageDAO_alrim extends JDialog {
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Mem_changeDAO_alrim dialog = new Mem_changeDAO_alrim();
+			Admin_pageDAO_alrim dialog = new Admin_pageDAO_alrim();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,11 +32,11 @@ public class Mem_changeDAO_alrim extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Mem_changeDAO_alrim() {
+	public Admin_pageDAO_alrim() {
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(Mem_chageDAO.alrim);
+		JLabel lblNewLabel = new JLabel(Admin_pageDAO.alrim);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
 		lblNewLabel.setBounds(35, 125, 800, 100);
@@ -49,10 +45,6 @@ public class Mem_changeDAO_alrim extends JDialog {
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Rev_detail rev_search = new Rev_detail();
-				rev_search.chk_login = true;
-				rev_search.chk_search = false;
-				rev_search.main(null);
 				dispose();
 			}
 		});
@@ -62,5 +54,4 @@ public class Mem_changeDAO_alrim extends JDialog {
 		btnNewButton.setBounds(300, 400, 250, 100);
 		getContentPane().add(btnNewButton);
 	}
-
 }

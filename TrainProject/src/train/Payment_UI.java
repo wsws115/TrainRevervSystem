@@ -436,6 +436,9 @@ public class Payment_UI extends JDialog {
 				setVisible(false);
 				
 				Rev_detail rev = new Rev_detail();
+				if(user_who) {
+					rev.chk_login = true;
+				}
 				rev.chk_search = true;
 				rev.setVisible(true);
 				Train_Main main_return = new Train_Main();

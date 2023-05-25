@@ -27,7 +27,6 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import train.TrainReserv_Main;
 import train.jungjun.GoMain;
 
 import javax.swing.Icon;
@@ -76,6 +75,10 @@ public class Login_and_join extends JFrame {
 	
 	public static String discount = "";
 	
+	public static String alrim = "";
+	
+	public static boolean gofindpw = false;
+	
 	ImageIcon img3 = new ImageIcon
 			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
@@ -94,7 +97,16 @@ public class Login_and_join extends JFrame {
     ImageIcon updateIcon = new ImageIcon(updateImg);
     private JTextField name_textField_2;
     private JTextField phone_textField_2;
-	
+    
+    static Login_and_join frame = new Login_and_join();
+    
+    public void runApplication() {
+        // 애플리케이션 실행에 필요한 로직 작성
+    	if(GoMain.close) {
+			frame.dispose();
+		}
+    }
+    
 	/**
 	 * Launch the application.
 	 */
@@ -102,18 +114,19 @@ public class Login_and_join extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login_and_join frame = new Login_and_join();
+					//Login_and_join frame = new Login_and_join();
 					frame.setVisible(true);
-					if(GoMain.close) {
-						frame.dispose();
-					}
+//					System.out.println(GoMain.close);
+//					if(GoMain.close) {
+//						System.out.println("제발...");
+//						frame.dispose();
+//					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});	
+		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -155,25 +168,6 @@ public class Login_and_join extends JFrame {
 		pw_passwordField = new JPasswordField();
 		pw_passwordField.setFont(new Font("굴림", Font.PLAIN, 50));
 		pw_passwordField.setBounds(885, 567, 400, 100);
-		pw_passwordField.addKeyListener(new KeyAdapter() {
-	        @Override
-	        public void keyPressed(KeyEvent e) {
-	        	id = id_textField.getText();
-				pw = pw_passwordField.getText();
-				
-	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	Login_and_joinDAO dao = new Login_and_joinDAO();
-					boolean login_result = dao.login_chk();
-					System.out.println("로그인 성공 여부 " + login_result);
-					if(login_result) {
-						TrainReserv_Main.main(null);
-						setVisible(true);
-						dispose();
-					} 
-	            }
-	        }
-
-	    });
 		login.add(pw_passwordField);
 		
 		JButton check_btn = new JButton("로그인");
@@ -188,11 +182,7 @@ public class Login_and_join extends JFrame {
 				Login_and_joinDAO dao = new Login_and_joinDAO();
 				boolean login_result = dao.login_chk();
 				System.out.println("로그인 성공 여부 " + login_result);
-				if(login_result) {
-					TrainReserv_Main.main(null);
-					setVisible(true);
-					dispose();
-				} 
+				setVisible(false);
 			}	
 		});
 		check_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
@@ -237,7 +227,7 @@ public class Login_and_join extends JFrame {
 		find_id_btn.setBounds(475, 857, 275, 100);
 		login.add(find_id_btn);
 		
-		JButton find_pw_btn = new JButton("PASSWORD 찾기");
+		JButton find_pw_btn = new JButton("PASSWORD 변경");
 		find_pw_btn.setForeground(new Color(0, 128, 192));
 		find_pw_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
 		find_pw_btn.setFocusPainted(false);
@@ -258,6 +248,11 @@ public class Login_and_join extends JFrame {
 		gomain_btn1.setBorderPainted(false);
 		gomain_btn1.setBounds(1800, 10, 109, 109);
 		login.add(gomain_btn1);
+		
+		JLabel lblNewLabel = new JLabel("회원 예매");
+		lblNewLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
+		lblNewLabel.setBounds(435, 295, 275, 100);
+		login.add(lblNewLabel);
 		
 		JPanel join = new JPanel();
 		layeredPane.add(join, "name_29419379635300");
@@ -598,7 +593,7 @@ public class Login_and_join extends JFrame {
 		
 		JButton find_id_select_btn = new JButton("확인");
 		find_id_select_btn.setForeground(Color.WHITE);
-		find_id_select_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
+		find_id_select_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
 		find_id_select_btn.setBackground(new Color(0, 128, 192));
 		find_id_select_btn.setBounds(550, 800, 300, 100);
 		id_find.add(find_id_select_btn);
@@ -620,6 +615,23 @@ public class Login_and_join extends JFrame {
 		});
 		id_find.add(gomain_btn4);
 		
+		JButton change_pw = new JButton("비밀번호 변경");
+		change_pw.setFocusPainted(false);
+		change_pw.setContentAreaFilled(false);
+		change_pw.setBorderPainted(false);
+		change_pw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPane.removeAll();
+				layeredPane.add(password_find);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+			}
+		});
+		change_pw.setForeground(new Color(0, 128, 192));
+		change_pw.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
+		change_pw.setBounds(900, 800, 450, 100);
+		id_find.add(change_pw);
+		
 		find_pw_select_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				id3 = id_textField_3.getText();
@@ -630,7 +642,9 @@ public class Login_and_join extends JFrame {
 					Find_pw_Jd pw_jd = new Find_pw_Jd();
 					pw_jd.setVisible(true);
 				}else {
-					JOptionPane.showMessageDialog(null,"정확히 입력하세요");
+					alrim = "정확히 입력하세요";
+					Find_pw_select_btn_alrim alrim = new Find_pw_select_btn_alrim();
+					alrim.main(null);
 				}
 				
 			}
@@ -668,8 +682,6 @@ public class Login_and_join extends JFrame {
 		});
 		join_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train.Train_Main.gojoin = false;
-				Find_id_jd.gopwfind = false;
 				layeredPane.removeAll();
 				layeredPane.add(join);
 				layeredPane.repaint();
@@ -679,8 +691,6 @@ public class Login_and_join extends JFrame {
 		
 		find_pw_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train.Train_Main.gojoin = false;
-				Find_id_jd.gopwfind = false;
 				layeredPane.removeAll();
 				layeredPane.add(password_find);
 				layeredPane.repaint();
@@ -690,8 +700,6 @@ public class Login_and_join extends JFrame {
 		
 		back_login_btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train.Train_Main.gojoin = false;
-				Find_id_jd.gopwfind = false;
 				layeredPane.removeAll();
 				layeredPane.add(login);
 				layeredPane.repaint();
@@ -701,8 +709,6 @@ public class Login_and_join extends JFrame {
 		
 		back_login_btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train.Train_Main.gojoin = false;
-				Find_id_jd.gopwfind = false;
 				layeredPane.removeAll();
 				layeredPane.add(login);
 				layeredPane.repaint();
@@ -718,6 +724,7 @@ public class Login_and_join extends JFrame {
 				layeredPane.revalidate();
 			}
 		});
+		
 		pw_passwordField_2.addKeyListener(new KeyAdapter() {
 			
 			@Override
@@ -835,19 +842,24 @@ public class Login_and_join extends JFrame {
 				}
 		});
 		
-		if(train.Train_Main.gojoin) {
-			layeredPane.removeAll();
-			layeredPane.add(join);
-			layeredPane.repaint();
-			layeredPane.revalidate();
-		}
+		//Find_id_jd jd = new Find_id_jd();
+//		System.out.println(gofindpw);
+//		if(gofindpw) {
+//			System.out.println(gofindpw);
+//			layeredPane.removeAll();
+//			layeredPane.add(password_find);
+//			layeredPane.repaint();
+//			layeredPane.revalidate();
+//			gofindpw = false;
+//			System.out.println(gofindpw);
+//		}
 		
-		if(Find_id_jd.gopwfind) {
-			layeredPane.removeAll();
-			layeredPane.add(password_find);
-			layeredPane.repaint();
-			layeredPane.revalidate();
-		}
+//		if(train.Train_Main.gojoin) {
+//			layeredPane.removeAll();
+//			layeredPane.add(join);
+//			layeredPane.repaint();
+//			layeredPane.revalidate();
+//		}
 		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}

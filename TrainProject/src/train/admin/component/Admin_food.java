@@ -5,10 +5,14 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Vector;
@@ -32,25 +36,30 @@ public class Admin_food extends JPanel {
 	
 	FoodDAO fooddao = new FoodDAO();
 	List<FoodDTO> allFoodList = fooddao.getFoodAll();
+	File imagefile;
+	String originalFile;
+	boolean addsuccess, revisesuccess;
 	
 	String[] orderTableColumnName = {"음식No.", "대분류", "이름", "가격", "삭제"};
 	String[] categoryMenuName = {"식사류", "면류", "간식류", "음료"};
 	
 	JPanel mainPanel, addMenuPanel;
-	JButton searchBtn, addImageBtn, addMenuBtn;
-	JTextField foodnametext, pricetext, imageFileNameLab;
+	JButton searchBtn, addImageBtn, addMenuBtn, resetBtn, reverseBtn;
+	JTextField foodnametext, pricetext, imageFileNameLab, foodNoTextField;
 	JTable order_table;
 	JScrollPane user_sp;
 	DefaultTableModel order_dtm;
+	JLabel foodNolbl;
+	JComboBox<String> categorycomboBox = new JComboBox<>(categoryMenuName);
 	
 	public Admin_food() {
 		// 기본 양식
-		setBounds(441, 80, 1350, 800);		
+		setBounds(441, 80, 1600, 800);		
 		setBackground(Color.white);
 		setLayout(null);
 		
 		mainPanel = new JPanel();
-		mainPanel.setBounds(0, 100, 1350, 480);
+		mainPanel.setBounds(50, 100, 1600, 480);
 		add(mainPanel);
 		mainPanel.setLayout(new GridLayout());
 		
@@ -73,11 +82,24 @@ public class Admin_food extends JPanel {
 			order_table.getColumn("가격").setPreferredWidth(50);
 			order_table.getColumn("삭제").setPreferredWidth(10);
 			
-			order_table.getColumn("삭제").setCellRenderer(new AdminBtn("삭제", order_table));
-			order_table.getColumn("삭제").setCellEditor(new AdminBtn("삭제", order_table));
+			order_table.getColumn("삭제").setCellRenderer(new DeleteFoodBtn("삭제", order_table));
+			order_table.getColumn("삭제").setCellEditor(new DeleteFoodBtn("삭제", order_table));
+			// 테이블 값 클릭 시, 라벨에 값 출력
+			order_table.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					int row = order_table.getSelectedRow();
+						if (row != -1) {						
+							categorycomboBox.setSelectedItem(order_table.getValueAt(row, 1));
+							foodNoTextField.setText((String) order_table.getValueAt(row, 0));
+							foodnametext.setText((String) order_table.getValueAt(row, 2));
+							pricetext.setText(String.valueOf(order_table.getValueAt(row, 3)));
+							imageFileNameLab.setText((String) order_table.getValueAt(row, 4));
+						}						
+					}
+				});
 		
 		user_sp = new JScrollPane(order_table);
-		user_sp.setBounds(60, 50, 1350, 800);
+		user_sp.setBounds(60, 50, 1600, 800);
 		mainPanel.add(user_sp);
 		
 		searchBtn = new JButton("조회");
@@ -90,12 +112,12 @@ public class Admin_food extends JPanel {
 		searchBtn.setBackground(new Color(0, 128, 192));
 		searchBtn.setForeground(Color.white);
 		searchBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-		searchBtn.setBounds(10, 20, 220, 60);
+		searchBtn.setBounds(50, 20, 220, 60);
 		add(searchBtn);
 		
 		addMenuPanel = new JPanel();
 		addMenuPanel.setBackground(new Color(255, 255, 255));
-		addMenuPanel.setBounds(0, 605, 1200, 156);
+		addMenuPanel.setBounds(50, 600, 1600, 156);
 		add(addMenuPanel);
 		addMenuPanel.setLayout(null);
 		
@@ -106,27 +128,26 @@ public class Admin_food extends JPanel {
 		
 		JLabel foodNameLab = new JLabel("음식명");
 		foodNameLab.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-		foodNameLab.setBounds(337, 45, 72, 40);
+		foodNameLab.setBounds(521, 45, 72, 40);
 		addMenuPanel.add(foodNameLab);
 		
 		JLabel priceLab = new JLabel("가격");
 		priceLab.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-		priceLab.setBounds(711, 42, 45, 40);
+		priceLab.setBounds(854, 45, 45, 40);
 		addMenuPanel.add(priceLab);
 		
-		JComboBox<String> categorycomboBox = new JComboBox<>(categoryMenuName);
 		categorycomboBox.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-		categorycomboBox.setBounds(83, 45, 225, 40);
+		categorycomboBox.setBounds(83, 45, 180, 40);
 		addMenuPanel.add(categorycomboBox);
 		
 		foodnametext = new JTextField();
 		foodnametext.setColumns(10);
-		foodnametext.setBounds(421, 48, 248, 40);
+		foodnametext.setBounds(594, 45, 248, 40);
 		addMenuPanel.add(foodnametext);
 		
 		pricetext = new JTextField();
 		pricetext.setColumns(10);
-		pricetext.setBounds(768, 45, 187, 40);
+		pricetext.setBounds(911, 45, 187, 40);
 		addMenuPanel.add(pricetext);
 		
 		JLabel NotionLab = new JLabel("※ 메뉴 추가 시, 음식 No는 자동으로 부여됩니다");
@@ -137,27 +158,32 @@ public class Admin_food extends JPanel {
 		
 		imageFileNameLab = new JTextField();
 		imageFileNameLab.setColumns(10);
-		imageFileNameLab.setBounds(589, 106, 248, 40);
+		imageFileNameLab.setBounds(1236, 45, 248, 40);
 		addMenuPanel.add(imageFileNameLab);
 		
 		addImageBtn = new JButton("이미지 추가");
 		addImageBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 13));
-		addImageBtn.setBounds(849, 105, 106, 40);
+		addImageBtn.setBounds(1118, 45, 106, 40);
 		addImageBtn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				uploadImage();
+				if (imageFileNameLab.getText() != null) {
+					originalFile = imageFileNameLab.getText();
+				}
+				imagefile = uploadImage();
+				imageFileNameLab.setText(imagefile.getName());
 			}
 		});
 		addMenuPanel.add(addImageBtn);
 		
 		addMenuBtn = new JButton("메뉴 추가");
 		addMenuBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
-		addMenuBtn.setBounds(1028, 49, 127, 77);
+		addMenuBtn.setBounds(1410, 95, 127, 43);
 		// 메뉴 추가 눌렀을 때, 유효성 검사 -> 안맞는거 다이얼로그 오픈
 		addMenuBtn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String foodNo = foodNoTextField.getText();
 				String foodName = foodnametext.getText();
 				String price = pricetext.getText();
 				String image = imageFileNameLab.getText();
@@ -188,19 +214,70 @@ public class Admin_food extends JPanel {
 							,"Warning", JOptionPane.DEFAULT_OPTION);
 					return;
 				}
-				
-				fooddao.addFood(categorycomboBox.getSelectedItem().toString(), foodName, Integer.valueOf(price), image);
-				foodnametext.setText(null);
-				pricetext.setText(null);
-				imageFileNameLab.setText(null);
-				getMenuValue(order_dtm);
+				// 음식 추가
+				addsuccess = fooddao.addFood(new FoodDTO(foodNo, categorycomboBox.getSelectedItem().toString(), foodName, Integer.valueOf(price), image));
+				if (addsuccess) {
+					saveFile(imagefile); // 이미지 파일 추가
+					getMenuValue(order_dtm); 
+					initialization();
+				} else {
+					initialization();
+				}	
 			}
 		});
 		addMenuPanel.add(addMenuBtn);
-	}
+		
+		reverseBtn = new JButton("메뉴 수정");
+		reverseBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// 메뉴 수정 시, DB 업데이트
+				String foodNo = foodNoTextField.getText();
+				String foodName = foodnametext.getText();
+				String price = pricetext.getText();
+				String image = imageFileNameLab.getText();	
+				
+				revisesuccess = fooddao.updateFood(new FoodDTO(foodNo, categorycomboBox.getSelectedItem().toString(), foodName, Integer.valueOf(price), image));
+				if (revisesuccess) {
+					if (!image.equals(originalFile)) {
+						deleteFile(originalFile);
+						saveFile(imagefile);						
+					}
+					getMenuValue(order_dtm);
+					initialization();
+				}
+			}
+		});
+		reverseBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+		reverseBtn.setBounds(1267, 95, 127, 43);
+		addMenuPanel.add(reverseBtn);
+		
+		resetBtn = new JButton("새로고침");
+		resetBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+		resetBtn.setBounds(1128, 95, 117, 43);
+		resetBtn.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				initialization();			
+			}
+		});
+		addMenuPanel.add(resetBtn);
+		
+		foodNolbl = new JLabel("음식No.");
+		foodNolbl.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
+		foodNolbl.setBounds(287, 45, 72, 40);
+		addMenuPanel.add(foodNolbl);
+		
+		foodNoTextField = new JTextField();
+		foodNoTextField.setEditable(false);
+		foodNoTextField.setEnabled(false);
+		foodNoTextField.setColumns(10);
+		foodNoTextField.setBounds(371, 45, 136, 40);
+		addMenuPanel.add(foodNoTextField);
+	} // 생성자 end	
 	
-	/** 이미지를 업로드하는 메소드 */
-	void uploadImage() {
+	/** 이미지 파일 불러오는 메소드 */
+	@SuppressWarnings("static-access")
+	private File uploadImage() {
 		JFileChooser chooser = new JFileChooser();
 		chooser.setDialogTitle("이미지 파일 불러오기");
 		chooser.setMultiSelectionEnabled(false); // 다중 선택 불가
@@ -208,13 +285,11 @@ public class Admin_food extends JPanel {
             
             @Override
             public String getDescription() {
-                // TODO Auto-generated method stub
                 return null;
             }
            
             @Override
             public boolean accept(File f) {
-                // TODO Auto-generated method stub
                 String fileName = f.getName();
 
                 if(fileName.indexOf(".png") != -1)
@@ -228,37 +303,56 @@ public class Admin_food extends JPanel {
                 else if(f.isDirectory())
                 {
                     return true;
-                }
-               
+                }               
                 return false;
             }
         });
 		   
 	  	int returnVal = chooser.showSaveDialog(null);	  	
 	  	if (returnVal == chooser.APPROVE_OPTION) {
-	  		File selectedFile = chooser.getSelectedFile();
-	  		String destinationFolder = "resource/";
-	  		
+	  		File selectedFile = chooser.getSelectedFile();	  		
 	  		if (selectedFile == null) {
-	  			return;
-	  		}
-	  		
-	  		try {
-                Path sourcePath = selectedFile.toPath();
-                Path destinationPath = new File(destinationFolder, selectedFile.getName()).toPath();
-                Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                JOptionPane.showMessageDialog(null, "파일 저장 완료", "성공", JOptionPane.INFORMATION_MESSAGE);
-                imageFileNameLab.setText(chooser.getSelectedFile().getName());
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "파일 저장 중 오류 발생", "오류", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-            }
+	  			return null;
+	  		} else {
+	  			return chooser.getSelectedFile();
+	  		}	  		
 	  	}
-	  	
-	}	
+		return null;	  	
+	}
+
+	/** 새로운 파일을 저장하는 메소드 */
+	private void saveFile(File file) {
+		File selectedFile = file;
+		String destinationFolder = "resource/";
+		
+		try {
+            Path sourcePath = selectedFile.toPath();
+            Path destinationPath = new File(destinationFolder, selectedFile.getName()).toPath();
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            JOptionPane.showMessageDialog(null, "파일 저장 완료", "성공", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "파일 저장 중 오류 발생", "오류", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+	}
+	
+	/** 기존 이미지 파일을 삭제하는 메소드 */
+	@SuppressWarnings("unused")
+	private void deleteFile(String imageFileName) {		
+		String destinationFolder = "resource/";
+		Path filePath = Paths.get(destinationFolder + imageFileName);
+		
+		try {
+			Files.delete(filePath);
+		} catch (NoSuchFileException err1) {
+			System.err.println("삭제하려는 파일 / 디렉토리가 없습니다");
+		} catch (IOException err2) {
+			err2.printStackTrace();
+		}
+	}
 	
 	/** DB에서 차내식을 조회하여 테이블에 출력하는 메소드 */
-	void getMenuValue(DefaultTableModel order_dtm) {
+	private void getMenuValue(DefaultTableModel order_dtm) {
 		order_dtm.setNumRows(0); // 테이블 초기화
 		
 		allFoodList = fooddao.getFoodAll();
@@ -272,5 +366,24 @@ public class Admin_food extends JPanel {
 			list.add(food.getImage_location());
 			order_dtm.addRow(list);
 		}
+	}
+	
+	/** 라벨 값을 초기화하는 메소드 */
+	private void initialization() {
+		categorycomboBox.setSelectedIndex(0);
+		foodNoTextField.setText(null);
+		foodnametext.setText(null);
+		pricetext.setText(null);
+		imageFileNameLab.setText(null);	
+	}
+	
+	/** 패널 값을 초기화하는 메소드 (AdminFrame에서 패널 넘어갈 때 마다 초기화) */
+	public void reset() {
+		order_dtm.setRowCount(0);
+		categorycomboBox.setSelectedIndex(0);
+		foodNoTextField.setText(null);
+		foodnametext.setText(null);
+		pricetext.setText(null);
+		imageFileNameLab.setText(null);			
 	}
 }

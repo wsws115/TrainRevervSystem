@@ -36,6 +36,15 @@ public class No_login_join extends JFrame {
 	public static String alrim = "";
 	public static String alrim2 = "";
 	
+	static No_login_join frame = new No_login_join();
+	
+	public void runApplication() {
+        // 애플리케이션 실행에 필요한 로직 작성
+    	if(GoMain.close) {
+			frame.dispose();
+		}
+    }
+	
 	/**
 	 * Launch the application.
 	 */
@@ -43,7 +52,7 @@ public class No_login_join extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					No_login_join frame = new No_login_join();
+					//No_login_join frame = new No_login_join();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,11 +70,11 @@ public class No_login_join extends JFrame {
 				new Font("HY헤드라인M", Font.BOLD, 50));
 		
 		ImageIcon img1 = new ImageIcon
-				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
+				("resource/E-RAIL.png");
 		ImageIcon img2 = new ImageIcon
-				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.png");
+				("resource/back_homebtn.png");
 		ImageIcon img3 = new ImageIcon
-				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
+				("resource/home.png");
 		
 		Image img = img1.getImage();
 	 	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);

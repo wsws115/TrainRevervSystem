@@ -31,8 +31,8 @@ public class Mem_chageDAO {
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
 						alrim = "로그인에 성공했습니다";
-						user_code = rs.getString("usernum_pk");
 						Mem_changeDAO_alrim mca = new Mem_changeDAO_alrim();
+						user_code = rs.getString("usernum_pk");
 						mca.main(null);
 						return true;
 					}else {

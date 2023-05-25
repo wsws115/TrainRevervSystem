@@ -45,7 +45,9 @@ import train.TrainReserv_Main;
 import train.Train_Main;
 import train.dao.Check_Rev_DAO;
 import train.dto.MemberDTO;
+import train.jungjun.No_login_joinDAO;
 import train.jungjun.change.Mem_chageDAO;
+import train.jungjun.change.No_mem_changeDAO;
 import train.jungjun.login_join_page.Login_and_joinDAO;
 
 public class Rev_detail extends JDialog {
@@ -59,6 +61,7 @@ public class Rev_detail extends JDialog {
 	public static JScrollPane fnb_scrollPane;
 	public static JTable table;
 	public static boolean chk_search;
+	public static boolean chk_login;
 	String date_text;
 	String user_code;
 	Check_Rev_DAO checkDAO = new Check_Rev_DAO();
@@ -210,18 +213,35 @@ public class Rev_detail extends JDialog {
 		
 		JPanel ticketRev_Panel = new JPanel();
 		int panelHeight;
-		if (chk_search) {
-			date_text = TrainReserv_Main.date_text.getText();
-			user_code = Login_and_joinDAO.user_code;
+		if(chk_login) {
+			if (chk_search) {
+				date_text = TrainReserv_Main.date_text.getText();
+				user_code = Login_and_joinDAO.user_code;
+			}else {
+				Calendar calendar = Calendar.getInstance();
+				LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+				String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+				date_text = date;
+				user_code = Mem_chageDAO.user_code;
+				System.out.println(date_text);
+			}
+			checkDAO.chk_train(ticketModel, user_code, date_text);
 		}else {
-			Calendar calendar = Calendar.getInstance();
-			LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
-			String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-			date_text = date;
-			user_code = Mem_chageDAO.user_code;
-			System.out.println(date_text);
+			if (chk_search) {
+				date_text = TrainReserv_Main.date_text.getText();
+				user_code = No_login_joinDAO.pk;
+			}else {
+				Calendar calendar = Calendar.getInstance();
+				LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+				String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+				date_text = date;
+				user_code = No_mem_changeDAO.pk;
+				System.out.println(date_text);
+			}
+			checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
 		}
-		checkDAO.chk_train(ticketModel, user_code, date_text);
+		
+		
 		for(int i = 0; i < ticketModel.getRowCount(); i ++) {
 			List train_list = new ArrayList(); 
 			for(int j =0; j< columnNames.length; ++j) {

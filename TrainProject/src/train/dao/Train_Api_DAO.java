@@ -20,7 +20,7 @@ public class Train_Api_DAO {
 	public int chk_train(List<String> apilist) {
 		int chk_pk_num = 0;
 		String query = "SELECT train_num FROM train_api WHERE train_type = ? "
-				+ "AND train_date = ? AND starting_subway = ?  AND start_time = ? "
+				+ "AND train_num_name = ? AND train_date = ? AND starting_subway = ?  AND start_time = ? "
 				+ "AND ending_subway = ? AND end_time = ?";
 		try (
 				Connection conn = OjdbcConnection.getConnection();
@@ -34,6 +34,7 @@ public class Train_Api_DAO {
 				pstmt.setString(4, apilist.get(3));
 				pstmt.setString(5, apilist.get(4));
 				pstmt.setString(6, apilist.get(5));
+				pstmt.setString(7, apilist.get(6));
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(!rs.next()) {
 						chk_pk_num = 0;
@@ -237,6 +238,7 @@ public class Train_Api_DAO {
 				
 			) {
 				String user_code =  train.jungjun.No_login_joinDAO.pk;
+				System.out.println("비회원 코드:"+user_code);
 				int price = Integer.parseInt(ticket_unmem_list.get(0)) + Integer.parseInt(ticket_unmem_list.get(1));
 				pstmt.setString(1, train_ho+seatlist.get(0) + user_code);
 				pstmt.setString(2, user_code);

@@ -14,6 +14,7 @@ import train.jungjun.No_login_join;
 
 public class No_mem_changeDAO {
 	public static String alrim = "";
+	public static String pk;
 	public boolean NCDAO() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
 		UIManager.put("OptionPane.messageFont",
@@ -32,6 +33,7 @@ public class No_mem_changeDAO {
 						alrim = "로그인에 성공했습니다";
 						No_mem_changeDAO_alrim alrim = new No_mem_changeDAO_alrim();
 						alrim.main(null);
+						pk = rs.getString("no_mem_pk");
 						return true;
 					}else {
 						alrim = "로그인에 실패했습니다_1";

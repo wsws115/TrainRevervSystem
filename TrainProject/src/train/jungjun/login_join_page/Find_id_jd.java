@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -37,53 +39,42 @@ public class Find_id_jd extends JDialog {
 	public Find_id_jd() {
 		setBounds(800, 300, 600, 300);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 584, 200);
+		contentPanel.setBounds(0, 0, 584, 261);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		
 		Find_id_jdDAO DAO = new Find_id_jdDAO();
-		JLabel show_id = new JLabel("아이디는"+ DAO.find_id() + "입니다");
+		JLabel show_id = new JLabel("아이디는 "+ DAO.find_id() + "입니다");
 		show_id.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
 		show_id.setBounds(40, 80, 500, 75);
 		contentPanel.add(show_id);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 200, 584, 60);
-			getContentPane().add(buttonPane);
-			buttonPane.setLayout(null);
-			{	
-				JButton okButton = new JButton("비밀번호 찾기");
-				okButton.setBackground(new Color(0, 128, 192));
-				okButton.setForeground(Color.WHITE);
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Login_and_join login_frame = new Login_and_join();
-						login_frame.main(null);
-						gopwfind = true;
-						dispose();
-					}
-				});
-				okButton.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
-				okButton.setBounds(25, 0, 250, 60);
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+		
+//		JButton okButton = new JButton("비밀번호 찾기");
+//		okButton.setBounds(25, 190, 250, 60);
+//		okButton.setBackground(new Color(0, 128, 192));
+//		okButton.setForeground(Color.WHITE);
+//		okButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				Login_and_join.gofindpw = true;
+//				Login_and_join and = new Login_and_join();
+//				and.main(null);
+//				dispose();
+//			}
+//		});
+//		okButton.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
+//		contentPanel.add(okButton);
+		
+		JButton cancelButton = new JButton("확인");
+		cancelButton.setBounds(135, 190, 250, 60);
+		cancelButton.setForeground(Color.WHITE);
+		cancelButton.setBackground(new Color(0, 128, 192));
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
-			{
-				JButton cancelButton = new JButton("확인");
-				cancelButton.setForeground(Color.WHITE);
-				cancelButton.setBackground(new Color(0, 128, 192));
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				cancelButton.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
-				cancelButton.setBounds(300, 0, 250, 60);
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
+		});
+		cancelButton.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
+		contentPanel.add(cancelButton);	
 	}
 }

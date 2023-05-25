@@ -1,23 +1,20 @@
 package train.jungjun;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import train.Second_main;
 import train.Train_Main;
+import train.jungjun.change.Mem_change;
+import train.jungjun.change.No_mem_change;
 import train.jungjun.login_join_page.Login_and_join;
-
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class GoMain extends JDialog {
 	
@@ -71,8 +68,19 @@ public class GoMain extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Train_Main gomain = new Train_Main();
-						gomain.main(null);
 						close = true;
+						System.out.println(close);
+						gomain.main(null);
+						Login_and_join close = new Login_and_join();
+						close.runApplication();
+						Change_main close2 = new Change_main();
+						close2.runApplication();
+						No_login_join close3 = new No_login_join();
+						close3.runApplication();
+						No_mem_change close4 = new No_mem_change();
+						close4.runApplication();
+						Mem_change close5 = new Mem_change();
+						close5.runApplication();
 						dispose();
 					}
 				});
