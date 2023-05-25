@@ -12,12 +12,13 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+import train.admin.AdminFrame;
 import train.ticket.Rev_detail;
 
 public class MemSearchBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 	
 	JButton searchBtn;
-	
+	public static String ticket_code;
 	public MemSearchBtn(String text, JTable table) {
 		searchBtn = new JButton();
 		searchBtn.setText(text);
@@ -26,9 +27,13 @@ public class MemSearchBtn extends AbstractCellEditor implements TableCellEditor,
 		searchBtn.setBackground(new Color(000, 102, 000));
 		searchBtn.addActionListener(e ->{
 			if (text.equals("출력")) {
+				int row = table.getSelectedRow();
 				Rev_detail rev = new Rev_detail();
+				ticket_code = String.valueOf(table.getValueAt(row, 0));
+				System.out.println(ticket_code);
+//				rev.ticket_code = String.valueOf(table.getValueAt(row, 0));
+				rev.chk_admin = true;
 				rev.chk_login = true;
-				rev.chk_search = false;
 				rev.main(null);
 			}
 		});

@@ -80,17 +80,17 @@ public class Login_and_join extends JFrame {
 	public static boolean gofindpw = false;
 	
 	ImageIcon img3 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
+			("resource/E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 	ImageIcon img7 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.PNG");
+			("resource/back.PNG");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/back.png");
 	ImageIcon img1 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/radio_button_off.PNG");
+			("resource/radio_button_off.PNG");
 	ImageIcon img2 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/radio_button_on.PNG");
+			("resource/radio_button_on.PNG");
 	ImageIcon img4 = new ImageIcon
-			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
+			("resource/home.png");
 	
 	Image img = img3.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);

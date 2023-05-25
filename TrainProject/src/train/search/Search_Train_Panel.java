@@ -103,7 +103,7 @@ public class Search_Train_Panel extends JPanel {
 		Train_API tapi = new Train_API(st, en, da, tanm);
 		try {
 			array = tapi.train_api();
-		    
+		    int count_table = 0;
 			for(int i =0; i< array.size(); ++i) {
 				JSONObject object = (JSONObject) array.get(i);
 //				System.out.println("요금 ==> "+object.get("adultcharge"));
@@ -120,7 +120,7 @@ public class Search_Train_Panel extends JPanel {
 				
 				LocalDateTime st_date = LocalDateTime.parse(String.valueOf(object.get("depplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 				LocalDateTime en_date = LocalDateTime.parse(String.valueOf(object.get("arrplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-				LocalDateTime select_time = LocalDateTime.parse(da, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+				
 				String st_time = st_date.getHour()+":"+st_date.getMinute();
 				String en_time = en_date.getHour()+":"+en_date.getMinute();
 				Duration diff = Duration.between(st_date.toLocalTime(), en_date.toLocalTime());
@@ -135,11 +135,15 @@ public class Search_Train_Panel extends JPanel {
 				}
 				String eltime = el_hour + "시간" + el_min+ "분";
 				int quality_up = (int) (Integer.parseInt(String.valueOf(object.get("adultcharge")))*1.2) ;
-			    model.insertRow(i, new Object[]{object.get("traingradename"),object.get("trainno"),
-			    		st_time,en_time,
-			    		eltime,""+quality_up,"",
-			    		object.get("adultcharge"),""
-			    });
+				LocalDateTime datetime = LocalDateTime.now();
+				if(!datetime.isAfter(st_date)) {
+				    model.insertRow(count_table, new Object[]{object.get("traingradename"),object.get("trainno"),
+				    		st_time,en_time,
+				    		eltime,""+quality_up,"",
+				    		object.get("adultcharge"),""
+				    });
+				    count_table ++;
+				}
 			}
 			
 		} catch (IOException e1) {

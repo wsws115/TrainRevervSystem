@@ -43,6 +43,8 @@ import javax.swing.table.DefaultTableModel;
 
 import train.TrainReserv_Main;
 import train.Train_Main;
+import train.admin.AdminFrame;
+import train.admin.component.MemSearchBtn;
 import train.dao.Check_Rev_DAO;
 import train.dto.MemberDTO;
 import train.jungjun.No_login_joinDAO;
@@ -83,9 +85,7 @@ public class Rev_detail extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public void rev_chk_admin (String user_name) {
-		this.user_code = user_name;
-	}
+
 	public Rev_detail() {
 		
 		setBounds(500, 0, 951, 1050);
@@ -116,44 +116,99 @@ public class Rev_detail extends JDialog {
 		boarding_Date.setFont(new Font("HY헤드라인M", Font.BOLD, 25));
 		boarding_Date.setBounds(122, 0, 192, 48);
 		boarding_Label.add(boarding_Date);
-		
-		// Refund 버튼의 ActionListener
-		refund_Btn = new JButton("Refund");
-		
-		refund_Btn.setEnabled(false); // 초기에는 비활성화 상태로 설정합니다.
-		refund_Btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Refund 버튼이 클릭되었을 때의 동작을 정의합니다.
-				Refund_panel rp = new Refund_panel();
-				rp.main(null);
+		System.out.println("로그인 체크 : "+ chk_admin);
+		if(chk_admin) {
+			
+			if(chk_login){
 				
-				// 반환 및 취소 버튼이 있는 패널 생성
-				JPanel buttonPanel = new JPanel();
-                JButton button1 = new JButton("반환");
-                JButton button2 = new JButton("취소");
-                
-                button1.setFont(new Font("HY헤드라인M", Font.BOLD, 100));
-                button2.setFont(new Font("HY헤드라인M", Font.BOLD, 100));
-                button2.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        // 버튼 '취소'를 눌렀을 때 창 닫기
-                    	Window window = SwingUtilities.windowForComponent(button1);
-                        if (window != null) {
-                            window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
-                        }
-                        
-                    }
-                });
+				System.out.println(MemSearchBtn.ticket_code);
+				checkDAO.chk_train_admin(ticketModel,MemSearchBtn.ticket_code);
+			}else {
+				
+				System.out.println(MemSearchBtn.ticket_code);
+				checkDAO.no_mem_chk_train_admin(ticketModel,MemSearchBtn.ticket_code);
 			}
-		});
+			
+			
+		}else {
+			System.out.println("로그인 체크 : "+ chk_search + chk_login);
+			// Refund 버튼의 ActionListener
+						refund_Btn = new JButton("Refund");
+						
+						refund_Btn.setEnabled(false); // 초기에는 비활성화 상태로 설정합니다.
+						refund_Btn.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								// Refund 버튼이 클릭되었을 때의 동작을 정의합니다.
+								Refund_panel rp = new Refund_panel();
+								rp.main(null);
+								
+								// 반환 및 취소 버튼이 있는 패널 생성
+								JPanel buttonPanel = new JPanel();
+				                JButton button1 = new JButton("반환");
+				                JButton button2 = new JButton("취소");
+				                
+				                button1.setFont(new Font("HY헤드라인M", Font.BOLD, 100));
+				                button2.setFont(new Font("HY헤드라인M", Font.BOLD, 100));
+				                button2.addActionListener(new ActionListener() {
+				                    @Override
+				                    public void actionPerformed(ActionEvent e) {
+				                        // 버튼 '취소'를 눌렀을 때 창 닫기
+				                    	Window window = SwingUtilities.windowForComponent(button1);
+				                        if (window != null) {
+				                            window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+				                        }
+				                        
+				                    }
+				                });
+							}
+						});
+						refund_Btn.setForeground(Color.WHITE);
+						refund_Btn.setFont(new Font("HY헤드라인M", Font.BOLD, 50));
+						refund_Btn.setBackground(new Color(64, 0, 64));
+						refund_Btn.setBounds(21, 858, 401, 143);
+						payment_Info_Panel.add(refund_Btn);
+			if(chk_login) {
+				if (chk_search) {
+					date_text = TrainReserv_Main.date_text.getText();
+					System.out.println(date_text);
+					user_code = Login_and_joinDAO.user_code;
+					checkDAO.chk_train(ticketModel,user_code, date_text);
+				}else {
+					Calendar calendar = Calendar.getInstance();
+					LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+					String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+					date_text = date;
+					user_code = Mem_chageDAO.user_code;
+					
+					
+					System.out.println(user_code);
+					System.out.println(date_text);
+					checkDAO.chk_train(ticketModel,user_code, date_text);
+				}
+				
+			}else {
+				if (chk_search) {
+					date_text = TrainReserv_Main.date_text.getText();
+					user_code = No_login_joinDAO.pk;
+					checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
+				}else {
+					Calendar calendar = Calendar.getInstance();
+					LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+					String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+					date_text = date;
+					user_code = No_mem_changeDAO.pk;
+					System.out.println(user_code);
+					System.out.println(date_text);
+					checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
+				}
+				
+			}
+		}
 		
-		refund_Btn.setForeground(Color.WHITE);
-		refund_Btn.setFont(new Font("HY헤드라인M", Font.BOLD, 50));
-		refund_Btn.setBackground(new Color(64, 0, 64));
-		refund_Btn.setBounds(21, 858, 401, 143);
-		payment_Info_Panel.add(refund_Btn);
 		
+		
+		JPanel ticketRev_Panel = new JPanel();
+		int panelHeight;
 		
 		// 스크롤 패널을 패널로 바꾸기
 		JPanel all_BackPane = new JPanel();
@@ -212,46 +267,7 @@ public class Rev_detail extends JDialog {
 //		fnb_Panel.setLayout(null);
 //		fnb_Panel.add(orderTable);
 		// 여기까지
-		System.out.println("로그인 체크 : "+ chk_search + chk_login);
-		JPanel ticketRev_Panel = new JPanel();
-		int panelHeight;
-		if(chk_login) {
-			if (chk_search) {
-				date_text = TrainReserv_Main.date_text.getText();
-				System.out.println(date_text);
-				user_code = Login_and_joinDAO.user_code;
-				checkDAO.chk_train(ticketModel,user_code, date_text);
-			}else {
-				Calendar calendar = Calendar.getInstance();
-				LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
-				String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-				date_text = date;
-				
-				user_code = Mem_chageDAO.user_code;
-				
-				
-				System.out.println(user_code);
-				System.out.println(date_text);
-				checkDAO.chk_train(ticketModel,user_code, date_text);
-			}
-			
-		}else {
-			if (chk_search) {
-				date_text = TrainReserv_Main.date_text.getText();
-				user_code = No_login_joinDAO.pk;
-				checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
-			}else {
-				Calendar calendar = Calendar.getInstance();
-				LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
-				String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-				date_text = date;
-				user_code = No_mem_changeDAO.pk;
-				System.out.println(user_code);
-				System.out.println(date_text);
-				checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
-			}
-			
-		}
+		
 		
 		
 		for(int i = 0; i < ticketModel.getRowCount(); i ++) {

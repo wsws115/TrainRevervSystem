@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 public class AdminFrame extends JFrame {
 
 	private JPanel contentPane;
+	public static String ticket_code;
 	JButton memTicketBtn, nomemTicketBtn, foodBtn;
 
 	/**

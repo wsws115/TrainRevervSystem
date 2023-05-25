@@ -20,7 +20,41 @@ public class Check_Rev_DAO {
 //   private String user_code = Login_and_joinDAO.user_code;
 //   private String date = TrainReserv_Main.date_text.getText();
 //   ArrayList<train.dto.Ticket_Train_DTO> train_list;
-	
+
+	public void no_mem_chk_train_admin(DefaultTableModel model, String ticket_code) {
+		   String query = "SELECT * FROM train_unmember_ticket tt "
+		            + "JOIN seat_table seat ON tt.seat_code = seat.seat_code "
+		            + "JOIN train_table train ON seat.train_code = train.train_code "
+		            + "JOIN train_api api ON train.train_num = api.train_num "
+		            + "WHERE tt.ticket_num = ?";
+		      try (
+		            Connection conn = OjdbcConnection.getConnection();
+		            PreparedStatement pstmt = conn.prepareStatement(query);
+		         ) {
+		    	  	
+		    	  	System.out.println(ticket_code);
+		            pstmt.setString(1, ticket_code);
+		            ResultSet rs = pstmt.executeQuery();
+		            
+		            while(rs.next()) {
+		            	Vector<Object> list = new Vector<>();
+		            	list.add(rs.getString("ticket_num"));
+		            	list.add(rs.getString("train_type"));
+		            	list.add(rs.getString("train_num_name"));
+		            	list.add(rs.getString("train_date"));
+		            	list.add(rs.getString("starting_subway"));
+		            	list.add(rs.getString("ending_subway"));
+		            	list.add(rs.getString("start_time"));
+		            	list.add(rs.getString("end_time"));
+		            	list.add(rs.getString("train_ho_num"));
+		            	list.add(rs.getString("seat_name"));
+		            	model.addRow(list);
+		            }
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      }
+		   
+	   }
    public void no_mem_chk_train(DefaultTableModel model, String user_code, String date) {
 	   String query = "SELECT * FROM non_mem_info us "
 	            + "RIGHT JOIN train_unmember_ticket tt ON us.no_mem_pk = tt.no_mem_pk "
@@ -59,6 +93,41 @@ public class Check_Rev_DAO {
 	      }
 	   
    }
+   
+   public void chk_train_admin(DefaultTableModel model, String user_code) {
+	      String query = "SELECT * FROM train_ticket tt "
+	            + "RIGHT JOIN seat_table seat ON tt.seat_code = seat.seat_code "
+	            + "RIGHT JOIN train_table train ON seat.train_code = train.train_code "
+	            + "RIGHT JOIN train_api api ON train.train_num = api.train_num "
+	            + "WHERE tt.ticket_num_pk = ?";
+	      try (
+	            Connection conn = OjdbcConnection.getConnection();
+	            PreparedStatement pstmt = conn.prepareStatement(query);
+	         ) {
+	    	 
+	            pstmt.setString(1, user_code);
+//	            pstmt.setString(2, "20230523");
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            while(rs.next()) {
+	            	Vector<Object> list = new Vector<>();
+	            	list.add(rs.getString("ticket_num_pk"));
+	            	list.add(rs.getString("train_type"));
+	            	list.add(rs.getString("train_num_name"));
+	            	list.add(rs.getString("train_date"));
+	            	list.add(rs.getString("starting_subway"));
+	            	list.add(rs.getString("ending_subway"));
+	            	list.add(rs.getString("start_time"));
+	            	list.add(rs.getString("end_time"));
+	            	list.add(rs.getString("train_ho_num"));
+	            	list.add(rs.getString("seat_name"));
+	            	model.addRow(list);
+	            }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	   }
+   
    public void chk_train(DefaultTableModel model, String user_code, String date) {
       String query = "SELECT * FROM user_info us "
             + "RIGHT JOIN train_ticket tt ON us.usernum_pk = tt.usernum_pk "
