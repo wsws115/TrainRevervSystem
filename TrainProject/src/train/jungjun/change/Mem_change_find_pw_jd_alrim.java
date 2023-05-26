@@ -34,6 +34,7 @@ public class Mem_change_find_pw_jd_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public Mem_change_find_pw_jd_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(800, 300, 900, 600);
 		getContentPane().setLayout(null);
 		

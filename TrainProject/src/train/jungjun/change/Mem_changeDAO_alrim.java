@@ -7,10 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import train.TrainReserv_Main;
-import train.ticket.Rev_detail;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -37,6 +33,7 @@ public class Mem_changeDAO_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public Mem_changeDAO_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		

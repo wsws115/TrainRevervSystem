@@ -34,6 +34,7 @@ public class Mem_change_jd extends JDialog {
 	 * Create the dialog.
 	 */
 	public Mem_change_jd() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(800, 300, 600, 300);
 		getContentPane().setLayout(null);
 		

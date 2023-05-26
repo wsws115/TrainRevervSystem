@@ -64,6 +64,7 @@ public class Admin_page extends JFrame {
 		getContentPane().setLayout(null);
 		
 		login = new JPanel();
+		login.setBackground(Color.WHITE);
 		login.setBounds(0, 0, 1920, 1080);
 		getContentPane().add(login);
 		login.setLayout(null);

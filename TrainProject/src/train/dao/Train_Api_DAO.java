@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.naming.spi.DirStateFactory.Result;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 import train.dto.FoodDTO;
 import train.dto.Search_TableDTO;
@@ -240,8 +241,8 @@ public class Train_Api_DAO {
 				PreparedStatement pstmt1 = conn.prepareStatement(query1);
 			) {
 				
-				pstmt1.setString(1, No_login_join.phone_num);
-				pstmt1.setString(2, No_login_join.pw);
+				pstmt1.setString(1, Train_Main.pn5);
+				pstmt1.setString(2, Train_Main.pw6);
 				try(ResultSet rs = pstmt1.executeQuery();){
 					if(rs.next()) {
 						user_code = rs.getString("NO_MEM_PK");

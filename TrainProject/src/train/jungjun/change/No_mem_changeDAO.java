@@ -6,11 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
-import train.jungjun.No_login_join;
 
 public class No_mem_changeDAO {
 	public static String alrim = "";
@@ -25,8 +24,8 @@ public class No_mem_changeDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			) {					
-				pstmt.setString(1, No_mem_change.pn);
-				pstmt.setString(2, No_mem_change.pw);
+				pstmt.setString(1, Train_Main.pn2);
+				pstmt.setString(2, Train_Main.pw3);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {

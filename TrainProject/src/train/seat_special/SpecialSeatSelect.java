@@ -361,7 +361,7 @@ public class SpecialSeatSelect extends JDialog {
 		top2panel.add(nextCarButton, BorderLayout.EAST);
 		
 		// 앞에서 기차정보를 받아와서 넣어야함(잔여좌석도)
-		JLabel TrainInfoLabel = new JLabel("<html>KTX 316 (일반실)<br> / 잔여 3석 총 30석<html>");
+		JLabel TrainInfoLabel = new JLabel();
 		TrainInfoLabel.setBackground(new Color(255, 102, 153));
 		TrainInfoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		TrainInfoLabel.setFont(new Font(mainFont, Font.PLAIN, 30));

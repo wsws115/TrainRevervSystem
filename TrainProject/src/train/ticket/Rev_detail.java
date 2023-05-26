@@ -45,6 +45,7 @@ import train.TrainReserv_Main;
 import train.Train_Main;
 import train.admin.AdminFrame;
 import train.admin.component.MemSearchBtn;
+import train.admin.component.NoMemSearchBtn;
 import train.dao.Check_Rev_DAO;
 import train.dto.MemberDTO;
 import train.jungjun.No_login_joinDAO;
@@ -62,6 +63,7 @@ public class Rev_detail extends JDialog {
 //	public static List<String> ticket_num;
 	public static JScrollPane fnb_scrollPane;
 	public static JTable table;
+	public static JPanel copy_Panel;
 	public static boolean chk_search;
 	public static boolean chk_login;
 	public static boolean chk_admin = false;
@@ -126,7 +128,7 @@ public class Rev_detail extends JDialog {
 			}else {
 				
 				System.out.println(MemSearchBtn.ticket_code);
-				checkDAO.no_mem_chk_train_admin(ticketModel,MemSearchBtn.ticket_code);
+				checkDAO.no_mem_chk_train_admin(ticketModel,NoMemSearchBtn.ticket_code);
 			}
 			
 			
@@ -139,6 +141,7 @@ public class Rev_detail extends JDialog {
 						refund_Btn.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								// Refund 버튼이 클릭되었을 때의 동작을 정의합니다.
+								
 								Refund_panel rp = new Refund_panel();
 								rp.main(null);
 								
@@ -276,7 +279,7 @@ public class Rev_detail extends JDialog {
 				train_list.add(ticketModel.getValueAt(i, j));
 				System.out.println(ticketModel.getValueAt(i, j));
 			}
-			JPanel copy_Panel = new Ticket_Info(train_list);
+			copy_Panel = new Ticket_Info(train_list);
 			copy_Panel.setPreferredSize(new Dimension(869, 288));
 			copy_Panel.setBounds(10, i * 300, 869, 288);
 			ticketRev_Panel.add(copy_Panel);

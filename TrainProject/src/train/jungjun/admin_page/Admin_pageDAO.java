@@ -22,8 +22,8 @@ public class Admin_pageDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			){
-				pstmt.setString(1, Admin_page.id);
-				pstmt.setString(2, Admin_page.pw);
+				pstmt.setString(1, train.Train_Main.id);
+				pstmt.setString(2, train.Train_Main.pw);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {

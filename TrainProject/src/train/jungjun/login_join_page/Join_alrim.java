@@ -34,6 +34,7 @@ public class Join_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public Join_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		

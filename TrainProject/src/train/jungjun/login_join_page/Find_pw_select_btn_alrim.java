@@ -1,14 +1,16 @@
 package train.jungjun.login_join_page;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import train.Train_Main;
 
 public class Find_pw_select_btn_alrim extends JDialog {
 
@@ -33,10 +35,11 @@ public class Find_pw_select_btn_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public Find_pw_select_btn_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(800, 300, 600, 300);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(Login_and_join.alrim);
+		JLabel lblNewLabel = new JLabel(Train_Main.alrim);
 		lblNewLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
 		lblNewLabel.setBounds(100, 30, 400, 100);
 		getContentPane().add(lblNewLabel);

@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +20,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import train.dao.TicketDAO;
+
 import javax.swing.JCheckBox;
 
 public class Refund_panel extends JDialog {
@@ -63,9 +67,20 @@ public class Refund_panel extends JDialog {
 		refund_Yes_Btn.setForeground(new Color(255, 255, 255));
 		refund_Yes_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				for(int i =0; i < Ticket_Info.tnum_li.size(); ++i) {
+					TicketDAO ticket = new TicketDAO();
+					if(Rev_detail.chk_login) {
+						System.out.println("환불 : "+Ticket_Info.tnum_li.get(i));
+						ticket.refundMemTicket_search(Ticket_Info.tnum_li.get(i));
+					}else {
+						System.out.println("환불 : "+Ticket_Info.tnum_li.get(i));
+						ticket.refundNoMemTicket_search(Ticket_Info.tnum_li.get(i));
+					}
+					
+				}
 				Refund_Success_Panel rsp = new Refund_Success_Panel();
 				rsp.main(null);
-				
 			}
 		});
 	

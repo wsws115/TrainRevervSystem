@@ -145,7 +145,8 @@ public class Subway_Kind extends JPanel {
 		previousBtn.setBackground(new Color(0, 128, 129));
 		previousBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "subway");
+				TrainReserv_Main.selectsubBtn.setText("전체");
+				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
 			}
 		});
 		previousBtn.setBounds(12, 10, 195, 117);

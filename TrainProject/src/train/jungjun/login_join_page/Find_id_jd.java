@@ -39,6 +39,7 @@ public class Find_id_jd extends JDialog {
 	public Find_id_jd() {
 		setBounds(800, 300, 600, 300);
 		getContentPane().setLayout(null);
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBounds(0, 0, 584, 261);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
@@ -65,7 +66,7 @@ public class Find_id_jd extends JDialog {
 //		okButton.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
 //		contentPanel.add(okButton);
 		
-		JButton cancelButton = new JButton("확인");
+		JButton cancelButton = new JButton("닫기");
 		cancelButton.setBounds(135, 190, 250, 60);
 		cancelButton.setForeground(Color.WHITE);
 		cancelButton.setBackground(new Color(0, 128, 192));

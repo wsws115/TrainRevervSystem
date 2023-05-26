@@ -319,21 +319,24 @@ public class Payment_UI extends JDialog {
 		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
 //		 중앙 정렬
 		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
-		for(int i =0; i < food_table.length; i++) {
-			String[] food_model = food_table[i].split(" ");
-			model.insertRow(i, food_model);
+		if(!(food_total == 0)) {
+			for(int i =0; i < food_table.length; i++) {
+				String[] food_model = food_table[i].split(" ");
+				model.insertRow(i, food_model);
+			}
+			
+			table = new JTable(model);
+			table.setRowHeight(50);
+			table.getColumn("좌석번호").setCellRenderer(celAlignCenter);
+			table.getColumn("음식이름").setCellRenderer(celAlignCenter);
+			table.getColumn("가격").setCellRenderer(celAlignCenter);
+			table.getColumn("수량").setCellRenderer(celAlignCenter);
+			table.getTableHeader().setFont(new Font("HY견고딕", Font.PLAIN, 30));
+			table.setAutoCreateRowSorter(true);
+			table.setFont(new Font("HY견고딕", Font.PLAIN, 25));
+			user_sp.setViewportView(table);
 		}
 		
-		table = new JTable(model);
-		table.setRowHeight(50);
-		table.getColumn("좌석번호").setCellRenderer(celAlignCenter);
-		table.getColumn("음식이름").setCellRenderer(celAlignCenter);
-		table.getColumn("가격").setCellRenderer(celAlignCenter);
-		table.getColumn("수량").setCellRenderer(celAlignCenter);
-		table.getTableHeader().setFont(new Font("HY견고딕", Font.PLAIN, 30));
-		table.setAutoCreateRowSorter(true);
-		table.setFont(new Font("HY견고딕", Font.PLAIN, 25));
-		user_sp.setViewportView(table);
 		
 		JLabel krw_Label = new JLabel("원");
 		krw_Label.setHorizontalAlignment(JLabel.CENTER);
@@ -546,34 +549,44 @@ public class Payment_UI extends JDialog {
                 	// 티켓 입력
                 	ticketlist.add(""+train_price);
                 	int food_price = 0;
-                	
-                	for(int i =0; i<food_table.length; ++i) {
-                		if(food_table[i].contains(sn)) {
-                			food_price += Integer.parseInt(food_table[i].split(" ")[2]);
-                			foodlist.add(food_table[i].split(" ")[1]);
-                			System.out.println(food_table[i].split(" ")[1]); //이름
-                			foodlist.add(food_table[i].split(" ")[3]);
-                			System.out.println(food_table[i].split(" ")[3]); // 수량
-                			foodlist.add(food_table[i].split(" ")[2]);
-                			System.out.println(food_table[i].split(" ")[2]); // 가격
-                			ticketlist.add(""+food_price);
-                        	
-                		}else {
-                			ticketlist.add("0");
-                		}
-                	}
-                	ticketlist.add(date_text);
-                	if(user_who) {
-                		dao.settikect(ticketlist, seatlist, chktrain);
-                		if (!foodlist.isEmpty()) {
-                			foodDao.setLoginFood(foodlist, seatlist, chktrain);
-                		}
+                	if (!(food_total == 0)) {
+                		for(int i =0; i<food_table.length; ++i) {
+                    		if(food_table[i].contains(sn)) {
+                    			food_price += Integer.parseInt(food_table[i].split(" ")[2]);
+                    			foodlist.add(food_table[i].split(" ")[1]);
+                    			System.out.println(food_table[i].split(" ")[1]); //이름
+                    			foodlist.add(food_table[i].split(" ")[3]);
+                    			System.out.println(food_table[i].split(" ")[3]); // 수량
+                    			foodlist.add(food_table[i].split(" ")[2]);
+                    			System.out.println(food_table[i].split(" ")[2]); // 가격
+                    			ticketlist.add(""+food_price);
+                            	
+                    		}else {
+                    			ticketlist.add("0");
+                    		}
+                    	}
+                		ticketlist.add(date_text);
+                    	if(user_who) {
+                    		dao.settikect(ticketlist, seatlist, chktrain);
+                    		if (!foodlist.isEmpty()) {
+                    			foodDao.setLoginFood(foodlist, seatlist, chktrain);
+                    		}
+                    	}else {
+                    		dao.set_unmem_tikect(ticketlist, seatlist, chktrain);
+                    		if (!foodlist.isEmpty()) {
+                    			foodDao.setUnLoginFood(foodlist, seatlist, chktrain);
+                    		}
+                    	}
                 	}else {
-                		dao.set_unmem_tikect(ticketlist, seatlist, chktrain);
-                		if (!foodlist.isEmpty()) {
-                			foodDao.setUnLoginFood(foodlist, seatlist, chktrain);
+                		ticketlist.add(""+train_price);
+                		ticketlist.add(date_text);
+                		if(user_who) {
+                    		dao.settikect(ticketlist, seatlist, chktrain);
+                		}else {
+                    		dao.set_unmem_tikect(ticketlist, seatlist, chktrain);
                 		}
                 	}
+                	
                 	
                 }
             }

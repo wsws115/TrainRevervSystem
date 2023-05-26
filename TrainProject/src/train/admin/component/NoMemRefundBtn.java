@@ -40,7 +40,7 @@ public class NoMemRefundBtn extends AbstractCellEditor implements TableCellEdito
 				if (ans == 0) {
 					int row = orderTable.getSelectedRow();
 					
-					String userNum = (String) nomemTable.getValueAt(0, 0);
+					String userNum = String.valueOf(nomemTable.getValueAt(0, 0));
 					String ticketNum = (String) orderTable.getValueAt(orderTable.getSelectedRow(), 0);
 					int trainNum = (int) orderTable.getValueAt(orderTable.getSelectedRow(), 2);
 	

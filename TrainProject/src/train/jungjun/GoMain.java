@@ -39,9 +39,11 @@ public class GoMain extends JDialog {
 	 * Create the dialog.
 	 */
 	public GoMain() {
+		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(650, 250, 600, 600);
 		getContentPane().setLayout(null);
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBounds(0, 0, 584, 350);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
@@ -60,6 +62,7 @@ public class GoMain extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setBounds(0, 360, 584, 201);
 			getContentPane().add(buttonPane);
 			buttonPane.setLayout(null);
@@ -69,7 +72,7 @@ public class GoMain extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Train_Main gomain = new Train_Main();
 						close = true;
-						System.out.println(close);
+						//System.out.println(close);
 						gomain.main(null);
 						Login_and_join close = new Login_and_join();
 						close.runApplication();

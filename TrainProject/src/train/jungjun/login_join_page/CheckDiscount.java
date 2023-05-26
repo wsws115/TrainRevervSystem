@@ -1,23 +1,22 @@
 package train.jungjun.login_join_page;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.JTextField;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
+
+import train.Train_Main;
 
 public class CheckDiscount extends JDialog {
 
@@ -48,6 +47,7 @@ public class CheckDiscount extends JDialog {
 				new Font("HY헤드라인M", Font.BOLD, 50));
 		setBounds(800, 300, 600, 600);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -77,23 +77,31 @@ public class CheckDiscount extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					CardNum = CardNum_textField.getText();
 					CheckDiscountRegex regex = new CheckDiscountRegex();
-					if(regex.regex1() && Login_and_join.discount.equals("장애인")) {
-						Login_and_join.preferential_treatment = "disabled";
-						Login_and_join.preferential_treatment_chk_B = true;
+					if(regex.regex1() && Train_Main.discount.equals("장애인")) {
+						Train_Main.preferential_treatment = "disabled";
+						Train_Main.preferential_treatment_chk_B = true;
+						alrim = "인증에 성공했습니다";
+						Train_Main.default_radio_btn.setIcon(Train_Main.img12);
+						Train_Main.disabled_radio_btn.setIcon(Train_Main.img13);
+						Train_Main.national_merit_radio_btn.setIcon(Train_Main.img12);
+						CheckDiscount_alrim alrim = new CheckDiscount_alrim();
+						alrim.main(null);
+					}else if(regex.regex2() && Train_Main.discount.equals("국가유공자")){
+						Train_Main.preferential_treatment = "national_merit";
+						Train_Main.preferential_treatment_chk_B = true;
+						Train_Main.default_radio_btn.setIcon(Train_Main.img12);
+						Train_Main.disabled_radio_btn.setIcon(Train_Main.img12);
+						Train_Main.national_merit_radio_btn.setIcon(Train_Main.img13);
 						alrim = "인증에 성공했습니다";
 						CheckDiscount_alrim alrim = new CheckDiscount_alrim();
 						alrim.main(null);
-					}else if(regex.regex2() && Login_and_join.discount.equals("국가유공자")){
-						Login_and_join.preferential_treatment = "national_merit";
-						Login_and_join.preferential_treatment_chk_B = true;
-						alrim = "인증에 성공했습니다";
-						CheckDiscount_alrim alrim = new CheckDiscount_alrim();
-						alrim.main(null);
-					}else if(regex.regex1() && Login_and_join.discount.equals("국가유공자")){
+					}else if(regex.regex1() && Train_Main.discount.equals("국가유공자")){
+						Train_Main.preferential_treatment_chk_B = false;
 						alrim = "장애인를 선택해주세요";
 						CheckDiscount_alrim alrim = new CheckDiscount_alrim();
 						alrim.main(null);
-					}else if(regex.regex2() && Login_and_join.discount.equals("장애인")){
+					}else if(regex.regex2() && Train_Main.discount.equals("장애인")){
+						Train_Main.preferential_treatment_chk_B = false;
 						alrim = "국가유공자를 선택해주세요";
 						CheckDiscount_alrim alrim = new CheckDiscount_alrim();
 						alrim.main(null);
@@ -124,7 +132,7 @@ public class CheckDiscount extends JDialog {
 			contentPanel.add(Cancel);
 		}
 		
-		JLabel lblNewLabel = new JLabel(Login_and_join.discount + "이(가) 선택되었습니다");
+		JLabel lblNewLabel = new JLabel(Train_Main.discount + "이(가) 선택되었습니다");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
 		lblNewLabel.setBounds(75, 30, 450, 75);

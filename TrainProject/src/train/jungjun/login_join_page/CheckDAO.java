@@ -1,21 +1,18 @@
 package train.jungjun.login_join_page;
 
-import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 // 사용
 public class CheckDAO {
-	String chk = Login_and_join.id2;
+	String chk = Train_Main.id4;
 	boolean result4 = chk.matches("^\\W*\\w*\\W*$");
 	boolean result1 = chk.matches("^\\w*admin+\\w*$");
 	boolean result2 = chk.matches("^\\w*Admin+\\w*$");
@@ -33,14 +30,14 @@ public class CheckDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			){
-			pstmt.setString(1,Login_and_join.id2);
+			pstmt.setString(1,Train_Main.id4);
 			
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
 						alrim = "이미 존재하는 아이디입니다";
 						CheckDAO_alrim alrim = new CheckDAO_alrim();
 						alrim.main(null);
-					}else if(!(rs.next()) && Login_and_join.id2.equals("")){
+					}else if(!(rs.next()) && chk.equals("")){
 						alrim = "아이디를 입력하세요";
 						CheckDAO_alrim alrim = new CheckDAO_alrim();
 						alrim.main(null);

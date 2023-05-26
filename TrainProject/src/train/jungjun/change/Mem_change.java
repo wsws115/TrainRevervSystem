@@ -39,11 +39,11 @@ public class Mem_change extends JFrame {
 	public static String alrim = "";
 	
 	ImageIcon img1 = new ImageIcon
-			("resource/E-RAIL.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 	ImageIcon img2 = new ImageIcon
-			("resource/back_homebtn.PNG");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.PNG");
 	ImageIcon img3 = new ImageIcon
-			("resource/home.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 	Image img = img1.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
     ImageIcon updateIcon = new ImageIcon(updateImg);
@@ -98,11 +98,12 @@ public class Mem_change extends JFrame {
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel login = new JPanel();
+		login.setBackground(Color.WHITE);
 		layeredPane.add(login, "name_1049015325295800");
 		login.setLayout(null);
 		
 		JLabel logo = new JLabel(updateIcon);
-		logo.setLocation(675, 30);
+		logo.setLocation(750, 30);
 		logo.setSize(400, 330);
 		login.add(logo, "name_1049015133618400");
 		
@@ -170,7 +171,6 @@ public class Mem_change extends JFrame {
 				Mem_chageDAO CDAO = new Mem_chageDAO();
 				boolean login_result = CDAO.DAO();
 				System.out.println("로그인 성공 여부" + login_result);
-				setVisible(false);
 			}
 		});
 		login_btn.setBackground(new Color(0, 128, 192));
@@ -179,6 +179,7 @@ public class Mem_change extends JFrame {
 		login.add(login_btn);
 		
 		JPanel find_id = new JPanel();
+		find_id.setBackground(Color.WHITE);
 		layeredPane.add(find_id, "name_1049829518475000");
 		find_id.setLayout(null);
 		
@@ -201,6 +202,7 @@ public class Mem_change extends JFrame {
 		login.add(find_id_btn);
 		
 		JPanel find_pw = new JPanel();
+		find_pw.setBackground(Color.WHITE);
 		layeredPane.add(find_pw, "name_1056879099727600");
 		find_pw.setLayout(null);
 		
@@ -224,7 +226,7 @@ public class Mem_change extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("회원 조회");
 		lblNewLabel_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
-		lblNewLabel_3.setBounds(395, 275, 300, 100);
+		lblNewLabel_3.setBounds(190, 30, 300, 100);
 		login.add(lblNewLabel_3);
 		
 		JLabel logo_2 = new JLabel(updateIcon);
@@ -288,8 +290,15 @@ public class Mem_change extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				name = name_textField.getText();
 				pn = pn_textField.getText();
-				Mem_change_find_id_jd jd = new Mem_change_find_id_jd();
-				jd.main(null);
+				Mem_change_pwDAO DAO = new Mem_change_pwDAO();
+				if(DAO.find_pw()) {
+					Mem_change_find_pw_jd pwjd = new Mem_change_find_pw_jd();
+					pwjd.main(null);
+				}else {
+					alrim = "값을 정확히 입력하세요";
+					Mem_change_jd jd = new Mem_change_jd();
+					jd.main(null);
+				}
 			}
 		});
 		find_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));

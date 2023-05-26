@@ -1,15 +1,14 @@
 package train.jungjun.change;
 
-import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 import train.ticket.Rev_detail;
 
@@ -26,8 +25,8 @@ public class Mem_chageDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			) {
-				pstmt.setString(1, Mem_change.id);
-				pstmt.setString(2, Mem_change.pw);
+				pstmt.setString(1, Train_Main.id6);
+				pstmt.setString(2, Train_Main.pw7);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {

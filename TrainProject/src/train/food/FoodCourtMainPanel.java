@@ -267,7 +267,7 @@ public class FoodCourtMainPanel extends JPanel {
 			add(total_Lab);
 			
 			// @ FoodBtn을 누르면, 총 합계가 들어갈 가격 라벨
-			totalPrice_Lab = new JLabel("0 원");
+			totalPrice_Lab = new JLabel("0원");
 			totalPrice_Lab.setFont(new Font(mainpont, Font.PLAIN, 30));
 			totalPrice_Lab.setBounds(860, 880, 141, 44);
 			add(totalPrice_Lab);

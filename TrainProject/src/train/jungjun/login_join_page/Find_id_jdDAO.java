@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 
 public class Find_id_jdDAO {
@@ -14,8 +15,8 @@ public class Find_id_jdDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 		){
-				pstmt.setString(1,Login_and_join.name2);
-				pstmt.setString(2,Login_and_join.phone_number2);
+				pstmt.setString(1,Train_Main.name);
+				pstmt.setString(2,Train_Main.pn3);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {

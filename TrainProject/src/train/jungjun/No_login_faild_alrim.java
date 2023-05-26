@@ -1,15 +1,17 @@
 package train.jungjun;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+
+import train.Train_Main;
 
 public class No_login_faild_alrim extends JDialog {
 
@@ -34,10 +36,11 @@ public class No_login_faild_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public No_login_faild_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(No_login_join.alrim);
+		JLabel lblNewLabel = new JLabel(Train_Main.alrim);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
 		lblNewLabel.setBounds(45, 150, 800, 100);
@@ -55,7 +58,7 @@ public class No_login_faild_alrim extends JDialog {
 		btnNewButton.setBounds(325, 400, 250, 100);
 		getContentPane().add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel(No_login_join.alrim2);
+		JLabel lblNewLabel_1 = new JLabel(Train_Main.alrim2);
 		lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(45, 300, 800, 90);

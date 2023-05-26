@@ -156,7 +156,6 @@ public class Ticket_Info extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
 					Rev_detail.refund_Btn.setEnabled(true); // 버튼 활성화
-					System.out.println(train_list.get(0));
                 	tnum_li.add(train_list.get(0));
 					Check_Rev_DAO chkDAO = new Check_Rev_DAO();
 					if (Rev_detail.chk_login) {

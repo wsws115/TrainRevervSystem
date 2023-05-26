@@ -44,8 +44,10 @@ public class Find_pw_Jd extends JDialog {
 	 * Create the dialog.
 	 */
 	public Find_pw_Jd() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(800, 300, 600, 600);
 		getContentPane().setLayout(null);
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBounds(0, 10, 584, 465);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
@@ -81,6 +83,7 @@ public class Find_pw_Jd extends JDialog {
 		
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setBounds(0, 501, 584, 60);
 			getContentPane().add(buttonPane);
 			buttonPane.setLayout(null);

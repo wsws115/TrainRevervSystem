@@ -37,6 +37,7 @@ public class No_mem_changeDAO_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public No_mem_changeDAO_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		

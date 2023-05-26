@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 
 public class Mem_change_find_pw_jdDAO {
@@ -15,7 +16,7 @@ public class Mem_change_find_pw_jdDAO {
 			) {	
 				if(Mem_change_find_pw_jd.chk) {
 					pstmt.setString(1, Mem_change_find_pw_jd.pw);
-					pstmt.setString(2, Mem_change.id2);
+					pstmt.setString(2, Train_Main.id7);
 					
 					try(ResultSet rs = pstmt.executeQuery();){
 						if(rs.next()) {

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 
 public class ChangePW {
@@ -15,7 +16,7 @@ public class ChangePW {
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			) {					
 				pstmt.setString(1, Find_pw_Jd.pw1);
-				pstmt.setString(2, Login_and_join.id3);
+				pstmt.setString(2, Train_Main.id3);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {

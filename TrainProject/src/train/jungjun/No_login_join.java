@@ -70,11 +70,11 @@ public class No_login_join extends JFrame {
 				new Font("HY헤드라인M", Font.BOLD, 50));
 		
 		ImageIcon img1 = new ImageIcon
-				("resource/E-RAIL.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 		ImageIcon img2 = new ImageIcon
-				("resource/back_homebtn.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.png");
 		ImageIcon img3 = new ImageIcon
-				("resource/home.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 		
 		Image img = img1.getImage();
 	 	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
@@ -83,6 +83,7 @@ public class No_login_join extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(panel);
@@ -186,7 +187,7 @@ public class No_login_join extends JFrame {
 		JLabel no_mem_label = new JLabel("비회원 예매");
 		no_mem_label.setHorizontalAlignment(SwingConstants.CENTER);
 		no_mem_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
-		no_mem_label.setBounds(425, 350, 350, 100);
+		no_mem_label.setBounds(190, 30, 350, 100);
 		panel.add(no_mem_label);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}

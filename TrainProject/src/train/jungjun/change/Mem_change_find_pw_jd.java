@@ -46,6 +46,7 @@ public class Mem_change_find_pw_jd extends JDialog {
 	 * Create the dialog.
 	 */
 	public Mem_change_find_pw_jd() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(800, 300, 600, 600);
 		getContentPane().setLayout(null);
 		

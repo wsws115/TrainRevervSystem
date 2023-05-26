@@ -34,6 +34,7 @@ public class Find_pw_jd_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public Find_pw_jd_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		

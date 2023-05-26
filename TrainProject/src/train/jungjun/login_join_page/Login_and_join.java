@@ -80,17 +80,17 @@ public class Login_and_join extends JFrame {
 	public static boolean gofindpw = false;
 	
 	ImageIcon img3 = new ImageIcon
-			("resource/E-RAIL.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/E-RAIL.png");
 	ImageIcon img7 = new ImageIcon
-			("resource/back.PNG");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.PNG");
 			//("C:/Users/USER/git/TrainRevervSystem/TrainProject/images/back.png");
 	ImageIcon img1 = new ImageIcon
-			("resource/radio_button_off.PNG");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/radio_button_off.PNG");
 	ImageIcon img2 = new ImageIcon
-			("resource/radio_button_on.PNG");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/radio_button_on.PNG");
 	ImageIcon img4 = new ImageIcon
-			("resource/home.png");
+			("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 	
 	Image img = img3.getImage();
  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
@@ -146,6 +146,7 @@ public class Login_and_join extends JFrame {
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel login = new JPanel();
+		login.setBackground(Color.WHITE);
 		layeredPane.add(login, "name_29419370275400");
 		login.setLayout(null);
 		
@@ -182,7 +183,6 @@ public class Login_and_join extends JFrame {
 				Login_and_joinDAO dao = new Login_and_joinDAO();
 				boolean login_result = dao.login_chk();
 				System.out.println("로그인 성공 여부 " + login_result);
-				setVisible(false);
 			}	
 		});
 		check_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
@@ -190,7 +190,7 @@ public class Login_and_join extends JFrame {
 		login.add(check_btn);
 		
 		JLabel E_RAIL = new JLabel(updateIcon);
-		E_RAIL.setBounds(675, 30, 400, 330);
+		E_RAIL.setBounds(750, 30, 400, 330);
 		login.add(E_RAIL);
 		
 		JButton back_main_btn = new JButton(img7);
@@ -251,17 +251,18 @@ public class Login_and_join extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("회원 예매");
 		lblNewLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
-		lblNewLabel.setBounds(435, 295, 275, 100);
+		lblNewLabel.setBounds(190, 30, 275, 100);
 		login.add(lblNewLabel);
 		
 		JPanel join = new JPanel();
+		join.setBackground(Color.WHITE);
 		layeredPane.add(join, "name_29419379635300");
 		join.setLayout(null);
 		
 		JButton back_login_btn = new JButton(img7);
 		back_login_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				train.Train_Main.gojoin = false;
+				//train.Train_Main.gojoin = false;
 				Find_id_jd.gopwfind = false;
 				layeredPane.removeAll();
 				layeredPane.add(login);
@@ -398,16 +399,19 @@ public class Login_and_join extends JFrame {
 		join.add(preferential_treatment_label);
 		
 		JRadioButton default_radio_btn = new JRadioButton("기본");
+		default_radio_btn.setBackground(Color.WHITE);
 		default_radio_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
 		default_radio_btn.setBounds(800, 645, 125, 75);
 		default_radio_btn.setIcon(img1);
 		
 		JRadioButton disabled_radio_btn = new JRadioButton("장애인");
+		disabled_radio_btn.setBackground(Color.WHITE);
 		disabled_radio_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
 		disabled_radio_btn.setBounds(930, 645, 150, 75);
 		disabled_radio_btn.setIcon(img1);
 		
 		JRadioButton national_merit_radio_btn = new JRadioButton("국가유공자");
+		national_merit_radio_btn.setBackground(Color.WHITE);
 		national_merit_radio_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
 		national_merit_radio_btn.setBounds(1090, 645, 250, 75);
 		national_merit_radio_btn.setIcon(img1);
@@ -478,6 +482,7 @@ public class Login_and_join extends JFrame {
 		join.add(gomain_btn2);
 		
 		JPanel password_find = new JPanel();
+		password_find.setBackground(Color.WHITE);
 		layeredPane.add(password_find);
 		password_find.setLayout(null);
 		
@@ -536,7 +541,7 @@ public class Login_and_join extends JFrame {
 		password_find.add(find_pw);
 		
 		JLabel E_RAIL_3 = new JLabel(updateIcon);
-		E_RAIL_3.setBounds(675, 30, 400, 330);
+		E_RAIL_3.setBounds(750, 30, 400, 330);
 		password_find.add(E_RAIL_3);
 		
 		JButton gomain_btn3 = new JButton(img4);
@@ -553,6 +558,7 @@ public class Login_and_join extends JFrame {
 		password_find.add(gomain_btn3);
 		
 		JPanel id_find = new JPanel();
+		id_find.setBackground(Color.WHITE);
 		layeredPane.add(id_find, "name_46900319103700");
 		id_find.setLayout(null);
 		
@@ -599,7 +605,7 @@ public class Login_and_join extends JFrame {
 		id_find.add(find_id_select_btn);
 		
 		JLabel E_RAIL_2 = new JLabel(updateIcon);
-		E_RAIL_2.setBounds(675, 30, 400, 330);
+		E_RAIL_2.setBounds(750, 30, 400, 330);
 		id_find.add(E_RAIL_2);
 		
 		JButton gomain_btn4 = new JButton(img4);
@@ -661,9 +667,6 @@ public class Login_and_join extends JFrame {
 		
 		preferential_treatment_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
-				UIManager.put("OptionPane.messageFont",
-						new Font("HY헤드라인M", Font.BOLD, 50));
 				 if (default_radio_btn.isSelected()) {
 					 preferential_treatment = "default";
 					 preferential_treatment_chk_B = true;

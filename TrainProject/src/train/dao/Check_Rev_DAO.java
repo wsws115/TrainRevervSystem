@@ -164,26 +164,7 @@ public class Check_Rev_DAO {
       }
    }
    
-   public void returnTicket(DefaultTableModel model, String user_code, String date) {
-	      String query = "DELETE FROM user_info us "
-	            + "RIGHT JOIN train_ticket tt ON us.usernum_pk = tt.usernum_pk "
-	            + "RIGHT JOIN seat_table seat ON tt.seat_code = seat.seat_code "
-	            + "RIGHT JOIN train_table train ON seat.train_code = train.train_code "
-	            + "RIGHT JOIN train_api api ON train.train_num = api.train_num "
-	            + "WHERE us.usernum_pk = ? AND api.train_date = ?";
-	      try (
-	            Connection conn = OjdbcConnection.getConnection();
-	            PreparedStatement pstmt = conn.prepareStatement(query);
-	         ) {
-	    	 
-	            pstmt.setString(1, user_code);
-	            pstmt.setString(2, date);
-//	            pstmt.setString(2, "20230523");
-	            pstmt.executeQuery();
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	   }
+   
    
    public void chk_food(List<String> ticket_num, DefaultTableModel model) {
 	      String query = "SELECT tt.ticket_num_pk, tf.food_name, seat_choice_qty, seat_choice_price FROM train_ticket tt "

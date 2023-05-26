@@ -1,17 +1,14 @@
 package train.jungjun.login_join_page;
 
-import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 
 // 사용
@@ -30,16 +27,16 @@ public class JoinDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			) {
-					if(Login_and_join.pw_chk_B && Login_and_join.email_chk_B &&
-								Login_and_join.num_chk_B && Login_and_join.birthday_chk_B && Login_and_join.id_chk_B
-								&& Login_and_join.preferential_treatment_chk_B) {
-						pstmt.setString(1, Login_and_join.id2);
-						pstmt.setString(2, Login_and_join.pw2);
-						pstmt.setString(3, Login_and_join.name);
-						pstmt.setString(4, Login_and_join.phone_number);
-						pstmt.setString(5, Login_and_join.birthday);
-						pstmt.setString(6, Login_and_join.email);
-						pstmt.setString(7, Login_and_join.preferential_treatment);
+					if(Train_Main.pw_chk_B && Train_Main.email_chk_B &&
+							Train_Main.num_chk_B && Train_Main.birthday_chk_B && Train_Main.id_chk_B
+								&& Train_Main.preferential_treatment_chk_B) {
+						pstmt.setString(1, Train_Main.id5);
+						pstmt.setString(2, Train_Main.pw5);
+						pstmt.setString(3, Train_Main.name3);
+						pstmt.setString(4, Train_Main.phone_number);
+						pstmt.setString(5, Train_Main.birthday);
+						pstmt.setString(6, Train_Main.email);
+						pstmt.setString(7, Train_Main.preferential_treatment);
 						try(ResultSet rs = pstmt.executeQuery();){
 							if(rs.next()) {
 								alrim = "회원가입 성공";

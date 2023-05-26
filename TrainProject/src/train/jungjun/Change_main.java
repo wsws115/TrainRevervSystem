@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import train.Train_Main;
 import train.jungjun.change.Mem_change;
 import train.jungjun.change.No_mem_change;
+import java.awt.Color;
 
 public class Change_main extends JFrame {
 
@@ -50,19 +51,20 @@ public class Change_main extends JFrame {
 	public Change_main() {
 		
 		ImageIcon img1 = new ImageIcon
-				("resource/goMemCheck.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/goMemCheck.png");
 		ImageIcon img2 = new ImageIcon
-				("resource/goNoMemCheck.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/goNoMemCheck.png");
 		ImageIcon img3 = new ImageIcon
-				("resource/E-RAIL.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/E-RAIL.png");
 		ImageIcon img4 = new ImageIcon
-				("resource/home.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/home.png");
 		ImageIcon img5 = new ImageIcon
-				("resource/back.png");
+				("C:/javafullstack/git-repositories/TrainRevervSystem/TrainProject/resource/back.png");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);

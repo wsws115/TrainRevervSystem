@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
-import train.jungjun.login_join_page.Login_and_join;
 
 public class Mem_change_find_id_jdDAO {
 	public String find_id() {
@@ -14,8 +14,8 @@ public class Mem_change_find_id_jdDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 		){
-				pstmt.setString(1,Mem_change.name);
-				pstmt.setString(2,Mem_change.pn);
+				pstmt.setString(1,Train_Main.name4);
+				pstmt.setString(2,Train_Main.pn6);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {

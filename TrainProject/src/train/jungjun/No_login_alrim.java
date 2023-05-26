@@ -1,18 +1,18 @@
 package train.jungjun;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import train.TrainReserv_Main;
-
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import train.Train_Main;
 
 public class No_login_alrim extends JDialog {
 
@@ -37,10 +37,11 @@ public class No_login_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public No_login_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(No_login_join.alrim);
+		JLabel lblNewLabel = new JLabel(Train_Main.alrim);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
 		lblNewLabel.setBounds(45, 85, 800, 100);

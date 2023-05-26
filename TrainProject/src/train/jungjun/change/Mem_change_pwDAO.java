@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 
 public class Mem_change_pwDAO {
@@ -13,9 +14,9 @@ public class Mem_change_pwDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			) {			
-				pstmt.setString(1, Mem_change.id2);
-				pstmt.setString(2, Mem_change.name2);
-				pstmt.setString(3, Mem_change.pn2);
+				pstmt.setString(1, Train_Main.id7);
+				pstmt.setString(2, Train_Main.name5);
+				pstmt.setString(3, Train_Main.pn7);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {

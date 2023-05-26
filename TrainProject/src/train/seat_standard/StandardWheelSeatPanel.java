@@ -218,12 +218,12 @@ public class StandardWheelSeatPanel extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		if(list.size() == people) {
 			for (int i = 0; i < leftBtns.length; i++) {
-//				leftBtns[i].setEnabled(false);
+				leftBtns[i].setEnabled(false);
 				StandardSeatSelect.chkAll = false;
 			}
 			for (int i = 0; i < rightBtns.length; i++) {
 				rightBtns[i].setEnabled(false);
-//				StandardSeatSelect.chkAll = false;
+				StandardSeatSelect.chkAll = false;
 			}
 			StandardSeatSelect.list = list;
 		}

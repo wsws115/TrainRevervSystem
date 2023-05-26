@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import train.Train_Main;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -49,6 +52,9 @@ public class Select_default_alrim extends JDialog {
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Train_Main.default_radio_btn.setIcon(Train_Main.img13);
+				Train_Main.disabled_radio_btn.setIcon(Train_Main.img12);
+				Train_Main.national_merit_radio_btn.setIcon(Train_Main.img12);
 				dispose();
 			}
 		});

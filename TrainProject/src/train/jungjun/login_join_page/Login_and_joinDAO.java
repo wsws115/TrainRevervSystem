@@ -1,20 +1,14 @@
 package train.jungjun.login_join_page;
 
-import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 
 // 사용
@@ -33,8 +27,8 @@ public class Login_and_joinDAO {
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
 			) {
-				pstmt.setString(1, Login_and_join.id);
-				pstmt.setString(2, Login_and_join.pw);
+				pstmt.setString(1, Train_Main.id2);
+				pstmt.setString(2, Train_Main.pw4);
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
@@ -43,7 +37,6 @@ public class Login_and_joinDAO {
 						user_code = rs.getString("usernum_pk");
 						preferential = rs.getString("PREFERENTIAL_TREATMENT");
 						alrim.main(null);
-						
 						return true;
 					}else {
 						alrim = "로그인에 실패했습니다_1";

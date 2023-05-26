@@ -72,6 +72,7 @@ public class No_mem_change extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -111,7 +112,7 @@ public class No_mem_change extends JFrame {
 		JLabel no_mem_look_up = new JLabel("비회원 조회");
 		no_mem_look_up.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
 		no_mem_look_up.setHorizontalAlignment(SwingConstants.CENTER);
-		no_mem_look_up.setBounds(425, 350, 350, 100);
+		no_mem_look_up.setBounds(190, 30, 350, 100);
 		contentPane.add(no_mem_look_up);
 		
 		JLabel pn_label = new JLabel("전화번호");

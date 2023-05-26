@@ -33,6 +33,7 @@ public class Admin_pageDAO_alrim extends JDialog {
 	 * Create the dialog.
 	 */
 	public Admin_pageDAO_alrim() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(550, 250, 900, 600);
 		getContentPane().setLayout(null);
 		
