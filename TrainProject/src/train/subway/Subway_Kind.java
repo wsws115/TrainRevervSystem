@@ -133,6 +133,9 @@ public class Subway_Kind extends JPanel {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "select");
 			}
 		});
+		nextBtn.setBorderPainted(false);
+		nextBtn.setContentAreaFilled(false);
+		nextBtn.setFocusPainted(false);
 		nextBtn.setBackground(new Color(0, 128, 129));
 		nextBtn.setBounds(1180, 10, 195, 117);
 		rightPanel.add(nextBtn);
@@ -145,6 +148,9 @@ public class Subway_Kind extends JPanel {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
 			}
 		});
+		previousBtn.setBorderPainted(false);
+		previousBtn.setContentAreaFilled(false);
+		previousBtn.setFocusPainted(false);
 		previousBtn.setBounds(12, 10, 195, 117);
 		rightPanel.add(previousBtn);
 		setLayout(groupLayout);

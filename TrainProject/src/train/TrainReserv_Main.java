@@ -127,6 +127,7 @@ public class TrainReserv_Main extends JFrame {
 		
 		card = new CardLayout();
 		card_panel = new JPanel();
+		card_panel.setBackground(new Color(255, 255, 255));
 		card_panel.setBounds(441, 80, 1483, 931);
 		contentPane.add(card_panel);
 		card_panel.setLayout(card);

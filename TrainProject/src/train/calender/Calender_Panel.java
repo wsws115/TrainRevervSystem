@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import train.TrainReserv_Main;
+import java.awt.Color;
 
 public class Calender_Panel extends JPanel {
 	private train.calender.CalendarCustom calendarCustom2;
@@ -25,6 +26,7 @@ public class Calender_Panel extends JPanel {
 	 * Create the panel.
 	 */
 	public Calender_Panel() {
+		setBackground(new Color(255, 255, 255));
 		
 		CalendarCustom calender = new CalendarCustom();
 		calender.setBounds(0,0,1400,900);
