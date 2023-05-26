@@ -29,7 +29,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+import train.TrainReserv_Main;
 import train.dao.SeatDAO;
+import train.search.component.ReservBtn;
 
 public class SpecialSeatSelect extends JDialog {
 
@@ -53,17 +55,22 @@ public class SpecialSeatSelect extends JDialog {
 	public static JComboBox trainInfoComboBox;
 	public static JToggleButton[] leftBtns1;
 	public static JToggleButton[] rightBtns1;
+	
 	public static JToggleButton[] leftBtns2;
 	public static JToggleButton[] rightBtns2;
+	
 	public static JToggleButton[] leftBtns3;
 	public static JToggleButton[] rightBtns3;
-
+	
+	
+//	SeatDAO seat = new SeatDAO();
 
     JButton selectResetButton;
     
     JPanel seatSelectPanel;
-	ArrayList<String> booked;
-    
+
+	//List<String> booked;
+
     public static String getSelectedCar;
     private ActionListener resetActionListener;
 	
@@ -120,7 +127,6 @@ public class SpecialSeatSelect extends JDialog {
 		leftBtns3 = ((SpecialSeatPanel) special3).getLeftSeatButtons();
 	    rightBtns3 = ((SpecialSeatPanel) special3).getRightSeatButtons();
 	    
-	    
 		seatSelectPanel.add("special1", specialwheel1);
 		seatSelectPanel.add("special2", special2);
 		seatSelectPanel.add("special3", special3);
@@ -152,20 +158,20 @@ public class SpecialSeatSelect extends JDialog {
 		splitPane.setRightComponent(top2panel);
 		top2panel.setLayout(new BorderLayout(0, 0));
 
-		// 예약된 좌석 목록 받아오기
-		SeatDAO seat = new SeatDAO();
-		seat.getBookedSpecialSeats();
 		
+//		SeatDAO seat = new SeatDAO();
+//		seat.getBookedSeats();
 		
 		trainInfoComboBox = new JComboBox();
 		trainInfoComboBox.addActionListener(new ActionListener() {
+			// 예약된 좌석 목록 받아오기
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String getSelectedCar = (String) trainInfoComboBox.getSelectedItem();
-
+				List<String> booked;
 				if (getSelectedCar.contains("1호차")) {
-					booked = SeatDAO.bookedSeatList1;
+	            	booked = SeatDAO.bookedSeatList1;
 
 					for (JToggleButton button : leftBtns1) {
 						for (String seatname : booked) {
@@ -174,7 +180,6 @@ public class SpecialSeatSelect extends JDialog {
 
 								if (seatarr[2].equals(seatname.trim())) {
 									button.setEnabled(false);
-									System.out.println(seatarr[2]);
 								}
 
 							} else {
@@ -192,7 +197,6 @@ public class SpecialSeatSelect extends JDialog {
 
 								if (seatarr[2].equals(seatname.trim())) {
 									button.setEnabled(false);
-									System.out.println(seatarr[2]);
 								}
 
 							} else {
@@ -203,45 +207,56 @@ public class SpecialSeatSelect extends JDialog {
 						}
 					}
 					card.show(seatSelectPanel, "special1");
+					booked.clear();
+//					SeatDAO.bookedSeatList1.clear();
+					System.out.println("스태틱 : " + SeatDAO.bookedSeatList1.toString());
+					System.out.println("인스턴스 " + booked);
 				} 
+				
+				
 				else if (getSelectedCar.contains("2호차")) {
 					booked = SeatDAO.bookedSeatList2;
 					for (JToggleButton button : leftBtns2) {
-						for (String seatname : booked) {
+						for (String seatname : SeatDAO.bookedSeatList2) {
 							if (button.getText().equals(seatname.trim())) {
 								button.setEnabled(false);
 							}
 						}
 					}
 					for (JToggleButton button : rightBtns2) {
-						for (String seatname : booked) {
+						for (String seatname : SeatDAO.bookedSeatList2) {
 							if (button.getText().equals(seatname.trim())) {
 								button.setEnabled(false);
 							}
 						}
 					}
 					card.show(seatSelectPanel, "special2");
+					SeatDAO.bookedSeatList2.clear();
+					System.out.println("2호차 클리어 " + SeatDAO.bookedSeatList2.toString());
+
 					
 				} else if (getSelectedCar.contains("3호차")) {
 					booked = SeatDAO.bookedSeatList3;
 					for (JToggleButton button : leftBtns3) {
-						for (String seatname : booked) {
+						for (String seatname : SeatDAO.bookedSeatList3) {
 							if (button.getText().equals(seatname.trim())) {
 								button.setEnabled(false);
 							}
 						}
 					}
 					for (JToggleButton button : rightBtns3) {
-						for (String seatname : booked) {
+						for (String seatname : SeatDAO.bookedSeatList3) {
 							if (button.getText().equals(seatname.trim())) {
 								button.setEnabled(false);
 							}
 						}
 					}
 					card.show(seatSelectPanel, "special3");
-					
-					
+					SeatDAO.bookedSeatList3.clear();
+					System.out.println(SeatDAO.bookedSeatList3.toString());
+
 				}
+
 			}
 		});
 
@@ -357,6 +372,9 @@ public class SpecialSeatSelect extends JDialog {
 			@Override
 			public void windowClosing(WindowEvent e) {
 			    initialize(seatSelectPanel,trainInfoComboBox);
+			    SeatDAO.bookedSeatList1.clear();
+			    SeatDAO.bookedSeatList2.clear();
+			    SeatDAO.bookedSeatList3.clear();
 			}
 		});
 		
@@ -394,14 +412,11 @@ public class SpecialSeatSelect extends JDialog {
 		   // - 선택한 좌석의 상태
 		   // - 라벨에 출력된 선택 좌석의 값
 		   // - 이미 예약된 좌석의 목록을 받아 해당 좌석선택 버튼은 비활성화를 유지한다
-		 
-		    list = new ArrayList<>();
+		   list = new ArrayList<>();
 		    train.TrainReserv_Main.seatSelectString = list;
 		    chkAll = true;
 		    selectedSeatInfoLabel.setText("");
-		    SeatDAO seat = new SeatDAO();
-			seat.getBookedSpecialSeats();
-		    
+
 		    
 		    panel.removeAll();
 		    
@@ -418,22 +433,16 @@ public class SpecialSeatSelect extends JDialog {
 		    rightBtns3 = ((SpecialSeatPanel) special3).getRightSeatButtons();
 
 		    
-		    
-		    
 			panel.add("special1", specialwheel1);
 			panel.add("special2", special2);
 			panel.add("special3", special3);
-			
-			
-			
+
 			
 			//콤보박스의 현재 선택된 값이 초기화 후에 초기화면으로 나와야함
-//		    String num = (String)combo.getSelectedItem();
-		   
 		    getSelectedCar = (String)combo.getSelectedItem();
-		    
+		    List<String> booked;
             if(getSelectedCar.contains("1호차")) {
-				booked = SeatDAO.bookedSeatList1;
+            	booked = SeatDAO.bookedSeatList1;
 				for (JToggleButton button : leftBtns1) {
 					for (String seatname : booked) {
 						if (button.getText().contains(fisrtH)) {
@@ -441,7 +450,6 @@ public class SpecialSeatSelect extends JDialog {
 
 							if (seatarr[2].equals(seatname.trim())) {
 								button.setEnabled(false);
-								System.out.println(seatarr[2]);
 							}
 
 						} else {
@@ -459,7 +467,6 @@ public class SpecialSeatSelect extends JDialog {
 
 							if (seatarr[2].equals(seatname.trim())) {
 								button.setEnabled(false);
-								System.out.println(seatarr[2]);
 							}
 
 						} else {
@@ -471,14 +478,16 @@ public class SpecialSeatSelect extends JDialog {
 				}
           	  ((CardLayout) panel.getLayout()).show(seatSelectPanel,"specialwheel1");
           	  
-          	  
-            }else if(getSelectedCar.contains("2호차")) {
-            	
+            }
+            
+            else if(getSelectedCar.contains("2호차")) {
             	booked = SeatDAO.bookedSeatList2;
 				for (JToggleButton button : leftBtns2) {
+					
 					for (String seatname : booked) {
 						if (button.getText().equals(seatname.trim())) {
 							button.setEnabled(false);
+							break;
 						}
 					}
 				}
@@ -486,14 +495,16 @@ public class SpecialSeatSelect extends JDialog {
 					for (String seatname : booked) {
 						if (button.getText().equals(seatname.trim())) {
 							button.setEnabled(false);
+							break;
 						}
 					}
 				}
 
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"special2");
-            }else if(getSelectedCar.contains("3호차")) {
             	
-            	booked = SeatDAO.bookedSeatList3;
+            	
+            }else if(getSelectedCar.contains("3호차")) {
+            	booked = SeatDAO.bookedSeatList2;
 				for (JToggleButton button : leftBtns3) {
 					for (String seatname : booked) {
 						if (button.getText().equals(seatname.trim())) {
@@ -509,8 +520,10 @@ public class SpecialSeatSelect extends JDialog {
 					}
 				}
             	((CardLayout) panel.getLayout()).show(seatSelectPanel,"special3");
+
             }
-		    
+            
+
 		}
 	 
 	   private void addResetActionListener(JPanel panel, JComboBox combo, JButton button) {

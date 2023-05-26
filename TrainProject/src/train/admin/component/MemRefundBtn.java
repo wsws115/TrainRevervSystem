@@ -40,7 +40,7 @@ public class MemRefundBtn extends AbstractCellEditor implements TableCellEditor,
 				if (ans == 0) {
 					int row = orderTable.getSelectedRow();
 	
-					String ticketNum = (String) orderTable.getValueAt(orderTable.getSelectedRow(), 0);
+					String ticketNum = String.valueOf(orderTable.getValueAt(orderTable.getSelectedRow(), 0));
 					int trainNum = (int) orderTable.getValueAt(orderTable.getSelectedRow(), 2);
 	
 					success = ticketdao.refundMemTicket(ticketNum, trainNum);

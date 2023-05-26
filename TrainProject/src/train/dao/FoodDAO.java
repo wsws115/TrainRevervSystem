@@ -19,6 +19,7 @@ import javax.swing.UIManager;
 
 import train.db.OjdbcConnection;
 import train.dto.FoodDTO;
+import train.jungjun.No_login_join;
 
 public class FoodDAO {
 	
@@ -76,21 +77,26 @@ public class FoodDAO {
 			e.printStackTrace();
 		}		
 	}
-	
+	String user_code;
 	public void setUnLoginFood(List<String> foodlist, List<String> seatlist, int train_ho) {
+		String query1 = "SELECT * FROM non_mem_info WHERE phone_number = ? AND password = ?";
 		String query2 = "SELECT food_number FROM trainfood WHERE food_name = ?";
 		String query3 = "INSERT INTO ticket_unmem_food VALUES(?,?,?,?)";
 		try (
 				Connection conn = OjdbcConnection.getConnection();
+				PreparedStatement pstmt1 = conn.prepareStatement(query1);
 				PreparedStatement pstmt2 = conn.prepareStatement(query2);
 				PreparedStatement pstmt3 = conn.prepareStatement(query3);
 			) {
-				String user_code = train.jungjun.No_login_joinDAO.pk;
-				
+				pstmt1.setString(1, No_login_join.phone_num);
+				pstmt1.setString(2, No_login_join.pw);
+			
 				pstmt2.setString(1, foodlist.get(0));
 				pstmt2.executeUpdate();
-				try(ResultSet rs2 = pstmt2.executeQuery()){
-					if(rs2.next()) {
+				try(ResultSet rs2 = pstmt2.executeQuery();
+					ResultSet rs1 = pstmt1.executeQuery();){
+					if(rs2.next() && rs1.next()) {
+						user_code = rs1.getString("NO_MEM_PK");
 						pstmt3.setString(1, train_ho+seatlist.get(0)+user_code);
 						pstmt3.setString(2, rs2.getString("food_number"));
 						pstmt3.setInt(3, Integer.parseInt(foodlist.get(1)));

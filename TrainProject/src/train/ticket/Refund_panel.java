@@ -65,6 +65,7 @@ public class Refund_panel extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				Refund_Success_Panel rsp = new Refund_Success_Panel();
 				rsp.main(null);
+				
 			}
 		});
 	

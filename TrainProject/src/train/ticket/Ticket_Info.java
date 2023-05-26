@@ -135,27 +135,6 @@ public class Ticket_Info extends JPanel {
 		arrive_Time.setBounds(243, 152, 231, 63);
 		reserve_Ticket_Panel.add(arrive_Time);
 		
-		JLabel seat_Class = new JLabel("일반실");
-		seat_Class.setVerticalAlignment(SwingConstants.CENTER);
-		seat_Class.setHorizontalAlignment(SwingConstants.CENTER);
-		seat_Class.setFont(new Font("굴림", Font.BOLD, 15));
-		seat_Class.setBounds(486, 152, 120, 18);
-		reserve_Ticket_Panel.add(seat_Class);
-		
-		JLabel seat_Drection = new JLabel("순방향");
-		seat_Drection.setVerticalAlignment(SwingConstants.CENTER);
-		seat_Drection.setHorizontalAlignment(SwingConstants.CENTER);
-		seat_Drection.setFont(new Font("굴림", Font.BOLD, 15));
-		seat_Drection.setBounds(618, 152, 120, 18);
-		reserve_Ticket_Panel.add(seat_Drection);
-		
-		JLabel age_Class = new JLabel("어른");
-		age_Class.setVerticalAlignment(SwingConstants.CENTER);
-		age_Class.setHorizontalAlignment(SwingConstants.CENTER);
-		age_Class.setFont(new Font("굴림", Font.BOLD, 15));
-		age_Class.setBounds(750, 152, 98, 18);
-		reserve_Ticket_Panel.add(age_Class);
-		
 		JLabel ticket_Unique_Num_Label = new JLabel("승차권 번호 : ");
 		ticket_Unique_Num_Label.setVerticalAlignment(SwingConstants.CENTER);
 		ticket_Unique_Num_Label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -190,7 +169,7 @@ public class Ticket_Info extends JPanel {
 					table.setAutoCreateRowSorter(true);
 					table.setFont(new Font("HY견고딕", Font.PLAIN, 18));
 					table.getTableHeader().setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
-					Rev_detail.fnb_scrollPane.getViewport().add(table);
+					Rev_detail.fnb_scrollPane.setViewportView(table);
 				}else if(e.getStateChange() == 2){
 					Rev_detail.refund_Btn.setEnabled(false); // 버튼 비활성화
                 	System.out.println(train_list.get(0));
@@ -200,6 +179,19 @@ public class Ticket_Info extends JPanel {
                 			tnum_li.remove(i);
                 		}
                 	}
+                	ticket_food_model = new DefaultTableModel(columnNames, 0);
+                	Check_Rev_DAO chkDAO = new Check_Rev_DAO();
+					if (Rev_detail.chk_login) {
+						chkDAO.chk_food(tnum_li, ticket_food_model);
+					}else {
+						chkDAO.no_mem_chk_food(tnum_li, ticket_food_model);
+					}
+					JTable table = new JTable(ticket_food_model);
+					table.setRowHeight(80);
+					table.setAutoCreateRowSorter(true);
+					table.setFont(new Font("HY견고딕", Font.PLAIN, 18));
+					table.getTableHeader().setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
+					Rev_detail.fnb_scrollPane.setViewportView(table);
                 	// 진행이 어려우므로 잠시 중지 - 0524
 //                	Check_Rev_DAO chkDAO = new Check_Rev_DAO();
 //					chkDAO.chk_food(tnum_li, ticket_food_model);

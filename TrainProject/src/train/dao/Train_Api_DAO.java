@@ -14,6 +14,7 @@ import javax.naming.spi.DirStateFactory.Result;
 import train.db.OjdbcConnection;
 import train.dto.FoodDTO;
 import train.dto.Search_TableDTO;
+import train.jungjun.No_login_join;
 
 public class Train_Api_DAO {
 	
@@ -228,16 +229,25 @@ public class Train_Api_DAO {
 			e.printStackTrace();
 		}
 	}
-	
+	String user_code;
 	public void set_unmem_tikect(List<String> ticket_unmem_list, List<String> seatlist, int train_ho) {
+		String query1 = "SELECT * FROM non_mem_info WHERE phone_number = ? AND password = ?";
 		String query = "INSERT INTO train_unmember_ticket VALUES(?,?,?,?,?)";
 		
 		try (
 				Connection conn = OjdbcConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(query);
-				
+				PreparedStatement pstmt1 = conn.prepareStatement(query1);
 			) {
-				String user_code =  train.jungjun.No_login_joinDAO.pk;
+				
+				pstmt1.setString(1, No_login_join.phone_num);
+				pstmt1.setString(2, No_login_join.pw);
+				try(ResultSet rs = pstmt1.executeQuery();){
+					if(rs.next()) {
+						user_code = rs.getString("NO_MEM_PK");
+					}
+				}
+				
 				System.out.println("비회원 코드:"+user_code);
 				int price = Integer.parseInt(ticket_unmem_list.get(0)) + Integer.parseInt(ticket_unmem_list.get(1));
 				pstmt.setString(1, train_ho+seatlist.get(0) + user_code);
