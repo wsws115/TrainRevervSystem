@@ -16,6 +16,10 @@ import train.calender.Calender_Panel;
 import train.subway.SubwayPanel;
 import train.subway.Subway_Kind;
 import train.food.*;
+import train.search.Search_Train_Panel;
+import train.search.component.ReservBtn;
+import train.seat_special.SpecialSeatSelect;
+import train.seat_standard.StandardSeatSelect;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -94,6 +98,7 @@ public class TrainReserv_Main extends JFrame {
     public static boolean sub_select = true;
     public static boolean login_who = true;
     public static TrainReserv_Main frame;
+    public static int count_panel = 0;
     /**
 	 * Launch the application.
 	 * 
@@ -259,7 +264,7 @@ public class TrainReserv_Main extends JFrame {
 		
 		seatSelectLabel = new JLabel("X");
 		seatSelectLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
-		seatSelectLabel.setBounds(205, 673, 174, 31);
+		seatSelectLabel.setBounds(205, 673, 174, 70);
 		reserv_panel.add(seatSelectLabel);
 		
 		selectPeopleLabel = new JLabel("X");
@@ -273,7 +278,55 @@ public class TrainReserv_Main extends JFrame {
 		previous_btn.setFocusPainted(false);
 		previous_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				card.previous(card_panel);
+				System.out.println(count_panel);
+				if(count_panel == 1) {
+					st_sub_btn.setText("서울");
+					en_sub_btn.setText("부산");
+					JPanel calendar_panel = new Calender_Panel();
+					card_panel.setBounds(441,80,1483,931);
+					card_panel.add(calendar_panel, "calender");
+					Calendar calendar = Calendar.getInstance();
+					LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+					String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+					date_text.setText(date);
+					card.show(card_panel, "subway");
+					count_panel = 0;
+				}else if(count_panel == 2) {
+					selectsubBtn.setText("전체");
+					JPanel calendar_panel = new Calender_Panel();
+					card_panel.setBounds(441,80,1483,931);
+					card_panel.add(calendar_panel, "calender");
+					Calendar calendar = Calendar.getInstance();
+					LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+					String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+					date_text.setText(date);
+					card.show(card_panel, "calender");
+					count_panel = 1;
+				}else if(count_panel == 3) {
+					selectsubBtn.setText("전체");
+					selectPeopleLabel.setText("X");
+					Peopel_select.textField1.setText("0");
+					Peopel_select.textField2.setText("0");
+					Peopel_select.textField3.setText("0");
+					Peopel_select.textField4.setText("0");
+					card.show(card_panel, "subkind");
+					count_panel = 2;
+				}else if(count_panel == 4) {
+					selectPeopleLabel.setText("X");
+					Peopel_select.textField1.setText("0");
+					Peopel_select.textField2.setText("0");
+					Peopel_select.textField3.setText("0");
+					Peopel_select.textField4.setText("0");
+					card.show(card_panel, "select");
+					count_panel = 3;
+				}else if(count_panel == 5) {
+					seatSelectLabel.setText("X");
+					card.show(card_panel, "기차API");
+					JPanel food_panel = new FoodCourtMainPanel();
+					food_panel.setBounds(441, 80, 1483, 931);
+					card_panel.add(food_panel, "food");
+					count_panel = 4;
+				}
 			}
 		});
 

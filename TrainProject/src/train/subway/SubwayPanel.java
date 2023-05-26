@@ -2094,6 +2094,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
+				TrainReserv_Main.count_panel = 1;
 			}
 		});
 		nextBtn.setBounds(1301, 34, 120, 100);

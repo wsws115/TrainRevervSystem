@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import train.TrainReserv_Main;
 import train.db.OjdbcConnection;
@@ -23,10 +24,9 @@ public class SeatDAO {
 	public static ArrayList <String> bookedSeatList9 = new ArrayList<>();
 	public static ArrayList <String> bookedSeatList10 = new ArrayList<>(); 
 	
-
+	
 	
 	/** 예매 버튼을 눌렀을 때 해당 기차에 예약된 좌석의 리스트를 가져오는 메서드*/
-	
 	public void getBookedSeats() {		
 		//train_ho_num : 호차번호
 		//seat_name : 좌석번호
@@ -86,16 +86,7 @@ public class SeatDAO {
 	                  }
 	                  
 	               }
-				 System.out.println("1호차 : " + bookedSeatList1.toString());
-				 System.out.println("2호차 : " + bookedSeatList2.toString());
-				 System.out.println("3호차 : " + bookedSeatList3.toString());
-				 System.out.println("4호차 : " + bookedSeatList4.toString());
-				 System.out.println("5호차 : " + bookedSeatList5.toString());
-				 System.out.println("6호차 : " + bookedSeatList6.toString());
-				 System.out.println("7호차 : " + bookedSeatList7.toString());
-				 System.out.println("8호차 : " + bookedSeatList8.toString());
-				 System.out.println("9호차 : " + bookedSeatList9.toString());
-				 System.out.println("10호차 : " + bookedSeatList10.toString());
+
 			}
 			
 		} catch (Exception e) {
@@ -103,5 +94,52 @@ public class SeatDAO {
 		}
 	}
 	
+	/** 선택된 기차의 잔여 좌석수를 가져옴 */ 
+	public String[] getTrainName() {
+		String[] seatnum = new String[10];
+		String query = "select train_seat_qty, train_ho_num from train_table t, train_api a "
+				+ "where t.train_num = a.train_num "
+				+ "and a.train_date = ? and a.starting_subway = ? and a.ending_subway = ? "
+				+ "and a.start_time = ? and a.end_time = ? ";
+		
+		try (
+				Connection conn = OjdbcConnection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(query);
+				
+		) {
+			pstmt.setString(1, TrainReserv_Main.date_text.getText());
+			pstmt.setString(2, TrainReserv_Main.st_sub_btn.getText());
+			pstmt.setString(3, TrainReserv_Main.en_sub_btn.getText());
+			pstmt.setString(4, ReservBtn.st_time);
+			pstmt.setString(5, ReservBtn.en_time);
+			
+			try( ResultSet rs = pstmt.executeQuery();){
+				
+					// 해당 기차가 예약된 이력이 있는 경우에만 api테이블에 해당 기차가 존재한다
+					// 해당 기차가 예약된 이력이 없을 경우에는 null을 리턴하여 기본값이 나오게 한다
+					//
+				while (rs.next()) {
+				// 해당하는 기차 정보가 DB에 존재할 경우
+					System.out.println(rs.getString(1));
+					System.out.println(rs.getString(2));
+					for (int i = 0; i < seatnum.length; i++) {
+						if (rs.getString("train_ho_num").equals("" + (i + 1))) {
+							seatnum[i] = rs.getString(1); // 잔여 좌석수
+						}
+					}
+				}
+				System.out.println("그만하자 이제 :"+Arrays.toString(seatnum));
+			}
+//					break;
+//			rs.getString(1);
+			return seatnum;
+				
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+//		return seatnum;
+
+	}
 
 }

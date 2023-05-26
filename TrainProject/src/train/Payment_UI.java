@@ -55,7 +55,7 @@ public class Payment_UI extends JDialog {
 	private int carNum = TrainReserv_Main.carNum;
 	private int train_price = Integer.parseInt(ReservBtn.price);
 	private List<String> seatlist = TrainReserv_Main.seatSelectString;
-	private String seatNum = seatlist.toString();
+	private String seatNum;
 	private String[] food_table = FoodCourtMainPanel.food_table;
 	private int food_total = Integer.parseInt(FoodCourtMainPanel.totalPrice_Lab.getText().split("원")[0]);
 	private JTable table;
@@ -214,7 +214,10 @@ public class Payment_UI extends JDialog {
 		train_Boarding_Num.setBorder(new LineBorder(Color.BLACK,2));
 		train_Boarding_Num.setBounds(0, 125, 196, 125);
 		panel_1.add(train_Boarding_Num);
-		
+		if(seatlist.size() > 1) {
+			int nm = seatlist.size();
+			seatNum = seatlist.get(0) + "외 "+ (nm -1)+ "개"; 
+		}
 		JLabel seat_Num = new JLabel(seatNum);
 		seat_Num.setFont(new Font("굴림", Font.BOLD, 20));
 		seat_Num.setVerticalAlignment(SwingConstants.CENTER);
@@ -587,7 +590,7 @@ public class Payment_UI extends JDialog {
                 		}
                 	}
                 	
-                	
+                	TrainReserv_Main.count_panel =0;
                 }
             }
         });

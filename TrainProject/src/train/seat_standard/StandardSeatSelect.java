@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+import train.TrainReserv_Main;
 import train.dao.SeatDAO;
+import train.search.Train_API;
 import train.seat_special.SpecialSeatPanel;
 import train.seat_special.SpecialWheelSeatPanel;
 
@@ -43,7 +46,7 @@ public class StandardSeatSelect extends JDialog {
 	public static void setLabel(String str) {
 			selectedSeatInfoLabel.setText(str);
 		}
-	 
+
 	public static List<String> list;
 	public static boolean chkAll = true;
 	private String mainFont = "HY헤드라인M"; 
@@ -84,6 +87,7 @@ public class StandardSeatSelect extends JDialog {
     JButton selectResetButton;
     
     JPanel seatSelectPanel;
+	public static JLabel trainInfoLabel;
 
     
     public static String getSelectedCar;
@@ -190,14 +194,34 @@ public class StandardSeatSelect extends JDialog {
 	      splitPane.setRightComponent(top2panel);
 	      top2panel.setLayout(new BorderLayout(0, 0));
 	      //상1
+	      
+	      
+	      
+	      trainInfoLabel = new JLabel(); //들어가야하는 정보 : 현재 선택한 기차의 이름 + 객차의 타입 
+	      trainInfoLabel.setBackground(new Color(255, 102, 153));
+	      trainInfoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	      trainInfoLabel.setFont(new Font(mainFont, Font.PLAIN, 30));
+	      
+	      
 	      trainInfoComboBox = new JComboBox();
 	      trainInfoComboBox.addActionListener(new ActionListener() {
+	    	  
+	    	  SeatDAO seat = new SeatDAO();
 	          @Override
 	          public void actionPerformed(ActionEvent e) {
 	              getSelectedCar = (String)trainInfoComboBox.getSelectedItem();
 					List<String> booked;
+					String[] seatnum;
 	              if(getSelectedCar.contains("4호차")) {
-	            	  booked = SeatDAO.bookedSeatList4;
+	            	  
+	            	  seatnum = seat.getTrainName();
+	        	      if(seatnum[3] == null) {
+	        	    	  trainInfoLabel.setText("잔여 40석 총 40석");
+	        	      }else { 
+	        	    	  trainInfoLabel.setText("잔여 " + seatnum[3] +"석 총 40석");
+	        	      }
+	        	      
+	        	      booked = SeatDAO.bookedSeatList4;
 	            	  for (JToggleButton button : leftBtns4) {
 							for (String seatname : booked ) {
 								if (button.getText().contains(fisrtH)) {
@@ -205,7 +229,6 @@ public class StandardSeatSelect extends JDialog {
 
 									if (seatarr[2].equals(seatname.trim())) {
 										button.setEnabled(false);
-										System.out.println(seatarr[2]);
 									}
 
 								} else {
@@ -223,7 +246,6 @@ public class StandardSeatSelect extends JDialog {
 
 									if (seatarr[2].equals(seatname.trim())) {
 										button.setEnabled(false);
-										System.out.println(seatarr[2]);
 									}
 
 								} else {
@@ -236,6 +258,15 @@ public class StandardSeatSelect extends JDialog {
 	            	  card.show(seatSelectPanel,"standard4");
 	            	  
 	              }else if(getSelectedCar.contains("5호차")) {
+	            	  
+	            	  seatnum = seat.getTrainName();
+		        		 if(seatnum[4] == null) {
+		        	    	  trainInfoLabel.setText("잔여 40석 총 40석");
+		        	    	  
+		        	      }else { 
+		        	    	  trainInfoLabel.setText("잔여 " + seatnum[4] +"석 총 40석");
+		        	      }
+
 	            	  booked = SeatDAO.bookedSeatList5;
 						for (JToggleButton button : leftBtns5) {
 							for (String seatname : booked) {
@@ -253,9 +284,16 @@ public class StandardSeatSelect extends JDialog {
 						}
 	            	  
 	            	  card.show(seatSelectPanel,"standard5");
-					  System.out.println(SeatDAO.bookedSeatList5.toString());
 					  
 	              }else if(getSelectedCar.contains("6호차")) {
+	            	  seatnum = seat.getTrainName();
+		        		 if(seatnum[5] == null) {
+		        	    	  trainInfoLabel.setText("잔여 40석 총 40석");
+		        	    	  
+		        	      }else { 
+		        	    	  trainInfoLabel.setText("잔여 " + seatnum[5] +"석 총 40석");
+		        	      }
+
 	            	  booked = SeatDAO.bookedSeatList6;
 						for (JToggleButton button : leftBtns6) {
 							for (String seatname : booked) {
@@ -273,10 +311,17 @@ public class StandardSeatSelect extends JDialog {
 						}
 	            	  
 	            	  card.show(seatSelectPanel,"standard6");
-					  System.out.println(SeatDAO.bookedSeatList6.toString());
 					  
 					  
 	              }else if(getSelectedCar.contains("7호차")) {
+	            	  seatnum = seat.getTrainName();
+		        		 if(seatnum[6] == null) {
+		        	    	  trainInfoLabel.setText("잔여 40석 총 40석");
+		        	    	  
+		        	      }else { 
+		        	    	  trainInfoLabel.setText("잔여 " + seatnum[6] +"석 총 40석");
+		        	      }
+
 	            	  booked = SeatDAO.bookedSeatList7;
 						for (JToggleButton button : leftBtns7) {
 							for (String seatname : booked) {
@@ -294,10 +339,17 @@ public class StandardSeatSelect extends JDialog {
 						}
 	            	  
 	            	  card.show(seatSelectPanel,"standard7");
-					  System.out.println(SeatDAO.bookedSeatList7.toString());
 					  
 					  
 	              }else if(getSelectedCar.contains("8호차")) {
+	            	  seatnum = seat.getTrainName();
+		        		 if(seatnum[7] == null) {
+		        	    	  trainInfoLabel.setText("잔여 40석 총 40석");
+		        	    	  
+		        	      }else { 
+		        	    	  trainInfoLabel.setText("잔여 " + seatnum[7] +"석 총 40석");
+		        	      }
+
 	            	  booked = SeatDAO.bookedSeatList8;
 						for (JToggleButton button : leftBtns8) {
 							for (String seatname : booked) {
@@ -315,11 +367,18 @@ public class StandardSeatSelect extends JDialog {
 						}
 	            	  
 	            	  card.show(seatSelectPanel,"standard8");
-					  System.out.println(SeatDAO.bookedSeatList8.toString());
 					  
 					  
 	            	  
 	              }else if(getSelectedCar.contains("9호차")) {
+	            	  seatnum = seat.getTrainName();
+		        		 if(seatnum[8] == null) {
+		        	    	  trainInfoLabel.setText("잔여 40석 총 40석");
+		        	    	  
+		        	      }else { 
+		        	    	  trainInfoLabel.setText("잔여 " + seatnum[8] +"석 총 40석");
+		        	      }
+
 	            	  booked = SeatDAO.bookedSeatList9;
 						for (JToggleButton button : leftBtns9) {
 							for (String seatname : booked) {
@@ -337,9 +396,16 @@ public class StandardSeatSelect extends JDialog {
 						}
 	            	  
 	            	  card.show(seatSelectPanel,"standard9");
-					  System.out.println(SeatDAO.bookedSeatList9.toString());
 	            	  
 	              }else if(getSelectedCar.contains("10호차")) {
+	            	  seatnum = seat.getTrainName();
+		        		 if(seatnum[9] == null) {
+		        	    	  trainInfoLabel.setText("잔여 40석 총 40석");
+		        	    	  
+		        	      }else { 
+		        	    	  trainInfoLabel.setText("잔여 " + seatnum[9] +"석 총 40석");
+		        	      }
+
 	            	  booked = SeatDAO.bookedSeatList10;
 						for (JToggleButton button : leftBtns10) {
 							for (String seatname : booked) {
@@ -357,7 +423,6 @@ public class StandardSeatSelect extends JDialog {
 						}
 	            	  
 	            	  card.show(seatSelectPanel,"standard10");
-					  System.out.println(SeatDAO.bookedSeatList10.toString());
 	              }
 	          }
 	      });
@@ -378,33 +443,63 @@ public class StandardSeatSelect extends JDialog {
 	      		    UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("HY헤드라인M",Font.PLAIN, 40)));
 	      			JOptionPane.showMessageDialog(null, "좌석을 선택해주세요", "좌석선택", JOptionPane.WARNING_MESSAGE);
 	      			return;
+	      		}else {
+	      			train.TrainReserv_Main.card.show(train.TrainReserv_Main.card_panel, "food");
+		      		String num = (String)trainInfoComboBox.getSelectedItem();
+		      		if(num.contains("4호차")) {
+		      			train.TrainReserv_Main.carNum = 4;
+		      			if(list.size() > 1) {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>4호차<br> "+list.get(0) + " 외 " +(list.size() - 1)+"개</html>");
+		      			}else {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>4호차<br> "+list.toString());
+		      			}
+		      			
+		      		}else if(num.contains("5호차")) {
+		      			train.TrainReserv_Main.carNum = 5;
+		      			if(list.size() > 1) {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>5호차<br> "+list.get(0) + " 외 " +(list.size() - 1)+"개</html>");
+		      			}else {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>5호차<br> "+list.toString());
+		      			}
+		      		}else  if(num.contains("6호차")){
+		      			train.TrainReserv_Main.carNum = 6;
+		      			if(list.size() > 1) {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>6호차<br> "+list.get(0) + " 외 " +(list.size() - 1)+"개</html>");
+		      			}else {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>6호차<br> "+list.toString());
+		      			}
+		      		}else  if(num.contains("7호차")){
+		      			train.TrainReserv_Main.carNum = 7;
+		      			if(list.size() > 1) {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>7호차<br> "+list.get(0) + " 외 " +(list.size() - 1)+"개</html>");
+		      			}else {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>7호차<br> "+list.toString());
+		      			}
+		      		}else  if(num.contains("8호차")){
+		      			train.TrainReserv_Main.carNum = 8;
+		      			if(list.size() > 1) {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>8호차<br> "+list.get(0) + " 외 " +(list.size() - 1)+"개</html>");
+		      			}else {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>8호차<br> "+list.toString());
+		      			}
+		      		}else  if(num.contains("9호차")){
+		      			train.TrainReserv_Main.carNum = 9;
+		      			if(list.size() > 1) {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>9호차<br> "+list.get(0) + " 외 " +(list.size() - 1)+"개</html>");
+		      			}else {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>9호차<br> "+list.toString());
+		      			}
+		      		}else  if(num.contains("10호차")){
+		      			train.TrainReserv_Main.carNum = 10;
+		      			if(list.size() > 1) {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>10호차<br> "+list.get(0) + " 외 " +(list.size() - 1)+"개</html>");
+		      			}else {
+		      				train.TrainReserv_Main.seatSelectLabel.setText("<html>10호차<br> "+list.toString());
+		      			}
+		      		}
+		      		TrainReserv_Main.count_panel =5;
+		      		setVisible(false);
 	      		}
-	      		
-	      		train.TrainReserv_Main.card.show(train.TrainReserv_Main.card_panel, "food");
-	      		String num = (String)trainInfoComboBox.getSelectedItem();
-	      		if(num.contains("4호차")) {
-	      			train.TrainReserv_Main.carNum = 4;
-	      			train.TrainReserv_Main.seatSelectLabel.setText("4호차 "+list.toString());
-	      		}else if(num.contains("5호차")) {
-	      			train.TrainReserv_Main.carNum = 5;
-	      			train.TrainReserv_Main.seatSelectLabel.setText("5호차 "+list.toString());
-	      		}else  if(num.contains("6호차")){
-	      			train.TrainReserv_Main.carNum = 6;
-	      			train.TrainReserv_Main.seatSelectLabel.setText("6호차 "+list.toString());
-	      		}else  if(num.contains("7호차")){
-	      			train.TrainReserv_Main.carNum = 7;
-	      			train.TrainReserv_Main.seatSelectLabel.setText("7호차 "+list.toString());
-	      		}else  if(num.contains("8호차")){
-	      			train.TrainReserv_Main.carNum = 8;
-	      			train.TrainReserv_Main.seatSelectLabel.setText("8호차 "+list.toString());
-	      		}else  if(num.contains("9호차")){
-	      			train.TrainReserv_Main.carNum = 9;
-	      			train.TrainReserv_Main.seatSelectLabel.setText("9호차 "+list.toString());
-	      		}else  if(num.contains("10호차")){
-	      			train.TrainReserv_Main.carNum = 10;
-	      			train.TrainReserv_Main.seatSelectLabel.setText("10호차 "+list.toString());
-	      		}
-	      		setVisible(false);
 	      	}
 	      });
 	      selectCompleteButton.setForeground(Color.WHITE);
@@ -471,12 +566,10 @@ public class StandardSeatSelect extends JDialog {
 	      
 	      top2panel.add(nextCarButton, BorderLayout.EAST);
 	      
-	      //앞에서 기차정보를 받아와서 넣어야함(잔여좌석도)
-	      JLabel TrainInfoLabel = new JLabel();
-	      TrainInfoLabel.setBackground(new Color(255, 102, 153));
-	      TrainInfoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-	      TrainInfoLabel.setFont(new Font(mainFont, Font.PLAIN, 30));
-	      top2panel.add(TrainInfoLabel);
+	      
+	      
+	      // 콤보박스 위에서 생성
+	      top2panel.add(trainInfoLabel);
 	      
 	      
 	      //좌석선택 다이얼로그를 닫으면 모든 값을 초기화한다
@@ -528,8 +621,9 @@ public class StandardSeatSelect extends JDialog {
 		   // - 선택한 좌석의 상태
 		   // - 라벨에 출력된 선택 좌석의 값
 		   
-		   list = new ArrayList<>();
+		 	list = new ArrayList();
 		    train.TrainReserv_Main.seatSelectString = list;
+		    
 		    chkAll = true;
 		    selectedSeatInfoLabel.setText("");
 		    

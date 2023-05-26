@@ -131,6 +131,7 @@ public class Subway_Kind extends JPanel {
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "select");
+				TrainReserv_Main.count_panel = 3;
 			}
 		});
 		nextBtn.setBorderPainted(false);
@@ -146,6 +147,7 @@ public class Subway_Kind extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText("전체");
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
+				TrainReserv_Main.count_panel = 2;
 			}
 		});
 		previousBtn.setBorderPainted(false);

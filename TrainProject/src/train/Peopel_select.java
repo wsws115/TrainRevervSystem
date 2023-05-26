@@ -268,7 +268,7 @@ public class Peopel_select extends JPanel {
 						textField1.getText(), textField2.getText(),textField3.getText(),textField4.getText()));
 				UIManager.put("OptionPane.messageFont", new Font("HY헤드라인M", Font.BOLD, 40));
 			    UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("HY헤드라인M",Font.PLAIN, 30)));
-				if(TrainReserv_Main.selectPeopleLabel.getText().equals("X")) {
+				if(sumPeople(textField1.getText(), textField2.getText(),textField3.getText(),textField4.getText()) == 0) {
 					JOptionPane.showMessageDialog(null,"인원을 선택해주십시오.");
 				}else if(TrainReserv_Main.date_text.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"날짜를 선택해주십시오.");
@@ -278,6 +278,7 @@ public class Peopel_select extends JPanel {
 					TrainReserv_Main.card_panel.add(search_panel, "기차API");
 					TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "기차API");
 				}
+				TrainReserv_Main.count_panel = 4;
 			}
 		});
 		returnBtn_1.setBorderPainted(false);
@@ -298,6 +299,7 @@ public class Peopel_select extends JPanel {
 				textField3.setText("0");
 				textField4.setText("0");
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "subkind");
+				TrainReserv_Main.count_panel = 3;
 			}
 		});
 		previousBtn.setBounds(50, 10, 110, 110);

@@ -44,6 +44,7 @@ public class Calender_Panel extends JPanel {
 				String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
 				TrainReserv_Main.date_text.setText(date);
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "subway");
+				TrainReserv_Main.count_panel = 1;
 				
 			}
 		});
@@ -55,6 +56,7 @@ public class Calender_Panel extends JPanel {
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "subkind");
+				TrainReserv_Main.count_panel = 2;
 			}
 		});
 		 GroupLayout groupLayout = new GroupLayout(this);

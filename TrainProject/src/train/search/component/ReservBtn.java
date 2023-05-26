@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.AbstractCellEditor;
@@ -32,6 +33,8 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	public static String en_time; // 도착시간 
 	public static String price; // 가격
 	public static String timetaken; // 소요시간
+	public static SpecialSeatSelect sd;
+	public static StandardSeatSelect sb;
 	// 음식이름 0, 가격 1, - 2, 수량 3, + 4, 취소 5
 
 	String ho_num;
@@ -46,9 +49,9 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
     	
 		reservBtn.addActionListener(e -> {
 
-	    		if (text.equals("우등예매")) {
+	    		if (text.equals("특실예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
-	    			SpecialSeatSelect sd = new SpecialSeatSelect();
+	    			sd = new SpecialSeatSelect();
 	    			int row = stp_table.getSelectedRow();
 	    			name = (String) stp_table.getValueAt(row, 0);
 	    			num = String.valueOf(stp_table.getValueAt(row, 1)) ;
@@ -63,17 +66,23 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			System.out.println(timetaken);
 	    			sd.setVisible(true);
 
-
 	    			SeatDAO seat = new SeatDAO();
 	    			seat.getBookedSeats();
-	    			System.out.println("출발시간 " + ReservBtn.st_time);
-	    			
-	    			
-//	    			//우등예매 버튼을 눌렀을 때 (콤보박스를 선택하지 않아도)1호차가 기본으로 표출된다
-				ho_num = (String) SpecialSeatSelect.trainInfoComboBox.getSelectedItem();
 
+	    			
+	    			//우등예매 버튼을 눌렀을 때 (콤보박스를 선택하지 않아도)1호차가 기본으로 표출된다
+				ho_num = (String) SpecialSeatSelect.trainInfoComboBox.getSelectedItem();
+				List<String> booked;
+				seat.getTrainName();
+				String[] seatnum;
 				if (ho_num.contains("1호차")) {
-					List<String> booked = SeatDAO.bookedSeatList1;
+					 seatnum = seat.getTrainName();
+	        		 if(seatnum[0] == null) {
+	        			 SpecialSeatSelect.trainInfoLabel.setText("잔여 30석 총 30석");
+	        	      }else { 
+	        	    	  SpecialSeatSelect.trainInfoLabel.setText("잔여 " + seatnum[0]  +"석 총 30석");
+	        	      }
+	        		 booked = SeatDAO.bookedSeatList1;
 					for (JToggleButton button : SpecialSeatSelect.leftBtns1) {
 						for (String seatname : booked) {
 
@@ -108,10 +117,6 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 						}
 					}
 
-					
-					System.out.println("우등예약 1호차1 : " + SeatDAO.bookedSeatList1.toString());
-					System.out.println("우등예약 2호차 : " + SeatDAO.bookedSeatList2.toString());
-					System.out.println("우등예약 3호차 : " + SeatDAO.bookedSeatList3.toString());
 				}
 	    				
 	    			// 수량 + 1
@@ -126,7 +131,7 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			
 	    		} else if (text.equals("일반예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
-	    			StandardSeatSelect sb = new StandardSeatSelect();
+	    			sb = new StandardSeatSelect();
 	    			int row = stp_table.getSelectedRow();
 	    			name = (String) stp_table.getValueAt(row, 0);
 	    			num = String.valueOf(stp_table.getValueAt(row, 1));
@@ -136,15 +141,23 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 	    			timetaken = String.valueOf(stp_table.getValueAt(row, 4));
 	    			sb.setVisible(true);
 	    			
-	    			
 	    			SeatDAO seat = new SeatDAO();
 	    			seat.getBookedSeats();
 	    			//4~10호차의 예약된 좌석 목록만 받아오면 됨
 	    			ho_num = (String) StandardSeatSelect.trainInfoComboBox.getSelectedItem();
-
+					List<String> booked;
+					seat.getTrainName();
+					String[] seatnum;
 					if (ho_num.contains("4호차")) {
+		            	  seatnum = seat.getTrainName();
+		        	      if(seatnum[3] == null) {
+		        	    	  StandardSeatSelect.trainInfoLabel.setText("잔여 40석 총 40석");
+		        	      }else { 
+		        	    	  StandardSeatSelect.trainInfoLabel.setText("잔여 " + seatnum[3] +"석 총 40석");
+		        	      }
 
-						List<String> booked = SeatDAO.bookedSeatList4;
+
+		        		 booked = SeatDAO.bookedSeatList4;
 						for (JToggleButton button : StandardSeatSelect.leftBtns4) {
 							for (String seatname : booked) {
 
@@ -179,20 +192,9 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 							}
 						}
 
-						System.out.println("4호차 예약된 좌석 : " + booked.toString());
-						System.out.println("5호차 예약된 좌석 : " + booked.toString());
-						System.out.println("6호차 예약된 좌석 : " + booked.toString());
-						System.out.println("7호차 예약된 좌석 : " + booked.toString());
-						System.out.println("8호차 예약된 좌석 : " + booked.toString());
-						System.out.println("9호차 예약된 좌석 : " + booked.toString());
-						System.out.println("10호차 예약된 좌석 : " + booked.toString());
+					
 					}
-	    			
-	    			
-	    			
-	    			
-	    			
-	    			
+
 					
 	    			// 수량 - 1
 //	    			int minusQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) - 1;	
