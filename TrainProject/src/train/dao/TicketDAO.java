@@ -18,7 +18,7 @@ public class TicketDAO {
 	public List<TicketDTO> searchMemTicket(String phoneNum) {
 		List<TicketDTO> tickets = new ArrayList<>();
 
-		String query = "SELECT tt.ticket_num_pk, api.train_type, api.train_num, api.starting_subway, api.ending_subway, seat.seat_name, tt.totalprice"
+		String query = "SELECT tt.ticket_num_pk, api.train_type, api.train_num, api.train_date, api.starting_subway, api.ending_subway, seat.seat_name, tt.totalprice"
 				+ " FROM train_ticket tt"
 				+ " JOIN seat_table seat ON tt.seat_code = seat.seat_code"
 				+ " JOIN train_table train ON seat.train_code = train.train_code"
@@ -33,8 +33,8 @@ public class TicketDAO {
 		){
 			// "티켓번호", "열차이름", "열차번호", "출발지", "도착지", "좌석번호", "가격", "반환"
 			while(rs.next()) {
-				tickets.add(new TicketDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getInt(7)));
+				tickets.add(new TicketDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getInt(8)));
 			}				
 			return tickets;
 
@@ -107,12 +107,12 @@ public class TicketDAO {
 	public List<TicketDTO> searchNoMemTicket(String phoneNum) {
 		List<TicketDTO> tickets = new ArrayList<>();
 
-		String query = "SELECT tt.ticket_num, api.train_type, api.train_num, api.starting_subway, api.ending_subway, seat.seat_name, tt.total_price"
+		String query = "SELECT tt.ticket_num, api.train_type, api.train_num, api.train_date, api.starting_subway, api.ending_subway, seat.seat_name, tt.total_price"
 				+ " FROM train_unmember_ticket tt"
 				+ " JOIN seat_table seat ON tt.seat_code = seat.seat_code"
 				+ " JOIN train_table train ON seat.train_code = train.train_code"
 				+ " JOIN train_API api ON train.train_num = api.train_num"
-				+ " JOIN non_mem_info mem ON mem.no_mem_pk = tt.no_mem_pk"
+				+ " JOIN non_mem_info mem ON mem.no_mem_pk = tt.no_mem_fk"
 				+ " WHERE mem.phone_number = '" + phoneNum + "'";
 
 		try (
@@ -122,7 +122,8 @@ public class TicketDAO {
 		){
 			// "티켓번호", "열차이름", "열차번호", "출발지", "도착지", "좌석번호", "가격", "반환"
 			while(rs.next()) {
-				tickets.add(new TicketDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7)));
+				tickets.add(new TicketDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6),
+						rs.getString(7), rs.getInt(8)));
 			}
 			return tickets;
 

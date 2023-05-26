@@ -191,6 +191,9 @@ public class FoodDAO {
 			) {
 				if (rs.next()) {
 					original = new FoodDTO(food.getFood_number(), food.getfood_type(),food.getFood_name(), food.getFood_price(), food.getImage_location());
+				} else {
+					JOptionPane.showMessageDialog(null, "잘못된 메뉴를 선택하셨습니다. 메뉴를 확인해주세요.");
+					return false;
 				}
 				
 				pstmt2.setString(1, original.getfood_type().equals(food.getfood_type())? original.getfood_type(): food.getfood_type());

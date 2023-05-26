@@ -35,7 +35,7 @@ public class Admin_memTicket extends JPanel {
 	String phoneNum = null;
 	
 	String memCol [] = {"회원 번호", "아이디", "이름", "전화번호", "생년월일", "이메일", "우대 사항", "탈퇴"};
-	String[] ticketCol = {"티켓번호", "열차이름", "열차번호", "출발지", "도착지", "좌석번호", "가격", "출력", "반환"};
+	String[] ticketCol = {"티켓번호", "열차이름", "열차번호", "출발일", "출발지", "도착지", "좌석번호", "가격", "출력", "반환"};
 	
 	private JLabel phoneNumLab, notionLab;
 	private JTextField phoneNumTextField;
@@ -95,6 +95,7 @@ public class Admin_memTicket extends JPanel {
 		ticketTable.getColumn("티켓번호").setCellRenderer(celAlignCenter);
 		ticketTable.getColumn("열차이름").setCellRenderer(celAlignCenter);
 		ticketTable.getColumn("열차번호").setCellRenderer(celAlignCenter);
+		ticketTable.getColumn("출발일").setCellRenderer(celAlignCenter);
 		ticketTable.getColumn("출발지").setCellRenderer(celAlignCenter);
 		ticketTable.getColumn("도착지").setCellRenderer(celAlignCenter);
 		ticketTable.getColumn("좌석번호").setCellRenderer(celAlignCenter);
@@ -193,18 +194,21 @@ public class Admin_memTicket extends JPanel {
 	
 	private void setTicketValue(List<TicketDTO> tickets, DefaultTableModel model) {
 		// "티켓번호", "열차이름", "열차번호", "출발지", "도착지", "좌석번호", "가격", "반환"
-		model.setRowCount(0);
-		for (TicketDTO ticket : tickets) {
-			Vector<Object> list = new Vector<>();
-			list.add(ticket.getTicketNum());
-			list.add(ticket.getTrainName());
-			list.add(ticket.getTrainNum());
-			list.add(ticket.getStartingSunway());
-			list.add(ticket.getEndingSunway());
-			list.add(ticket.getSeatName());
-			list.add(ticket.getPrice());
-			model.addRow(list);			
-		}		
+		if (tickets != null) {
+			model.setRowCount(0);
+			for (TicketDTO ticket : tickets) {
+				Vector<Object> list = new Vector<>();
+				list.add(ticket.getTicketNum());
+				list.add(ticket.getTrainName());
+				list.add(ticket.getTrainNum());
+				list.add(ticket.getDate());
+				list.add(ticket.getStartingSunway());
+				list.add(ticket.getEndingSunway());
+				list.add(ticket.getSeatName());
+				list.add(ticket.getPrice());
+				model.addRow(list);			
+			}		
+		}
 	}
 	
 	// 회원 조회 값 넣기

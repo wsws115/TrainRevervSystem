@@ -8,16 +8,18 @@ public class TicketDTO {
 	String ticketNum;
 	String trainName;
 	int trainNum;
+	int date;
 	String startingSunway;
 	String endingSunway;
 	String seatName;
 	int price;
 	
-	public TicketDTO(String ticketNum, String trainName, int trainNum, 
+	public TicketDTO(String ticketNum, String trainName, int trainNum, int date,
 				String startingSunway, String endingSunway, String seatName, int price) {
 		this.ticketNum = ticketNum;
 		this.trainName = trainName;
 		this.trainNum = trainNum;
+		this.date = date;
 		this.startingSunway = startingSunway;
 		this.endingSunway = endingSunway;
 		this.seatName = seatName;
@@ -50,6 +52,10 @@ public class TicketDTO {
 
 	public int getPrice() {
 		return price;
+	}
+	
+	public int getDate() {
+		return date;
 	}
 	
 	@Override
