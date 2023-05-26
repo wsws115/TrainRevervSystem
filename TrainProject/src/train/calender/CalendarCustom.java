@@ -68,9 +68,9 @@ public class CalendarCustom extends javax.swing.JPanel {
         lbType = new javax.swing.JLabel();
         lbDate = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        cmdBack = new javax.swing.JButton();
+        cmdBack = new javax.swing.JButton("이전달");
         lbMonthYear = new javax.swing.JLabel();
-        cmdNext = new javax.swing.JButton();
+        cmdNext = new javax.swing.JButton("다음달");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -144,13 +144,7 @@ public class CalendarCustom extends javax.swing.JPanel {
         );
         jPanel1.setLayout(jPanel1Layout);
 
-        try {
-			cmdBack.setIcon(new javax.swing.ImageIcon(ImageIO.read(
-					new URL("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_payment/TrainProject/src/image/beckarrow.png?raw=true")).getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING)));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // NOI18N
+        cmdBack.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
         cmdBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         cmdBack.setContentAreaFilled(false);
         cmdBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -159,19 +153,13 @@ public class CalendarCustom extends javax.swing.JPanel {
                 cmdBackActionPerformed(evt);
             }
         });
-
+        
         lbMonthYear.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
         lbMonthYear.setForeground(new Color(0, 128, 192));
         lbMonthYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMonthYear.setText("Month - Year");
 
-        try {
-			cmdNext.setIcon(new javax.swing.ImageIcon(ImageIO.read(
-					new URL("https://github.com/wsws115/TrainRevervSystem/blob/train_merge_payment/TrainProject/src/image/nextarrow.png?raw=true")).getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING)));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // NOI18N
+        cmdNext.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
         cmdNext.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         cmdNext.setContentAreaFilled(false);
         cmdNext.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

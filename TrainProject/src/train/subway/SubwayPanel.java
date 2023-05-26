@@ -1,78 +1,34 @@
 package train.subway;
 
-import javax.swing.JPanel;
-
-
 import java.awt.CardLayout;
-import java.awt.Panel;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
 import java.awt.Color;
-import java.awt.Button;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.AbstractButton;
-import javax.swing.Action;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
-import train.calender.CalenderMain;
-import train.ticket.Rev_detail;
-
-import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+
 import train.TrainReserv_Main;
 
 public class SubwayPanel extends JPanel implements MouseListener{
 	private String train_name;
 	
-	//버튼 디자인
-	   public class RoundedButton extends JButton {
-	         public RoundedButton() { super(); decorate(); } 
-	         public RoundedButton(String text) { super(text); decorate(); } 
-	         public RoundedButton(Action action) { super(action); decorate(); } 
-	         public RoundedButton(Icon icon) { super(icon); decorate(); } 
-	         public RoundedButton(String text, Icon icon) { super(text, icon); decorate(); } 
-	         protected void decorate() { setBorderPainted(false); setOpaque(false); }
-	         @Override 
-	         protected void paintComponent(Graphics g) {
-	            Color c=new Color(255,247,242); //배경색 결정
-	            Color o=new Color(247,99,30); //글자색 결정
-	            int width = getWidth(); 
-	            int height = getHeight(); 
-	            Graphics2D graphics = (Graphics2D) g; 
-	            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-	            if (getModel().isArmed()) { graphics.setColor(c.darker()); } 
-	            else if (getModel().isRollover()) { graphics.setColor(c.brighter()); } 
-	            else { graphics.setColor(c); } 
-	            graphics.fillRoundRect(0, 0, width, height, 50, 50); 
-	            FontMetrics fontMetrics = graphics.getFontMetrics(); 
-	            Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
-	            int textX = (width - stringBounds.width) / 2; 
-	            int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
-	            graphics.setColor(o); 
-	            graphics.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); 
-	            graphics.drawString(getText(), textX, textY); 
-	            graphics.dispose(); 
-	            super.paintComponent(g);
-	            }
-	         }
 	/**
 	 * Create the panel.
 	 */
@@ -110,11 +66,10 @@ public class SubwayPanel extends JPanel implements MouseListener{
 				("resource\\ㅎ.jpg");
 		Panel panel_main = new Panel();
 		panel_main.setBounds(10, 0, 1485, 1530);
-		panel_main.setBackground(new Color(0, 124, 192));
+		panel_main.setBackground(new Color(255, 255, 255));
 		panel_main.setLayout(null);
 		
 		JButton button_ktx_main = new JButton(img_main);
-//		button_ktx_main.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		button_ktx_main.setBounds(50, 94, 173, 67);
 		panel_main.add(button_ktx_main);
 		
@@ -288,6 +243,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
             }
         });
 		JScrollPane panel_mainKTX = new JScrollPane((Component) null);
+		panel_mainKTX.getVerticalScrollBar().setUnitIncrement(30);
 		panel_mainKTX.setPreferredSize(new Dimension(1344, 437));
 		panel_card.add(panel_mainKTX, "panel_mainKTX");
 		
@@ -1053,6 +1009,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		panel_ba.add(btnNewButton_1_2_5);
 		
 		JScrollPane panel_sa = new JScrollPane((Component) null);
+		panel_sa.getVerticalScrollBar().setUnitIncrement(30);
 		panel_sa.setPreferredSize(new Dimension(1340, 800));
 		panel_card.add(panel_sa, "panel_sa");
 		
@@ -1748,6 +1705,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		panel_ha.add(btnNewButton_2_2_13);
 		
 		JScrollPane panel_ah = new JScrollPane((Component) null);
+		panel_ah.getVerticalScrollBar().setUnitIncrement(30);
 		panel_ah.setPreferredSize(new Dimension(1344, 500));
 		panel_card.add(panel_ah, "panel_ah");
 		
@@ -2124,14 +2082,21 @@ public class SubwayPanel extends JPanel implements MouseListener{
 					.addContainerGap())
 		);
 		
-		JButton nextBtn = new JButton("다음");
+		JButton nextBtn = new JButton();
+		nextBtn.setBorderPainted(false);
+		nextBtn.setContentAreaFilled(false);
+		nextBtn.setFocusPainted(false);	
+		try {
+			nextBtn.setIcon(new ImageIcon(ImageIO.read(new File("resource/panel_next.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
 			}
 		});
-		nextBtn.setFont(new Font("HY견고딕", Font.BOLD, 35));
-		nextBtn.setBounds(1273, 10, 173, 100);
+		nextBtn.setBounds(1301, 34, 120, 100);
 		panel_main.add(nextBtn);
 		setLayout(groupLayout);
 		

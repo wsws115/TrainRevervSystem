@@ -1,23 +1,26 @@
 package train;
 
-import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.plaf.FontUIResource;
 
 import train.search.Search_Train_Panel;
-
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Peopel_select extends JPanel {
 	public static JTextField textField1;
@@ -80,6 +83,7 @@ public class Peopel_select extends JPanel {
 	public Peopel_select() {
 		
 		JPanel leftPanel = new JPanel();
+		leftPanel.setBackground(new Color(255, 255, 255));
 		leftPanel.setLayout(null);
 		
 		JLabel typeLabel1 = new JLabel("어른(만 13세 이상)");
@@ -257,7 +261,7 @@ public class Peopel_select extends JPanel {
 		typeLabel1_4.setBounds(502, 100, 335, 66);
 		leftPanel.add(typeLabel1_4);
 		
-		JButton returnBtn_1 = new JButton("다음");
+		JButton returnBtn_1 = new JButton();
 		returnBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectPeopleLabel.setText(""+sumPeople(
@@ -276,11 +280,16 @@ public class Peopel_select extends JPanel {
 				}
 			}
 		});
-		returnBtn_1.setFont(new Font("HY견고딕", Font.BOLD, 35));
-		returnBtn_1.setBounds(1207, 10, 200, 112);
+		returnBtn_1.setBorderPainted(false);
+		returnBtn_1.setContentAreaFilled(false);
+		returnBtn_1.setFocusPainted(false);	
+		returnBtn_1.setBounds(1280, 10, 110, 110);
 		leftPanel.add(returnBtn_1);
 		
-		JButton previousBtn = new JButton("이전");
+		JButton previousBtn = new JButton();
+		previousBtn.setBorderPainted(false);
+		previousBtn.setContentAreaFilled(false);
+		previousBtn.setFocusPainted(false);	
 		previousBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectPeopleLabel.setText("X");
@@ -291,8 +300,7 @@ public class Peopel_select extends JPanel {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "subkind");
 			}
 		});
-		previousBtn.setFont(new Font("HY견고딕", Font.BOLD, 35));
-		previousBtn.setBounds(12, 10, 200, 112);
+		previousBtn.setBounds(50, 10, 110, 110);
 		leftPanel.add(previousBtn);
 		setLayout(groupLayout);
 		if(login_who) {
@@ -324,5 +332,14 @@ public class Peopel_select extends JPanel {
 			textField3.setEnabled(login_who);
 			textField4.setEnabled(login_who);
 		}
+		
+		try {
+			returnBtn_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/panel_next.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+			previousBtn.setIcon(new ImageIcon(ImageIO.read(new File("resource/panel_back.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

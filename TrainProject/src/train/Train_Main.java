@@ -113,20 +113,6 @@ public class Train_Main extends JFrame {
    private JTextField id_textField;
    private JPasswordField pw_passwordField;
    
-   ImageIcon img5 = new ImageIcon
-           ("resource\\E-RAIL.png");
-   ImageIcon img6 = new ImageIcon
-           ("resource\\home.png");
-   ImageIcon img7 = new ImageIcon
-           ("resource\\goLogin.png");
-   ImageIcon img8 = new ImageIcon
-           ("resource\\goNoLogin.png");
-   ImageIcon img9 = new ImageIcon
-           ("resource\\back_homebtn.png");
-   ImageIcon img10 = new ImageIcon
-            ("resource\\GoMemCheck.png");
-   ImageIcon img11 = new ImageIcon
-            ("resource\\GoNoMemCheck.png");
    public static ImageIcon img12 = new ImageIcon
            ("resource\\radio_button_off.png");
    public static ImageIcon img13 = new ImageIcon
@@ -136,9 +122,6 @@ public class Train_Main extends JFrame {
    public static JRadioButton disabled_radio_btn;
    public static JRadioButton national_merit_radio_btn;
    
-    Image img = img5.getImage();
-  	Image updateImg = img.getScaledInstance(400, 330, Image.SCALE_SMOOTH);
-    ImageIcon updateIcon = new ImageIcon(updateImg);
     private JTextField num_textField;
     private JPasswordField passwordField;
     private JTextField num_textField_2;
@@ -196,32 +179,15 @@ public class Train_Main extends JFrame {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 1940, 1050);
       contentPane = new JPanel();
+      contentPane.setBackground(new Color(255, 255, 255));
       contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
       setContentPane(contentPane);
       contentPane.setLayout(null);
       setExtendedState(JFrame.MAXIMIZED_BOTH);
-      try {
-         
-         ImageIcon img1 = new ImageIcon
-               (ImageIO.read(new File
-                     ("resource\\goTrain.png"))
-                     .getScaledInstance(300, 200, Image.SCALE_AREA_AVERAGING));
-         ImageIcon img2 = new ImageIcon
-               (ImageIO.read(new File
-                     ("resource\\goCheck.png"))
-                     .getScaledInstance(300, 200, Image.SCALE_AREA_AVERAGING));
-         ImageIcon img3 = new ImageIcon
-               (ImageIO.read(new File
-                     ("resource\\admin_login.jpg"))
-                     .getScaledInstance(150, 150, Image.SCALE_AREA_AVERAGING));
-         ImageIcon img4 = new ImageIcon
-               (ImageIO.read(new File
-                     ("resource\\E-RAIL.png"))
-                     .getScaledInstance(500, 400, Image.SCALE_AREA_AVERAGING));
-         
-         
-         
+      
+      try { 
+    	  
          JPanel card_panel = new JPanel();
          CardLayout card = new CardLayout();
          card_panel.setBounds(0, 0, 1924, 1011);
@@ -231,8 +197,9 @@ public class Train_Main extends JFrame {
          JPanel main_home = new JPanel();
          main_home.setLayout(null);
          main_home.setBackground(Color.WHITE);
-         card_panel.add(main_home, "main_home");
-         JButton train_reserv_btn_1 = new JButton(img1);
+         card_panel.add(main_home, "main_home");         
+         
+         JButton train_reserv_btn_1 = new JButton();
          train_reserv_btn_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                card.show(card_panel, "main_reserv");
@@ -241,10 +208,10 @@ public class Train_Main extends JFrame {
          train_reserv_btn_1.setFocusPainted(false);
          train_reserv_btn_1.setContentAreaFilled(false);
          train_reserv_btn_1.setBorderPainted(false);
-         train_reserv_btn_1.setBounds(400, 500, 509, 338);
+         train_reserv_btn_1.setBounds(485, 613, 420, 270);
          main_home.add(train_reserv_btn_1);
          
-         JButton tiket_btn_1 = new JButton(img2);
+         JButton tiket_btn_1 = new JButton();
          tiket_btn_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "chk_change");
@@ -253,10 +220,10 @@ public class Train_Main extends JFrame {
          tiket_btn_1.setFocusPainted(false);
          tiket_btn_1.setContentAreaFilled(false);
          tiket_btn_1.setBorderPainted(false);
-         tiket_btn_1.setBounds(1000, 500, 509, 338);
+         tiket_btn_1.setBounds(1011, 613, 420, 270);
          main_home.add(tiket_btn_1);
          
-         JButton admin_login_btn_1 = new JButton(img3);
+         JButton admin_login_btn_1 = new JButton();
          admin_login_btn_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "admin_page");
@@ -265,26 +232,32 @@ public class Train_Main extends JFrame {
          admin_login_btn_1.setFocusPainted(false);
          admin_login_btn_1.setContentAreaFilled(false);
          admin_login_btn_1.setBorderPainted(false);
-         admin_login_btn_1.setBounds(1656, 10, 256, 256);
+         admin_login_btn_1.setBounds(1790, 48, 100, 100);
          main_home.add(admin_login_btn_1);
          
-         JLabel logo_label_1 = new JLabel(img4);
-         logo_label_1.setHorizontalAlignment(SwingConstants.CENTER);
-         logo_label_1.setForeground(Color.BLACK);
-         logo_label_1.setFont(new Font("굴림", Font.BOLD, 70));
-         logo_label_1.setBounds(675, 15, 574, 473);
-         main_home.add(logo_label_1);
+         JLabel logo_label_1 = new JLabel();
+         logo_label_1.setBounds(682, 105, 586, 471);
+         main_home.add(logo_label_1);  
+         
+         train_reserv_btn_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/기차예매.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
+      	
+    	 tiket_btn_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/조회변경.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
+			
+    	 admin_login_btn_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/admin.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+			
+    	 logo_label_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(586, 471, Image.SCALE_AREA_AVERAGING))); 
+         // 첫번쨰 메인
          
          JPanel main_reserv = new JPanel();
          main_reserv.setLayout(null);
          main_reserv.setBackground(Color.WHITE);
          card_panel.add(main_reserv, "main_reserv");
          
-         JLabel logo = new JLabel(img5);
-         logo.setBounds(675, 15, 573, 473);
+         JLabel logo = new JLabel();
+         logo.setBounds(682, 105, 586, 471);
          main_reserv.add(logo);
          
-         JButton goMain_btn = new JButton(img6);
+         JButton goMain_btn = new JButton();
          goMain_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                card.show(card_panel, "main_home");
@@ -293,10 +266,10 @@ public class Train_Main extends JFrame {
          goMain_btn.setBorderPainted(false);
          goMain_btn.setContentAreaFilled(false);
          goMain_btn.setFocusPainted(false);
-         goMain_btn.setBounds(1800, 10, 109, 109);
+         goMain_btn.setBounds(1790, 40, 100, 100);
          main_reserv.add(goMain_btn);
          
-         JButton membership_btn = new JButton(img7);
+         JButton membership_btn = new JButton();
          membership_btn.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "login_join_login");
@@ -305,10 +278,10 @@ public class Train_Main extends JFrame {
          membership_btn.setFocusPainted(false);
          membership_btn.setContentAreaFilled(false);
          membership_btn.setBorderPainted(false);
-         membership_btn.setBounds(400, 500, 510, 337);
+         membership_btn.setBounds(485, 613, 420, 270);
          main_reserv.add(membership_btn);
          
-         JButton no_membership_btn = new JButton(img8);
+         JButton no_membership_btn = new JButton();
          no_membership_btn.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "no_login_join");
@@ -317,10 +290,10 @@ public class Train_Main extends JFrame {
          no_membership_btn.setFocusPainted(false);
          no_membership_btn.setContentAreaFilled(false);
          no_membership_btn.setBorderPainted(false);
-         no_membership_btn.setBounds(1000, 500, 510, 337);
+         no_membership_btn.setBounds(1011, 613, 420, 270);
          main_reserv.add(no_membership_btn);
          
-         JButton back_btn = new JButton(img9);
+         JButton back_btn = new JButton();
          back_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                card.previous(card_panel);
@@ -332,29 +305,36 @@ public class Train_Main extends JFrame {
          back_btn.setBounds(10, 10, 136, 136);
          main_reserv.add(back_btn);
          
+         logo.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(586, 471, Image.SCALE_AREA_AVERAGING)));
+         goMain_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+         membership_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/회원예매.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
+         no_membership_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/비회원예매.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
+         back_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         //  ~ 2번째 메인
+         
          JPanel admin_page = new JPanel();
          admin_page.setBackground(Color.WHITE);
          card_panel.add(admin_page, "admin_page");
          admin_page.setLayout(null);
          JLabel id_label = new JLabel("아이디");
          id_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         id_label.setBounds(600, 500, 200, 100);
+         id_label.setBounds(599, 510, 200, 100);
          admin_page.add(id_label);
          
          JLabel pw_label = new JLabel("비밀번호");
          pw_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         pw_label.setBounds(600, 650, 250, 100);
+         pw_label.setBounds(599, 643, 250, 100);
          admin_page.add(pw_label);
          
          id_textField = new JTextField();
          id_textField.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          id_textField.setColumns(10);
-         id_textField.setBounds(900, 500, 400, 100);
+         id_textField.setBounds(899, 510, 400, 100);
          admin_page.add(id_textField);
          
          pw_passwordField = new JPasswordField();
          pw_passwordField.setFont(new Font("굴림", Font.PLAIN, 50));
-         pw_passwordField.setBounds(900, 650, 400, 100);
+         pw_passwordField.setBounds(899, 643, 400, 100);
          admin_page.add(pw_passwordField);
          
          JButton check_btn = new JButton("로그인");
@@ -371,14 +351,14 @@ public class Train_Main extends JFrame {
          check_btn.setForeground(Color.WHITE);
          check_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
          check_btn.setBackground(new Color(0, 128, 192));
-         check_btn.setBounds(600, 800, 700, 100);
+         check_btn.setBounds(599, 775, 700, 100);
          admin_page.add(check_btn);
          
-         JLabel E_RAIL = new JLabel(updateIcon);
-         E_RAIL.setBounds(700, 20, 400, 330);
+         JLabel E_RAIL = new JLabel();
+         E_RAIL.setBounds(798, 61, 300, 280);
          admin_page.add(E_RAIL);
-         
-         JButton back_main_btn2 = new JButton(img9);
+
+         JButton back_main_btn2 = new JButton();
          back_main_btn2.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "main_home");
@@ -389,7 +369,7 @@ public class Train_Main extends JFrame {
          back_main_btn2.setFocusPainted(false);
          back_main_btn2.setContentAreaFilled(false);
          back_main_btn2.setBorderPainted(false);
-         back_main_btn2.setBounds(10, 10, 136, 136);
+         back_main_btn2.setBounds(1790, 48, 100, 100);
          admin_page.add(back_main_btn2);
          
          JLabel lblNewLabel = new JLabel("관리자 로그인");
@@ -398,12 +378,17 @@ public class Train_Main extends JFrame {
          lblNewLabel.setBounds(750, 375, 400, 100);
          admin_page.add(lblNewLabel);
          
+         back_main_btn2.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+         E_RAIL.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
+         // ~ 관리자 로그인 페이지
+         
+         // 조회 변경 페이지
          JPanel chk_change = new JPanel();
          chk_change.setBackground(Color.WHITE);
          card_panel.add(chk_change, "chk_change");
          chk_change.setLayout(null);
          
-         JButton mem_check_btn = new JButton(img10);
+         JButton mem_check_btn = new JButton();
          mem_check_btn.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "mem_change");
@@ -412,10 +397,10 @@ public class Train_Main extends JFrame {
          mem_check_btn.setFocusPainted(false);
          mem_check_btn.setContentAreaFilled(false);
          mem_check_btn.setBorderPainted(false);
-         mem_check_btn.setBounds(400, 500, 510, 337);
+         mem_check_btn.setBounds(485, 613, 420, 270);
          chk_change.add(mem_check_btn);
          
-         JButton no_mem_check_btn = new JButton(img11);
+         JButton no_mem_check_btn = new JButton();
          no_mem_check_btn.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "no_mem_change");
@@ -424,14 +409,14 @@ public class Train_Main extends JFrame {
          no_mem_check_btn.setFocusPainted(false);
          no_mem_check_btn.setContentAreaFilled(false);
          no_mem_check_btn.setBorderPainted(false);
-         no_mem_check_btn.setBounds(1000, 500, 510, 337);
+         no_mem_check_btn.setBounds(1011, 613, 420, 270);
          chk_change.add(no_mem_check_btn);
          
-         JLabel logo_1 = new JLabel(img5);
-         logo_1.setBounds(675, 15, 573, 473);
+         JLabel logo_1 = new JLabel();
+         logo_1.setBounds(682, 105, 586, 471);
          chk_change.add(logo_1);
          
-         JButton home_btn = new JButton(img6);
+         JButton home_btn = new JButton();
          home_btn.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "main_home");
@@ -440,10 +425,10 @@ public class Train_Main extends JFrame {
          home_btn.setFocusPainted(false);
          home_btn.setContentAreaFilled(false);
          home_btn.setBorderPainted(false);
-         home_btn.setBounds(1800, 10, 109, 109);
+         home_btn.setBounds(1783, 10, 109, 109);
          chk_change.add(home_btn);
          
-         JButton back_btn_1 = new JButton(img9);
+         JButton back_btn_1 = new JButton();
          back_btn_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		card.show(card_panel, "main_home");
@@ -455,35 +440,42 @@ public class Train_Main extends JFrame {
          back_btn_1.setBounds(10, 10, 136, 136);
          chk_change.add(back_btn_1);
          
+        mem_check_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/회원조회.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
+		no_mem_check_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/비회원조회.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));	
+		back_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+		home_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+		logo_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(586, 471, Image.SCALE_AREA_AVERAGING)));
+
+         // 비회원 로그인 페이지
          JPanel no_login_join = new JPanel();
          no_login_join.setBackground(Color.WHITE);
          card_panel.add(no_login_join, "no_login_join");
          no_login_join.setLayout(null);
          
          JLabel num_label = new JLabel("전화번호");
-         num_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         num_label.setBounds(600, 500, 175, 100);
+         num_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 45));
+         num_label.setBounds(605, 485, 220, 75);
          no_login_join.add(num_label);
          
          num_textField = new JTextField();
          num_textField.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          num_textField.setColumns(10);
-         num_textField.setBounds(900, 500, 500, 100);
+         num_textField.setBounds(959, 475, 400, 100);
          no_login_join.add(num_textField);
          
          JLabel pw_label_1 = new JLabel("티켓 확인 비밀번호");
          pw_label_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         pw_label_1.setBounds(500, 650, 350, 100);
+         pw_label_1.setBounds(595, 645, 364, 75);
          no_login_join.add(pw_label_1);
          
          passwordField = new JPasswordField();
          passwordField.setFont(new Font("굴림", Font.PLAIN, 40));
-         passwordField.setBounds(900, 650, 350, 100);
+         passwordField.setBounds(959, 629, 400, 100);
          no_login_join.add(passwordField);
          
-         JLabel lblNewLabel_1 = new JLabel("비밀번호는 4자리입니다");
-         lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
-         lblNewLabel_1.setBounds(1300, 650, 350, 100);
+         JLabel lblNewLabel_1 = new JLabel("숫자 4자리를 입력해주세요");
+         lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
+         lblNewLabel_1.setBounds(1039, 739, 312, 63);
          no_login_join.add(lblNewLabel_1);
          
          JButton check_btn_1 = new JButton("확인");
@@ -521,14 +513,14 @@ public class Train_Main extends JFrame {
          check_btn_1.setForeground(Color.WHITE);
          check_btn_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          check_btn_1.setBackground(new Color(0, 128, 192));
-         check_btn_1.setBounds(500, 890, 900, 100);
+         check_btn_1.setBounds(605, 825, 745, 100);
          no_login_join.add(check_btn_1);
          
-         JLabel E_RAIL_1 = new JLabel(updateIcon);
-         E_RAIL_1.setBounds(800, 80, 400, 330);
+         JLabel E_RAIL_1 = new JLabel();
+         E_RAIL_1.setBounds(820, 39, 300, 280);
          no_login_join.add(E_RAIL_1);
          
-         JButton back_btn_2 = new JButton(img9);
+         JButton back_btn_2 = new JButton();
          back_btn_2.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		passwordField.setText(null);
@@ -542,7 +534,7 @@ public class Train_Main extends JFrame {
          back_btn_2.setBounds(10, 10, 136, 136);
          no_login_join.add(back_btn_2);
          
-         JButton home_btn_1 = new JButton(img6);
+         JButton home_btn_1 = new JButton();
          home_btn_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		passwordField.setText(null);
@@ -553,25 +545,31 @@ public class Train_Main extends JFrame {
          home_btn_1.setFocusPainted(false);
          home_btn_1.setContentAreaFilled(false);
          home_btn_1.setBorderPainted(false);
-         home_btn_1.setBounds(1800, 10, 109, 109);
+         home_btn_1.setBounds(1795, 10, 109, 109);
          no_login_join.add(home_btn_1);
          
          JLabel no_mem_label = new JLabel("비회원 예매");
          no_mem_label.setHorizontalAlignment(SwingConstants.CENTER);
          no_mem_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
-         no_mem_label.setBounds(190, 30, 350, 100);
+         no_mem_label.setBounds(797, 343, 350, 100);
          no_login_join.add(no_mem_label);
          
+        back_btn_2.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+        home_btn_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));	
+		E_RAIL_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
+
+         
+         // 회원         
          JPanel mem_change = new JPanel();
          mem_change.setBackground(Color.WHITE);
          card_panel.add(mem_change, "mem_change");
          mem_change.setLayout(null);
          
-         JLabel logo_3 = new JLabel(updateIcon);
-         logo_3.setBounds(750, 30, 400, 330);
+         JLabel logo_3 = new JLabel();
+         logo_3.setBounds(820, 39, 300, 280);
          mem_change.add(logo_3);
          
-         JButton home_btn_3 = new JButton(img6);
+         JButton home_btn_3 = new JButton();
          home_btn_3.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		passwordField_4.setText(null);
@@ -582,10 +580,10 @@ public class Train_Main extends JFrame {
          home_btn_3.setFocusPainted(false);
          home_btn_3.setContentAreaFilled(false);
          home_btn_3.setBorderPainted(false);
-         home_btn_3.setBounds(1800, 10, 109, 109);
+         home_btn_3.setBounds(1790, 48, 100, 100);
          mem_change.add(home_btn_3);
          
-         JButton back_btn_4 = new JButton(img9);
+         JButton back_btn_4 = new JButton();
          back_btn_4.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		passwordField_4.setText(null);
@@ -601,23 +599,23 @@ public class Train_Main extends JFrame {
          
          JLabel id_label_4 = new JLabel("아이디");
          id_label_4.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         id_label_4.setBounds(585, 440, 200, 100);
+         id_label_4.setBounds(649, 492, 200, 75);
          mem_change.add(id_label_4);
          
          JLabel lblNewLabel_4 = new JLabel("비밀번호");
          lblNewLabel_4.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         lblNewLabel_4.setBounds(585, 570, 250, 100);
+         lblNewLabel_4.setBounds(649, 640, 200, 75);
          mem_change.add(lblNewLabel_4);
          
          id_textField_5 = new JTextField();
          id_textField_5.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          id_textField_5.setColumns(10);
-         id_textField_5.setBounds(885, 440, 400, 100);
+         id_textField_5.setBounds(949, 489, 400, 100);
          mem_change.add(id_textField_5);
          
          passwordField_4 = new JPasswordField();
          passwordField_4.setFont(new Font("굴림", Font.PLAIN, 50));
-         passwordField_4.setBounds(885, 570, 400, 100);
+         passwordField_4.setBounds(949, 630, 400, 100);
          mem_change.add(passwordField_4);
          
          JButton login_btn = new JButton("로그인");
@@ -633,7 +631,7 @@ public class Train_Main extends JFrame {
          login_btn.setForeground(Color.WHITE);
          login_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
          login_btn.setBackground(new Color(0, 128, 192));
-         login_btn.setBounds(585, 730, 700, 100);
+         login_btn.setBounds(649, 762, 700, 100);
          mem_change.add(login_btn);
          
          JButton find_id_btn_1 = new JButton("ID 찾기");
@@ -645,11 +643,11 @@ public class Train_Main extends JFrame {
          	}
          });
          find_id_btn_1.setForeground(new Color(0, 128, 192));
-         find_id_btn_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
+         find_id_btn_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          find_id_btn_1.setFocusPainted(false);
          find_id_btn_1.setContentAreaFilled(false);
          find_id_btn_1.setBorderPainted(false);
-         find_id_btn_1.setBounds(475, 860, 275, 100);
+         find_id_btn_1.setBounds(691, 872, 200, 85);
          mem_change.add(find_id_btn_1);
          
          JButton find_pw_btn_1 = new JButton("PASSWORD 변경");
@@ -661,28 +659,40 @@ public class Train_Main extends JFrame {
          	}
          });
          find_pw_btn_1.setForeground(new Color(0, 128, 192));
-         find_pw_btn_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
+         find_pw_btn_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          find_pw_btn_1.setFocusPainted(false);
          find_pw_btn_1.setContentAreaFilled(false);
          find_pw_btn_1.setBorderPainted(false);
-         find_pw_btn_1.setBounds(750, 860, 650, 100);
+         find_pw_btn_1.setBounds(989, 864, 362, 100);
          mem_change.add(find_pw_btn_1);
          
          JLabel lblNewLabel_3_1 = new JLabel("회원 조회");
          lblNewLabel_3_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
-         lblNewLabel_3_1.setBounds(190, 30, 300, 100);
+         lblNewLabel_3_1.setBounds(841, 343, 350, 100);
          mem_change.add(lblNewLabel_3_1);
          
+         back_btn_4.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         home_btn_3.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));	
+         logo_3.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
+         
+         JLabel lblNewLabel_5 = new JLabel("ㅣ");
+         lblNewLabel_5.setForeground(new Color(0, 128, 192));
+         lblNewLabel_5.setFont(new Font("굴림", Font.PLAIN, 50));
+         lblNewLabel_5.setBackground(new Color(255, 255, 255));
+         lblNewLabel_5.setBounds(926, 881, 65, 63);
+         mem_change.add(lblNewLabel_5);
+         
+         // 비회원 조회
          JPanel no_mem_change = new JPanel();
          no_mem_change.setBackground(Color.WHITE);
          card_panel.add(no_mem_change, "no_mem_change");
          no_mem_change.setLayout(null);
          
-         JLabel logo_2 = new JLabel(updateIcon);
-         logo_2.setBounds(800, 40, 400, 330);
+         JLabel logo_2 = new JLabel();
+         logo_2.setBounds(820, 39, 300, 280);
          no_mem_change.add(logo_2);
          
-         JButton back_btn_3 = new JButton(img9);
+         JButton back_btn_3 = new JButton();
          back_btn_3.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		passwordField_1.setText(null);
@@ -696,7 +706,7 @@ public class Train_Main extends JFrame {
          back_btn_3.setBounds(10, 10, 136, 136);
          no_mem_change.add(back_btn_3);
          
-         JButton home_btn_2 = new JButton(img6);
+         JButton home_btn_2 = new JButton();
          home_btn_2.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		passwordField_1.setText(null);
@@ -707,40 +717,41 @@ public class Train_Main extends JFrame {
          home_btn_2.setFocusPainted(false);
          home_btn_2.setContentAreaFilled(false);
          home_btn_2.setBorderPainted(false);
-         home_btn_2.setBounds(1800, 10, 109, 109);
+         home_btn_2.setBounds(1795, 10, 109, 109);
          no_mem_change.add(home_btn_2);
          
          JLabel no_mem_look_up = new JLabel("비회원 조회");
          no_mem_look_up.setHorizontalAlignment(SwingConstants.CENTER);
          no_mem_look_up.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
-         no_mem_look_up.setBounds(190, 30, 350, 100);
+         no_mem_look_up.setBounds(797, 343, 350, 100);
          no_mem_change.add(no_mem_look_up);
          
          JLabel pn_label = new JLabel("전화번호");
          pn_label.setHorizontalAlignment(SwingConstants.TRAILING);
-         pn_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         pn_label.setBounds(490, 500, 363, 100);
+         pn_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 45));
+         pn_label.setBounds(605, 492, 200, 75);
          no_mem_change.add(pn_label);
          
          num_textField_2 = new JTextField();
          num_textField_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          num_textField_2.setColumns(10);
-         num_textField_2.setBounds(900, 500, 500, 100);
+         num_textField_2.setBounds(955, 493, 400, 100);
          no_mem_change.add(num_textField_2);
          
-         JLabel t_pw = new JLabel("티켓 확인 비밀번호");
+         JLabel t_pw = new JLabel("확인 비밀번호");
          t_pw.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         t_pw.setBounds(500, 650, 350, 100);
+         t_pw.setBounds(605, 641, 292, 75);
          no_mem_change.add(t_pw);
          
          passwordField_1 = new JPasswordField();
          passwordField_1.setFont(new Font("굴림", Font.PLAIN, 40));
-         passwordField_1.setBounds(900, 650, 350, 100);
+         passwordField_1.setBounds(955, 630, 400, 100);
          no_mem_change.add(passwordField_1);
          
-         JLabel lblNewLabel_2 = new JLabel("비밀번호는 4자리입니다");
+         JLabel lblNewLabel_2 = new JLabel("숫자 4자리를 입력해주세요");
+         lblNewLabel_2.setForeground(new Color(140, 140, 140));
          lblNewLabel_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
-         lblNewLabel_2.setBounds(1300, 650, 350, 100);
+         lblNewLabel_2.setBounds(955, 741, 400, 53);
          no_mem_change.add(lblNewLabel_2);
          
          JButton select_btn = new JButton("확인");
@@ -756,9 +767,14 @@ public class Train_Main extends JFrame {
          select_btn.setForeground(Color.WHITE);
          select_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          select_btn.setBackground(new Color(0, 128, 192));
-         select_btn.setBounds(500, 850, 900, 100);
+         select_btn.setBounds(610, 825, 745, 100);
          no_mem_change.add(select_btn);
          
+         back_btn_3.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         home_btn_2.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+		 logo_2.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
+         
+         // 회원 로그인
          JPanel login_join_login = new JPanel();
          login_join_login.setBackground(Color.WHITE);
          card_panel.add(login_join_login, "login_join_login");
@@ -766,23 +782,23 @@ public class Train_Main extends JFrame {
          
          JLabel id_label_1 = new JLabel("아이디");
          id_label_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         id_label_1.setBounds(585, 440, 200, 100);
+         id_label_1.setBounds(636, 491, 200, 75);
          login_join_login.add(id_label_1);
          
          JLabel pw_label_2 = new JLabel("비밀번호");
          pw_label_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         pw_label_2.setBounds(585, 570, 250, 100);
+         pw_label_2.setBounds(636, 639, 200, 75);
          login_join_login.add(pw_label_2);
          
          id_textField_2 = new JTextField();
          id_textField_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          id_textField_2.setColumns(10);
-         id_textField_2.setBounds(885, 440, 400, 100);
+         id_textField_2.setBounds(936, 488, 400, 100);
          login_join_login.add(id_textField_2);
          
          passwordField_2 = new JPasswordField();
          passwordField_2.setFont(new Font("굴림", Font.PLAIN, 50));
-         passwordField_2.setBounds(885, 570, 400, 100);
+         passwordField_2.setBounds(936, 629, 400, 100);
          login_join_login.add(passwordField_2);
          
          JButton check_btn_2 = new JButton("로그인");
@@ -799,14 +815,14 @@ public class Train_Main extends JFrame {
          check_btn_2.setForeground(Color.WHITE);
          check_btn_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
          check_btn_2.setBackground(new Color(0, 128, 192));
-         check_btn_2.setBounds(585, 730, 700, 100);
+         check_btn_2.setBounds(636, 762, 700, 100);
          login_join_login.add(check_btn_2);
          
-         JLabel E_RAIL_2 = new JLabel(updateIcon);
-         E_RAIL_2.setBounds(750, 30, 400, 330);
+         JLabel E_RAIL_2 = new JLabel();
+         E_RAIL_2.setBounds(820, 39, 300, 280);
          login_join_login.add(E_RAIL_2);
          
-         JButton back_main_btn = new JButton(img9);
+         JButton back_main_btn = new JButton();
          back_main_btn.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_2.setText(null);
@@ -829,11 +845,11 @@ public class Train_Main extends JFrame {
          	}
          });
          join_btn.setForeground(new Color(0, 128, 192));
-         join_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
+         join_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          join_btn.setFocusPainted(false);
          join_btn.setContentAreaFilled(false);
          join_btn.setBorderPainted(false);
-         join_btn.setBounds(1400, 860, 350, 100);
+         join_btn.setBounds(1164, 872, 200, 75);
          login_join_login.add(join_btn);
          
          JButton find_id_btn = new JButton("ID 찾기");
@@ -845,11 +861,11 @@ public class Train_Main extends JFrame {
          	}
          });
          find_id_btn.setForeground(new Color(0, 128, 192));
-         find_id_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
+         find_id_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          find_id_btn.setFocusPainted(false);
          find_id_btn.setContentAreaFilled(false);
          find_id_btn.setBorderPainted(false);
-         find_id_btn.setBounds(475, 860, 275, 100);
+         find_id_btn.setBounds(615, 872, 182, 75);
          login_join_login.add(find_id_btn);
          
          JButton find_pw_btn = new JButton("PASSWORD 변경");
@@ -861,14 +877,14 @@ public class Train_Main extends JFrame {
          	}
          });
          find_pw_btn.setForeground(new Color(0, 128, 192));
-         find_pw_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
+         find_pw_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          find_pw_btn.setFocusPainted(false);
          find_pw_btn.setContentAreaFilled(false);
          find_pw_btn.setBorderPainted(false);
-         find_pw_btn.setBounds(750, 860, 600, 100);
+         find_pw_btn.setBounds(809, 859, 336, 100);
          login_join_login.add(find_pw_btn);
          
-         JButton gomain_btn1 = new JButton(img6);
+         JButton gomain_btn1 = new JButton();
          gomain_btn1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_2.setText(null);
@@ -879,25 +895,42 @@ public class Train_Main extends JFrame {
          gomain_btn1.setFocusPainted(false);
          gomain_btn1.setContentAreaFilled(false);
          gomain_btn1.setBorderPainted(false);
-         gomain_btn1.setBounds(1800, 10, 109, 109);
+         gomain_btn1.setBounds(1783, 10, 109, 109);
          login_join_login.add(gomain_btn1);
+         
+         back_main_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         gomain_btn1.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+         E_RAIL_2.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
          
          JLabel lblNewLabel_3 = new JLabel("회원 예매");
          lblNewLabel_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
-         lblNewLabel_3.setBounds(190, 30, 275, 100);
+         lblNewLabel_3.setBounds(828, 342, 350, 100);
          login_join_login.add(lblNewLabel_3);
          
+         JLabel lblNewLabel_6 = new JLabel("｜");
+         lblNewLabel_6.setForeground(new Color(0, 128, 192));
+         lblNewLabel_6.setFont(new Font("굴림", Font.PLAIN, 45));
+         lblNewLabel_6.setBounds(781, 886, 45, 45);
+         login_join_login.add(lblNewLabel_6);
+         
+         JLabel lblNewLabel_6_1 = new JLabel("｜");
+         lblNewLabel_6_1.setForeground(new Color(0, 128, 192));
+         lblNewLabel_6_1.setFont(new Font("굴림", Font.PLAIN, 45));
+         lblNewLabel_6_1.setBounds(1123, 886, 45, 45);
+         login_join_login.add(lblNewLabel_6_1);
+         
+         // 회원 로그인
          JPanel login_join_find_id = new JPanel();
          login_join_find_id.setBackground(Color.WHITE);
          card_panel.add(login_join_find_id, "login_join_find_id");
          login_join_find_id.setLayout(null);
          
          JLabel find_id = new JLabel("아이디 찾기");
-         find_id.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         find_id.setBounds(170, 60, 350, 100);
+         find_id.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
+         find_id.setBounds(838, 342, 350, 100);
          login_join_find_id.add(find_id);
          
-         JButton back_login_btn3 = new JButton(img9);
+         JButton back_login_btn3 = new JButton();
          back_login_btn3.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		name_textField.setText(null);
@@ -912,26 +945,26 @@ public class Train_Main extends JFrame {
          login_join_find_id.add(back_login_btn3);
          
          JLabel name_label_2 = new JLabel("이름");
-         name_label_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
+         name_label_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          name_label_2.setEnabled(true);
-         name_label_2.setBounds(550, 400, 200, 75);
+         name_label_2.setBounds(646, 491, 200, 75);
          login_join_find_id.add(name_label_2);
          
          name_textField = new JTextField();
          name_textField.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          name_textField.setColumns(10);
-         name_textField.setBounds(800, 400, 400, 75);
+         name_textField.setBounds(946, 488, 400, 100);
          login_join_find_id.add(name_textField);
          
          JLabel phone_label_2 = new JLabel("전화번호");
-         phone_label_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         phone_label_2.setBounds(550, 600, 200, 75);
+         phone_label_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
+         phone_label_2.setBounds(646, 639, 200, 75);
          login_join_find_id.add(phone_label_2);
          
          pn_textField = new JTextField();
          pn_textField.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          pn_textField.setColumns(10);
-         pn_textField.setBounds(800, 600, 400, 75);
+         pn_textField.setBounds(946, 629, 400, 100);
          login_join_find_id.add(pn_textField);
          
          JButton find_id_select_btn = new JButton("확인");
@@ -946,14 +979,14 @@ public class Train_Main extends JFrame {
          find_id_select_btn.setForeground(Color.WHITE);
          find_id_select_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
          find_id_select_btn.setBackground(new Color(0, 128, 192));
-         find_id_select_btn.setBounds(550, 800, 300, 100);
+         find_id_select_btn.setBounds(646, 762, 700, 100);
          login_join_find_id.add(find_id_select_btn);
          
-         JLabel E_RAIL_2_1 = new JLabel(updateIcon);
-         E_RAIL_2_1.setBounds(750, 30, 400, 330);
+         JLabel E_RAIL_2_1 = new JLabel();
+         E_RAIL_2_1.setBounds(820, 39, 300, 280);
          login_join_find_id.add(E_RAIL_2_1);
          
-         JButton gomain_btn4 = new JButton(img6);
+         JButton gomain_btn4 = new JButton();
          gomain_btn4.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		name_textField.setText(null);
@@ -964,7 +997,7 @@ public class Train_Main extends JFrame {
          gomain_btn4.setFocusPainted(false);
          gomain_btn4.setContentAreaFilled(false);
          gomain_btn4.setBorderPainted(false);
-         gomain_btn4.setBounds(1800, 10, 109, 109);
+         gomain_btn4.setBounds(1783, 10, 109, 109);
          login_join_find_id.add(gomain_btn4);
          
          JButton change_pw = new JButton("비밀번호 변경");
@@ -976,19 +1009,24 @@ public class Train_Main extends JFrame {
          	}
          });
          change_pw.setForeground(new Color(0, 128, 192));
-         change_pw.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
+         change_pw.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          change_pw.setFocusPainted(false);
          change_pw.setContentAreaFilled(false);
          change_pw.setBorderPainted(false);
-         change_pw.setBounds(900, 800, 450, 100);
+         change_pw.setBounds(1038, 872, 344, 87);
          login_join_find_id.add(change_pw);
+
+         back_login_btn3.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         gomain_btn4.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+         E_RAIL_2_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
          
+         // 비밀번호 재설정
          JPanel login_join_find_pw = new JPanel();
          login_join_find_pw.setBackground(Color.WHITE);
          card_panel.add(login_join_find_pw, "login_join_find_pw");
          login_join_find_pw.setLayout(null);
          
-         JButton back_login_btn2 = new JButton(img9);
+         JButton back_login_btn2 = new JButton();
          back_login_btn2.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_3.setText(null);
@@ -1005,35 +1043,35 @@ public class Train_Main extends JFrame {
          
          JLabel id_label_3 = new JLabel("아이디");
          id_label_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         id_label_3.setBounds(550, 375, 200, 75);
+         id_label_3.setBounds(655, 460, 200, 75);
          login_join_find_pw.add(id_label_3);
          
          JLabel name_label_3 = new JLabel("이름");
          name_label_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         name_label_3.setBounds(550, 525, 200, 75);
+         name_label_3.setBounds(655, 571, 200, 75);
          login_join_find_pw.add(name_label_3);
          
          name_textField_2 = new JTextField();
          name_textField_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          name_textField_2.setColumns(10);
-         name_textField_2.setBounds(800, 525, 400, 75);
+         name_textField_2.setBounds(955, 571, 400, 75);
          login_join_find_pw.add(name_textField_2);
          
          id_textField_3 = new JTextField();
          id_textField_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          id_textField_3.setColumns(10);
-         id_textField_3.setBounds(800, 375, 400, 75);
+         id_textField_3.setBounds(955, 460, 400, 75);
          login_join_find_pw.add(id_textField_3);
          
          JLabel phone_label_3 = new JLabel("전화번호");
          phone_label_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         phone_label_3.setBounds(550, 675, 250, 75);
+         phone_label_3.setBounds(655, 674, 250, 75);
          login_join_find_pw.add(phone_label_3);
          
          pn_textField_2 = new JTextField();
          pn_textField_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          pn_textField_2.setColumns(10);
-         pn_textField_2.setBounds(800, 675, 400, 75);
+         pn_textField_2.setBounds(955, 674, 400, 75);
          login_join_find_pw.add(pn_textField_2);
          
          JButton find_pw_select_btn = new JButton("확인");
@@ -1056,20 +1094,20 @@ public class Train_Main extends JFrame {
          find_pw_select_btn.setForeground(Color.WHITE);
          find_pw_select_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
          find_pw_select_btn.setBackground(new Color(0, 128, 192));
-         find_pw_select_btn.setBounds(550, 800, 300, 100);
+         find_pw_select_btn.setBounds(655, 762, 700, 100);
          login_join_find_pw.add(find_pw_select_btn);
          
          JLabel find_pw = new JLabel("비밀번호 재설정");
          find_pw.setHorizontalAlignment(SwingConstants.CENTER);
-         find_pw.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         find_pw.setBounds(170, 60, 375, 100);
+         find_pw.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
+         find_pw.setBounds(735, 342, 486, 100);
          login_join_find_pw.add(find_pw);
          
-         JLabel E_RAIL_3 = new JLabel(updateIcon);
-         E_RAIL_3.setBounds(750, 30, 400, 330);
+         JLabel E_RAIL_3 = new JLabel();
+         E_RAIL_3.setBounds(820, 39, 300, 280);
          login_join_find_pw.add(E_RAIL_3);
          
-         JButton gomain_btn3 = new JButton(img6);
+         JButton gomain_btn3 = new JButton();
          gomain_btn3.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_3.setText(null);
@@ -1081,15 +1119,20 @@ public class Train_Main extends JFrame {
          gomain_btn3.setFocusPainted(false);
          gomain_btn3.setContentAreaFilled(false);
          gomain_btn3.setBorderPainted(false);
-         gomain_btn3.setBounds(1800, 10, 109, 109);
+         gomain_btn3.setBounds(1783, 10, 109, 109);
          login_join_find_pw.add(gomain_btn3);
          
+         back_login_btn2.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         gomain_btn3.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+         E_RAIL_3.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
+         
+         // 회원가입         
          JPanel login_join_join = new JPanel();
          login_join_join.setBackground(Color.WHITE);
          card_panel.add(login_join_join, "login_join_join");
          login_join_join.setLayout(null);
          
-         JButton back_login_btn = new JButton(img9);
+         JButton back_login_btn = new JButton();
          back_login_btn.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_4.setText(null);
@@ -1108,75 +1151,75 @@ public class Train_Main extends JFrame {
          back_login_btn.setBounds(10, 10, 136, 136);
          login_join_join.add(back_login_btn);
          
-         JLabel id_label_2 = new JLabel("아이디");
-         id_label_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         id_label_2.setBounds(550, 150, 200, 75);
-         login_join_join.add(id_label_2);
-         
          JLabel join_label = new JLabel("회원가입");
          join_label.setHorizontalAlignment(SwingConstants.CENTER);
          join_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 70));
          join_label.setBounds(125, 150, 400, 100);
          login_join_join.add(join_label);
          
+         JLabel id_label_2 = new JLabel("아이디");
+         id_label_2.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
+         id_label_2.setBounds(609, 147, 200, 75);
+         login_join_join.add(id_label_2);         
+         
          JLabel pw_label_2_1 = new JLabel("비밀번호");
          pw_label_2_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         pw_label_2_1.setBounds(550, 235, 200, 75);
+         pw_label_2_1.setBounds(609, 235, 200, 75);
          login_join_join.add(pw_label_2_1);
          
          id_textField_4 = new JTextField();
          id_textField_4.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          id_textField_4.setColumns(10);
-         id_textField_4.setBounds(800, 150, 400, 75);
+         id_textField_4.setBounds(859, 150, 400, 75);
          login_join_join.add(id_textField_4);
          
          passwordField_3 = new JPasswordField();
          passwordField_3.setFont(new Font("굴림", Font.PLAIN, 40));
-         passwordField_3.setBounds(800, 235, 400, 75);
+         passwordField_3.setBounds(859, 235, 400, 75);
          login_join_join.add(passwordField_3);
          
          JLabel name_label = new JLabel("이름");
          name_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         name_label.setBounds(550, 320, 200, 75);
+         name_label.setBounds(609, 320, 200, 75);
          login_join_join.add(name_label);
          
          JLabel phone_label = new JLabel("전화번호");
          phone_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         phone_label.setBounds(550, 485, 250, 75);
+         phone_label.setBounds(609, 485, 250, 75);
          login_join_join.add(phone_label);
          
          name_textField_3 = new JTextField();
          name_textField_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          name_textField_3.setColumns(10);
-         name_textField_3.setBounds(800, 320, 400, 75);
+         name_textField_3.setBounds(859, 320, 400, 75);
          login_join_join.add(name_textField_3);
          
          pn_textField_3 = new JTextField();
          pn_textField_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          pn_textField_3.setColumns(10);
-         pn_textField_3.setBounds(800, 485, 400, 75);
+         pn_textField_3.setBounds(859, 485, 400, 75);
          login_join_join.add(pn_textField_3);
          
          JLabel birthday_label = new JLabel("생년월일");
          birthday_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         birthday_label.setBounds(550, 400, 200, 75);
+         birthday_label.setBounds(609, 400, 200, 75);
          login_join_join.add(birthday_label);
          
          JLabel email_label = new JLabel("이메일");
          email_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         email_label.setBounds(550, 570, 250, 75);
+         email_label.setBounds(609, 570, 250, 75);
          login_join_join.add(email_label);
          
          birthday_textField = new JTextField();
          birthday_textField.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          birthday_textField.setColumns(10);
-         birthday_textField.setBounds(800, 405, 400, 75);
+         birthday_textField.setBounds(859, 405, 400, 75);
          login_join_join.add(birthday_textField);
          
          email_textField = new JTextField();
          email_textField.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          email_textField.setColumns(10);
-         email_textField.setBounds(800, 570, 400, 75);
+         email_textField.setBounds(859, 570, 400, 75);
          login_join_join.add(email_textField);
          
          JButton check_btn_2_1 = new JButton("가입 완료");
@@ -1197,7 +1240,7 @@ public class Train_Main extends JFrame {
          check_btn_2_1.setForeground(Color.WHITE);
          check_btn_2_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
          check_btn_2_1.setBackground(new Color(0, 128, 192));
-         check_btn_2_1.setBounds(650, 775, 700, 100);
+         check_btn_2_1.setBounds(609, 775, 665, 100);
          login_join_join.add(check_btn_2_1);
          
          JButton chk_overlap_btn = new JButton("중복 확인");
@@ -1211,35 +1254,35 @@ public class Train_Main extends JFrame {
          chk_overlap_btn.setForeground(Color.WHITE);
          chk_overlap_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
          chk_overlap_btn.setBackground(new Color(0, 128, 192));
-         chk_overlap_btn.setBounds(1250, 160, 180, 60);
+         chk_overlap_btn.setBounds(1309, 160, 180, 60);
          login_join_join.add(chk_overlap_btn);
          
          pw_alrim = new JLabel();
          pw_alrim.setText("6자리이상 영어 대문자,소문자,숫자,특수문자를 포함하세요");
          pw_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
-         pw_alrim.setBounds(1250, 235, 500, 60);
+         pw_alrim.setBounds(1309, 235, 500, 60);
          login_join_join.add(pw_alrim);
          
          email_alrim = new JLabel();
-         email_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-         email_alrim.setBounds(1250, 570, 400, 60);
+         email_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+         email_alrim.setBounds(1309, 570, 400, 60);
          login_join_join.add(email_alrim);
          
          number_alrim = new JLabel();
          number_alrim.setText("010-0000-0000");
-         number_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-         number_alrim.setBounds(1250, 485, 400, 60);
+         number_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+         number_alrim.setBounds(1309, 485, 400, 60);
          login_join_join.add(number_alrim);
          
          birthday_alrim = new JLabel();
          birthday_alrim.setText("YYYY-MM-DD");
-         birthday_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-         birthday_alrim.setBounds(1250, 400, 400, 60);
+         birthday_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+         birthday_alrim.setBounds(1309, 400, 400, 60);
          login_join_join.add(birthday_alrim);
          
          JLabel preferential_treatment_label = new JLabel("우대 사항");
          preferential_treatment_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         preferential_treatment_label.setBounds(550, 645, 250, 75);
+         preferential_treatment_label.setBounds(609, 659, 250, 75);
          login_join_join.add(preferential_treatment_label);
          
 //         JButton preferential_treatment_btn = new JButton("확인");
@@ -1252,21 +1295,21 @@ public class Train_Main extends JFrame {
          default_radio_btn = new JRadioButton("없음");
          default_radio_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
          default_radio_btn.setBackground(Color.WHITE);
-         default_radio_btn.setBounds(800, 645, 125, 75);
+         default_radio_btn.setBounds(859, 659, 125, 75);
          default_radio_btn.setIcon(img12);
          login_join_join.add(default_radio_btn);
          
          disabled_radio_btn = new JRadioButton("장애인");
          disabled_radio_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
          disabled_radio_btn.setBackground(Color.WHITE);
-         disabled_radio_btn.setBounds(930, 645, 150, 75);
+         disabled_radio_btn.setBounds(989, 659, 150, 75);
          disabled_radio_btn.setIcon(img12);
          login_join_join.add(disabled_radio_btn);
          
          national_merit_radio_btn = new JRadioButton("국가유공자");
          national_merit_radio_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
          national_merit_radio_btn.setBackground(Color.WHITE);
-         national_merit_radio_btn.setBounds(1090, 645, 250, 75);
+         national_merit_radio_btn.setBounds(1149, 659, 250, 75);
          national_merit_radio_btn.setIcon(img12);
          login_join_join.add(national_merit_radio_btn);
          
@@ -1320,17 +1363,17 @@ public class Train_Main extends JFrame {
  		group.add(national_merit_radio_btn);
          
          id_alrim = new JLabel();
-         id_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-         id_alrim.setBounds(1450, 160, 400, 60);
+         id_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+         id_alrim.setBounds(1509, 160, 400, 60);
          login_join_join.add(id_alrim);
          
          name_alrim = new JLabel();
          name_alrim.setText("2자리 이상 한글을 입력하세요");
-         name_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 20));
-         name_alrim.setBounds(1250, 320, 400, 60);
+         name_alrim.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+         name_alrim.setBounds(1309, 320, 400, 60);
          login_join_join.add(name_alrim);
          
-         JButton gomain_btn2 = new JButton(img6);
+         JButton gomain_btn2 = new JButton();
          gomain_btn2.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_4.setText(null);
@@ -1348,16 +1391,19 @@ public class Train_Main extends JFrame {
          gomain_btn2.setBounds(1800, 10, 109, 109);
          login_join_join.add(gomain_btn2);
          
+         back_login_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         gomain_btn2.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+         
          JPanel mem_change_find_id = new JPanel();
          mem_change_find_id.setBackground(Color.WHITE);
          card_panel.add(mem_change_find_id, "mem_change_find_id");
          mem_change_find_id.setLayout(null);
          
-         JLabel logo_2_1 = new JLabel(updateIcon);
-         logo_2_1.setBounds(675, 30, 400, 330);
+         JLabel logo_2_1 = new JLabel();
+         logo_2_1.setBounds(820, 39, 300, 280);
          mem_change_find_id.add(logo_2_1);
          
-         JButton back_btn_2_1 = new JButton(img9);
+         JButton back_btn_2_1 = new JButton();
          back_btn_2_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		name_textField_4.setText(null);
@@ -1371,7 +1417,7 @@ public class Train_Main extends JFrame {
          back_btn_2_1.setBounds(10, 10, 136, 136);
          mem_change_find_id.add(back_btn_2_1);
          
-         JButton home_btn_2_1 = new JButton(img6);
+         JButton home_btn_2_1 = new JButton();
          home_btn_2_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		name_textField_4.setText(null);
@@ -1382,29 +1428,29 @@ public class Train_Main extends JFrame {
          home_btn_2_1.setFocusPainted(false);
          home_btn_2_1.setContentAreaFilled(false);
          home_btn_2_1.setBorderPainted(false);
-         home_btn_2_1.setBounds(1800, 10, 109, 109);
+         home_btn_2_1.setBounds(1783, 10, 109, 109);
          mem_change_find_id.add(home_btn_2_1);
          
          JLabel name_Label = new JLabel("이름");
          name_Label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         name_Label.setBounds(550, 400, 200, 75);
+         name_Label.setBounds(647, 491, 200, 75);
          mem_change_find_id.add(name_Label);
          
          JLabel phone_number_Label = new JLabel("전화번호");
          phone_number_Label.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
-         phone_number_Label.setBounds(550, 600, 200, 75);
+         phone_number_Label.setBounds(647, 639, 200, 75);
          mem_change_find_id.add(phone_number_Label);
          
          name_textField_4 = new JTextField();
          name_textField_4.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          name_textField_4.setColumns(10);
-         name_textField_4.setBounds(800, 400, 400, 75);
+         name_textField_4.setBounds(947, 488, 400, 100);
          mem_change_find_id.add(name_textField_4);
          
          pn_textField_4 = new JTextField();
          pn_textField_4.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          pn_textField_4.setColumns(10);
-         pn_textField_4.setBounds(800, 600, 400, 75);
+         pn_textField_4.setBounds(947, 629, 400, 100);
          mem_change_find_id.add(pn_textField_4);
          
          JButton find_btn = new JButton("확인");
@@ -1419,12 +1465,12 @@ public class Train_Main extends JFrame {
          find_btn.setForeground(Color.WHITE);
          find_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
          find_btn.setBackground(new Color(0, 128, 192));
-         find_btn.setBounds(550, 800, 300, 100);
+         find_btn.setBounds(647, 762, 700, 100);
          mem_change_find_id.add(find_btn);
          
          JLabel lblNewLabel_2_1 = new JLabel("아이디 찾기");
          lblNewLabel_2_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         lblNewLabel_2_1.setBounds(170, 60, 350, 100);
+         lblNewLabel_2_1.setBounds(839, 342, 350, 100);
          mem_change_find_id.add(lblNewLabel_2_1);
          
          JButton change_pw_1 = new JButton("비밀번호 변경");
@@ -1436,19 +1482,23 @@ public class Train_Main extends JFrame {
          	}
          });
          change_pw_1.setForeground(new Color(0, 128, 192));
-         change_pw_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
+         change_pw_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 40));
          change_pw_1.setFocusPainted(false);
          change_pw_1.setContentAreaFilled(false);
          change_pw_1.setBorderPainted(false);
-         change_pw_1.setBounds(900, 800, 450, 100);
+         change_pw_1.setBounds(1038, 872, 359, 100);
          mem_change_find_id.add(change_pw_1);
+         
+         back_btn_2_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         home_btn_2_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+         logo_2_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
          
          JPanel mem_change_find_pw = new JPanel();
          mem_change_find_pw.setBackground(Color.WHITE);
          card_panel.add(mem_change_find_pw, "mem_change_find_pw");
          mem_change_find_pw.setLayout(null);
          
-         JButton back_btn_3_1 = new JButton(img9);
+         JButton back_btn_3_1 = new JButton();
          back_btn_3_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_6.setText(null);
@@ -1464,15 +1514,15 @@ public class Train_Main extends JFrame {
          mem_change_find_pw.add(back_btn_3_1);
          
          JLabel lblNewLabel_1_1 = new JLabel("비밀번호 재설정");
-         lblNewLabel_1_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         lblNewLabel_1_1.setBounds(170, 60, 375, 100);
+         lblNewLabel_1_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
+         lblNewLabel_1_1.setBounds(768, 342, 466, 100);
          mem_change_find_pw.add(lblNewLabel_1_1);
          
-         JLabel logo_3_1 = new JLabel(updateIcon);
-         logo_3_1.setBounds(675, 30, 400, 330);
+         JLabel logo_3_1 = new JLabel();
+         logo_3_1.setBounds(820, 39, 400, 280);
          mem_change_find_pw.add(logo_3_1);
          
-         JButton home_btn_3_1 = new JButton(img6);
+         JButton home_btn_3_1 = new JButton();
          home_btn_3_1.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
          		id_textField_6.setText(null);
@@ -1487,37 +1537,41 @@ public class Train_Main extends JFrame {
          home_btn_3_1.setBounds(1800, 10, 109, 109);
          mem_change_find_pw.add(home_btn_3_1);
          
+         back_btn_3_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+         home_btn_3_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+         logo_3_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
+         
          JLabel id_label_2_1 = new JLabel("아이디");
          id_label_2_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         id_label_2_1.setBounds(550, 375, 200, 75);
+         id_label_2_1.setBounds(649, 457, 200, 75);
          mem_change_find_pw.add(id_label_2_1);
          
          id_textField_6 = new JTextField();
          id_textField_6.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          id_textField_6.setColumns(10);
-         id_textField_6.setBounds(800, 375, 400, 75);
+         id_textField_6.setBounds(949, 457, 400, 75);
          mem_change_find_pw.add(id_textField_6);
          
          JLabel name_label_3_1 = new JLabel("이름");
          name_label_3_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         name_label_3_1.setBounds(550, 525, 200, 75);
+         name_label_3_1.setBounds(649, 563, 200, 75);
          mem_change_find_pw.add(name_label_3_1);
          
          name_textField_5 = new JTextField();
          name_textField_5.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          name_textField_5.setColumns(10);
-         name_textField_5.setBounds(800, 525, 400, 75);
+         name_textField_5.setBounds(949, 563, 400, 75);
          mem_change_find_pw.add(name_textField_5);
          
          JLabel pn_label_3 = new JLabel("전화번호");
          pn_label_3.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
-         pn_label_3.setBounds(550, 675, 250, 75);
+         pn_label_3.setBounds(649, 671, 250, 75);
          mem_change_find_pw.add(pn_label_3);
          
          pn_textField_5 = new JTextField();
          pn_textField_5.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          pn_textField_5.setColumns(10);
-         pn_textField_5.setBounds(800, 675, 400, 75);
+         pn_textField_5.setBounds(949, 671, 400, 75);
          mem_change_find_pw.add(pn_textField_5);
          
          JButton join_btn_1 = new JButton("확인");
@@ -1540,8 +1594,9 @@ public class Train_Main extends JFrame {
          join_btn_1.setForeground(Color.WHITE);
          join_btn_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
          join_btn_1.setBackground(new Color(0, 128, 192));
-         join_btn_1.setBounds(550, 800, 300, 100);
+         join_btn_1.setBounds(649, 762, 700, 100);
          mem_change_find_pw.add(join_btn_1);
+         
          }catch(Exception e) {
             e.printStackTrace();
          }
@@ -1642,6 +1697,7 @@ public class Train_Main extends JFrame {
 					id_chk_B = false;
 				}
 			}
-		});
+		});      
+      
    }
 }

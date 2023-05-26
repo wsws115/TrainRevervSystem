@@ -1,16 +1,21 @@
 package train.subway;
 
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 import train.TrainReserv_Main;
 public class Subway_Kind extends JPanel {
 
@@ -20,12 +25,12 @@ public class Subway_Kind extends JPanel {
 	public Subway_Kind() {
 		
 		JPanel rightPanel = new JPanel();
+		rightPanel.setBackground(new Color(255, 255, 255));
 		rightPanel.setLayout(null);
 		
 		JButton subKtxBtn = new JButton("KTX");
-		subKtxBtn.setForeground(Color.WHITE);
 		subKtxBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		subKtxBtn.setBackground(new Color(0, 128, 129));
+		subKtxBtn.setBackground(new Color(255, 251, 217));
 		subKtxBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText(subKtxBtn.getText());
@@ -35,9 +40,8 @@ public class Subway_Kind extends JPanel {
 		rightPanel.add(subKtxBtn);
 		
 		JButton subSrtBtn = new JButton("SRT");
-		subSrtBtn.setForeground(Color.WHITE);
 		subSrtBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		subSrtBtn.setBackground(new Color(0, 128, 129));
+		subSrtBtn.setBackground(new Color(255, 251, 217));
 		subSrtBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText(subSrtBtn.getText());
@@ -47,9 +51,8 @@ public class Subway_Kind extends JPanel {
 		rightPanel.add(subSrtBtn);
 		
 		JButton subNewBtn = new JButton("새마을호");
-		subNewBtn.setForeground(Color.WHITE);
 		subNewBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		subNewBtn.setBackground(new Color(0, 128, 129));
+		subNewBtn.setBackground(new Color(255, 251, 217));
 		subNewBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText(subNewBtn.getText());
@@ -59,9 +62,8 @@ public class Subway_Kind extends JPanel {
 		rightPanel.add(subNewBtn);
 		
 		JButton subFlowerBtn = new JButton("무궁화호");
-		subFlowerBtn.setForeground(Color.WHITE);
 		subFlowerBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		subFlowerBtn.setBackground(new Color(0, 128, 129));
+		subFlowerBtn.setBackground(new Color(255, 251, 217));
 		subFlowerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText(subFlowerBtn.getText());
@@ -71,9 +73,8 @@ public class Subway_Kind extends JPanel {
 		rightPanel.add(subFlowerBtn);
 		
 		JButton subYungItxBtn = new JButton("ITX-청춘");
-		subYungItxBtn.setForeground(Color.WHITE);
 		subYungItxBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		subYungItxBtn.setBackground(new Color(0, 128, 129));
+		subYungItxBtn.setBackground(new Color(255, 251, 217));
 		subYungItxBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText(subYungItxBtn.getText());
@@ -83,9 +84,8 @@ public class Subway_Kind extends JPanel {
 		rightPanel.add(subYungItxBtn);
 		
 		JButton subNewItxBtn = new JButton("ITX-새마을");
-		subNewItxBtn.setForeground(Color.WHITE);
 		subNewItxBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		subNewItxBtn.setBackground(new Color(0, 128, 129));
+		subNewItxBtn.setBackground(new Color(255, 251, 217));
 		subNewItxBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText(subNewItxBtn.getText());
@@ -95,9 +95,8 @@ public class Subway_Kind extends JPanel {
 		rightPanel.add(subNewItxBtn);
 		
 		JButton allSubBtn = new JButton("전체");
-		allSubBtn.setForeground(Color.WHITE);
 		allSubBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		allSubBtn.setBackground(new Color(0, 128, 129));
+		allSubBtn.setBackground(new Color(255, 251, 217));
 		allSubBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.selectsubBtn.setText(allSubBtn.getText());
@@ -111,6 +110,7 @@ public class Subway_Kind extends JPanel {
 		typeLabel1_4_1.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
 		typeLabel1_4_1.setBounds(543, 50, 335, 100);
 		rightPanel.add(typeLabel1_4_1);
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -127,21 +127,17 @@ public class Subway_Kind extends JPanel {
 					.addContainerGap())
 		);
 		
-		JButton nextBtn = new JButton("다음");
+		JButton nextBtn = new JButton();
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "select");
 			}
 		});
-		nextBtn.setForeground(Color.WHITE);
-		nextBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		nextBtn.setBackground(new Color(0, 128, 129));
 		nextBtn.setBounds(1180, 10, 195, 117);
 		rightPanel.add(nextBtn);
 		
-		JButton previousBtn = new JButton("이전");
-		previousBtn.setForeground(Color.WHITE);
-		previousBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
+		JButton previousBtn = new JButton();
 		previousBtn.setBackground(new Color(0, 128, 129));
 		previousBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -152,6 +148,14 @@ public class Subway_Kind extends JPanel {
 		previousBtn.setBounds(12, 10, 195, 117);
 		rightPanel.add(previousBtn);
 		setLayout(groupLayout);
+		
+		try {
+			nextBtn.setIcon(new ImageIcon(ImageIO.read(new File("resource/panel_next.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+			previousBtn.setIcon(new ImageIcon(ImageIO.read(new File("resource/panel_back.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 }

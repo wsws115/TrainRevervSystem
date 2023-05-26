@@ -1,18 +1,20 @@
 package train;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import train.jungjun.No_login_join;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Second_main extends JFrame {
 
@@ -38,29 +40,29 @@ public class Second_main extends JFrame {
 	 * Create the frame.
 	 */
 	public Second_main() {
-		ImageIcon img1 = new ImageIcon
-				("resource\\E-RAIL.png");
-		ImageIcon img2 = new ImageIcon
-				("resource\\home.png");
-		ImageIcon img3 = new ImageIcon
-				("resource\\goLogin.png");
-		ImageIcon img4 = new ImageIcon
-				("resource\\goNoLogin.png");
-		ImageIcon img5 = new ImageIcon
-				("resource\\back_homebtn.png");
+//		ImageIcon img1 = new ImageIcon
+//				("resource\\E-RAIL.png");
+//		ImageIcon img2 = new ImageIcon
+//				("resource\\home.png");
+//		ImageIcon img3 = new ImageIcon
+//				("resource\\goLogin.png");
+//		ImageIcon img4 = new ImageIcon
+//				("resource\\goNoLogin.png");
+//		ImageIcon img5 = new ImageIcon
+//				("resource\\back_homebtn.png");
 		
-		
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setBounds(100, 100, 1920, 1080);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(null);
 		
-		JLabel logo = new JLabel(img1);
-		logo.setBounds(675, 15, 573, 473);
+		JLabel logo = new JLabel();
+		logo.setBounds(682, 105, 586, 471);
 		getContentPane().add(logo);
 		
-		JButton goMain_btn = new JButton(img2);
+		JButton goMain_btn = new JButton();
 		goMain_btn.setBorderPainted(false);
 		goMain_btn.setContentAreaFilled(false);
 		goMain_btn.setFocusPainted(false);
@@ -76,11 +78,11 @@ public class Second_main extends JFrame {
 			}
 		});
 		
-		JButton membership_btn = new JButton(img3);
+		JButton membership_btn = new JButton();
 		membership_btn.setBorderPainted(false);
 		membership_btn.setContentAreaFilled(false);
 		membership_btn.setFocusPainted(false);
-		membership_btn.setBounds(400, 500, 510, 337);
+		membership_btn.setBounds(485, 613, 420, 270);
 		getContentPane().add(membership_btn);
 		
 		membership_btn.addActionListener(new ActionListener() {
@@ -92,11 +94,11 @@ public class Second_main extends JFrame {
 			}
 		});
 		
-		JButton no_membership_btn = new JButton(img4);
+		JButton no_membership_btn = new JButton();
 		no_membership_btn.setBorderPainted(false);
 		no_membership_btn.setContentAreaFilled(false);
 		no_membership_btn.setFocusPainted(false);
-		no_membership_btn.setBounds(1000, 500, 510, 337);
+		no_membership_btn.setBounds(1011, 613, 420, 270);
 		getContentPane().add(no_membership_btn);
 		no_membership_btn.addActionListener(new ActionListener() {
 			
@@ -109,7 +111,7 @@ public class Second_main extends JFrame {
 			}
 		});
 		
-		JButton back_btn = new JButton(img5);
+		JButton back_btn = new JButton();
 		back_btn.setBorderPainted(false);
 		back_btn.setContentAreaFilled(false);
 		back_btn.setFocusPainted(false);
@@ -123,6 +125,22 @@ public class Second_main extends JFrame {
 				setVisible(false);
 			}
 		});
+		
+		try {		
+			membership_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/회원예매.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
+		
+			no_membership_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/비회원예매.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
+			
+			back_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+			
+			goMain_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
+			
+			logo.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(586, 471, Image.SCALE_AREA_AVERAGING)));
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
