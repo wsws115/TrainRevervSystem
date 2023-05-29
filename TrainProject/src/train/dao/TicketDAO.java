@@ -112,7 +112,7 @@ public class TicketDAO {
 				+ " JOIN seat_table seat ON tt.seat_code = seat.seat_code"
 				+ " JOIN train_table train ON seat.train_code = train.train_code"
 				+ " JOIN train_API api ON train.train_num = api.train_num"
-				+ " JOIN non_mem_info mem ON mem.no_mem_pk = tt.no_mem_fk"
+				+ " JOIN non_mem_info mem ON mem.no_mem_pk = tt.no_mem_pk"
 				+ " WHERE mem.phone_number = '" + phoneNum + "'";
 
 		try (

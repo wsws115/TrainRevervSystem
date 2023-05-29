@@ -151,25 +151,27 @@ public class Admin_nomomTicket extends JPanel {
 				// 조회 버튼 누르면 테이블에 값 표시
 				if (phoneNum != null) {
 					
-					if (memberDao.getNoMember(phoneNum) == null) {
+					List<String> nomember = memberDao.getNoMember(phoneNum);
+					List<TicketDTO> tickets = ticketDao.searchNoMemTicket(phoneNum);
+					
+					System.out.println(tickets.size());
+					
+					if (nomember == null || tickets.size() == 0) { // 비회원 정보 또는 티켓이 없을 시
 						nomemModel.setRowCount(0);
 						ticketModel.setRowCount(0);
-					} else {						
-						// 비회원 리스트 조회
-						List<String> nomember = memberDao.getNoMember(phoneNum);
-						if (nomember != null && ticketModel.getRowCount() != 0) {
+						JOptionPane.showMessageDialog(null, "티켓 정보가 존재하지 않습니다.");
+					} else {
+							nomemModel.setRowCount(0);
 							Vector<Object> list = new Vector<>();
 							list.add(nomember.get(0));
 							list.add(nomember.get(1));
 							nomemModel.addRow(list);
-							setTicketValue(ticketDao.searchNoMemTicket(phoneNum), ticketModel);	
-						} else {
-							JOptionPane.showMessageDialog(null, "티켓 정보가 존재하지 않습니다.");
-						}
+							setTicketValue(tickets, ticketModel);				
 					}
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요");
-				}				
+				}			
 			}
 		});
 		add(searchBtn);

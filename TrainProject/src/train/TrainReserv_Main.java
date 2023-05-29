@@ -167,21 +167,16 @@ public class TrainReserv_Main extends JFrame {
 		home_btn.setBorderPainted(false);
 		home_btn.setContentAreaFilled(false);
 		home_btn.setFocusPainted(false);
-		
-		JButton back_btn = new JButton();
-		back_btn.addActionListener(new ActionListener() {
+		home_btn.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// 홈버튼 누르면 홈으로 이동			
 				Train_Main first_frame = new Train_Main();
 				first_frame.main(null);
-				setVisible(false);
+				setVisible(false);			
 			}
 		});
-		back_btn.setBorderPainted(false);
-		back_btn.setContentAreaFilled(false);
-		back_btn.setFocusPainted(false);
-		
-		
-		JLabel lblNewLabel = new JLabel("진행사항 아이콘");
 		
 		JPanel reserv_panel = new JPanel();
 		reserv_panel.setAutoscrolls(true);
@@ -339,9 +334,7 @@ public class TrainReserv_Main extends JFrame {
 						.addGroup(gl_main_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(previous_btn, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-							.addGap(34)
-							.addComponent(back_btn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-							.addGap(1600)
+							.addGap(1700)
 							.addComponent(home_btn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 						.addComponent(reserv_panel, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE))
 					.addGap(30))
@@ -355,7 +348,7 @@ public class TrainReserv_Main extends JFrame {
 						.addGap(20)
 						.addGroup(gl_main_panel.createSequentialGroup()
 							.addGroup(gl_main_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(back_btn, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+								.addGap(20)
 								.addComponent(previous_btn, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 							.addGap(20)
 							.addComponent(reserv_panel, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE)))

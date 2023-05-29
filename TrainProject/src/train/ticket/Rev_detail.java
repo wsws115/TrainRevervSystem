@@ -1,53 +1,37 @@
 package train.ticket;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Window;
-import java.awt.Button;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Dimension;
-import javax.swing.border.LineBorder;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Vector;
-import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
-import javax.swing.JTable;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.BoxLayout;
-import javax.swing.SpringLayout;
-import java.awt.Component;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import train.TrainReserv_Main;
-import train.Train_Main;
-import train.admin.AdminFrame;
 import train.admin.component.MemSearchBtn;
 import train.admin.component.NoMemSearchBtn;
 import train.dao.Check_Rev_DAO;
-import train.dto.MemberDTO;
 import train.jungjun.No_login_joinDAO;
 import train.jungjun.change.Mem_chageDAO;
 import train.jungjun.change.No_mem_changeDAO;

@@ -13,11 +13,11 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import train.admin.AdminPanel;
 import train.jungjun.No_login_alrim;
 import train.jungjun.No_login_faild_alrim;
 import train.jungjun.No_login_joinDAO;
@@ -316,6 +317,28 @@ public class Train_Main extends JFrame {
          admin_page.setBackground(Color.WHITE);
          card_panel.add(admin_page, "admin_page");
          admin_page.setLayout(null);
+         
+         JPanel admin = new AdminPanel(); // 관리자 페이지 연결
+         card_panel.add(admin, "admin"); 
+         
+ 		// ★ 관리자 로그아웃 누르면 Home으로 돌아감
+ 		JButton homeBtn = new JButton("Logout");
+ 		homeBtn.setBackground(new Color(255, 251, 217));
+ 		homeBtn.setForeground(new Color(0, 0, 0));
+ 		homeBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
+ 		homeBtn.setBounds(1714, 30, 153, 79);
+ 		homeBtn.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int ans = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);				
+				if (ans == 0) {
+					card.show(card_panel, "main_home");
+					((AdminPanel) admin).reset();
+				}
+			}
+		});
+ 		admin.add(homeBtn);
+         
          JLabel id_label = new JLabel("아이디");
          id_label.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
          id_label.setBounds(599, 510, 200, 100);
@@ -345,6 +368,9 @@ public class Train_Main extends JFrame {
 				
 				Admin_pageDAO dao = new Admin_pageDAO();
 				boolean login_result = dao.login_chk();
+				if (login_result) {
+					card.show(card_panel, "admin");
+				}
 				System.out.println(login_result);
          	}
          });
