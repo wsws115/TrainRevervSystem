@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import train.TrainReserv_Main;
 import train.jungjun.GoMain;
 
 import javax.swing.Icon;

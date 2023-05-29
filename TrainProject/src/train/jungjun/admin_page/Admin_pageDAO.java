@@ -16,7 +16,7 @@ public class Admin_pageDAO {
 	public static String alrim = "";
 	
 	public boolean login_chk() {
-		String query ="SELECT * FROM admin_info WHERE admin_num_pk =? AND admin_pw=?";
+		String query ="SELECT * FROM admin_info WHERE admin_num_pk = ? AND admin_pw = ?";
 		
 		try (
 				Connection conn = OjdbcConnection.getConnection();
@@ -24,7 +24,6 @@ public class Admin_pageDAO {
 			){
 				pstmt.setString(1, train.Train_Main.id);
 				pstmt.setString(2, train.Train_Main.pw);
-				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
 						alrim = "로그인에 성공했습니다";

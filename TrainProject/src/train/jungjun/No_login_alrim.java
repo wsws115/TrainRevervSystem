@@ -56,9 +56,7 @@ public class No_login_alrim extends JDialog {
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TrainReserv_Main reserv_main = new TrainReserv_Main();
-				reserv_main.login_who = false;
-				reserv_main.main(null);
+				
 				dispose();
 			}
 		});

@@ -53,8 +53,7 @@ public class Login_alrim extends JDialog {
 		btnNewButton.setFont(new Font("HY헤드라인M", Font.PLAIN, 60));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TrainReserv_Main reserv_main = new TrainReserv_Main();
-				reserv_main.main(null);
+				
 				dispose();
 			}
 		});

@@ -17,6 +17,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import train.Train_Main;
 import train.db.OjdbcConnection;
 import train.dto.FoodDTO;
 import train.jungjun.No_login_join;
@@ -88,15 +89,16 @@ public class FoodDAO {
 				PreparedStatement pstmt2 = conn.prepareStatement(query2);
 				PreparedStatement pstmt3 = conn.prepareStatement(query3);
 			) {
-				pstmt1.setString(1, No_login_join.phone_num);
-				pstmt1.setString(2, No_login_join.pw);
-			
+				pstmt1.setString(1, Train_Main.pn5);
+				pstmt1.setString(2, Train_Main.pw6);
+				
 				pstmt2.setString(1, foodlist.get(0));
 				pstmt2.executeUpdate();
 				try(ResultSet rs2 = pstmt2.executeQuery();
 					ResultSet rs1 = pstmt1.executeQuery();){
 					if(rs2.next() && rs1.next()) {
 						user_code = rs1.getString("NO_MEM_PK");
+						System.out.println("확인"+ rs1.getString(1));
 						pstmt3.setString(1, train_ho+seatlist.get(0)+user_code);
 						pstmt3.setString(2, rs2.getString("food_number"));
 						pstmt3.setInt(3, Integer.parseInt(foodlist.get(1)));

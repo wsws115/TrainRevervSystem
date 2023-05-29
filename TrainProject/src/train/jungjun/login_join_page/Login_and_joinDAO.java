@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 
 import javax.swing.UIManager;
 
+import train.TrainReserv_Main;
 import train.Train_Main;
 import train.db.OjdbcConnection;
 
@@ -16,7 +17,7 @@ import train.db.OjdbcConnection;
 public class Login_and_joinDAO {
 	public static String alrim = "";
 	public static String user_code;
-	public static String preferential;
+	public static String preferential = null;
 	public boolean login_chk() {
 		UIManager.put("OptionPane.minimumSize",new Dimension(500,500));
 		UIManager.put("OptionPane.messageFont",
@@ -32,11 +33,14 @@ public class Login_and_joinDAO {
 				
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
-						alrim = "로그인에 성공하셨습니다";
-						Login_alrim alrim = new Login_alrim();
+//						alrim = "로그인에 성공하셨습니다";
+//						Login_alrim alrim = new Login_alrim();
 						user_code = rs.getString("usernum_pk");
 						preferential = rs.getString("PREFERENTIAL_TREATMENT");
-						alrim.main(null);
+						Train_Main.card.show(Train_Main.card_panel, "loading");
+						TrainReserv_Main reserv_main = new TrainReserv_Main();
+						reserv_main.main(null);
+//						alrim.main(null);
 						return true;
 					}else {
 						alrim = "로그인에 실패했습니다_1";

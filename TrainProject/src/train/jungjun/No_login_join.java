@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import train.Second_main;
+import train.TrainReserv_Main;
+import train.Train_Main;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -124,10 +126,14 @@ public class No_login_join extends JFrame {
 				No_login_join_Num_chk nchk  = new No_login_join_Num_chk();
 				No_login_join_pw_chk pchk = new No_login_join_pw_chk();
 				if(DAO.no_loginDAO()) {
-					alrim = "비회원 가입에 성공했습니다";
-					No_login_alrim alrim = new No_login_alrim();
-					alrim.main(null);
-					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
+//					alrim = "비회원 가입에 성공했습니다";
+//					No_login_alrim alrim = new No_login_alrim();
+//					alrim.main(null);
+//					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
+					Train_Main.card.show(Train_Main.card_panel, "loading");
+					TrainReserv_Main reserv_main = new TrainReserv_Main();
+					reserv_main.login_who = false;
+					reserv_main.main(null);
 				}else if(!nchk.num_chk()) {
 					alrim = "전화번호를 정확히 입력하세요";
 					No_login_alrim alrim = new No_login_alrim();

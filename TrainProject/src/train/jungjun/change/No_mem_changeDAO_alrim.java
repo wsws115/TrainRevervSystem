@@ -52,10 +52,6 @@ public class No_mem_changeDAO_alrim extends JDialog {
 		btnNewButton.setBackground(new Color(0, 128, 192));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Rev_detail rev_search = new Rev_detail();
-				rev_search.chk_login = false;
-				rev_search.chk_search = false;
-				rev_search.main(null);
 				dispose();
 			}
 		});

@@ -217,6 +217,8 @@ public class Payment_UI extends JDialog {
 		if(seatlist.size() > 1) {
 			int nm = seatlist.size();
 			seatNum = seatlist.get(0) + "외 "+ (nm -1)+ "개"; 
+		}else if(seatlist.size() == 1) {
+			seatNum = seatlist.get(0);
 		}
 		JLabel seat_Num = new JLabel(seatNum);
 		seat_Num.setFont(new Font("굴림", Font.BOLD, 20));
@@ -440,7 +442,7 @@ public class Payment_UI extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.frame.dispose();
 				setVisible(false);
-				
+				Train_Main.card.show(Train_Main.card_panel, "loading");
 //				Rev_detail rev = new Rev_detail();
 //				
 //				if(user_who) {

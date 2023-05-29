@@ -119,7 +119,7 @@ public class Rev_detail extends JDialog {
 		}else {
 			System.out.println("로그인 체크 : "+ chk_search + chk_login);
 			// Refund 버튼의 ActionListener
-						refund_Btn = new JButton("Refund");
+						refund_Btn = new JButton("반환");
 						
 						refund_Btn.setEnabled(false); // 초기에는 비활성화 상태로 설정합니다.
 						refund_Btn.addActionListener(new ActionListener() {
@@ -285,7 +285,7 @@ public class Rev_detail extends JDialog {
 		check_Payment_Info_Label.setBounds(11, 0, 912, 91);
 		payment_Info_Panel.add(check_Payment_Info_Label);
 		
-		JButton Payment_Cancel_Btn = new JButton("OK");
+		JButton Payment_Cancel_Btn = new JButton("확인");
 		Payment_Cancel_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

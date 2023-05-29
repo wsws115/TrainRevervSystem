@@ -220,7 +220,7 @@ public class Peopel_select extends JPanel {
 		plusBtn3.setBounds(1027, 426, 100, 80);
 		leftPanel.add(plusBtn3);
 		
-		JLabel typeLabel1_3 = new JLabel("장애인");
+		JLabel typeLabel1_3 = new JLabel("우대 인원");
 		typeLabel1_3.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		typeLabel1_3.setBounds(295, 510, 516, 66);
 		leftPanel.add(typeLabel1_3);
@@ -307,23 +307,24 @@ public class Peopel_select extends JPanel {
 		setLayout(groupLayout);
 		if(login_who) {
 			try {
-				if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("default")) {
-					minusBtn4.setEnabled(false);
-					plusBtn4.setEnabled(false);
-					textField4.setEnabled(false);
-					
-				}else if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("disabled") ||
-						train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("national_merit")) {
-					minusBtn4.setEnabled(true);
-					plusBtn4.setEnabled(true);
-					textField4.setEnabled(true);
-					
+				if(train.jungjun.login_join_page.Login_and_joinDAO.preferential != null) {
+					if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("default")) {
+						minusBtn4.setEnabled(false);
+						plusBtn4.setEnabled(false);
+						textField4.setEnabled(false);
+						
+					}else if(train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("disabled") ||
+							train.jungjun.login_join_page.Login_and_joinDAO.preferential.equals("national_merit")) {
+						minusBtn4.setEnabled(true);
+						plusBtn4.setEnabled(true);
+						textField4.setEnabled(true);
+					}
 				}
+				
 			}catch(NullPointerException e) {
 				e.printStackTrace();
 			}
-		}
-		else if(!login_who) {
+		}else{
 			minusBtn2.setEnabled(login_who);
 			minusBtn3.setEnabled(login_who);
 			minusBtn4.setEnabled(login_who);

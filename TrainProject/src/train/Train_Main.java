@@ -155,7 +155,9 @@ public class Train_Main extends JFrame {
     private JTextField name_textField_5;
     private JTextField pn_textField_5;
     
-    
+    public static JPanel card_panel;
+    public static CardLayout card;
+    public static Train_Main frame;
    /**
     * Launch the application.
     */
@@ -163,7 +165,7 @@ public class Train_Main extends JFrame {
       EventQueue.invokeLater(new Runnable() {
          public void run() {
             try {
-               Train_Main frame = new Train_Main();
+               frame = new Train_Main();
                frame.setVisible(true);
             } catch (Exception e) {
                e.printStackTrace();
@@ -189,8 +191,8 @@ public class Train_Main extends JFrame {
       
       try { 
     	  
-         JPanel card_panel = new JPanel();
-         CardLayout card = new CardLayout();
+         card_panel = new JPanel();
+         card = new CardLayout();
          card_panel.setBounds(0, 0, 1924, 1011);
          contentPane.add(card_panel);
          card_panel.setLayout(card);
@@ -468,7 +470,7 @@ public class Train_Main extends JFrame {
          
         mem_check_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/회원조회.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));
 		no_mem_check_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/비회원조회.png")).getScaledInstance(450, 300, Image.SCALE_AREA_AVERAGING)));	
-		back_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
+		back_btn_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
 		home_btn.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING)));
 		logo_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(586, 471, Image.SCALE_AREA_AVERAGING)));
 
@@ -513,10 +515,13 @@ public class Train_Main extends JFrame {
 				No_login_join_Num_chk nchk  = new No_login_join_Num_chk();
 				No_login_join_pw_chk pchk = new No_login_join_pw_chk();
 				if(DAO.no_loginDAO()) {
-					alrim = "비회원 가입에 성공했습니다";
-					No_login_alrim alrim = new No_login_alrim();
-					alrim.main(null);
-					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
+//					alrim = "비회원 가입에 성공했습니다";
+//					No_login_alrim alrim = new No_login_alrim();
+//					alrim.main(null);
+//					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
+					
+					TrainReserv_Main reserv_main = new TrainReserv_Main();
+					reserv_main.main(null);
 				}else if(!nchk.num_chk()) {
 					alrim = "전화번호를 정확히 입력하세요";
 					No_login_alrim alrim = new No_login_alrim();
@@ -836,6 +841,7 @@ public class Train_Main extends JFrame {
 				Login_and_joinDAO dao = new Login_and_joinDAO();
 				boolean login_result = dao.login_chk();
 				System.out.println("로그인 성공 여부 " + login_result);
+				
          	}
          });
          check_btn_2.setForeground(Color.WHITE);
@@ -1515,9 +1521,16 @@ public class Train_Main extends JFrame {
          change_pw_1.setBounds(1038, 872, 359, 100);
          mem_change_find_id.add(change_pw_1);
          
+         JPanel loading = new train.Loading_Panel();
+         loading.setBackground(Color.WHITE);
+         card_panel.add(loading, "loading");
+         loading.setLayout(null);
+         
          back_btn_2_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/back_homebtn.png")).getScaledInstance(136, 136, Image.SCALE_AREA_AVERAGING)));
          home_btn_2_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/home.png")).getScaledInstance(109, 109, Image.SCALE_AREA_AVERAGING)));
          logo_2_1.setIcon(new ImageIcon(ImageIO.read(new File("resource/logo.jpg")).getScaledInstance(300, 280, Image.SCALE_AREA_AVERAGING)));
+         
+         
          
          JPanel mem_change_find_pw = new JPanel();
          mem_change_find_pw.setBackground(Color.WHITE);

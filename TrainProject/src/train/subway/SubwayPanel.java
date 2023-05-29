@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import train.TrainReserv_Main;
+import train.Train_Main;
 
 public class SubwayPanel extends JPanel implements MouseListener{
 	private String train_name;
@@ -2095,6 +2096,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
 				TrainReserv_Main.count_panel = 1;
+				Train_Main.frame.dispose();
 			}
 		});
 		nextBtn.setBounds(1301, 34, 120, 100);
