@@ -19,7 +19,14 @@ import javax.swing.JButton;
 import train.TrainReserv_Main;
 
 import java.awt.Font;
-
+/*
+ 	달력 선택 패널 클래스
+ 	달력 선택시 출력 패널로 이전 날짜는 선택 불가
+ 	선택한 날짜는 메인 예매 프레임에 날짜 텍스트필드 변경
+ */
+/**
+ * @author LJH
+ */
 public class PanelDate extends javax.swing.JLayeredPane implements ActionListener{
 	
     private int month;
@@ -43,34 +50,32 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
         setDate();
     }
 
-    private void setDate() {
+    private void setDate() { // 현재 날짜와 현재 달의 날짜 세팅
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month - 1);  //  month jan as 0 so start from 0
         calendar.set(Calendar.DATE, 1);
         int startDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;  //  get day of week -1 to index
         calendar.add(Calendar.DATE, -startDay);
-        ToDay toDay = getToDay();
+        ToDay toDay = getToDay(); // toDay에서 현재 날짜 가져오기
         for (Component com : getComponents()) {
-            Cell cell = (Cell) com;
+            Cell cell = (Cell) com; // 현재 달의 날짜를 버튼에 모든 넣기
             if (!cell.isTitle()) {
-                cell.setText(calendar.get(Calendar.DATE) + "");
-                cell.setDate(calendar.getTime());
+                cell.setText(calendar.get(Calendar.DATE) + ""); // 현재 날짜 가져오기
+                cell.setDate(calendar.getTime()); // 현재 시간 가져오기
                 cell.currentMonth(calendar.get(Calendar.MONTH) == month - 1);
+                // 날짜가 오늘과 같다면 버튼의 이미지를 추가
                 if (toDay.isToDay(new ToDay(calendar.get(Calendar.DATE), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR)))) {
                     cell.setAsToDay();
                     cel = com;
                 }
-//                if(calendar.get(Calendar.MONTH) > toDay.getMonth()) {
-//                	cel = com;
-//                }
                 
                 calendar.add(Calendar.DATE, 1); //  up 1 day
             }
         }
     }
     
-
+    // 현재 날짜 가져오기
     private ToDay getToDay() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -599,35 +604,28 @@ public class PanelDate extends javax.swing.JLayeredPane implements ActionListene
     // End of variables declaration//GEN-END:variables
 
 	@Override
+	// 버튼의 마우스 이벤트
 	public void actionPerformed(ActionEvent e) {
 		Calendar calendar = Calendar.getInstance();
-//		ToDay toDay = getToDay();
 		
-		Cell cel2 = (Cell)e.getSource();
-		System.out.println(e.getSource());
+		Cell cel2 = (Cell)e.getSource(); // 클릭한 버튼의 소스 가져오기
+		System.out.println(e.getSource()); 
+		// 선택한 날짜가 현재 달이고 현재 날보다 적다면 선택 불가
 		if(Integer.parseInt(cel2.getText()) >= calendar.get(Calendar.DATE) || 
 				(Integer.parseInt(cel2.getText()) >= 1 && month-1 > calendar.get(Calendar.MONTH))) {
 			
 			Cell cel1 = (Cell)cel;
-			cel1.setAsRemind();
+			cel1.setAsRemind(); // 이전 날짜의 이미지 재설정
 			
-			cel = (Cell)e.getSource();
-			cel2.setAsToDay();
+			cel = (Cell)e.getSource(); 
+			cel2.setAsToDay();// 선택한 날짜의 이미지 추가
 			int day = Integer.parseInt(((Cell)e.getSource()).getText());
 			LocalDate ld = LocalDate.of(this.year,this.month,day);
 			System.out.println(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-			
+			// 선택한 날짜를 예매 화면의 메인 텍스트에 넣기
 			TrainReserv_Main.date_text.setText(String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
 			
 			
 		}
-		
-		
-//		Calendar calendar = Calendar.getInstance();
-//        calendar.set(Calendar.YEAR, year);
-//        calendar.set(Calendar.MONTH, month - 1);  //  month jan as 0 so start from 0
-//        calendar.set(Calendar.DATE, 1);
-//        ToDay toDay = getToDay();
-        
 	}
 }

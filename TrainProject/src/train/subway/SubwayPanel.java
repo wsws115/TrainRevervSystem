@@ -26,12 +26,12 @@ import javax.swing.SwingConstants;
 
 import train.TrainReserv_Main;
 import train.Train_Main;
-
+// 기차역 선택 패널
 public class SubwayPanel extends JPanel implements MouseListener{
 	private String train_name;
 	
 	/**
-	 * Create the panel.
+	 * @author KYJ
 	 */
 	public SubwayPanel(){
 		setBounds(0,0,1450, 1500);
@@ -2092,6 +2092,7 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		// 다음 버튼 선택시 달력 이동 이벤트
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TrainReserv_Main.card.show(TrainReserv_Main.card_panel, "calender");
@@ -2104,6 +2105,9 @@ public class SubwayPanel extends JPanel implements MouseListener{
 		setLayout(groupLayout);
 		
 	}
+	// 마우스 클릭 이벤트
+	// 출발지가 선택되면 출발지 변경
+	// 도착지가 선택되면 도착지 변경 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		train_name = ((JButton)e.getSource()).getText();

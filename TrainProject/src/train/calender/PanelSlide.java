@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.Timer;
-
+// 슬라이드 이벤트 클래스
 public class PanelSlide extends javax.swing.JPanel {
 
     public int getAnimate() {
@@ -23,7 +23,7 @@ public class PanelSlide extends javax.swing.JPanel {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent ce) {
-                comShow.setSize(getSize());
+                comShow.setSize(getSize()); // 슬라이드 버튼을 클릭시 달력 바꾸기
             }
 
         });
@@ -67,7 +67,7 @@ public class PanelSlide extends javax.swing.JPanel {
             }
         }
     }
-
+    // 슬라이드 이벤트시 현재 패널과 다음 패널의 x값이 달라지는 이벤트
     private void animate() {
         if (animateType == AnimateType.TO_RIGHT) {
             if (comShow.getLocation().x < 0) {

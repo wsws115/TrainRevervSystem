@@ -40,7 +40,7 @@ import train.dto.Search_TableDTO;
 import train.food.FoodCourtMainPanel;
 import javax.swing.JList;
 import java.awt.Component;
-
+// 결제창 클래스로 차내식에서 다음으로 이동시 선택한 내용을 결제화면에 출력
 public class Payment_UI extends JDialog {
 	
 	private String date_text = TrainReserv_Main.date_text.getText();
@@ -62,7 +62,7 @@ public class Payment_UI extends JDialog {
 	private boolean user_who = train.TrainReserv_Main.login_who;
 	static TrainReserv_Main reserv_main;
 	/**
-	 * Launch the application.
+	 * @author LJH
 	 */
 	public static void main(String[] args) {
 		try {
@@ -75,6 +75,7 @@ public class Payment_UI extends JDialog {
 	}
 	// 인원 선택 별 가격 할인율 적용
 	public int price_calc(int train_price, int food_price) { 
+		// 우대인원은 50%할인, 유아, 경로는 30%할인 티켓가격 적용
 		int total_price = 0;
 		int[] person = new int[4];
 		person[0] = Integer.parseInt(Peopel_select.textField1.getText());
@@ -322,7 +323,8 @@ public class Payment_UI extends JDialog {
 		String[] orderTableColumnName = {"좌석번호", "음식이름", "가격", "수량"};
 		DefaultTableModel model = new DefaultTableModel(orderTableColumnName, 0);
 		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
-//		 중앙 정렬
+		// 중앙 정렬
+		// 차내식 테이블의 정보를 가져오기
 		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
 		if(!(food_total == 0)) {
 			for(int i =0; i < food_table.length; i++) {
@@ -441,16 +443,8 @@ public class Payment_UI extends JDialog {
 		Previous_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//				Train_Main.card.show(Train_Main.card_panel, "loading");
 				TrainReserv_Main.frame.dispose();
 				setVisible(false);
-//				Rev_detail rev = new Rev_detail();
-//				
-//				if(user_who) {
-//					rev.chk_login = true;
-//				}
-//				rev.chk_search = true;
-//				rev.main(null);
 				Train_Main main_return = new Train_Main();
 				main_return.main(null);
 			}
@@ -533,7 +527,7 @@ public class Payment_UI extends JDialog {
                 	holist.add("standardSeat");
                 	holist.add("40");
                 }
-                
+                // 호차 넣기
                 int chktrain = dao.chkTrain_Table(holist, chk);
                 if(chktrain == 0) {
                 	dao.setTrain_ho(holist, chk); // 체크 및 호차 pk
@@ -572,6 +566,7 @@ public class Payment_UI extends JDialog {
                     		}
                     	}
                 		ticketlist.add(date_text);
+                		// 로그인 여부에 따라 차내식 비회원, 회원 DB 넣기
                     	if(user_who) {
                     		dao.settikect(ticketlist, seatlist, chktrain);
                     		if (!foodlist.isEmpty()) {
@@ -583,7 +578,7 @@ public class Payment_UI extends JDialog {
                     			foodDao.setUnLoginFood(foodlist, seatlist, chktrain);
                     		}
                     	}
-                	}else {
+                	}else { // 회원, 비회원 티켓 DB 입력
                 		ticketlist.add(""+train_price);
                 		ticketlist.add(date_text);
                 		if(user_who) {

@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 import train.dao.TicketDAO;
 
 import javax.swing.JCheckBox;
-
+// 티켓 반환 유의사항 출력 다이얼로그
 public class Refund_panel extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

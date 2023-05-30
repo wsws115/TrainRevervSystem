@@ -12,8 +12,13 @@ import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-
+/**
+ * @author LJH
+ */
 public class Train_API {
+	/*
+	 * 기차 API 가져오는 클래스
+	 */
 	String st_sub;
 	String en_sub;
 	String date;
@@ -25,8 +30,9 @@ public class Train_API {
 		this.date = date;
 		this.train_nm = train_nm;
 	}
+	// 기차 API 가져오는 key값
 	private static String key = "cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D";
-	
+	// API 크롤링 정보 대입
     public JSONArray train_api() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","MS949") + "="+key); /*Service Key*/
@@ -37,11 +43,12 @@ public class Train_API {
         urlBuilder.append("&" + URLEncoder.encode("arrPlaceId","MS949") + "=" + URLEncoder.encode(en_sub, "MS949")); /*도착기차역ID [상세기능3. 시/도별 기차역 목록조회]에서 조회 가능*/
         urlBuilder.append("&" + URLEncoder.encode("depPlandTime","MS949") + "=" + URLEncoder.encode(date, "MS949")); /*출발일(YYYYMMDD)*/
         urlBuilder.append("&" + URLEncoder.encode("trainGradeCode","MS949") + "=" + URLEncoder.encode(train_nm, "MS949")); /*차량종류코드*/
-        URL url = new URL(urlBuilder.toString());
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
+        URL url = new URL(urlBuilder.toString()); // url 정보
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection(); 
+        conn.setRequestMethod("GET"); // API 크롤링 정보 get
         conn.setRequestProperty("Content-type", "application/json");
         System.out.println("Response code: " + conn.getResponseCode());
+        // 버퍼 리더로 API 정보 가져옴
         BufferedReader rd;
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -50,43 +57,25 @@ public class Train_API {
         }
         StringBuilder sb = new StringBuilder();
         String line;
-        
+        // 한줄씩 읽어 오기
         while ((line = rd.readLine()) != null) {
             sb.append(line);
         }
         rd.close();
         conn.disconnect();
         System.out.println(sb.toString());
-      
+        // JSON 라이브러리로 API 정보 각 파트 정보 가져오기
 		try {
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject)jsonParser.parse(sb.toString());
 			JSONObject response = (JSONObject)jsonObject.get("response");
 			JSONObject body = (JSONObject)response.get("body");
 			JSONObject items = (JSONObject)body.get("items");
-//			JSONObject item = (JSONObject)items.get("item");
 			System.out.println(items);
 			//JSON데이터를 넣어 JSON Object 로 만들어 준다.
 			        
 			//배열 추출
 			JSONArray array = (JSONArray) items.get("item");
-//			 for(int i=0; i<array.size(); i++){
-//			        	 
-//			    System.out.println("item"+i+" ===========================================");
-//			             
-//			    //배열 안에 있는것도 JSON형식 이기 때문에 JSON Object 로 추출
-//			    JSONObject object = (JSONObject) array.get(i);
-//			             
-//			    //JSON name으로 추출
-//			    System.out.println("요금 ==> "+object.get("adultcharge"));
-//			    System.out.println("출발역 ==> "+object.get("arrplacename"));
-//			    System.out.println("출발시간 ==> "+object.get("arrplandtime"));
-//			    System.out.println("도착역 ==> "+object.get("depplacename"));
-//			    System.out.println("도착시간 ==> "+object.get("depplandtime"));
-//			    System.out.println("열차이름 ==> "+object.get("traingradename"));
-//			    System.out.println("열차번호 ==> "+object.get("trainno"));
-//			    System.out.println("");
-//			 }
 			 return array;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

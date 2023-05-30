@@ -1,5 +1,5 @@
 package train.calender;
-
+// 날짜 가져오는 setter, getter
 public class ToDay {
 
     public int getDay() {

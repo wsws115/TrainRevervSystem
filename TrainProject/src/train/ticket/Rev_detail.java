@@ -36,7 +36,7 @@ import train.jungjun.No_login_joinDAO;
 import train.jungjun.change.Mem_chageDAO;
 import train.jungjun.change.No_mem_changeDAO;
 import train.jungjun.login_join_page.Login_and_joinDAO;
-
+// 회원, 비회원 티켓 조회 화면 다이얼로그
 public class Rev_detail extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	public static JButton refund_Btn;
@@ -44,7 +44,6 @@ public class Rev_detail extends JDialog {
 	DefaultTableModel ticketModel = new DefaultTableModel(columnNames, 0);
 	public static String[] columnNames2 = {"티켓번호","좌석번호", "음식이름", "수량","가격"};
 	public static DefaultTableModel ticket_food_model = new DefaultTableModel(columnNames2, 0);
-//	public static List<String> ticket_num;
 	public static JScrollPane fnb_scrollPane;
 	public static JTable table;
 	public static JPanel copy_Panel;
@@ -103,6 +102,7 @@ public class Rev_detail extends JDialog {
 		boarding_Date.setBounds(122, 0, 192, 48);
 		boarding_Label.add(boarding_Date);
 		System.out.println("로그인 체크 : "+ chk_admin);
+		// 로그인이 되었을때 티켓조회의 회원 티켓, 회원 차내식 조회
 		if(chk_admin) {
 			
 			if(chk_login){
@@ -115,7 +115,7 @@ public class Rev_detail extends JDialog {
 				checkDAO.no_mem_chk_train_admin(ticketModel,NoMemSearchBtn.ticket_code);
 			}
 			
-			
+		// 비회원 일때 티켓조회의 비회원 티켓 조회	
 		}else {
 			System.out.println("로그인 체크 : "+ chk_search + chk_login);
 			// Refund 버튼의 ActionListener

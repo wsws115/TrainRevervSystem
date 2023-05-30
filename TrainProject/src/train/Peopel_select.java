@@ -21,14 +21,17 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
 import train.search.Search_Train_Panel;
-
+// 인원 선택 패널
+/**
+ * @author LJH
+ */
 public class Peopel_select extends JPanel {
 	public static JTextField textField1;
 	public static JTextField textField2;
 	public static JTextField textField3;
 	public static JTextField textField4;
 	private boolean login_who = train.TrainReserv_Main.login_who;
-	
+	// 인원 + 클릭시 메서드로 최대 9명 까지 더하기
 	private int pluspeople(String str) {
 		int num = Integer.parseInt(str)+1;
 		if(num < 9 && num > 0) {
@@ -37,7 +40,7 @@ public class Peopel_select extends JPanel {
 			return 9;
 		}
 	}
-	
+	// 우대인원 + 클릭시 메서드로 최대 1명 까지 더하기 
 	private int pluspre(String str) {
 		int num = Integer.parseInt(str)+1;
 		if(num < 2 && num > 0) {
@@ -46,7 +49,7 @@ public class Peopel_select extends JPanel {
 			return 1;
 		}
 	}
-	
+	// 인원 - 클릭시 메서드로 최소 0명까지 빼기
 	private int minuspeople(String str) {
 		int num = Integer.parseInt(str)-1;
 		if(num < 9 && num > 0) {
@@ -55,7 +58,7 @@ public class Peopel_select extends JPanel {
 			return 0;
 		}
 	}
-	
+	// 우대인원 - 클릭시 메서드로 최소 0명까지 빼기
 	private int minuspre(String str) {
 		int num = Integer.parseInt(str)-1;
 		if(num < 2 && num > 0) {
@@ -64,7 +67,7 @@ public class Peopel_select extends JPanel {
 			return 0;
 		}
 	}
-	
+	// 모든 인원 더해서 메인 예매 프레임에 인원 합하여 넣기
 	private int sumPeople(String str1, String str2, String str3, String str4) {
 		int num1 = Integer.parseInt(str1);
 		int num2 = Integer.parseInt(str2);
@@ -90,7 +93,7 @@ public class Peopel_select extends JPanel {
 		typeLabel1.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		typeLabel1.setBounds(295, 282, 516, 66);
 		leftPanel.add(typeLabel1);
-		
+		// 새로고침시 모든 인원 0으로 바꾸기
 		JButton returnBtn = new JButton("새로고침");
 		returnBtn.setFont(new Font("HY견고딕", Font.BOLD, 35));
 		returnBtn.addActionListener(new ActionListener() {	
@@ -260,7 +263,7 @@ public class Peopel_select extends JPanel {
 		typeLabel1_4.setFont(new Font("HY헤드라인M", Font.PLAIN, 50));
 		typeLabel1_4.setBounds(502, 100, 335, 66);
 		leftPanel.add(typeLabel1_4);
-		
+		// 다음 버튼 클릭시 인원이 0명 이상일때 다음으로 넘어가기
 		JButton returnBtn_1 = new JButton();
 		returnBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -305,6 +308,8 @@ public class Peopel_select extends JPanel {
 		previousBtn.setBounds(50, 10, 110, 110);
 		leftPanel.add(previousBtn);
 		setLayout(groupLayout);
+		// 회원, 비회원 로그인 시 경로, 유아 버튼 활성화여부
+		// 회원일때도 우대여부가 인증 되었을 시 우대인원 활성화
 		if(login_who) {
 			try {
 				if(train.jungjun.login_join_page.Login_and_joinDAO.preferential != null) {

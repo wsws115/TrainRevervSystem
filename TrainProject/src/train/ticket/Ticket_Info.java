@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
-
+// 티켓조회 창에 티켓정보 출력하기 
 public class Ticket_Info extends JPanel {
 	String[] columnNames = {"티켓번호","좌석번호", "음식이름", "수량","가격"};
 	DefaultTableModel ticket_food_model = new DefaultTableModel(columnNames, 0);
@@ -148,15 +148,17 @@ public class Ticket_Info extends JPanel {
 		ticket_Unique_Num.setFont(new Font("굴림", Font.BOLD, 15));
 		ticket_Unique_Num.setBounds(618, 179, 230, 18);
 		reserve_Ticket_Panel.add(ticket_Unique_Num);
-
+		// 선택한 티켓의 값을 반환할 것인지 선택
+		// 티켓이 선택되면 반환 버튼 활성화
 		JCheckBox select_chkbox = new JCheckBox("선택");
 		select_chkbox.addItemListener(new ItemListener() {
-			
+			// 선택 시 차내식 정보 테이블에 티켓 값에 해당하는 값 넣기
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
 					Rev_detail.refund_Btn.setEnabled(true); // 버튼 활성화
                 	tnum_li.add(train_list.get(0));
+                	ticket_food_model = new DefaultTableModel(columnNames, 0);
 					Check_Rev_DAO chkDAO = new Check_Rev_DAO();
 					if (Rev_detail.chk_login) {
 						chkDAO.chk_food(tnum_li, ticket_food_model);
@@ -169,6 +171,7 @@ public class Ticket_Info extends JPanel {
 					table.setFont(new Font("HY견고딕", Font.PLAIN, 18));
 					table.getTableHeader().setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
 					Rev_detail.fnb_scrollPane.setViewportView(table);
+				// 선택 취소 차내식 정보 테이블에 티켓 값에 해당하는 값 빼고 선택한 값 넣기
 				}else if(e.getStateChange() == 2){
 					Rev_detail.refund_Btn.setEnabled(false); // 버튼 비활성화
                 	System.out.println(train_list.get(0));
@@ -178,6 +181,7 @@ public class Ticket_Info extends JPanel {
                 			tnum_li.remove(i);
                 		}
                 	}
+                	// 선택한 티켓의 차내식 정보 가져오기
                 	ticket_food_model = new DefaultTableModel(columnNames, 0);
                 	Check_Rev_DAO chkDAO = new Check_Rev_DAO();
 					if (Rev_detail.chk_login) {
@@ -191,15 +195,7 @@ public class Ticket_Info extends JPanel {
 					table.setFont(new Font("HY견고딕", Font.PLAIN, 18));
 					table.getTableHeader().setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
 					Rev_detail.fnb_scrollPane.setViewportView(table);
-                	// 진행이 어려우므로 잠시 중지 - 0524
-//                	Check_Rev_DAO chkDAO = new Check_Rev_DAO();
-//					chkDAO.chk_food(tnum_li, ticket_food_model);
-//					JTable table = new JTable(ticket_food_model);
-//					table.setRowHeight(80);
-//					table.setAutoCreateRowSorter(true);
-//					table.setFont(new Font("HY견고딕", Font.PLAIN, 18));
-//					table.getTableHeader().setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
-//					Rev_detail.fnb_scrollPane.getViewport().add(table);
+                	
 				}
 				
 			}

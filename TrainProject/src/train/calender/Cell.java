@@ -7,7 +7,7 @@ import java.awt.RenderingHints;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
+// 버튼의 날짜가 들어가는 클래스
 public class Cell extends JButton {
 
     private Date date;

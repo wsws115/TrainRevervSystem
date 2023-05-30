@@ -1,7 +1,7 @@
 package train.subway;
 
 import java.util.HashMap;
-
+// 기차 API에 들어가는 기차역 호출 정보 가져오는 클래스
 public class SubwayCode {
 	public static HashMap<String, String>sub_map = new HashMap<>();
 	public SubwayCode() {

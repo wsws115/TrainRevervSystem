@@ -36,8 +36,13 @@ import java.util.Date;
 import train.subway.*;
 import train.TrainReserv_Main;
 import train.search.*;
-
+/**
+ * @author LJH
+ */
 public class Search_Train_Panel extends JPanel {
+	/*
+	 	예매 패널에 넣는 기차API 패널
+	 */
 	public static JTable table;
 	public static DefaultTableModel model;
 	private JSONArray array;
@@ -58,15 +63,15 @@ public class Search_Train_Panel extends JPanel {
 		panel.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-//		scrollPane.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		scrollPane.setBounds(0, 0, 1470, 920);
 		panel.add(scrollPane);
 		model = new DefaultTableModel(header,0);
+		// 기차 정보 테이블
 		table = new JTable(model);
 		table.setFont(new Font("HY헤드라인M", Font.PLAIN, 30));
 		table.setRowHeight(100);
 		table.getTableHeader().setFont(new Font("맑은 고딕", Font.PLAIN, 30));
-		table.getColumnModel().getColumn(6).setCellRenderer(new ReservBtn("특실예매", table));
+		table.getColumnModel().getColumn(6).setCellRenderer(new ReservBtn("특실예매", table)); 
 		table.getColumnModel().getColumn(6).setCellEditor(new ReservBtn("특실예매",table));
 		table.getColumnModel().getColumn(8).setCellRenderer(new ReservBtn("일반예매",table));
 		table.getColumnModel().getColumn(8).setCellEditor(new ReservBtn("일반예매",table));
@@ -99,6 +104,7 @@ public class Search_Train_Panel extends JPanel {
 		scrollPane.setViewportView(table);
 	}
 	
+	
 	public void train_api_table(String st, String en, String da, String tanm) {
 		Train_API tapi = new Train_API(st, en, da, tanm);
 		try {
@@ -106,18 +112,7 @@ public class Search_Train_Panel extends JPanel {
 		    int count_table = 0;
 			for(int i =0; i< array.size(); ++i) {
 				JSONObject object = (JSONObject) array.get(i);
-//				System.out.println("요금 ==> "+object.get("adultcharge"));
-//			    System.out.println("출발역 ==> "+object.get("depplacename"));
-//			    System.out.println("출발시간 ==> "+object.get("depplandtime"));
-//			    System.out.println("도착역 ==> "+object.get("arrplacename"));
-//			    System.out.println("도착시간 ==> "+object.get("arrplandtime"));
-//			    System.out.println("열차이름 ==> "+object.get("traingradename"));
-//			    System.out.println("열차번호 ==> "+object.get("trainno"));
-//			    Object[] str={object.get("traingradename"),object.get("trainno"),
-//			    		object.get("arrplacename"),object.get("depplacename"),
-//			    		"","","","",object.get("adultcharge"),"",object.get("depplandtime")}; 
-//			    System.out.println(str.toString());
-				
+				// 가져온 날짜값 데이터 format
 				LocalDateTime st_date = LocalDateTime.parse(String.valueOf(object.get("depplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 				LocalDateTime en_date = LocalDateTime.parse(String.valueOf(object.get("arrplandtime")), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 				
@@ -126,6 +121,7 @@ public class Search_Train_Panel extends JPanel {
 				Duration diff = Duration.between(st_date.toLocalTime(), en_date.toLocalTime());
 				long el_hour;
 				long el_min;
+				// 가져온 열차 시간 계산
 				if (diff.toHours() < 0 && diff.toMinutes() < 0) {
 					el_hour = diff.toHours() + 24;
 					el_min = Math.abs(diff.toMinutes()%60);
@@ -134,7 +130,9 @@ public class Search_Train_Panel extends JPanel {
 					el_min = Math.abs(diff.toMinutes()%60-60);
 				}
 				String eltime = el_hour + "시간" + el_min+ "분";
+				// 특실 예매시 20% 가격 추가
 				int quality_up = (int) (Integer.parseInt(String.valueOf(object.get("adultcharge")))*1.2) ;
+				// 현재시간과 비교해서 이전 시간열차는 출력 x
 				LocalDateTime datetime = LocalDateTime.now();
 				if(!datetime.isAfter(st_date)) {
 				    model.insertRow(count_table, new Object[]{object.get("traingradename"),object.get("trainno"),

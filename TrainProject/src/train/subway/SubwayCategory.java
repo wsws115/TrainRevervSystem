@@ -1,7 +1,7 @@
 package train.subway;
 
 import java.util.HashMap;
-
+// 기차 API에 들어가는 열차 종류 가져오기
 public class SubwayCategory {
 	public static HashMap<String, String>sub_category = new HashMap<>();
 	public SubwayCategory() {

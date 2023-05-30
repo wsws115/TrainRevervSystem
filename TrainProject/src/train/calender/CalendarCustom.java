@@ -19,7 +19,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.awt.Color;
-
+/*
+	달력의 현재 시간, 현재 달의 날짜 출력
+*/
 public class CalendarCustom extends javax.swing.JPanel {
 
     private int month;
@@ -38,10 +40,11 @@ public class CalendarCustom extends javax.swing.JPanel {
     public CalendarCustom() {
         initComponents();
         thisMonth();
-        Calendar now = Calendar.getInstance();
-        slide.show(new PanelDate(now.get(Calendar.MONTH)+1, now.get(Calendar.YEAR)), PanelSlide.AnimateType.TO_RIGHT);
+        Calendar now = Calendar.getInstance(); //현재 달력 가져오기
+        // 달력의 슬라이드 이벤트 쇼
+        slide.show(new PanelDate(now.get(Calendar.MONTH)+1, now.get(Calendar.YEAR)), PanelSlide.AnimateType.TO_RIGHT); 
         showMonthYear();
-        new Thread(new Runnable() {
+        new Thread(new Runnable() { // 쓰레드로 현재 달력의 실시간 시간 변경
             @Override
             public void run() {
                 while (true) {
@@ -219,7 +222,7 @@ public class CalendarCustom extends javax.swing.JPanel {
         );
         this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents
-
+    // 다음달 버튼 액션
     private void cmdNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdNextActionPerformed
         if (month == 12) {
             month = 1;
@@ -230,7 +233,7 @@ public class CalendarCustom extends javax.swing.JPanel {
         slide.show(new PanelDate(month, year), PanelSlide.AnimateType.TO_LEFT);
         showMonthYear();
     }//GEN-LAST:event_cmdNextActionPerformed
-
+    // 이전달 버튼 액션
     private void cmdBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBackActionPerformed
         if (month == 1) {
             month = 12;
@@ -241,14 +244,14 @@ public class CalendarCustom extends javax.swing.JPanel {
         slide.show(new PanelDate(month, year), PanelSlide.AnimateType.TO_RIGHT);
         showMonthYear();
     }//GEN-LAST:event_cmdBackActionPerformed
-
+    // 현재 달 가져오기
     public void thisMonth() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());   //  today
         month = calendar.get(Calendar.MONTH) + 1;
         year = calendar.get(Calendar.YEAR);
     }
-
+    // 날짜 출력
     private void showMonthYear() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.MONTH, month - 1);

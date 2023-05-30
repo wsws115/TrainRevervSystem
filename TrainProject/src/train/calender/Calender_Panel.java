@@ -19,7 +19,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import train.TrainReserv_Main;
 import java.awt.Color;
+/*
+ 	예매 프레임에 들어가는 달력 출력 패널
 
+ */
 public class Calender_Panel extends JPanel {
 	private train.calender.CalendarCustom calendarCustom2;
 	/**
@@ -30,7 +33,7 @@ public class Calender_Panel extends JPanel {
 		
 		CalendarCustom calender = new CalendarCustom();
 		calender.setBounds(0,0,1400,900);
-		
+		// 예매 프레임에 이전 버튼 선택시 이벤트
 		JButton previousBtn = new JButton();
 		previousBtn.setBorderPainted(false);
 		previousBtn.setContentAreaFilled(false);
@@ -48,7 +51,7 @@ public class Calender_Panel extends JPanel {
 				
 			}
 		});
-		
+		// 다음 버튼 선택시 이벤트
 		JButton nextBtn = new JButton();
 		nextBtn.setBorderPainted(false);
 		nextBtn.setContentAreaFilled(false);

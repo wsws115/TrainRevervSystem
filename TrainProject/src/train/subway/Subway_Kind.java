@@ -1,6 +1,7 @@
 package train.subway;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -17,17 +18,19 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import train.TrainReserv_Main;
+
+//열차 종류를 선택하는 패널
 public class Subway_Kind extends JPanel {
 
 	/**
-	 * Create the panel.
+	 * @author LJH
 	 */
 	public Subway_Kind() {
 		
 		JPanel rightPanel = new JPanel();
 		rightPanel.setBackground(new Color(255, 255, 255));
 		rightPanel.setLayout(null);
-		
+		// KTX를 선택할 때 메인 예매 열차 변경
 		JButton subKtxBtn = new JButton("KTX");
 		subKtxBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		subKtxBtn.setBackground(new Color(255, 251, 217));
@@ -38,7 +41,7 @@ public class Subway_Kind extends JPanel {
 		});
 		subKtxBtn.setBounds(293, 370, 400, 150);
 		rightPanel.add(subKtxBtn);
-		
+		// SRT를 선택할 때 메인 예매 열차 변경
 		JButton subSrtBtn = new JButton("SRT");
 		subSrtBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		subSrtBtn.setBackground(new Color(255, 251, 217));
@@ -49,7 +52,7 @@ public class Subway_Kind extends JPanel {
 		});
 		subSrtBtn.setBounds(705, 370, 400, 150);
 		rightPanel.add(subSrtBtn);
-		
+		// 새마을호를 선택할 때 메인 예매 열차 변경
 		JButton subNewBtn = new JButton("새마을호");
 		subNewBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		subNewBtn.setBackground(new Color(255, 251, 217));
@@ -60,7 +63,7 @@ public class Subway_Kind extends JPanel {
 		});
 		subNewBtn.setBounds(293, 530, 400, 150);
 		rightPanel.add(subNewBtn);
-		
+		// 무궁화호 선택할 때 메인 예매 열차 변경
 		JButton subFlowerBtn = new JButton("무궁화호");
 		subFlowerBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		subFlowerBtn.setBackground(new Color(255, 251, 217));
@@ -71,7 +74,7 @@ public class Subway_Kind extends JPanel {
 		});
 		subFlowerBtn.setBounds(705, 530, 400, 150);
 		rightPanel.add(subFlowerBtn);
-		
+		// ITX-청춘 선택할 때 메인 예매 열차 변경
 		JButton subYungItxBtn = new JButton("ITX-청춘");
 		subYungItxBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		subYungItxBtn.setBackground(new Color(255, 251, 217));
@@ -82,7 +85,7 @@ public class Subway_Kind extends JPanel {
 		});
 		subYungItxBtn.setBounds(293, 690, 400, 150);
 		rightPanel.add(subYungItxBtn);
-		
+		// ITX-새마을 선택할 때 메인 예매 열차 변경
 		JButton subNewItxBtn = new JButton("ITX-새마을");
 		subNewItxBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		subNewItxBtn.setBackground(new Color(255, 251, 217));
@@ -93,7 +96,7 @@ public class Subway_Kind extends JPanel {
 		});
 		subNewItxBtn.setBounds(705, 690, 400, 150);
 		rightPanel.add(subNewItxBtn);
-		
+		// 전체 선택할 때 메인 예매 열차 변경
 		JButton allSubBtn = new JButton("전체");
 		allSubBtn.setFont(new Font("HY견고딕", Font.PLAIN, 40));
 		allSubBtn.setBackground(new Color(255, 251, 217));
@@ -126,7 +129,7 @@ public class Subway_Kind extends JPanel {
 					.addComponent(rightPanel, GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
 					.addContainerGap())
 		);
-		
+		// 다음 버튼
 		JButton nextBtn = new JButton();
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,7 +143,7 @@ public class Subway_Kind extends JPanel {
 		nextBtn.setBackground(new Color(0, 128, 129));
 		nextBtn.setBounds(1180, 10, 195, 117);
 		rightPanel.add(nextBtn);
-		
+		// 이전 버튼
 		JButton previousBtn = new JButton();
 		previousBtn.setBackground(new Color(0, 128, 129));
 		previousBtn.addActionListener(new ActionListener() {

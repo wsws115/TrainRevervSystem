@@ -16,7 +16,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+// 티켓 반환이 성공 했을때 다이얼로그
 public class Refund_Success_Panel extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

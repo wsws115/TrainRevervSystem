@@ -73,6 +73,13 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/*
+ 	예매 메인 클래스 프레임 - 이종현
+ 	기차역 선택, 날짜, 열차종류, 인원 선택, 열차 시간표, 좌석 선택, 차내식 선택, 결제까지 연결 하는 메인
+ 	
+ */
+
+
 /**
  * @author LJH
  *
@@ -83,22 +90,29 @@ public class TrainReserv_Main extends JFrame {
 	private String datePattern = "yyyy-MM-dd";
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
     
-    public static JTextField date_text;
-    public static JButton st_sub_btn;
-    public static JButton en_sub_btn;
-    public static String subSelectText;
-    public static JButton selectsubBtn; 
-    public static String seatSelect;
-    public static int carNum;
-    public static JLabel selectPeopleLabel;
-    public static List<String> seatSelectString;
-    public static JLabel seatSelectLabel;
-    public static CardLayout card;
-    public static JPanel card_panel;
-    public static boolean sub_select = true;
-    public static boolean login_who = true;
-    public static TrainReserv_Main frame;
-    public static int count_panel = 0;
+    public static JTextField date_text; // 날짜 텍스트
+    public static JButton st_sub_btn; // 기차 출발역
+    public static JButton en_sub_btn; // 기차 도착역
+    public static String subSelectText; // 선택한 열차 종류
+    public static JButton selectsubBtn; // 열차 종류
+    public static String seatSelect; // 선택 좌석
+    public static int carNum; // 호차 번호
+    public static JLabel selectPeopleLabel; // 전체 선택 인원 합
+    public static List<String> seatSelectString; // 좌석 선택 리스트
+    public static JLabel seatSelectLabel; // 좌석 선택
+    public static CardLayout card; // 카드 레이아웃
+    public static JPanel card_panel; // 카드 레이아웃 패널
+    public static boolean sub_select = true; // 출발지 true, 도착지 false
+    public static boolean login_who = true; // 회원 true, 비회원 false
+    public static TrainReserv_Main frame; // 현재 예매 프레임
+    public static int count_panel = 0; // 카드 레이아웃 패널 선택 번호
+    								   /* 출/도착지 0
+    								    * 달력 1
+    								    * 열차 종류 2
+    								    * 인원 선택 3
+    								    * 기차 선택 4
+    								    * 차내식 5
+    									*/
     /**
 	 * Launch the application.
 	 * 
@@ -129,40 +143,39 @@ public class TrainReserv_Main extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		// 전체 패널 기준 카드레이아웃
 		card = new CardLayout();
 		card_panel = new JPanel();
 		card_panel.setBackground(new Color(255, 255, 255));
 		card_panel.setBounds(441, 80, 1483, 931);
 		contentPane.add(card_panel);
 		card_panel.setLayout(card);
-		
+		// 출/도착지 패널
 		JPanel subway_panel = new SubwayPanel();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(subway_panel, "subway");
-		
+		// 달력 패널
 		JPanel calendar_panel = new Calender_Panel();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(calendar_panel, "calender");
-		
+		// 열차 종류 패널
 		JPanel subway_kind = new Subway_Kind();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(subway_kind, "subkind");
-		
+		// 좌석 패널
 		JPanel seat_panel = new Peopel_select();
 		card_panel.setBounds(441,80,1483,931);
 		card_panel.add(seat_panel, "select");
-		
+		// 차내식
 		JPanel food_panel = new FoodCourtMainPanel();
 		food_panel.setBounds(441, 80, 1483, 931);
 		card_panel.add(food_panel, "food");
-		
 		
 		JPanel main_panel = new JPanel();
 		main_panel.setBackground(new Color(54, 124, 179));
 		main_panel.setBounds(0, 0, 1924, 1011);
 		contentPane.add(main_panel);
-		
+		// 메인 홈으로 가는 버튼
 		JButton home_btn = new JButton();
 		home_btn.setBorderPainted(false);
 		home_btn.setContentAreaFilled(false);
@@ -177,7 +190,7 @@ public class TrainReserv_Main extends JFrame {
 				dispose();			
 			}
 		});
-		
+		// 예매 패널의 선택한 사항 확인 패널
 		JPanel reserv_panel = new JPanel();
 		reserv_panel.setAutoscrolls(true);
 		reserv_panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -193,13 +206,13 @@ public class TrainReserv_Main extends JFrame {
 		lblNewLabel_1_1.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		lblNewLabel_1_1.setBounds(169, 158, 63, 29);
 		reserv_panel.add(lblNewLabel_1_1);
-//		card.next(card_panel);
+		
 		st_sub_btn = new JButton("서울");
 		st_sub_btn.setForeground(Color.WHITE);
 		st_sub_btn.setBackground(new Color(0, 128, 192));
 		st_sub_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sub_select = true;
+				sub_select = true; // 출발지를 선택하였을때
 			}
 		});
 		st_sub_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
@@ -211,7 +224,7 @@ public class TrainReserv_Main extends JFrame {
 		en_sub_btn.setBackground(new Color(0, 128, 192));
 		en_sub_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sub_select = false;
+				sub_select = false; // 도착지를 선택하였을때
 			}
 		});
 		en_sub_btn.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
@@ -232,7 +245,7 @@ public class TrainReserv_Main extends JFrame {
 		Calendar calendar = Calendar.getInstance();
 		LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
 		String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-		
+		// 날짜 선택 텍스트필드
 		date_text = new JTextField(date);
 		date_text.setFont(new Font("HY견고딕", Font.PLAIN, 25));
 		date_text.setColumns(10);
@@ -266,7 +279,7 @@ public class TrainReserv_Main extends JFrame {
 		selectPeopleLabel.setFont(new Font("HY헤드라인M", Font.PLAIN, 25));
 		selectPeopleLabel.setBounds(205, 562, 80, 31);
 		reserv_panel.add(selectPeopleLabel);
-		
+		// 다음 버튼을 눌러 패널 교체
 		JButton previous_btn = new JButton();
 		previous_btn.setBorderPainted(false);
 		previous_btn.setContentAreaFilled(false);
@@ -274,7 +287,7 @@ public class TrainReserv_Main extends JFrame {
 		previous_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(count_panel);
-				if(count_panel == 1) {
+				if(count_panel == 1) { // 현재 패널이 달력일때
 					st_sub_btn.setText("서울");
 					en_sub_btn.setText("부산");
 					JPanel calendar_panel = new Calender_Panel();
@@ -282,11 +295,12 @@ public class TrainReserv_Main extends JFrame {
 					card_panel.add(calendar_panel, "calender");
 					Calendar calendar = Calendar.getInstance();
 					LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
+					// 현재 날짜 불러오기
 					String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
 					date_text.setText(date);
-					card.show(card_panel, "subway");
+					card.show(card_panel, "subway"); // 기차 선택 패널로 이동
 					count_panel = 0;
-				}else if(count_panel == 2) {
+				}else if(count_panel == 2) { // 현재 패널이 열차 종류 선택일때
 					selectsubBtn.setText("전체");
 					JPanel calendar_panel = new Calender_Panel();
 					card_panel.setBounds(441,80,1483,931);
@@ -295,26 +309,26 @@ public class TrainReserv_Main extends JFrame {
 					LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
 					String date = String.valueOf(ld.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
 					date_text.setText(date);
-					card.show(card_panel, "calender");
+					card.show(card_panel, "calender"); // 달력 패널로 이동
 					count_panel = 1;
-				}else if(count_panel == 3) {
+				}else if(count_panel == 3) { // 현재 패널이 인원 선택일 때 
 					selectsubBtn.setText("전체");
 					selectPeopleLabel.setText("X");
 					Peopel_select.textField1.setText("0");
 					Peopel_select.textField2.setText("0");
 					Peopel_select.textField3.setText("0");
 					Peopel_select.textField4.setText("0");
-					card.show(card_panel, "subkind");
+					card.show(card_panel, "subkind"); // 열차 종류선택으로 이동
 					count_panel = 2;
-				}else if(count_panel == 4) {
+				}else if(count_panel == 4) { // 현재 패널이 기차 선택일 때
 					selectPeopleLabel.setText("X");
 					Peopel_select.textField1.setText("0");
 					Peopel_select.textField2.setText("0");
 					Peopel_select.textField3.setText("0");
 					Peopel_select.textField4.setText("0");
-					card.show(card_panel, "select");
+					card.show(card_panel, "select"); // 인원 선택으로 이동
 					count_panel = 3;
-				}else if(count_panel == 5) {
+				}else if(count_panel == 5) { // 현재 패널이 차내식일때
 					seatSelectLabel.setText("X");
 					card.show(card_panel, "기차API");
 					JPanel food_panel = new FoodCourtMainPanel();

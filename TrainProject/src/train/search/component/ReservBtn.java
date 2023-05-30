@@ -18,7 +18,10 @@ import train.TrainReserv_Main;
 import train.dao.SeatDAO;
 import train.seat_special.SpecialSeatSelect;
 import train.seat_standard.StandardSeatSelect;
-
+// 열차 예매 버튼 클릭시 이벤트 클래스
+/**
+ @author LJH
+ */
 public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
 	JButton reservBtn;
 	String mainpont = "HY헤드라인M";
@@ -48,7 +51,7 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 		reservBtn.setBackground(new Color(0, 49, 74));
     	
 		reservBtn.addActionListener(e -> {
-
+				// 특실 예매시 좌석 선택 다이얼로그 출력
 	    		if (text.equals("특실예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
 	    			sd = new SpecialSeatSelect();
@@ -119,16 +122,7 @@ public class ReservBtn  extends AbstractCellEditor implements TableCellEditor, T
 
 				}
 	    				
-	    			// 수량 + 1
-//	    			int addQty = (int) reserv_dtm.getValueAt(rev_table.getSelectedRow(), 3) + 1;	
-//	    			
-//	    			if (addQty < 1) {
-//	    				addQty = 1;
-//	    			}
-//	    			
-//	    			reserv_dtm.setValueAt(addQty, rev_table.getSelectedRow(), 3);
-	    			
-	    			
+	    		// 일반예매 버튼 선택시 좌석 예매 다이얼로그 출력
 	    		} else if (text.equals("일반예매")) {
 	    			System.out.println(stp_table.getSelectedRow());
 	    			sb = new StandardSeatSelect();
