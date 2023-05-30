@@ -440,9 +440,10 @@ public class Payment_UI extends JDialog {
 		JButton Previous_Btn = new JButton("처음으로");
 		Previous_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+//				Train_Main.card.show(Train_Main.card_panel, "loading");
 				TrainReserv_Main.frame.dispose();
 				setVisible(false);
-				Train_Main.card.show(Train_Main.card_panel, "loading");
 //				Rev_detail rev = new Rev_detail();
 //				
 //				if(user_who) {

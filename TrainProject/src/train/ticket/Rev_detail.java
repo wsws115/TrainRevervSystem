@@ -176,8 +176,7 @@ public class Rev_detail extends JDialog {
 			}else {
 				if (chk_search) {
 					date_text = TrainReserv_Main.date_text.getText();
-					user_code = No_login_joinDAO.pk;
-					checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
+					checkDAO.no_mem_chk_train(ticketModel, date_text);
 				}else {
 					Calendar calendar = Calendar.getInstance();
 					LocalDate ld = LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) +1,calendar.get(Calendar.DATE));
@@ -186,7 +185,7 @@ public class Rev_detail extends JDialog {
 					user_code = No_mem_changeDAO.pk;
 					System.out.println(user_code);
 					System.out.println(date_text);
-					checkDAO.no_mem_chk_train(ticketModel, user_code, date_text);
+					checkDAO.no_mem_chk_train(ticketModel, date_text);
 				}
 				
 			}

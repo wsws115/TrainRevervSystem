@@ -174,7 +174,7 @@ public class TrainReserv_Main extends JFrame {
 				// 홈버튼 누르면 홈으로 이동			
 				Train_Main first_frame = new Train_Main();
 				first_frame.main(null);
-				setVisible(false);			
+				dispose();			
 			}
 		});
 		

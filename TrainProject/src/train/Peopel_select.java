@@ -325,15 +325,15 @@ public class Peopel_select extends JPanel {
 				e.printStackTrace();
 			}
 		}else{
-			minusBtn2.setEnabled(login_who);
-			minusBtn3.setEnabled(login_who);
-			minusBtn4.setEnabled(login_who);
-			plusBtn2.setEnabled(login_who);
-			plusBtn3.setEnabled(login_who);
-			plusBtn4.setEnabled(login_who);
-			textField2.setEnabled(login_who);
-			textField3.setEnabled(login_who);
-			textField4.setEnabled(login_who);
+			minusBtn2.setEnabled(false);
+			minusBtn3.setEnabled(false);
+			minusBtn4.setEnabled(false);
+			plusBtn2.setEnabled(false);
+			plusBtn3.setEnabled(false);
+			plusBtn4.setEnabled(false);
+			textField2.setEnabled(false);
+			textField3.setEnabled(false);
+			textField4.setEnabled(false);
 		}
 		
 		try {

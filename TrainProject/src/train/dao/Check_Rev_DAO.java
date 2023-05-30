@@ -12,6 +12,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 import train.TrainReserv_Main;
+import train.Train_Main;
 import train.db.OjdbcConnection;
 import train.jungjun.login_join_page.Login_and_joinDAO;
 import train.search.component.ReservBtn;
@@ -55,7 +56,8 @@ public class Check_Rev_DAO {
 		      }
 		   
 	   }
-   public void no_mem_chk_train(DefaultTableModel model, String user_code, String date) {
+   public void no_mem_chk_train(DefaultTableModel model, String date) {
+	   String query1 = "SELECT * FROM non_mem_info WHERE phone_number = ? AND password = ?";
 	   String query = "SELECT * FROM non_mem_info us "
 	            + "RIGHT JOIN train_unmember_ticket tt ON us.no_mem_pk = tt.no_mem_pk "
 	            + "RIGHT JOIN seat_table seat ON tt.seat_code = seat.seat_code "
@@ -64,30 +66,37 @@ public class Check_Rev_DAO {
 	            + "WHERE us.no_mem_pk = ? AND api.train_date = ?";
 	      try (
 	            Connection conn = OjdbcConnection.getConnection();
+	    		PreparedStatement pstmt1 = conn.prepareStatement(query1);
 	            PreparedStatement pstmt = conn.prepareStatement(query);
 	         ) {
 	    	  	
-	    	  	System.out.println(user_code);
-	    	  	System.out.println(date);
-	            pstmt.setString(1, user_code);
-	            pstmt.setString(2, date);
-//	            pstmt.setString(2, "20230523");
-	            ResultSet rs = pstmt.executeQuery();
+	    	  	pstmt1.setString(1, Train_Main.pn2);
+				pstmt1.setString(2, Train_Main.pw3);
+				ResultSet rs1 = pstmt1.executeQuery();
+	    	  	
+	    	  	if(rs1.next()) {
+	    	  		System.out.println(rs1.getString("NO_MEM_PK"));
+	    	  		pstmt.setString(1, rs1.getString("NO_MEM_PK"));
+		            pstmt.setString(2, date);
+//		            pstmt.setString(2, "20230523");
+		            ResultSet rs = pstmt.executeQuery();
+		            
+		            while(rs.next()) {
+		            	Vector<Object> list = new Vector<>();
+		            	list.add(rs.getString("ticket_num"));
+		            	list.add(rs.getString("train_type"));
+		            	list.add(rs.getString("train_num_name"));
+		            	list.add(rs.getString("train_date"));
+		            	list.add(rs.getString("starting_subway"));
+		            	list.add(rs.getString("ending_subway"));
+		            	list.add(rs.getString("start_time"));
+		            	list.add(rs.getString("end_time"));
+		            	list.add(rs.getString("train_ho_num"));
+		            	list.add(rs.getString("seat_name"));
+		            	model.addRow(list);
+		            }
+	    	  	}
 	            
-	            while(rs.next()) {
-	            	Vector<Object> list = new Vector<>();
-	            	list.add(rs.getString("ticket_num"));
-	            	list.add(rs.getString("train_type"));
-	            	list.add(rs.getString("train_num_name"));
-	            	list.add(rs.getString("train_date"));
-	            	list.add(rs.getString("starting_subway"));
-	            	list.add(rs.getString("ending_subway"));
-	            	list.add(rs.getString("start_time"));
-	            	list.add(rs.getString("end_time"));
-	            	list.add(rs.getString("train_ho_num"));
-	            	list.add(rs.getString("seat_name"));
-	            	model.addRow(list);
-	            }
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }

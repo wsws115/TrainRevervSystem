@@ -519,8 +519,8 @@ public class Train_Main extends JFrame {
 //					No_login_alrim alrim = new No_login_alrim();
 //					alrim.main(null);
 //					System.out.println("비회원 가입 성공 여부 " + DAO.no_loginDAO());
-					
 					TrainReserv_Main reserv_main = new TrainReserv_Main();
+					reserv_main.login_who = false;
 					reserv_main.main(null);
 				}else if(!nchk.num_chk()) {
 					alrim = "전화번호를 정확히 입력하세요";
@@ -1521,8 +1521,12 @@ public class Train_Main extends JFrame {
          change_pw_1.setBounds(1038, 872, 359, 100);
          mem_change_find_id.add(change_pw_1);
          
-         JPanel loading = new train.Loading_Panel();
+         JPanel loading = new JPanel();
          loading.setBackground(Color.WHITE);
+         JLabel typeLabel1 = new JLabel();
+		 typeLabel1.setBounds(470, 30, 1000, 1000);
+		 loading.add(typeLabel1);
+		 typeLabel1.setIcon(new ImageIcon(ImageIO.read(new File("resource\\Loading_logo.png")).getScaledInstance(1000, 700, Image.SCALE_AREA_AVERAGING)));
          card_panel.add(loading, "loading");
          loading.setLayout(null);
          

@@ -32,13 +32,13 @@ public class Loading_Panel extends JPanel {
 		
 		JPanel leftPanel = new JPanel();
 		leftPanel.setBackground(new Color(255, 255, 255));
+		leftPanel.setBounds(100, 39, 982, 506);
 		leftPanel.setLayout(null);
 		try {
-			JLabel typeLabel1 = new JLabel();
-			typeLabel1.setIcon(new ImageIcon("resource\\Loading_logo.PNG"));
-			typeLabel1.setBounds(682, 105, 586, 471);
+			JButton typeLabel1 = new JButton();
+			typeLabel1.setBounds(0, 39, 300, 280);
 			leftPanel.add(typeLabel1);
-			
+			typeLabel1.setIcon(new ImageIcon(ImageIO.read(new File("resource\\Loading_logo.png")).getScaledInstance(586, 471, Image.SCALE_AREA_AVERAGING)));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
