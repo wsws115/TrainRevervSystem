@@ -285,7 +285,7 @@ public class Admin_food extends JPanel {
 		addMenuPanel.add(foodNoTextField);
 	} // 생성자 end	
 	
-	/** 컴퓨터에서 이미지 파일을 불러오는 메소드 */
+	/** 컴퓨터에서 이미지 파일을 불러오는 메서드 */
 	@SuppressWarnings("static-access")
 	private File uploadImage() {
 		JFileChooser chooser = new JFileChooser();
@@ -330,7 +330,7 @@ public class Admin_food extends JPanel {
 		return null;	  	
 	}
 
-	/** resource 폴더에 새로운 파일을 저장하는 메소드 */
+	/** resource 폴더에 새로운 파일을 저장하는 메서드 */
 	private void saveFile(File file) {
 		File selectedFile = file;
 		String destinationFolder = "resource/";
@@ -346,7 +346,7 @@ public class Admin_food extends JPanel {
         }
 	}
 	
-	/** resource 폴더에 있는 기존 이미지 파일을 삭제하는 메소드 */
+	/** resource 폴더에 있는 기존 이미지 파일을 삭제하는 메서드 */
 	private void deleteFile(String imageFileName) {		
 		String destinationFolder = "resource/";
 		Path filePath = Paths.get(destinationFolder + imageFileName);
@@ -360,7 +360,7 @@ public class Admin_food extends JPanel {
 		}
 	}
 	
-	/** DB에서 차내식을 조회하여 테이블에 출력하는 메소드 */
+	/** DB에서 차내식을 조회하여 테이블에 출력하는 메서드 */
 	private void getMenuValue(DefaultTableModel order_dtm) {
 		order_dtm.setNumRows(0); // 테이블 초기화
 		
@@ -377,7 +377,7 @@ public class Admin_food extends JPanel {
 		}
 	}
 	
-	/** 하단 차내식 수정, 추가 패널의 텍스트 라벨 값을 초기화하는 메소드 */
+	/** 하단 차내식 수정, 추가 패널의 텍스트 라벨 값을 초기화하는 메서드 */
 	private void initialization() {
 		categorycomboBox.setSelectedIndex(0);
 		foodNoTextField.setText(null);
@@ -386,7 +386,7 @@ public class Admin_food extends JPanel {
 		imageFileNameLab.setText(null);	
 	}
 	
-	/** 패널의 모든 값을 초기화하는 메소드 (AdminFrame에서 패널 넘어갈 때 마다 초기화) */
+	/** 패널의 모든 값을 초기화하는 메서드 (AdminFrame에서 패널 넘어갈 때 마다 초기화) */
 	public void reset() {
 		order_dtm.setRowCount(0);
 		categorycomboBox.setSelectedIndex(0);

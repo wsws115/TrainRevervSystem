@@ -61,7 +61,7 @@ public class FoodBtn extends JButton {
 		});
 	}
 	
-	/** 버튼에 넣을 이미지를 입력하는 메소드 */	
+	/** 버튼에 넣을 이미지를 입력하는 메서드 */	
 	void setImage(String image_location) {
 		File imageFile = new File("resource/" + image_location);
 		
@@ -77,7 +77,7 @@ public class FoodBtn extends JButton {
 		}
 	}
 	
-	/** 버튼 클릭하면 JTable에 행을 추가하는 메소드 */ 
+	/** 버튼 클릭하면 JTable에 행을 추가하는 메서드 */ 
 	void addTableColumn(JTable order_table) {
 		List<String> seatlist = train.TrainReserv_Main.seatSelectString;
 		String[] seats = new String[seatlist.size()];

@@ -24,7 +24,7 @@ import train.jungjun.No_login_join;
 
 public class FoodDAO {
 	
-	/** 음식 DB에서 음식 전체 리스트를 가져오는 메소드 */
+	/** 음식 DB에서 음식 전체 리스트를 가져오는 메서드 */
 	public List<FoodDTO> getFoodAll() {
 		
 		List<FoodDTO> list = new ArrayList<>();
@@ -113,7 +113,7 @@ public class FoodDAO {
 		}		
 	}
 	
-	/** DB로 차내식을 추가하는 메소드 */
+	/** DB로 차내식을 추가하는 메서드 */
 	public boolean addFood(FoodDTO food) {
 		
 		UIManager.put("OptionPane.minimumSize",new Dimension(400, 400));
@@ -155,7 +155,7 @@ public class FoodDAO {
 		return false;
 	}
 	
-	/** DB에서 차내식 메뉴를 삭제하는 메소드 */
+	/** DB에서 차내식 메뉴를 삭제하는 메서드 */
 	public void delectFood(String foodNum) {
 			
 		String query = "DELETE FROM trainfood WHERE food_number = ?";		
@@ -176,7 +176,7 @@ public class FoodDAO {
 		}			
 	}
 	
-	/** 차내식을 업데이트하는 메소드 */
+	/** 차내식을 업데이트하는 메서드 */
 	public boolean updateFood(FoodDTO food) {
 		String query1 = "SELECT * FROM trainfood WHERE food_number = ?";
 		String query2 = "UPDATE trainfood SET food_type = ?, food_name = ?, food_price = ?, food_image_location = ? WHERE food_number = ?";	

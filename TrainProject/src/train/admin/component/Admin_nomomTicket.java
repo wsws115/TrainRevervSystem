@@ -198,7 +198,7 @@ public class Admin_nomomTicket extends JPanel {
 
 	}
 	
-	/** DB에서 티켓 정보를 가져오는 메소드 */
+	/** DB에서 티켓 정보를 가져오는 메서드 */
 	private void setTicketValue(List<TicketDTO> tickets, DefaultTableModel model) {
 		// "티켓번호", "열차이름", "열차번호", "출발지", "도착지", "좌석번호", "가격", "반환"
 		if (tickets != null) {
@@ -218,7 +218,7 @@ public class Admin_nomomTicket extends JPanel {
 		}
 	}
 	
-	/** 핸드폰 번호 유효성을 검사하는 메소드 */
+	/** 핸드폰 번호 유효성을 검사하는 메서드 */
 	private boolean chkPhoneNum(String phoneNum) {
 		String regex = "^01(?:0|1|[6-9])-\\d{3,4}-\\d{4}";
 		Pattern p = Pattern.compile(regex);
@@ -229,7 +229,7 @@ public class Admin_nomomTicket extends JPanel {
 		return false;
 	}
 	
-	/** 패널의 모든 값을 초기화 하는 메소드 */
+	/** 패널의 모든 값을 초기화 하는 메서드 */
 	public void reset() {
 		notionLab.setText("전화번호는 010-0000-0000 형식으로 입력해주세요");
 		notionLab.setForeground(Color.red);

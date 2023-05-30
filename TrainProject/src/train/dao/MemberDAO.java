@@ -16,7 +16,8 @@ import train.db.OjdbcConnection;
 import train.dto.MemberDTO;
 
 public class MemberDAO {
-	// 회원 조회
+
+	/** 회원 조회 메서드 */
 	public MemberDTO getMember(String phoneNum) {
 		
 		UIManager.put("OptionPane.minimumSize",new Dimension(400, 400));
@@ -48,7 +49,7 @@ public class MemberDAO {
 		}
 	}
 
-	// 비회원 조회
+	/** 비회원 조회 메서드 */
 	public List<String> getNoMember(String phoneNum) {
 		
 		UIManager.put("OptionPane.minimumSize", new Dimension(400, 400));
@@ -79,7 +80,7 @@ public class MemberDAO {
 		}
 	}
 
-	// 회원 탈퇴
+	/** 회원 탈퇴 메서드 */
 	public boolean withdraw(String usernum_pk) {
 
 		UIManager.put("OptionPane.minimumSize",new Dimension(400, 400));

@@ -14,7 +14,7 @@ import train.dto.TicketDTO;
 
 public class TicketDAO {
 
-	// 회원 티켓 조회
+	/** 회원 티켓 조회 메서드 */
 	public List<TicketDTO> searchMemTicket(String phoneNum) {
 		List<TicketDTO> tickets = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class TicketDAO {
 		}		
 	}
 
-	// 회원 티켓 반환 메소드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨)
+	/** 회원 티켓 반환 메서드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨) */
 	public boolean refundMemTicket(String ticketNum, int trainNum) {		
 
 		String query1 = "UPDATE train_table SET train_seat_qty = train_seat_qty + 1 WHERE train_num = " + trainNum;
@@ -68,7 +68,8 @@ public class TicketDAO {
 			return false;
 		}
 	}
-	// 회원 티켓 반환 메소드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨)
+	
+	/** 회원 티켓 반환 메서드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨) */
 	public boolean refundMemTicket_search(String ticketNum) {		
 			String query = "SELECT api.train_num FROM train_ticket tt "
 	            + "JOIN seat_table seat ON tt.seat_code = seat.seat_code "
@@ -103,7 +104,8 @@ public class TicketDAO {
 				return false;
 			}
 		}
-	// 비회원
+	
+	/** 비회원 티켓 조회 메서드 */
 	public List<TicketDTO> searchNoMemTicket(String phoneNum) {
 		List<TicketDTO> tickets = new ArrayList<>();
 
@@ -133,7 +135,7 @@ public class TicketDAO {
 		}		
 	}
 	
-	// 비회원 티켓 반환 메소드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨)
+	/** 비회원 티켓 반환 메서드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨) */
 	public int refundNoMemTicket(String nomomNum, String ticketNum, int trainNum) {	
 		
 		// 비회원 티켓 조회해서 남은 티켓이 1이면, 비회원 정보도 삭제
@@ -180,7 +182,8 @@ public class TicketDAO {
 		}
 		return 0;
 	}
-	// 비회원 티켓 반환 메소드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨)
+	
+	/** 비회원 티켓 반환 메소드 (삭제 시, 차내식, 티켓, seat 테이블 3개에서 삭제됨) */
 		public int refundNoMemTicket_search(String ticketNum) {	
 			
 			// 비회원 티켓 조회해서 남은 티켓이 1이면, 비회원 정보도 삭제
