@@ -12,6 +12,7 @@ import javax.swing.table.TableCellRenderer;
 
 import train.ticket.Rev_detail;
 
+// 회원 티켓 조회 버튼
 public class MemSearchBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 	
 	JButton searchBtn;

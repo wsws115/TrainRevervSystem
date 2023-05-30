@@ -30,6 +30,7 @@ import train.dao.TicketDAO;
  *
  */
 
+
 // 차내식 JTable 내부에 삭제 버튼 생성 클래스
 public class DeleteFoodBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 	

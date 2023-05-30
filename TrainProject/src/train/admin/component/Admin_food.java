@@ -37,6 +37,7 @@ import train.dto.FoodDTO;
  *
  */
 
+
 // 차내식 관리 패널
 public class Admin_food extends JPanel {
 	

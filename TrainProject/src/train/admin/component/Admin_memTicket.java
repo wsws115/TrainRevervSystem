@@ -32,6 +32,7 @@ import train.dto.TicketDTO;
  *
  */
 
+
 // 회원 티켓 관리 패널
 public class Admin_memTicket extends JPanel {
 	

@@ -10,6 +10,8 @@ import javax.swing.SwingConstants;
  *
  */
 
+
+// 메뉴 라벨 (FoodBtn이 갖고 있는 값 출력을 위한 라벨)
 public class FoodLab extends JLabel {
 
 	public FoodLab(String text) {

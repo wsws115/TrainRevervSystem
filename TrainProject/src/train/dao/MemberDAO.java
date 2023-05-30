@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 import train.db.OjdbcConnection;
 import train.dto.MemberDTO;
 
+// 회원 DAO
 public class MemberDAO {
 
 	/** 회원 조회 메서드 */

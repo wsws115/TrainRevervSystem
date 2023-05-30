@@ -33,6 +33,7 @@ import train.ticket.Rev_detail;
  *
  */
 
+
 // 기차 예매 - 차내식 패널
 public class FoodCourtMainPanel extends JPanel {
 	// [하] 총 가격 라벨 (버튼 액션 시, 토탈 가격 바뀌어야 되서 static 설정)
@@ -306,7 +307,6 @@ public class FoodCourtMainPanel extends JPanel {
 			add(select_Btn);
 				// 액션 시, 좌석 번호 받고 / 테이블 DB값 DB에 올리기 -> 결제 창 출력
 			select_Btn.addActionListener(new ActionListener() {
-				// ★ 수정해야됨 ~
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
@@ -314,7 +314,6 @@ public class FoodCourtMainPanel extends JPanel {
 					if (order_table.getRowCount() == 0) {
 						System.out.println("아무것도 선택 안되면 데이터 없이 다음으로 이동");
 					} else {
-						System.out.println("테이블 값을 가져가야됨 ~");
 						// 0 좌석번호, 1 음식이름, 2 가격, 3 food_number_pk, 4 수량, 5 - 버튼 (null), 6 취소 버튼 (null)
 						TableModel model = order_table.getModel();
 						food_table = new String[model.getRowCount()];

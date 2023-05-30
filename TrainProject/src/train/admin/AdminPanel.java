@@ -19,7 +19,8 @@ import train.admin.component.Admin_nomomTicket;
  *
  */
 
-// 관리자 부모 패널
+
+// 관리자 메인 패널
 public class AdminPanel extends JPanel {
 
 	public static String ticket_code;

@@ -16,6 +16,7 @@ import train.dto.FoodDTO;
  *
  */
 
+
 // 차내식 하단에 들어갈 JTable
 public class OrderTable extends JTable {
 	

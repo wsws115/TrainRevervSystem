@@ -22,6 +22,7 @@ import train.db.OjdbcConnection;
 import train.dto.FoodDTO;
 import train.jungjun.No_login_join;
 
+// 차내식 DAO
 public class FoodDAO {
 	
 	/** 음식 DB에서 음식 전체 리스트를 가져오는 메서드 */

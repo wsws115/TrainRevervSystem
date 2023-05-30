@@ -21,6 +21,7 @@ import train.dao.MemberDAO;
  *
  */
 
+
 // 회원 티켓 관리 JTable 내부에 탈퇴 버튼 생성 클래스
 public class MemQuitBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 

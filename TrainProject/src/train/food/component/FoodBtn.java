@@ -27,6 +27,7 @@ import train.food.FoodCourtMainPanel;
  *
  */
 
+// 메뉴 버튼
 public class FoodBtn extends JButton {
 	
 	private String foodnum;

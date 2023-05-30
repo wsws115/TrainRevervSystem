@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import train.db.OjdbcConnection;
 import train.dto.TicketDTO;
 
+// 티켓 DAO
 public class TicketDAO {
 
 	/** 회원 티켓 조회 메서드 */
