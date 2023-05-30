@@ -22,6 +22,11 @@ import javax.swing.table.DefaultTableModel;
 import train.dto.FoodDTO;
 import train.food.FoodCourtMainPanel;
 
+/**
+ * @author KSJ
+ *
+ */
+
 public class FoodBtn extends JButton {
 	
 	private String foodnum;

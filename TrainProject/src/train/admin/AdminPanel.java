@@ -1,4 +1,5 @@
 package train.admin;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +14,12 @@ import train.admin.component.Admin_food;
 import train.admin.component.Admin_memTicket;
 import train.admin.component.Admin_nomomTicket;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 관리자 부모 패널
 public class AdminPanel extends JPanel {
 
 	public static String ticket_code;
@@ -44,6 +51,7 @@ public class AdminPanel extends JPanel {
 		
 		add(managementsPanel);
 		
+		// 상단 메뉴 버튼들
 		memTicketBtn = new JButton("회원 티켓 관리");
 		memTicketBtn.setForeground(new Color(0, 0, 64));
 		memTicketBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 45));
@@ -56,10 +64,10 @@ public class AdminPanel extends JPanel {
 				nomemTicketBtn.setForeground(Color.lightGray);
 				foodBtn.setForeground(Color.lightGray);	
 				
-				nomember.reset();
-				food.reset();
+				nomember.reset(); // 회원 티켓 클릭 시, 비회원 패널 리셋
+				food.reset(); // 회원 티켓 클릭 시, 차내식 패널 리셋
 				
-				card.show(managementsPanel, "member");
+				card.show(managementsPanel, "member"); // 버튼 클릭시 회원 관리 패널 오픈
 			}
 		});
 		add(memTicketBtn);
@@ -76,10 +84,10 @@ public class AdminPanel extends JPanel {
 				nomemTicketBtn.setForeground(new Color(0, 0, 64));
 				foodBtn.setForeground(Color.lightGray);	
 				
-				member.reset();
-				food.reset();
+				member.reset();  // 회원 티켓 클릭 시, 회원 패널 리셋
+				food.reset();  // 회원 티켓 클릭 시, 차내식 패널 리셋
 				
-				card.show(managementsPanel, "nomember");
+				card.show(managementsPanel, "nomember");  // 버튼 클릭시 비회원 관리 패널 오픈
 			}
 		});
 		add(nomemTicketBtn);
@@ -96,15 +104,16 @@ public class AdminPanel extends JPanel {
 				nomemTicketBtn.setForeground(Color.lightGray);
 				foodBtn.setForeground(new Color(0, 0, 64));
 				
-				member.reset();
-				nomember.reset();
+				member.reset();  // 회원 티켓 클릭 시, 회원 패널 리셋
+				nomember.reset();  // 회원 티켓 클릭 시, 비회원 패널 리셋
 				
-				card.show(managementsPanel, "food");
+				card.show(managementsPanel, "food");  // 버튼 클릭시 차내식 관리 패널 오픈
 			}
 		});
 		add(foodBtn);
 	}
 	
+	/** 회원 관리, 비회원 관리, 차내식 관리를 전부 초기화 하는 메서드 */
 	public void reset() {	
 		member.reset();
 		nomember.reset();

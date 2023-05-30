@@ -15,6 +15,12 @@ import javax.swing.table.TableCellRenderer;
 
 import train.food.FoodCourtMainPanel;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 차내식 하단 JTable에 들어갈 +, - , x 버튼
 public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer, MouseListener {
     
 	JButton count_Btn;
@@ -92,7 +98,7 @@ public class OrderTableBtn extends AbstractCellEditor implements TableCellEditor
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		FoodCourtMainPanel.getTotalPrice(user_table);
+		FoodCourtMainPanel.getTotalPrice(user_table); // 버튼 액션 시, 총 가격 업데이트
 	}
 
 	@Override

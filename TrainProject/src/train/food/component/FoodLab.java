@@ -5,6 +5,11 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * @author KSJ
+ *
+ */
+
 public class FoodLab extends JLabel {
 
 	public FoodLab(String text) {

@@ -16,6 +16,13 @@ import javax.swing.table.TableCellRenderer;
 
 import train.dao.TicketDAO;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 회원 티켓 관리 JTable 내부에 반환 버튼 생성 클래스
+
 public class MemRefundBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 
 	JButton cancelBtn;
@@ -37,7 +44,7 @@ public class MemRefundBtn extends AbstractCellEditor implements TableCellEditor,
 				
 				int ans = JOptionPane.showConfirmDialog(null, "정말 반환하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				
-				if (ans == 0) {
+				if (ans == 0) { // 확인 버튼 누르면 티켓 반환됨
 					int row = orderTable.getSelectedRow();
 	
 					String ticketNum = String.valueOf(orderTable.getValueAt(orderTable.getSelectedRow(), 0));

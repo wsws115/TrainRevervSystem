@@ -28,6 +28,12 @@ import train.food.component.FoodLab;
 import train.food.component.OrderTable;
 import train.ticket.Rev_detail;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 기차 예매 - 차내식 패널
 public class FoodCourtMainPanel extends JPanel {
 	// [하] 총 가격 라벨 (버튼 액션 시, 토탈 가격 바뀌어야 되서 static 설정)
 	public static JLabel totalPrice_Lab;	

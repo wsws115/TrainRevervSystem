@@ -27,6 +27,12 @@ import train.dao.TicketDAO;
 import train.dto.MemberDTO;
 import train.dto.TicketDTO;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 회원 티켓 관리 패널
 public class Admin_memTicket extends JPanel {
 	
 	MemberDAO memberDao = new MemberDAO();
@@ -55,6 +61,7 @@ public class Admin_memTicket extends JPanel {
 		setBackground(Color.white);
 		setLayout(null);
 		
+		// 회원 테이블
 		memberTable = new JTable(memModel);
 		memberTable.setBounds(50, 142, 1600, 140);
 		memberTable.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));	
@@ -88,6 +95,7 @@ public class Admin_memTicket extends JPanel {
 		membersp.setBounds(50, 150, 1600, 77);
 		add(membersp);
 		
+		// 티켓 테이블
 		ticketTable = new JTable(ticketModel);
 		ticketTable.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));	
 		ticketTable.getTableHeader().setFont(new Font("HY헤드라인M", Font.BOLD, 20));
@@ -132,6 +140,7 @@ public class Admin_memTicket extends JPanel {
 		notionLab.setBounds(302, 95, 353, 30);
 		add(notionLab);
 		
+		// 핸드폰 값 입력 시, 유효성 검사 -> 안맞으면 라벨로 안내
 		phoneNumTextField = new JTextField();
 		phoneNumTextField.setFont(new Font("굴림", Font.PLAIN, 20));
 		phoneNumTextField.setBounds(302, 32, 353, 60);
@@ -162,8 +171,8 @@ public class Admin_memTicket extends JPanel {
 		searchBtn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 조회 버튼 누르면 테이블에 값 표시
-				if (phoneNum != null) {
+				// 조회 버튼 누르면 테이블에 회원, 티켓 데이터 표시
+				if (phoneNum != null) { // 핸드폰 번호가 없으면 다이얼로그 오픈
 					if (memberDao.getMember(phoneNum) == null) {
 						memModel.setRowCount(0);
 					} else {
@@ -183,15 +192,14 @@ public class Admin_memTicket extends JPanel {
 		refreshBtn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				phoneNumTextField.setText(null);
-				memModel.setRowCount(0);
-				ticketModel.setRowCount(0);				
+				reset();			
 			}
 		});
 		add(refreshBtn);
 
 	}
 	
+	/** DB에서 티켓 정보를 가져오는 메소드 */
 	private void setTicketValue(List<TicketDTO> tickets, DefaultTableModel model) {
 		// "티켓번호", "열차이름", "열차번호", "출발지", "도착지", "좌석번호", "가격", "반환"
 		if (tickets != null) {
@@ -211,7 +219,7 @@ public class Admin_memTicket extends JPanel {
 		}
 	}
 	
-	// 회원 조회 값 넣기
+	/** DB에서 멤버 정보를 가져오는 메소드 */
 	private void setMemValue(MemberDTO member, DefaultTableModel model) {
 		// "회원 번호", "아이디", "이름", "전화번호", "생년월일", "이메일", "우대 사항", "탈퇴"
 		if (member != null) {
@@ -227,7 +235,7 @@ public class Admin_memTicket extends JPanel {
 		}
 	}
 	
-	// 핸드폰 번호 확인
+	/** 핸드폰 번호 유효성을 검사하는 메소드 */
 	private boolean chkPhoneNum(String phoneNum) {
 		String regex = "^01(?:0|1|[6-9])-\\d{3,4}-\\d{4}";
 		Pattern p = Pattern.compile(regex);
@@ -238,6 +246,7 @@ public class Admin_memTicket extends JPanel {
 		return false;
 	}
 	
+	/** 패널의 모든 값을 초기화 하는 메소드 */
 	public void reset() {
 		notionLab.setText("전화번호는 010-0000-0000 형식으로 입력해주세요");
 		notionLab.setForeground(Color.red);

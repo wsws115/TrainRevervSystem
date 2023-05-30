@@ -32,10 +32,17 @@ import javax.swing.table.DefaultTableModel;
 import train.dao.FoodDAO;
 import train.dto.FoodDTO;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 차내식 관리 패널
 public class Admin_food extends JPanel {
 	
 	FoodDAO fooddao = new FoodDAO();
-	List<FoodDTO> allFoodList = fooddao.getFoodAll();
+	List<FoodDTO> allFoodList = fooddao.getFoodAll(); // DB에서 차내식 메뉴 전체 조회
+	
 	File imagefile;
 	String originalFile;
 	boolean addsuccess, revisesuccess;
@@ -84,7 +91,8 @@ public class Admin_food extends JPanel {
 			
 			order_table.getColumn("삭제").setCellRenderer(new DeleteFoodBtn("삭제", order_table));
 			order_table.getColumn("삭제").setCellEditor(new DeleteFoodBtn("삭제", order_table));
-			// 테이블 값 클릭 시, 라벨에 값 출력
+			
+			// 테이블 값 클릭 시, 텍스트 라벨들에 값 출력
 			order_table.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					int row = order_table.getSelectedRow();
@@ -106,7 +114,7 @@ public class Admin_food extends JPanel {
 		searchBtn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getMenuValue(order_dtm);			
+				getMenuValue(order_dtm); // 조회 버튼 클릭 시, 테이블에 전체 메뉴 출력			
 			}
 		});
 		searchBtn.setBackground(new Color(0, 128, 192));
@@ -115,6 +123,7 @@ public class Admin_food extends JPanel {
 		searchBtn.setBounds(50, 20, 220, 60);
 		add(searchBtn);
 		
+		// 하단 메뉴 추가, 수정 패널
 		addMenuPanel = new JPanel();
 		addMenuPanel.setBackground(new Color(255, 255, 255));
 		addMenuPanel.setBounds(50, 600, 1600, 156);
@@ -170,8 +179,8 @@ public class Admin_food extends JPanel {
 				if (imageFileNameLab.getText() != null) {
 					originalFile = imageFileNameLab.getText();
 				}
-				imagefile = uploadImage();
-				imageFileNameLab.setText(imagefile.getName());
+				imagefile = uploadImage(); // 이미지 추가 클릭 시, 폴더에 이미지 업로드
+				imageFileNameLab.setText(imagefile.getName()); // 이미지 파일 라벨에 이미지 파일 텍스트 값 출력
 			}
 		});
 		addMenuPanel.add(addImageBtn);
@@ -179,7 +188,8 @@ public class Admin_food extends JPanel {
 		addMenuBtn = new JButton("메뉴 추가");
 		addMenuBtn.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 		addMenuBtn.setBounds(1410, 95, 127, 43);
-		// 메뉴 추가 눌렀을 때, 유효성 검사 -> 안맞는거 다이얼로그 오픈
+		
+		// 메뉴 추가 눌렀을 때, 유효성 검사 -> 안맞는거 다이얼로그 오픈 및 텍스트 값 NULL 세팅
 		addMenuBtn.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -214,14 +224,14 @@ public class Admin_food extends JPanel {
 							,"Warning", JOptionPane.DEFAULT_OPTION);
 					return;
 				}
-				// 음식 추가
+				// DB에 차내식 메뉴 추가
 				addsuccess = fooddao.addFood(new FoodDTO(foodNo, categorycomboBox.getSelectedItem().toString(), foodName, Integer.valueOf(price), image));
 				if (addsuccess) {
-					saveFile(imagefile); // 이미지 파일 추가
-					getMenuValue(order_dtm); 
-					initialization();
+					saveFile(imagefile); // 차내식 메뉴 추가가 성공하면, 폴더에 이미지 파일 추가
+					getMenuValue(order_dtm); // 테이블 값 재설정
+					initialization(); // 라벨 값 초기화
 				} else {
-					initialization();
+					initialization(); // 라벨 값 초기화
 				}	
 			}
 		});
@@ -237,7 +247,7 @@ public class Admin_food extends JPanel {
 				String image = imageFileNameLab.getText();	
 				
 				revisesuccess = fooddao.updateFood(new FoodDTO(foodNo, categorycomboBox.getSelectedItem().toString(), foodName, Integer.valueOf(price), image));
-				if (revisesuccess) {
+				if (revisesuccess) { // 다른 이미지 파일을 올렸을 때만, 폴더에 이미지 파일 저장
 					if (!image.equals(originalFile)) {
 						deleteFile(originalFile);
 						saveFile(imagefile);						
@@ -275,7 +285,7 @@ public class Admin_food extends JPanel {
 		addMenuPanel.add(foodNoTextField);
 	} // 생성자 end	
 	
-	/** 이미지 파일 불러오는 메소드 */
+	/** 컴퓨터에서 이미지 파일을 불러오는 메소드 */
 	@SuppressWarnings("static-access")
 	private File uploadImage() {
 		JFileChooser chooser = new JFileChooser();
@@ -320,7 +330,7 @@ public class Admin_food extends JPanel {
 		return null;	  	
 	}
 
-	/** 새로운 파일을 저장하는 메소드 */
+	/** resource 폴더에 새로운 파일을 저장하는 메소드 */
 	private void saveFile(File file) {
 		File selectedFile = file;
 		String destinationFolder = "resource/";
@@ -336,8 +346,7 @@ public class Admin_food extends JPanel {
         }
 	}
 	
-	/** 기존 이미지 파일을 삭제하는 메소드 */
-	@SuppressWarnings("unused")
+	/** resource 폴더에 있는 기존 이미지 파일을 삭제하는 메소드 */
 	private void deleteFile(String imageFileName) {		
 		String destinationFolder = "resource/";
 		Path filePath = Paths.get(destinationFolder + imageFileName);
@@ -368,7 +377,7 @@ public class Admin_food extends JPanel {
 		}
 	}
 	
-	/** 라벨 값을 초기화하는 메소드 */
+	/** 하단 차내식 수정, 추가 패널의 텍스트 라벨 값을 초기화하는 메소드 */
 	private void initialization() {
 		categorycomboBox.setSelectedIndex(0);
 		foodNoTextField.setText(null);
@@ -377,7 +386,7 @@ public class Admin_food extends JPanel {
 		imageFileNameLab.setText(null);	
 	}
 	
-	/** 패널 값을 초기화하는 메소드 (AdminFrame에서 패널 넘어갈 때 마다 초기화) */
+	/** 패널의 모든 값을 초기화하는 메소드 (AdminFrame에서 패널 넘어갈 때 마다 초기화) */
 	public void reset() {
 		order_dtm.setRowCount(0);
 		categorycomboBox.setSelectedIndex(0);

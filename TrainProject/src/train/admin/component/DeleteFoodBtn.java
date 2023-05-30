@@ -25,7 +25,12 @@ import train.dao.FoodDAO;
 import train.dao.MemberDAO;
 import train.dao.TicketDAO;
 
-/** JTable내부에 반환버튼생성 클래스 */
+/**
+ * @author KSJ
+ *
+ */
+
+// 차내식 JTable 내부에 삭제 버튼 생성 클래스
 public class DeleteFoodBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 	
 	JButton cancelBtn;
@@ -48,7 +53,7 @@ public class DeleteFoodBtn extends AbstractCellEditor implements TableCellEditor
 				
 				int ans = JOptionPane.showConfirmDialog(null, "정말 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				
-				if (ans == 0) {
+				if (ans == 0) { // 확인 버튼 누르면 DB에서 차내식 삭제 및 이미지 파일도 삭제
 					int row = orderTable.getSelectedRow();					
 						
 					String foodNum = orderTable.getValueAt(row, 0).toString();	

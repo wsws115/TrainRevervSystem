@@ -16,6 +16,12 @@ import javax.swing.table.TableCellRenderer;
 
 import train.dao.MemberDAO;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 회원 티켓 관리 JTable 내부에 탈퇴 버튼 생성 클래스
 public class MemQuitBtn extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 
 	JButton quitBtn;
@@ -37,7 +43,7 @@ public class MemQuitBtn extends AbstractCellEditor implements TableCellEditor, T
 				
 				int ans = JOptionPane.showConfirmDialog(null, "정말 탈퇴하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				
-				if (ans == 0) {
+				if (ans == 0) { // 확인 버튼 누르면 DB에서 회원 탈퇴됨
 					int row = orderTable.getSelectedRow();
 	
 					String userNum = (String) orderTable.getValueAt(row, 0);

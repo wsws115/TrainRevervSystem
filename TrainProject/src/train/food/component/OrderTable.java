@@ -11,6 +11,12 @@ import javax.swing.table.DefaultTableModel;
 
 import train.dto.FoodDTO;
 
+/**
+ * @author KSJ
+ *
+ */
+
+// 차내식 하단에 들어갈 JTable
 public class OrderTable extends JTable {
 	
 	public static final int SEATROW = 0;
