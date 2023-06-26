@@ -144,5 +144,5 @@
  ##
 
 ## 3. 참고 문헌
-📚 공공데이터 포털 기차API https://www.data.go.kr/data/15098552/openapi.do?recommendDataYn=Y 
+📚 공공데이터 포털 기차API https://www.data.go.kr/data/15098552/openapi.do?recommendDataYn=Y <br>
     - 출발역에서 도착역까지의 기차 목록 API
